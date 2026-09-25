@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data-Oriented Graph Optimisation Engine | Vigo Dang Portfolio</title>
+    <meta name="description" content="Case study for a C# data-oriented graph routing engine built within an assignment-provided runtime and harness.">
+    <link rel="canonical" href="https://vigodang.github.io/projects/graph-optimisation.html">
+    <meta property="og:title" content="Data-Oriented Graph Optimisation Engine | Vigo Dang">
+    <meta property="og:description" content="C# graph traversal engine with flat arrays, BFS, Dijkstra, custom heap and hash table.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vigodang.github.io/projects/graph-optimisation.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="../index.html" aria-label="Vigo Dang home"><span class="brand-mark">VD</span><span class="brand-name">Vigo Dang</span></a>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="site-nav" data-nav-links>
+          <a href="../work.html" aria-current="page">01 Work</a>
+          <a href="../experience.html">02 Experience</a>
+          <a href="../about.html">03 About</a>
+          <a href="../resume.html">04 Resume</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero reveal">
+        <p class="eyebrow">Algorithms · C#</p>
+        <h1>Data-Oriented Graph Optimisation Engine</h1>
+        <p class="lede">A C# graph traversal and routing engine focused on memory layout, search behaviour and custom data structures.</p>
+        <div class="case-meta"><span class="tag">C#</span><span class="tag">BFS</span><span class="tag">Dijkstra</span><span class="tag">Custom heap</span><span class="tag">Custom hash table</span><span class="tag">Flat arrays</span></div>
+        <div class="button-row"><a class="button primary external" href="https://github.com/Vigodang/Data-Oriented-Graph-Optimization">View GitHub Repository</a></div>
+      </section>
+      <div class="case-layout">
+        <aside class="sticky-aside reveal">
+          <div class="diagram-frame"><img src="../assets/graph-engine.svg" alt="Data-oriented graph engine structure diagram"></div>
+          <div class="panel">
+            <h2>Runtime Scope</h2>
+            <p>The public repo contains the player implementation and whitepaper. It was built within an assignment-provided runtime/harness, so the public repo should not be presented as a standalone complete application.</p>
+          </div>
+        </aside>
+        <div class="case-body">
+          <section class="reveal">
+            <h2>Problem</h2>
+            <p>An autonomous agent must explore an initially unknown graph, remember routes, handle resources and locks, collect objectives and reach an exit.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Built</h2>
+            <p>I built the C# routing logic for graph discovery, BFS, lock-aware routing, Dijkstra, resource handling, treasure/objective planning, area decomposition, MST-style planning, a custom heap, custom hash table and action/path buffers.</p>
+          </section>
+          <section class="reveal">
+            <h2>Graph Representation</h2>
+            <p>The engine stores graph data in flat arrays instead of an object-heavy graph representation. That makes repeated graph operations easier to reason about under memory and runtime constraints.</p>
+          </section>
+          <section class="reveal">
+            <h2>Algorithms</h2>
+            <p>BFS handles reachability and traversal planning, while Dijkstra supports weighted path selection. Custom heap and hash storage reduce dependency on higher-level collection abstractions.</p>
+          </section>
+          <section class="reveal">
+            <h2>Key Technical Decisions</h2>
+            <ul class="list">
+              <li>Contiguous arrays for graph and traversal state.</li>
+              <li>Open-addressed hash storage for node lookup.</li>
+              <li>Custom binary heap for priority-queue behaviour.</li>
+              <li>Search stamps to avoid clearing arrays between repeated searches.</li>
+              <li>Area decomposition for resource and collection planning.</li>
+            </ul>
+          </section>
+          <section class="reveal">
+            <h2>Evidence</h2>
+            <p>The repository contains an approximately 57KB C# implementation and a 7-page technical whitepaper. The documented complexity is BFS O(|V| + |E|), Dijkstra O((|V| + |E|) log |V|) and expected amortised O(1) hash lookup. I am not claiming runtime benchmarks.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Learned</h2>
+            <p>Algorithm design changes when memory layout matters, topology is discovered incrementally, searches repeat and resources change which paths are valid.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><span>Truong Lieu Dong (Vigo) Dang</span><span><a href="mailto:n11721138@qut.edu.au">n11721138@qut.edu.au</a></span></div></footer>
+  </body>
+</html>

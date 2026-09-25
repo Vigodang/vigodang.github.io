@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Selected Work | Truong Lieu Dong (Vigo) Dang</title>
+    <meta name="description" content="Selected software, cloud, data and applied AI projects by Truong Lieu Dong (Vigo) Dang.">
+    <link rel="canonical" href="https://vigodang.github.io/work.html">
+    <meta property="og:title" content="Selected Work | Vigo Dang">
+    <meta property="og:description" content="Cloud AI, industry research synthesis, predictive risk software and graph optimisation projects.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vigodang.github.io/work.html">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="index.html" aria-label="Vigo Dang home"><span class="brand-mark">VD</span><span class="brand-name">Vigo Dang</span></a>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="site-nav" data-nav-links>
+          <a href="work.html" aria-current="page">01 Work</a>
+          <a href="experience.html">02 Experience</a>
+          <a href="about.html">03 About</a>
+          <a href="resume.html">04 Resume</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero reveal">
+        <p class="eyebrow">01 / Selected Work</p>
+        <h1>Software, cloud, data and applied AI projects.</h1>
+        <p class="lede">These case studies are written from repository evidence and public-safe project context. Private industry work is deliberately sanitised.</p>
+      </section>
+
+      <section class="section tight">
+        <div class="work-grid">
+          <a class="project-card flagship reveal" href="projects/strobe-ai.html">
+            <div>
+              <p class="eyebrow">1 · Flagship</p>
+              <h2>Strobe AI</h2>
+              <p>Cloud-native multimodal assistant for a social media backend.</p>
+              <div class="project-detail">
+                <span>Problem: query personal media and post context without uncontrolled model access.</span>
+                <span>Solution: ACP chat layer, read-only MCP tools, user-scoped retrieval and async AWS media processing.</span>
+                <span>Notable feature: 229 repository-reported automated tests across backend, ACP and MCP.</span>
+              </div>
+              <div class="tag-row"><span class="tag">Node.js 22</span><span class="tag">AWS</span><span class="tag">Bedrock</span><span class="tag">ACP</span><span class="tag">MCP</span></div>
+            </div>
+            <div class="mini-diagram"><img src="assets/strobe-architecture.svg" alt="Strobe AI architecture diagram"></div>
+          </a>
+
+          <a class="project-card reveal" href="projects/crdc-capstone.html">
+            <div>
+              <p class="eyebrow">2 · Private Industry Capstone</p>
+              <h2>AI-Assisted Scientific Research Synthesis</h2>
+              <p>Sanitised case study on agent and retrieval workflows for scientific research synthesis.</p>
+              <div class="project-detail">
+                <span>Problem: make historical scientific evidence easier to retrieve, compare and synthesise.</span>
+                <span>Feature: separate research questions, analytical tasks and retrieval-only queries.</span>
+              </div>
+              <div class="tag-row"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">E5 retrieval</span><span class="tag">Reranking</span></div>
+            </div>
+          </a>
+
+          <a class="project-card reveal" href="projects/predictive-risk.html">
+            <div>
+              <p class="eyebrow">3 · ML Application</p>
+              <h2>Full-Stack Predictive Risk Application</h2>
+              <p>A PyQt6 credit-risk application connecting ML workflow, UI, services and reporting.</p>
+              <div class="project-detail">
+                <span>Problem: turn a prediction workflow into usable software.</span>
+                <span>Feature: XGBoost, LightGBM and calibrated Logistic Regression training workflow.</span>
+              </div>
+              <div class="tag-row"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Scikit-learn</span><span class="tag">MySQL</span></div>
+            </div>
+          </a>
+
+          <a class="project-card reveal" href="projects/graph-optimisation.html">
+            <div>
+              <p class="eyebrow">4 · Algorithms</p>
+              <h2>Data-Oriented Graph Optimisation Engine</h2>
+              <p>A C# routing engine focused on graph traversal, memory layout and search behaviour.</p>
+              <div class="project-detail">
+                <span>Problem: plan paths through an incrementally discovered graph.</span>
+                <span>Feature: flat arrays, BFS, Dijkstra, custom heap and custom hash table.</span>
+              </div>
+              <div class="tag-row"><span class="tag">C#</span><span class="tag">BFS</span><span class="tag">Dijkstra</span><span class="tag">Data-oriented design</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><span>Truong Lieu Dong (Vigo) Dang</span><span><a href="mailto:n11721138@qut.edu.au">n11721138@qut.edu.au</a></span></div></footer>
+  </body>
+</html>

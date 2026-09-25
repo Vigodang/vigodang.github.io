@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRDC Industry Capstone | Vigo Dang Portfolio</title>
+    <meta name="description" content="Sanitised private industry capstone case study on AI-assisted scientific research synthesis for CRDC.">
+    <link rel="canonical" href="https://vigodang.github.io/projects/crdc-capstone.html">
+    <meta property="og:title" content="CRDC Industry Capstone | Vigo Dang">
+    <meta property="og:description" content="Sanitised case study on RAG and agent workflows for scientific research synthesis.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vigodang.github.io/projects/crdc-capstone.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="../index.html" aria-label="Vigo Dang home"><span class="brand-mark">VD</span><span class="brand-name">Vigo Dang</span></a>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="site-nav" data-nav-links>
+          <a href="../work.html" aria-current="page">01 Work</a>
+          <a href="../experience.html">02 Experience</a>
+          <a href="../about.html">03 About</a>
+          <a href="../resume.html">04 Resume</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero reveal">
+        <p class="eyebrow">Private Industry Capstone · Sanitised Case Study</p>
+        <h1>AI-Assisted Scientific Research Synthesis</h1>
+        <p class="lede">CRDC Industry Capstone exploring retrieval-augmented generation and agent workflows for historical scientific research documents. Code, data and research documents are private.</p>
+        <div class="case-meta"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">E5 retrieval</span><span class="tag">Cross-encoder reranking</span><span class="tag">Local Gemma / Ollama</span></div>
+      </section>
+      <div class="case-layout">
+        <aside class="sticky-aside reveal">
+          <div class="diagram-frame"><img src="../assets/crdc-workflow.svg" alt="Public-safe conceptual workflow for the CRDC research synthesis capstone"></div>
+          <div class="panel">
+            <h2>Public Boundary</h2>
+            <p>This case study discusses workflow structure and technical approach only. It does not expose private source code, partner documents or confidential research data.</p>
+          </div>
+        </aside>
+        <div class="case-body">
+          <section class="reveal">
+            <h2>Problem</h2>
+            <p>The project explores how retrieval-augmented generation and agent workflows can help researchers work across collections of historical scientific reports and produce more structured, traceable evidence synthesis.</p>
+          </section>
+          <section class="reveal">
+            <h2>Research Workflow</h2>
+            <p>The public-safe workflow separates a portfolio research question from the analytical task and then from the retrieval-only query. That separation makes the retrieval step more explicit and easier to evaluate.</p>
+          </section>
+          <section class="reveal">
+            <h2>Specialist Agents</h2>
+            <p>Different specialist agents handle different analytical intents instead of giving every agent exactly the same context. Recurring capabilities explored include evidence synthesis, temporal analysis and critical evidence analysis.</p>
+          </section>
+          <section class="reveal">
+            <h2>Retrieval Pipeline</h2>
+            <p>The team retrieval pipeline includes E5 bi-encoder retrieval and cross-encoder reranking. NotebookLM was used only as an experimental comparison/reference tool, not as ground truth.</p>
+          </section>
+          <section class="reveal">
+            <h2>My Contribution</h2>
+            <ul class="list">
+              <li>Python agent/reporting workflow code.</li>
+              <li>Agent/retrieval integration and evaluation workflow.</li>
+              <li>Separating research questions from analytical and retrieval intent.</li>
+              <li>Testing task-specific retrieval.</li>
+              <li>Evaluating evidence at document and chunk level.</li>
+              <li>Experimenting with temporal diversification after ranking.</li>
+            </ul>
+          </section>
+          <section class="reveal">
+            <h2>Public-Safe Experiment</h2>
+            <p>A temporal retrieval experiment used a 15-document biosecurity corpus covering historical material from approximately 1996 to 2017. A revised post-ranking temporal diversification approach selected evidence from five distinct years: 1998, 1999, 2006, 2008 and 2016.</p>
+            <p>This is presented as an experiment and observation, not as a percentage improvement claim.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Learned</h2>
+            <p>Document-level relevance does not guarantee that a retrieved chunk is useful for the analytical task. Different research questions need different retrieval intent instead of one generic retrieval query.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><span>Truong Lieu Dong (Vigo) Dang</span><span><a href="mailto:n11721138@qut.edu.au">n11721138@qut.edu.au</a></span></div></footer>
+  </body>
+</html>

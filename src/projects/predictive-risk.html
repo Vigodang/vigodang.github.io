@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Full-Stack Predictive Risk Application | Vigo Dang Portfolio</title>
+    <meta name="description" content="Case study for a PyQt6 predictive risk application with ML training, services, reporting and model-management concepts.">
+    <link rel="canonical" href="https://vigodang.github.io/projects/predictive-risk.html">
+    <meta property="og:title" content="Full-Stack Predictive Risk Application | Vigo Dang">
+    <meta property="og:description" content="Desktop credit-risk application connecting ML, UI, services and reporting.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vigodang.github.io/projects/predictive-risk.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="../index.html" aria-label="Vigo Dang home"><span class="brand-mark">VD</span><span class="brand-name">Vigo Dang</span></a>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="site-nav" data-nav-links>
+          <a href="../work.html" aria-current="page">01 Work</a>
+          <a href="../experience.html">02 Experience</a>
+          <a href="../about.html">03 About</a>
+          <a href="../resume.html">04 Resume</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero reveal">
+        <p class="eyebrow">Machine Learning · Desktop Software</p>
+        <h1>Full-Stack Predictive Risk Application</h1>
+        <p class="lede">A desktop credit-risk application combining PyQt6, machine learning, services, reporting and model-management concepts.</p>
+        <div class="case-meta"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">LightGBM</span><span class="tag">MySQL</span></div>
+      </section>
+      <div class="case-layout">
+        <aside class="sticky-aside reveal">
+          <div class="diagram-frame"><img src="../assets/risk-flow.svg" alt="Predictive risk application architecture and data flow diagram"></div>
+          <div class="panel">
+            <h2>Dataset Evidence</h2>
+            <div class="metric-grid">
+              <div class="metric"><strong>30K</strong><span>base rows</span></div>
+              <div class="metric"><strong>30K</strong><span>training rows</span></div>
+              <div class="metric"><strong>3</strong><span>model families</span></div>
+            </div>
+          </div>
+        </aside>
+        <div class="case-body">
+          <section class="reveal">
+            <h2>Problem</h2>
+            <p>A machine-learning model by itself is not an operational system. Users need ways to enter data, run predictions, review risk, compare models, inspect reports and manage application workflows.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Built</h2>
+            <p>I built a desktop credit-risk application combining a PyQt6 UI, machine learning, a service layer, MySQL-oriented workflows, model management, reporting, data quality utilities and optional Gemini-assisted explanations.</p>
+          </section>
+          <section class="reveal">
+            <h2>How It Works</h2>
+            <p>The training workflow implements XGBoost, LightGBM and calibrated Logistic Regression on a fixed model input schema. At runtime, the app returns a structured prediction result with probability, risk label and model identity/context.</p>
+          </section>
+          <section class="reveal">
+            <h2>My Contribution</h2>
+            <p>My focus was turning the ML workflow into an application: UI screens, services, models/domain objects, prediction workflow, reporting and model-management concepts.</p>
+          </section>
+          <section class="reveal">
+            <h2>Key Technical Decisions</h2>
+            <ul class="list">
+              <li>Separate UI, services, ML utilities, domain models and configuration.</li>
+              <li>Use a stratified train/validation/test split in the training workflow.</li>
+              <li>Represent prediction outputs as structured objects rather than loose values.</li>
+              <li>Include model registry and active-model concepts so prediction is not tied to one hard-coded model.</li>
+            </ul>
+          </section>
+          <section class="reveal">
+            <h2>Evidence</h2>
+            <p>The repository documents a 30,000-row base dataset, a 30,000-row training dataset and a class distribution of 23,364 non-default and 6,636 default records. The training workflow implements XGBoost, LightGBM and calibrated Logistic Regression.</p>
+            <p>I am not claiming automated test coverage for this repository because the discovered `tests/main.py` file is an application launcher, not a test suite.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Learned</h2>
+            <p>I learned how different it feels to turn a model into software people can operate. The difficult parts were not only model training, but input structure, state, reporting, governance and public-safe release hygiene.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><span>Truong Lieu Dong (Vigo) Dang</span><span><a href="mailto:n11721138@qut.edu.au">n11721138@qut.edu.au</a></span></div></footer>
+  </body>
+</html>

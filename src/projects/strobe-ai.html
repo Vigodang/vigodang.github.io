@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Strobe AI | Vigo Dang Portfolio</title>
+    <meta name="description" content="Case study for Strobe AI, a cloud-native multimodal assistant for a social media backend using AWS, Bedrock, ACP and MCP.">
+    <link rel="canonical" href="https://vigodang.github.io/projects/strobe-ai.html">
+    <meta property="og:title" content="Strobe AI | Vigo Dang">
+    <meta property="og:description" content="Cloud-native multimodal assistant for a social media backend.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://vigodang.github.io/projects/strobe-ai.html">
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="nav-wrap">
+        <a class="brand" href="../index.html" aria-label="Vigo Dang home"><span class="brand-mark">VD</span><span class="brand-name">Vigo Dang</span></a>
+        <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav" data-nav-toggle><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="site-nav" data-nav-links>
+          <a href="../work.html" aria-current="page">01 Work</a>
+          <a href="../experience.html">02 Experience</a>
+          <a href="../about.html">03 About</a>
+          <a href="../resume.html">04 Resume</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <section class="case-hero reveal">
+        <p class="eyebrow">Cloud · Applied AI · Backend</p>
+        <h1>Strobe AI</h1>
+        <p class="lede">Cloud-native multimodal AI assistant for a social media backend, built around ACP streaming, MCP tools, Amazon Bedrock, user-scoped retrieval and asynchronous AWS processing.</p>
+        <div class="case-meta">
+          <span class="tag">Node.js 22</span><span class="tag">Amazon Bedrock</span><span class="tag">Gemma 3 12B</span><span class="tag">Titan Text Embeddings</span><span class="tag">S3 Vectors</span><span class="tag">Lambda</span><span class="tag">DynamoDB</span><span class="tag">S3</span><span class="tag">SQS</span><span class="tag">EventBridge</span><span class="tag">ECS/Fargate</span><span class="tag">ACP</span><span class="tag">MCP</span>
+        </div>
+        <div class="button-row"><a class="button primary external" href="https://github.com/Vigodang/strobe-ai-serverless-agent">View GitHub Repository</a></div>
+      </section>
+
+      <div class="case-layout">
+        <aside class="sticky-aside reveal">
+          <div class="diagram-frame">
+            <img src="../assets/strobe-architecture.svg" alt="Strobe AI architecture showing ACP, MCP, Bedrock, S3 Vectors and async AWS media processing">
+          </div>
+          <div class="panel">
+            <h2>Repository Evidence</h2>
+            <div class="metric-grid">
+              <div class="metric"><strong>145</strong><span>backend tests</span></div>
+              <div class="metric"><strong>67</strong><span>ACP tests</span></div>
+              <div class="metric"><strong>17</strong><span>MCP tests</span></div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="case-body">
+          <section class="reveal">
+            <h2>Problem</h2>
+            <p>Photo-sharing systems can store useful personal context, but normal search and feed interfaces do not make that context easy to query. The challenge was to give an assistant access to useful backend capabilities without letting the model control identity, ownership or raw data boundaries.</p>
+          </section>
+          <section class="reveal">
+            <h2>Architecture</h2>
+            <p>The system separates client-agent streaming from backend tool access. ACP handles the conversational transport, while MCP exposes read-only backend tools. AWS services handle media ingestion, classification, indexing and retrieval.</p>
+          </section>
+          <section class="reveal">
+            <h2>Agent Flow</h2>
+            <p>The assistant can inspect user-owned posts, return inline media context, perform semantic media retrieval and produce scheduled activity summaries. User identity is controlled server-side, and vector retrieval is scoped to the current user.</p>
+          </section>
+          <section class="reveal">
+            <h2>Async Media Pipeline</h2>
+            <p>The media flow runs asynchronously: S3 upload, EventBridge, SQS, classification Lambda, Bedrock vision model, classification state, indexing queue, Titan embeddings and S3 Vectors. Upload requests do not wait for expensive model work.</p>
+          </section>
+          <section class="reveal">
+            <h2>Security & User Isolation</h2>
+            <p>The agent does not supply user identity to backend tools. Ownership checks and user-scoped retrieval are handled in the backend boundary, which keeps model output separate from authorization decisions.</p>
+          </section>
+          <section class="reveal">
+            <h2>Reliability & Idempotency</h2>
+            <p>The implementation includes deterministic classification job handling and completed-job republishing for retry safety. This matters because event-driven pipelines can receive duplicate or repeated work.</p>
+          </section>
+          <section class="reveal">
+            <h2>Testing</h2>
+            <p>The repository reports 229 passing automated tests: 145 backend tests, 67 ACP tests and 17 MCP tests. That is the strongest public evidence for the system’s engineering depth.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Built</h2>
+            <p>My work focused on the agent boundary, MCP tool layer, asynchronous media processing, vector retrieval, retry/idempotency behaviour and ownership boundaries. The MCP service was containerised for ECS/Fargate deployment.</p>
+          </section>
+          <section class="reveal">
+            <h2>What I Learned</h2>
+            <p>A large part of building an AI application is backend engineering. Identity, idempotency, retries, data ownership, observability and failure handling matter as much as the model call.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer"><div class="footer-inner"><span>Truong Lieu Dong (Vigo) Dang</span><span><a href="mailto:n11721138@qut.edu.au">n11721138@qut.edu.au</a></span></div></footer>
+  </body>
+</html>

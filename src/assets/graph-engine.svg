@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
+  <title id="title">Data-oriented graph optimisation engine structure</title>
+  <desc id="desc">Flat graph arrays feeding BFS, Dijkstra, heap, hash table, area decomposition and action buffer.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#45d6ff"/>
+    </marker>
+    <style>
+      .bg{fill:#06101d}.box{fill:#0d1d2f;stroke:#29425f;stroke-width:2}.code{fill:#12243a;stroke:#315174;stroke-width:2}.title{font:700 23px Arial,sans-serif;fill:#eaf2fb}.label{font:700 16px Arial,sans-serif;fill:#eaf2fb}.small{font:13px Arial,sans-serif;fill:#b9c8d6}.mono{font:13px Consolas,monospace;fill:#8da3b8}.line{fill:none;stroke:#45d6ff;stroke-width:2.3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1080" height="620"/>
+  <text x="48" y="54" class="title">Data-oriented graph optimisation engine</text>
+  <text x="48" y="82" class="small">Flat arrays, repeated search routines and custom data structures.</text>
+
+  <rect x="64" y="126" width="285" height="160" rx="12" class="code"/>
+  <text x="92" y="160" class="label">Flat graph storage</text>
+  <text x="92" y="192" class="mono">nodeFirstEdge[]</text>
+  <text x="92" y="216" class="mono">edgeTo[] / edgeNext[]</text>
+  <text x="92" y="240" class="mono">edgeToll[] / edgeRope[]</text>
+  <text x="92" y="264" class="mono">visitedStamp[]</text>
+
+  <rect x="452" y="126" width="220" height="86" rx="10" class="box"/>
+  <text x="476" y="160" class="label">Learning phase</text>
+  <text x="476" y="185" class="small">Explore unknown exits with BFS</text>
+
+  <rect x="790" y="126" width="220" height="86" rx="10" class="box"/>
+  <text x="814" y="160" class="label">Challenge phase</text>
+  <text x="814" y="185" class="small">Route under locks/resources</text>
+
+  <rect x="420" y="310" width="180" height="76" rx="10" class="box"/>
+  <text x="444" y="342" class="label">BFS</text>
+  <text x="444" y="366" class="small">Unweighted routes</text>
+
+  <rect x="646" y="310" width="180" height="76" rx="10" class="box"/>
+  <text x="670" y="342" class="label">Dijkstra</text>
+  <text x="670" y="366" class="small">Tolls and ropes</text>
+
+  <rect x="872" y="310" width="156" height="76" rx="10" class="box"/>
+  <text x="896" y="342" class="label">MST-style</text>
+  <text x="896" y="366" class="small">Area planning</text>
+
+  <rect x="146" y="452" width="180" height="76" rx="10" class="box"/>
+  <text x="170" y="484" class="label">Hash table</text>
+  <text x="170" y="508" class="small">Node lookup</text>
+
+  <rect x="452" y="452" width="180" height="76" rx="10" class="box"/>
+  <text x="476" y="484" class="label">Binary heap</text>
+  <text x="476" y="508" class="small">Priority queue</text>
+
+  <rect x="758" y="452" width="180" height="76" rx="10" class="box"/>
+  <text x="782" y="484" class="label">Action buffer</text>
+  <text x="782" y="508" class="small">Queued exits</text>
+
+  <path class="line" d="M349 176h94"/>
+  <path class="line" d="M672 169h108"/>
+  <path class="line" d="M562 212v86"/>
+  <path class="line" d="M900 212v86"/>
+  <path class="line" d="M349 230c150 38 286 42 420 82"/>
+  <path class="line" d="M736 386v54"/>
+  <path class="line" d="M510 386v54"/>
+  <path class="line" d="M236 286v154"/>
+  <path class="line" d="M950 386v54"/>
+</svg>

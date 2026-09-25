@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
+  <title id="title">CRDC sanitised research synthesis workflow</title>
+  <desc id="desc">A public-safe conceptual workflow from research question to analytical task, retrieval-only query, retrieval, reranking and evidence evaluation.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#45d6ff"/>
+    </marker>
+    <style>
+      .bg{fill:#06101d}.box{fill:#0d1d2f;stroke:#29425f;stroke-width:2}.private{fill:#17243a;stroke:#45d6ff;stroke-width:2}.title{font:700 23px Arial,sans-serif;fill:#eaf2fb}.label{font:700 16px Arial,sans-serif;fill:#eaf2fb}.small{font:13px Arial,sans-serif;fill:#b9c8d6}.line{fill:none;stroke:#45d6ff;stroke-width:2.3;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="1080" height="620"/>
+  <text x="48" y="54" class="title">CRDC industry capstone: sanitised RAG workflow</text>
+  <text x="48" y="82" class="small">Conceptual public diagram only. Code, source documents and research data remain private.</text>
+
+  <rect x="56" y="126" width="230" height="86" rx="10" class="box"/>
+  <text x="82" y="158" class="label">Research question</text>
+  <text x="82" y="183" class="small">Portfolio-level intent</text>
+
+  <rect x="414" y="126" width="230" height="86" rx="10" class="box"/>
+  <text x="438" y="158" class="label">Analytical task</text>
+  <text x="438" y="183" class="small">Evidence, temporal or critical lens</text>
+
+  <rect x="772" y="126" width="230" height="86" rx="10" class="box"/>
+  <text x="796" y="158" class="label">Retrieval-only query</text>
+  <text x="796" y="183" class="small">Narrow search intent</text>
+
+  <rect x="96" y="300" width="230" height="86" rx="10" class="box"/>
+  <text x="120" y="332" class="label">E5 retrieval</text>
+  <text x="120" y="357" class="small">Bi-encoder candidates</text>
+
+  <rect x="426" y="300" width="230" height="86" rx="10" class="box"/>
+  <text x="450" y="332" class="label">Cross-encoder rerank</text>
+  <text x="450" y="357" class="small">Ranked evidence candidates</text>
+
+  <rect x="756" y="300" width="250" height="86" rx="10" class="box"/>
+  <text x="780" y="332" class="label">Task-specific agent</text>
+  <text x="780" y="357" class="small">Synthesis, temporal, critical analysis</text>
+
+  <rect x="250" y="468" width="270" height="86" rx="10" class="private"/>
+  <text x="274" y="500" class="label">Evidence evaluation</text>
+  <text x="274" y="525" class="small">Document and chunk usefulness</text>
+
+  <rect x="592" y="468" width="270" height="86" rx="10" class="private"/>
+  <text x="616" y="500" class="label">Temporal diversification</text>
+  <text x="616" y="525" class="small">Experiment after ranking</text>
+
+  <path class="line" d="M286 169h120"/>
+  <path class="line" d="M644 169h120"/>
+  <path class="line" d="M887 212v64"/>
+  <path class="line" d="M772 343H664"/>
+  <path class="line" d="M426 343h-92"/>
+  <path class="line" d="M211 386v72"/>
+  <path class="line" d="M656 511h-126"/>
+</svg>

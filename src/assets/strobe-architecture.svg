@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 720" role="img" aria-labelledby="title desc">
+  <title id="title">Strobe AI architecture diagram</title>
+  <desc id="desc">ACP agent, MCP tools, AWS event pipeline, Bedrock, Titan embeddings and S3 Vectors architecture.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#45d6ff"/>
+    </marker>
+    <style>
+      .bg{fill:#06101d}.box{fill:#0d1d2f;stroke:#29425f;stroke-width:2}.group{fill:#12243a;stroke:#315174;stroke-width:2}.title{font:700 23px Arial,sans-serif;fill:#eaf2fb}.label{font:700 16px Arial,sans-serif;fill:#eaf2fb}.small{font:13px Arial,sans-serif;fill:#b9c8d6}.line{fill:none;stroke:#45d6ff;stroke-width:2.3;marker-end:url(#arrow)}.accent{fill:#45d6ff}.teal{fill:#5b8cff}.muted{fill:#233850}
+    </style>
+  </defs>
+  <rect class="bg" width="1180" height="720"/>
+  <text x="48" y="54" class="title">Strobe AI: multimodal assistant boundary</text>
+  <text x="48" y="82" class="small">Client-agent streaming, read-only tools, async media intelligence and user-scoped retrieval.</text>
+
+  <rect x="48" y="122" width="238" height="86" rx="10" class="box"/>
+  <text x="72" y="156" class="label">ACP WebUI</text>
+  <text x="72" y="181" class="small">Text and image blocks</text>
+
+  <rect x="370" y="112" width="320" height="116" rx="12" class="group"/>
+  <text x="395" y="145" class="label">Local ACP Agent</text>
+  <text x="395" y="170" class="small">StrobeAgentCore</text>
+  <text x="395" y="192" class="small">AgentOrchestrator</text>
+  <text x="395" y="214" class="small">Bedrock, MCP and media adapters</text>
+
+  <rect x="790" y="112" width="300" height="116" rx="12" class="group"/>
+  <text x="815" y="145" class="label">MCP Server</text>
+  <text x="815" y="170" class="small">Read-only profile, posts, comments</text>
+  <text x="815" y="192" class="small">Ownership checked server-side</text>
+  <text x="815" y="214" class="small">Docker / ECS-Fargate target</text>
+
+  <rect x="805" y="286" width="260" height="72" rx="10" class="box"/>
+  <text x="830" y="319" class="label">DynamoDB + S3</text>
+  <text x="830" y="343" class="small">User-owned data and media</text>
+
+  <rect x="360" y="286" width="336" height="72" rx="10" class="box"/>
+  <text x="386" y="319" class="label">Amazon Bedrock</text>
+  <text x="386" y="343" class="small">Gemma chat / vision and Titan embeddings</text>
+
+  <rect x="405" y="438" width="246" height="72" rx="10" class="box"/>
+  <text x="430" y="471" class="label">S3 Vectors</text>
+  <text x="430" y="495" class="small">User-scoped semantic media search</text>
+
+  <rect x="48" y="438" width="260" height="72" rx="10" class="box"/>
+  <text x="72" y="471" class="label">Media Upload</text>
+  <text x="72" y="495" class="small">S3 ObjectCreated event</text>
+
+  <rect x="72" y="580" width="990" height="82" rx="14" class="group"/>
+  <text x="100" y="614" class="label">Async media flow</text>
+  <text x="100" y="640" class="small">S3 upload → EventBridge → SQS → classification Lambda → Bedrock vision → classification state → indexing queue → Titan embeddings → S3 Vectors</text>
+
+  <path class="line" d="M286 165h76"/>
+  <path class="line" d="M690 170h92"/>
+  <path class="line" d="M938 228v50"/>
+  <path class="line" d="M528 228v50"/>
+  <path class="line" d="M528 358v72"/>
+  <path class="line" d="M308 474h88"/>
+  <path class="line" d="M650 474h148"/>
+  <path class="line" d="M178 510v60"/>
+  <path class="line" d="M918 358v212"/>
+
+  <circle cx="362" cy="165" r="5" class="accent"/>
+  <circle cx="782" cy="170" r="5" class="accent"/>
+  <circle cx="528" cy="430" r="5" class="teal"/>
+</svg>

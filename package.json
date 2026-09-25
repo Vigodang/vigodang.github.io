@@ -1,0 +1,13 @@
+{
+  "name": "vigodang.github.io",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal technical portfolio for Truong Lieu Dong (Vigo) Dang.",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "check": "node scripts/check.js",
+    "serve": "python -m http.server 4173 --directory dist"
+  },
+  "devDependencies": {}
+}

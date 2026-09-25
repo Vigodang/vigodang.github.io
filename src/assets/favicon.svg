@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Vigo portfolio mark</title>
+  <desc id="desc">A compact V-shaped technical mark in teal and rust.</desc>
+  <rect width="64" height="64" rx="14" fill="#142024"/>
+  <path d="M14 16l18 34 18-34h-9L32 35 23 16z" fill="#f6f7f2"/>
+  <path d="M42 16h8L34 50h-6z" fill="#d16a3b" opacity=".9"/>
+</svg>
