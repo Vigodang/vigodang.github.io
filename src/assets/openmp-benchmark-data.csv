@@ -1,0 +1,6 @@
+configuration,threads,measured_runs,mean_seconds,sample_sd_seconds,ci95_low_seconds,ci95_high_seconds
+Optimised sequential,0,10,0.588282,0.021791,0.572694,0.603870
+OpenMP · 1 thread,1,10,0.575697,0.017849,0.562929,0.588466
+OpenMP · 2 threads,2,10,0.348762,0.017160,0.336487,0.361038
+OpenMP · 4 threads,4,10,0.233363,0.013025,0.224046,0.242681
+OpenMP · 8 threads,8,10,0.180746,0.010844,0.172988,0.188503

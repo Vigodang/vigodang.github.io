@@ -1,0 +1,86 @@
+{
+  "pages": 2,
+  "bytes": 7184,
+  "pdfSHA256": "dafb3dc7a24285cd934533edb41ab44169cd7baddfaffc8af8e6c9363ab477fd",
+  "sourceHash": "09a9b90b208e71be059244de8c071f6e9ca1d315f826d67c3a95f4e76de8fd2f",
+  "sourceCVHash": "30df99e859c9f8e3c9d67ee8f51ec21ec617828b38a0a333c424a08d6a39a371",
+  "layoutVersion": "3",
+  "expectedSourceHash": "09a9b90b208e71be059244de8c071f6e9ca1d315f826d67c3a95f4e76de8fd2f",
+  "allCVTextFieldsPresent": true,
+  "comparedTextFields": 51,
+  "projectBulletCounts": [
+    3,
+    3,
+    2,
+    1
+  ],
+  "additionalEntries": 2,
+  "links": [
+    "tel:+61410107614",
+    "mailto:n11721138@qut.edu.au",
+    "https://github.com/Vigodang",
+    "https://linkedin.com/in/vigodang"
+  ],
+  "layout": [
+    {
+      "page": 1,
+      "glyphs": 2074,
+      "minimumBodyPt": 10.0,
+      "bodyBounds": [
+        49.0,
+        48.14,
+        546.1,
+        667.73
+      ]
+    },
+    {
+      "page": 2,
+      "glyphs": 1995,
+      "minimumBodyPt": 10.0,
+      "bodyBounds": [
+        49.0,
+        46.28,
+        544.37,
+        582.13
+      ]
+    }
+  ],
+  "pageOneRequiredText": {
+    "Queensland University of Technology (QUT)": true,
+    "Bachelor of Data Science": true,
+    "Advanced Computing for Data Science": true,
+    "July 2027": true,
+    "Brisbane, Australia": true,
+    "2024 QUT Executive Dean's Commendation for Academic Excellence (Semester 2).": true,
+    "Deep learning & AI": true,
+    "PyTorch": true,
+    "TensorFlow": true
+  },
+  "generatorMissingTextRegressions": [
+    {
+      "missing": "Bachelor of Data Science",
+      "rejected": true,
+      "message": "Page one must contain the complete education and deep-learning blocks; missing: Bachelor of Data Science"
+    },
+    {
+      "missing": "July 2027",
+      "rejected": true,
+      "message": "Page one must contain the complete education and deep-learning blocks; missing: July 2027"
+    },
+    {
+      "missing": "Deep learning & AI",
+      "rejected": true,
+      "message": "Page one must contain the complete education and deep-learning blocks; missing: Deep learning & AI"
+    },
+    {
+      "missing": "PyTorch",
+      "rejected": true,
+      "message": "Page one must contain the complete education and deep-learning blocks; missing: PyTorch"
+    },
+    {
+      "missing": "TensorFlow",
+      "rejected": true,
+      "message": "Page one must contain the complete education and deep-learning blocks; missing: TensorFlow"
+    }
+  ]
+}

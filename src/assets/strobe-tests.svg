@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+<title id="title">Strobe AI: 229 local automated tests across three packages</title>
+<desc id="desc">A test summary for the Strobe AI local test run on 14 November 2026 at source commit 5d3a43f. Backend: 145 tests; ACP: 67 tests; MCP: 17 tests; 229 tests in total across three packages. Horizontal bars share a scale from zero to 150 tests. This is local automated test evidence and does not demonstrate deployment or performance.</desc>
+<defs><style>.paper{fill:#F5F2EB}.ink{fill:#202622}.forest{fill:#31584B}.muted{fill:#59645C}.rule{stroke:#C9CEC5;stroke-width:1}.sans{font:20px Arial,sans-serif}.label{font:600 22px Arial,sans-serif;fill:#202622}.mono{font:20px Consolas,monospace;fill:#59645C}.small{font:20px Arial,sans-serif;fill:#59645C}.number{font:112px Georgia,serif;fill:#202622}.title{font:32px Georgia,serif;fill:#202622}</style></defs>
+<rect width="900" height="560" class="paper"/>
+<path d="M20 32V20H32M868 20H880V32M20 528V540H32M868 540H880V528" fill="none" stroke="#AAB8AC"/>
+<text x="44" y="44" class="sans forest" letter-spacing="1.5">STROBE AI / TEST RESULTS</text>
+<text x="44" y="88" class="title">Tested across three packages.</text>
+<text x="44" y="198" class="number">229</text>
+<text x="270" y="156" class="label">automated tests passed</text>
+<text x="270" y="189" class="small">3 packages · 14 November 2026</text>
+<path d="M44 227H856" class="rule"/>
+<text x="44" y="265" class="mono">PACKAGE</text><text x="826" y="265" text-anchor="end" class="mono">PASSED</text>
+<g class="rule"><path d="M260 286V450M433.333 286V450M606.667 286V450M780 286V450"/></g>
+<text x="44" y="315" class="label">Backend</text>
+<rect x="260" y="291" width="502.667" height="28" fill="#31584B"/>
+<text x="826" y="315" text-anchor="end" class="label">145</text>
+<text x="44" y="374" class="label">ACP</text>
+<rect x="260" y="350" width="232.267" height="28" fill="#31584B"/>
+<text x="826" y="374" text-anchor="end" class="label">67</text>
+<text x="44" y="433" class="label">MCP</text>
+<rect x="260" y="409" width="58.933" height="28" fill="#31584B"/>
+<text x="826" y="433" text-anchor="end" class="label">17</text>
+<text x="260" y="476" text-anchor="middle" class="small">0</text><text x="433.333" y="476" text-anchor="middle" class="small">50</text><text x="606.667" y="476" text-anchor="middle" class="small">100</text><text x="780" y="476" text-anchor="middle" class="small">150</text>
+<path d="M44 498H856" class="rule"/>
+<text x="44" y="535" class="mono">5d3a43f</text><text x="188" y="535" class="small">Local test run · no cloud performance measurement</text>
+</svg>

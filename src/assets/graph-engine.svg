@@ -1,64 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
-  <title id="title">Data-oriented graph optimisation engine structure</title>
-  <desc id="desc">Flat graph arrays feeding BFS, Dijkstra, heap, hash table, area decomposition and action buffer.</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0L10 5L0 10z" fill="#45d6ff"/>
-    </marker>
-    <style>
-      .bg{fill:#06101d}.box{fill:#0d1d2f;stroke:#29425f;stroke-width:2}.code{fill:#12243a;stroke:#315174;stroke-width:2}.title{font:700 23px Arial,sans-serif;fill:#eaf2fb}.label{font:700 16px Arial,sans-serif;fill:#eaf2fb}.small{font:13px Arial,sans-serif;fill:#b9c8d6}.mono{font:13px Consolas,monospace;fill:#8da3b8}.line{fill:none;stroke:#45d6ff;stroke-width:2.3;marker-end:url(#arrow)}
-    </style>
-  </defs>
-  <rect class="bg" width="1080" height="620"/>
-  <text x="48" y="54" class="title">Data-oriented graph optimisation engine</text>
-  <text x="48" y="82" class="small">Flat arrays, repeated search routines and custom data structures.</text>
-
-  <rect x="64" y="126" width="285" height="160" rx="12" class="code"/>
-  <text x="92" y="160" class="label">Flat graph storage</text>
-  <text x="92" y="192" class="mono">nodeFirstEdge[]</text>
-  <text x="92" y="216" class="mono">edgeTo[] / edgeNext[]</text>
-  <text x="92" y="240" class="mono">edgeToll[] / edgeRope[]</text>
-  <text x="92" y="264" class="mono">visitedStamp[]</text>
-
-  <rect x="452" y="126" width="220" height="86" rx="10" class="box"/>
-  <text x="476" y="160" class="label">Learning phase</text>
-  <text x="476" y="185" class="small">Explore unknown exits with BFS</text>
-
-  <rect x="790" y="126" width="220" height="86" rx="10" class="box"/>
-  <text x="814" y="160" class="label">Challenge phase</text>
-  <text x="814" y="185" class="small">Route under locks/resources</text>
-
-  <rect x="420" y="310" width="180" height="76" rx="10" class="box"/>
-  <text x="444" y="342" class="label">BFS</text>
-  <text x="444" y="366" class="small">Unweighted routes</text>
-
-  <rect x="646" y="310" width="180" height="76" rx="10" class="box"/>
-  <text x="670" y="342" class="label">Dijkstra</text>
-  <text x="670" y="366" class="small">Tolls and ropes</text>
-
-  <rect x="872" y="310" width="156" height="76" rx="10" class="box"/>
-  <text x="896" y="342" class="label">MST-style</text>
-  <text x="896" y="366" class="small">Area planning</text>
-
-  <rect x="146" y="452" width="180" height="76" rx="10" class="box"/>
-  <text x="170" y="484" class="label">Hash table</text>
-  <text x="170" y="508" class="small">Node lookup</text>
-
-  <rect x="452" y="452" width="180" height="76" rx="10" class="box"/>
-  <text x="476" y="484" class="label">Binary heap</text>
-  <text x="476" y="508" class="small">Priority queue</text>
-
-  <rect x="758" y="452" width="180" height="76" rx="10" class="box"/>
-  <text x="782" y="484" class="label">Action buffer</text>
-  <text x="782" y="508" class="small">Queued exits</text>
-
-  <path class="line" d="M349 176h94"/>
-  <path class="line" d="M672 169h108"/>
-  <path class="line" d="M562 212v86"/>
-  <path class="line" d="M900 212v86"/>
-  <path class="line" d="M349 230c150 38 286 42 420 82"/>
-  <path class="line" d="M736 386v54"/>
-  <path class="line" d="M510 386v54"/>
-  <path class="line" d="M236 286v154"/>
-  <path class="line" d="M950 386v54"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+<title id="title">Data-oriented graph engine</title><desc id="desc">A conceptual unknown graph is represented in flat arrays. BFS and Dijkstra search routines use a binary heap and hash table to plan routes and queue actions. Graph nodes are schematic rather than measured output.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#31584B"/></marker>
+<style>.paper{fill:#F5F2EB}.box{fill:#FFFDF8;stroke:#C9CEC5;stroke-width:1.5}.panel{fill:#E7ECE4;stroke:#AAB8AC;stroke-width:1.5}.label{font:600 22px Arial,sans-serif;fill:#202622}.small{font:20px Arial,sans-serif;fill:#59645C}.kicker{font:20px Arial,sans-serif;fill:#31584B;letter-spacing:1.3px}.title{font:32px Georgia,serif;fill:#202622}.flow{fill:none;stroke:#31584B;stroke-width:2;marker-end:url(#arrow)}.dashed{stroke-dasharray:5 5}.rule{stroke:#C9CEC5;stroke-width:1}.mono{font:20px Consolas,monospace;fill:#31584B}</style></defs>
+<rect width="900" height="560" class="paper"/>
+<path d="M20 32V20H32M868 20H880V32M20 528V540H32M868 540H880V528" fill="none" stroke="#AAB8AC"/>
+<text x="44" y="43" class="kicker">06 / DATA STRUCTURES</text><text x="44" y="84" class="title">Exploration becomes a route plan</text><text x="44" y="115" class="small">Graph optimisation engine · data-oriented implementation</text>
+<rect x="44" y="155" width="280" height="305" rx="4" class="panel"/><text x="64" y="191" class="label">Unknown graph</text><g fill="none" stroke="#91A491" stroke-width="2"><path d="M100 272L178 240L254 297L178 353L100 272L108 403L178 353M254 297L252 414L178 353"/></g><circle cx="100" cy="272" r="10" fill="#A85F40"/><circle cx="178" cy="240" r="10" fill="#31584B"/><circle cx="254" cy="297" r="10" fill="#31584B"/><circle cx="178" cy="353" r="10" fill="#31584B"/><circle cx="108" cy="403" r="10" fill="#31584B"/><circle cx="252" cy="414" r="10" fill="#31584B"/><path d="M324 265H356V210H390" class="flow"/><rect x="390" y="155" width="466" height="110" rx="4" class="panel"/><text x="410" y="189" class="label">Flat-array representation</text><text x="410" y="219" class="small">Nodes, edges, weights and next links</text><path d="M500 265V350" class="flow"/><path d="M636 398H610" class="flow"/><rect x="390" y="350" width="220" height="110" rx="4" class="box"/><text x="410" y="384" class="label">Search routines</text><text x="410" y="414" class="small">BFS · Dijkstra</text><rect x="636" y="350" width="220" height="110" rx="4" class="box"/><text x="656" y="384" class="label">Data structures</text><text x="656" y="414" class="small">Heap · hash table</text><text x="44" y="494" class="small">Discover exits → plan a route → queue actions</text>
+<path d="M44 512H856" class="rule"/><text x="44" y="541" class="small">Conceptual schematic · graph shown for illustration</text>
 </svg>

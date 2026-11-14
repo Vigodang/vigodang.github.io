@@ -1,0 +1,110 @@
+{
+  "checkedAtUTC": "2026-11-14T05:34:49.367Z",
+  "method": "GET",
+  "builtPages": 22,
+  "externalLinks": [
+    {
+      "url": "https://github.com/Vigodang",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/AI-Predictive-Credit-Scoring-System",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/AI-Predictive-Credit-Scoring-System",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/Data-Oriented-Graph-Optimization",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/Data-Oriented-Graph-Optimization",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/Drone-Imagery-Semantic-Segmentation/blob/d1d344d2abb1ad25e414a15c41183294c37c1679/libs/models_UNet.py",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/Drone-Imagery-Semantic-Segmentation/blob/d1d344d2abb1ad25e414a15c41183294c37c1679/libs/models_UNet.py",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/acp-agent/tests",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/acp-agent/tests",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/mcp-server/tests",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/mcp-server/tests",
+      "ok": true
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/src",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/src",
+      "ok": true
+    },
+    {
+      "url": "https://linkedin.com/in/vigodang",
+      "status": 200,
+      "finalURL": "https://linkedin.com/in/vigodang",
+      "ok": true
+    }
+  ],
+  "localAssets": [
+    {
+      "url": "http://127.0.0.1:4173/assets/Vigo_Dang_Resume_2026_Redesigned.pdf",
+      "status": 200,
+      "contentType": "application/pdf",
+      "bytes": 7184,
+      "sha256": "dafb3dc7a24285cd934533edb41ab44169cd7baddfaffc8af8e6c9363ab477fd",
+      "matchesBuiltAsset": true,
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 32228,
+      "sha256": "deb35ac6a6e4c71a5f8e9cad8df99c9756b263bd25cc168775c8b7482621a7f4",
+      "matchesBuiltAsset": true,
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/vigo-portrait-640.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 64638,
+      "sha256": "edb990cb03c78c878394188559a921252f8a243b34dbbb1f4a9b160a8e84e685",
+      "matchesBuiltAsset": true,
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/vigo-portrait-960.webp",
+      "status": 200,
+      "contentType": "image/webp",
+      "bytes": 120738,
+      "sha256": "b727a7d27bc3e610c3bc8f80dbc889c695f7475ff0ddce6edac0f78a4c8c4911",
+      "matchesBuiltAsset": true,
+      "ok": true
+    },
+    {
+      "url": "http://127.0.0.1:4173/assets/vigo-portrait-640.jpg",
+      "status": 200,
+      "contentType": "image/jpeg",
+      "bytes": 97074,
+      "sha256": "f67678c3819e1eb49fdbd9226a39644cd19b3df600beea321b9f387aa6293c91",
+      "matchesBuiltAsset": true,
+      "ok": true
+    }
+  ],
+  "messagesSent": false,
+  "credentialsUsed": false
+}

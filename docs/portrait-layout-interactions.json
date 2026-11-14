@@ -1,0 +1,26 @@
+{
+  "menuOpen": "true",
+  "menuEscape": {
+    "expanded": "false",
+    "focus": "Menu +"
+  },
+  "heroFocus": {
+    "href": "resume.html",
+    "portraitLinks": 0,
+    "text": "View résumé ↗"
+  },
+  "viewerActual": {
+    "imageWidth": 900,
+    "regionWidth": 259
+  },
+  "viewerFit": {
+    "imageWidth": 259,
+    "regionWidth": 259,
+    "status": "29%"
+  },
+  "viewerKeyboard": {
+    "focusedRole": "region",
+    "scrollLeft": 40
+  },
+  "console": []
+}

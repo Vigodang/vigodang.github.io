@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">Vigo portfolio mark</title>
-  <desc id="desc">A compact V-shaped technical mark in teal and rust.</desc>
-  <rect width="64" height="64" rx="14" fill="#142024"/>
-  <path d="M14 16l18 34 18-34h-9L32 35 23 16z" fill="#f6f7f2"/>
-  <path d="M42 16h8L34 50h-6z" fill="#d16a3b" opacity=".9"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc"><title id="title">Vigo Dang</title><desc id="desc">A forest-green V and a small clay calibration mark on warm paper.</desc><rect width="64" height="64" rx="10" fill="#F5F2EB"/><path d="M12 16H22L32 43L42 16H52L35 52H29Z" fill="#31584B"/><path d="M46 47H54V50H46Z" fill="#A85F40"/></svg>

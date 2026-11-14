@@ -1,0 +1,44 @@
+[
+  {
+    "role": "body",
+    "foreground": "#202622",
+    "background": "#F5F2EB",
+    "ratio": 13.79,
+    "AA_normal": true
+  },
+  {
+    "role": "muted body",
+    "foreground": "#59645C",
+    "background": "#F5F2EB",
+    "ratio": 5.52,
+    "AA_normal": true
+  },
+  {
+    "role": "forest on paper",
+    "foreground": "#31584B",
+    "background": "#F5F2EB",
+    "ratio": 7.15,
+    "AA_normal": true
+  },
+  {
+    "role": "button",
+    "foreground": "#FCFAF5",
+    "background": "#31584B",
+    "ratio": 7.66,
+    "AA_normal": true
+  },
+  {
+    "role": "muted on sage",
+    "foreground": "#59645C",
+    "background": "#DFE6DB",
+    "ratio": 4.84,
+    "AA_normal": true
+  },
+  {
+    "role": "clay annotations",
+    "foreground": "#A85F40",
+    "background": "#F5F2EB",
+    "ratio": 4.29,
+    "AA_normal": false
+  }
+]

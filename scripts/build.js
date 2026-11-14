@@ -1,6 +1,7 @@
 import { cp, mkdir, rm } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
+import { render } from "./render.js";
 
 const root = path.resolve(".");
 const src = path.join(root, "src");
@@ -10,6 +11,7 @@ if (!existsSync(src)) {
   throw new Error("Missing src directory");
 }
 
+await render();
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(src, dist, { recursive: true });

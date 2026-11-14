@@ -1,0 +1,94 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=0.62in,top=0.50in,bottom=0.48in]{geometry}
+\usepackage{fontspec}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{needspace}
+\setmainfont{Lato}[Ligatures=TeX]
+\setsansfont{Lato}[Ligatures=TeX]
+\definecolor{ink}{HTML}{182333}
+\definecolor{steel}{HTML}{526276}
+\definecolor{accent}{HTML}{24647A}
+\definecolor{line}{HTML}{C9D5DA}
+\definecolor{muted}{HTML}{607183}
+\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent}
+\pagestyle{empty}\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}\setlength{\tabcolsep}{0pt}
+\color{ink}
+\newcommand{\smallcapslabel}[1]{{\fontsize{8}{10}\selectfont\bfseries\addfontfeatures{LetterSpace=1.4}\color{accent}#1}}
+\newcommand{\ruleline}{\vspace{2pt}{\color{line}\hrule height 0.65pt}\vspace{3pt}}
+\newcommand{\ressection}[1]{\needspace{4\baselineskip}\vspace{5pt}\smallcapslabel{#1}\ruleline}
+\newcommand{\projectheading}[3]{\needspace{3\baselineskip}%
+ \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\raggedleft\arraybackslash}p{.30\textwidth}@{}}
+ {\fontsize{10.1}{11.9}\selectfont\bfseries #1} & {\fontsize{8.5}{11}\selectfont\color{steel}#2}\\
+ \end{tabularx}\par\vspace{-1pt}{\fontsize{8.5}{10.5}\selectfont\color{muted}#3}\vspace{1pt}}
+\setlist[itemize]{leftmargin=1.25em,topsep=2pt,itemsep=0.5pt,parsep=0pt,partopsep=0pt,label={\color{accent}\raisebox{0.3ex}{\tiny$\bullet$}}}
+\newcommand{\bitem}[1]{\item {\fontsize{9.1}{11.5}\selectfont #1}}
+\begin{document}
+\vspace*{-5pt}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+ {\fontsize{20.8}{23}\selectfont\bfseries\addfontfeatures{LetterSpace=-0.25} Truong Lieu Dong \textcolor{accent}{(Vigo)} Dang} & \\
+ {\vspace{4pt}\fontsize{9}{11.5}\selectfont\color{steel} DATA SCIENCE UNDERGRADUATE \textbullet\ DATA ENGINEERING \textbullet\ CLOUD \textbullet\ APPLIED AI} &\\
+\end{tabularx}
+\vspace{7pt}
+{\fontsize{8.8}{11}\selectfont Brisbane, QLD\ \textcolor{line}{\textbar}\ 0410 107 614\ \textcolor{line}{\textbar}\ \href{mailto:n11721138@qut.edu.au}{n11721138@qut.edu.au}\ \textcolor{line}{\textbar}\ \href{https://github.com/Vigodang}{github.com/Vigodang}\ \textcolor{line}{\textbar}\ \href{https://linkedin.com/in/vigodang}{LinkedIn}}
+\vspace{9pt}\par\color{accent}\hrule height 1.5pt\color{ink}
+
+\ressection{PROFILE}
+{\fontsize{9.4}{13}\selectfont QUT Data Science undergraduate with practical experience designing, testing and explaining technical systems across AWS cloud, data pipelines, machine learning and information retrieval. Comfortable working from problem definition through implementation, evaluation and documentation. Seeking internship or early-career opportunities in data, analytics, software and cloud engineering.}
+
+\ressection{TECHNICAL CAPABILITIES}
+{\fontsize{9.1}{12.5}\selectfont
+\textbf{Programming \& data} \hspace{5pt} Python, SQL, R, C++17, C\#, JavaScript/Node.js; Pandas, NumPy, MySQL, DynamoDB\\[2pt]
+\textbf{Machine learning} \hspace{5pt} scikit-learn, XGBoost, LightGBM; classification, regression, model evaluation\\[2pt]
+\textbf{Deep learning \& AI} \hspace{5pt} PyTorch, TensorFlow; neural networks, embeddings, RAG\\[2pt]
+\textbf{Cloud \& backend} \hspace{5pt} AWS S3, Lambda, API Gateway, Cognito, SQS, ECS/Fargate, CloudWatch; REST APIs, Docker\\[2pt]
+\textbf{Tools \& delivery} \hspace{5pt} Git/GitHub, Linux, automated testing, Power BI, PyQt6, data visualisation
+}
+
+\ressection{SELECTED ENGINEERING \& DATA PROJECTS}
+\projectheading{Dataset Health Analyzer \textbar\ Cloud Data Application}{2026 \textbullet\ QUT}{AWS \textbullet\ React \textbullet\ Python \textbullet\ S3/SQS/DynamoDB/Fargate}
+\begin{itemize}
+\bitem{Developed a browser-based CSV quality-analysis workflow with authenticated access, direct S3 uploads, API endpoints, persistent job tracking and queue-driven Fargate workers.}
+\bitem{Implemented analysis outputs covering dataset profiling, missing values, duplicates, numeric summaries, outlier detection and correlations, with asynchronous job status and result retrieval.}
+\bitem{Validated an end-to-end \textbf{controlled 40-job burst}: all 40 jobs completed, with worker capacity scaling \textbf{1 $\rightarrow$ 4 $\rightarrow$ 1}; documented service limits and reliability trade-offs rather than claiming production readiness.}
+\end{itemize}
+\vspace{4pt}
+
+\projectheading{AI-Assisted Research Synthesis \textbar\ CRDC Industry Capstone}{2026 \textbullet\ QUT team}{Python \textbullet\ retrieval-augmented generation \textbullet\ multi-agent workflow}
+\begin{itemize}
+\bitem{Contributed the \textbf{lead-agent orchestration and specialised retrieval} components of a team project with the Cotton Research and Development Corporation, supporting evidence-led synthesis of historical scientific reports.}
+\bitem{Separated research questions, analysis objectives and retrieval queries; integrated embedding-based search, cross-encoder reranking, document/chunk relevance checks and source provenance for traceable results.}
+\bitem{Explored temporal diversification of retrieved evidence to reduce over-reliance on similar-period sources; evaluated behaviour across distinct retrieval tasks.}
+\end{itemize}
+\vspace{4pt}
+
+\projectheading{Predictive Credit Scoring \textbar\ End-to-End ML Application}{2025--26 \textbullet\ Independent}{Python \textbullet\ MySQL \textbullet\ PyQt6 \textbullet\ scikit-learn \textbullet\ XGBoost/LightGBM}
+\begin{itemize}
+\bitem{Built an interactive desktop application around a \textbf{30,000-record} dataset, connecting preparation, model training and predictions to persistent records and user-facing reporting.}
+\bitem{Compared Logistic Regression, XGBoost and LightGBM with AUC, precision, recall and F1; stored model metadata and prediction history to make experiments reproducible and reviewable.}
+\end{itemize}
+\vspace{4pt}
+
+\projectheading{Parallel Protein Signature Generation}{2026 \textbullet\ QUT}{C++17 \textbullet\ OpenMP \textbullet\ profiling and correctness testing}
+\begin{itemize}
+\bitem{Parallelised FASTA sequence signature generation with workload partitioning and optimised memory access. Achieved a measured \textbf{3.25$\times$ speedup} over the best sequential version at eight threads on the qut3 benchmark while preserving byte-identical outputs.}
+\end{itemize}
+
+\ressection{ADDITIONAL ANALYTICAL WORK}
+{\fontsize{9.15}{12.5}\selectfont
+\textbf{Advanced Visualisation (PH\textsuperscript{2} dataset):} Developed geometry and cohort-based visual analyses of \textbf{200} dermoscopic cases using Python and scientific visualisation tools; clearly separated analytical features from clinical conclusions.\\[3pt]
+\textbf{Statistical Modelling:} Applied beta-binomial/generalised mixed modelling and model diagnostics in R to explore ecological proportions and sources of variation.
+}
+
+\ressection{EDUCATION \& RECOGNITION}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+ {\fontsize{10}{12}\selectfont\bfseries Queensland University of Technology (QUT)} & {\fontsize{9}{11}\selectfont\color{steel} Expected July 2027}\\
+ {\fontsize{9.25}{12}\selectfont Bachelor of Data Science \textbullet\ Advanced Computing for Data Science minor} & {\fontsize{8.8}{11}\selectfont\color{steel} Brisbane, Australia}\\
+\end{tabularx}
+\vspace{2pt}{\fontsize{9.15}{12}\selectfont \textbf{Academic recognition:} 2024 QUT Executive Dean's Commendation for Academic Excellence (Semester 2).}
+\end{document}

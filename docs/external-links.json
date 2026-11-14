@@ -1,0 +1,240 @@
+{
+  "date": "2026-11-14",
+  "scope": {
+    "htmlPages": 22,
+    "currentExternalURLs": 9
+  },
+  "results": [
+    {
+      "url": "https://github.com/Vigodang",
+      "sources": [
+        "about.html",
+        "contact.html",
+        "contact.html",
+        "experience.html",
+        "index.html",
+        "resume.html",
+        "resume.html",
+        "work.html",
+        "projects/crdc-capstone.html",
+        "projects/dataset-health.html",
+        "projects/graph-optimisation.html",
+        "projects/parallel-protein.html",
+        "projects/predictive-risk.html",
+        "projects/strobe-ai.html",
+        "visuals/crdc-capstone-overview.html",
+        "visuals/dataset-health-architecture.html",
+        "visuals/dataset-health-detail-1.html",
+        "visuals/dataset-health-overview.html",
+        "visuals/dataset-health-results.html",
+        "visuals/graph-optimisation-overview.html",
+        "visuals/parallel-protein-overview.html",
+        "visuals/predictive-risk-overview.html",
+        "visuals/strobe-ai-architecture.html",
+        "visuals/strobe-ai-overview.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.544Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang",
+      "elapsedMs": 474,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/AI-Predictive-Credit-Scoring-System",
+      "sources": [
+        "projects/predictive-risk.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.955Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/AI-Predictive-Credit-Scoring-System",
+      "elapsedMs": 882,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/Data-Oriented-Graph-Optimization",
+      "sources": [
+        "projects/graph-optimisation.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.848Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/Data-Oriented-Graph-Optimization",
+      "elapsedMs": 776,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/Drone-Imagery-Semantic-Segmentation/blob/d1d344d2abb1ad25e414a15c41183294c37c1679/libs/models_UNet.py",
+      "sources": [
+        "about.html",
+        "work.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.834Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/Drone-Imagery-Semantic-Segmentation/blob/d1d344d2abb1ad25e414a15c41183294c37c1679/libs/models_UNet.py",
+      "elapsedMs": 797,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent",
+      "sources": [
+        "projects/strobe-ai.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.801Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent",
+      "elapsedMs": 727,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/acp-agent/tests",
+      "sources": [
+        "projects/strobe-ai.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.752Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/acp-agent/tests",
+      "elapsedMs": 676,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/mcp-server/tests",
+      "sources": [
+        "projects/strobe-ai.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.754Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/mcp-server/tests",
+      "elapsedMs": 678,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/src",
+      "sources": [
+        "projects/strobe-ai.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.755Z",
+      "status": 200,
+      "finalURL": "https://github.com/Vigodang/strobe-ai-serverless-agent/tree/main/src",
+      "elapsedMs": 681,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    },
+    {
+      "url": "https://linkedin.com/in/vigodang",
+      "sources": [
+        "about.html",
+        "contact.html",
+        "contact.html",
+        "experience.html",
+        "index.html",
+        "resume.html",
+        "resume.html",
+        "work.html",
+        "projects/crdc-capstone.html",
+        "projects/dataset-health.html",
+        "projects/graph-optimisation.html",
+        "projects/parallel-protein.html",
+        "projects/predictive-risk.html",
+        "projects/strobe-ai.html",
+        "visuals/crdc-capstone-overview.html",
+        "visuals/dataset-health-architecture.html",
+        "visuals/dataset-health-detail-1.html",
+        "visuals/dataset-health-overview.html",
+        "visuals/dataset-health-results.html",
+        "visuals/graph-optimisation-overview.html",
+        "visuals/parallel-protein-overview.html",
+        "visuals/predictive-risk-overview.html",
+        "visuals/strobe-ai-architecture.html",
+        "visuals/strobe-ai-overview.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:54:28.069Z",
+      "status": 200,
+      "finalURL": "https://linkedin.com/in/vigodang",
+      "elapsedMs": 632,
+      "contentType": "text/html; charset=utf-8",
+      "ok": true,
+      "gap": null
+    }
+  ],
+  "removedVariantChecks": [
+    {
+      "url": "https://www.linkedin.com/in/vigodang",
+      "sources": [
+        "about.html",
+        "contact.html",
+        "experience.html",
+        "index.html",
+        "projects/crdc-capstone.html",
+        "projects/dataset-health.html",
+        "projects/graph-optimisation.html",
+        "projects/parallel-protein.html",
+        "projects/predictive-risk.html",
+        "projects/strobe-ai.html",
+        "resume.html",
+        "visuals/crdc-capstone-overview.html",
+        "visuals/dataset-health-architecture.html",
+        "visuals/dataset-health-detail-1.html",
+        "visuals/dataset-health-overview.html",
+        "visuals/dataset-health-results.html",
+        "visuals/graph-optimisation-overview.html",
+        "visuals/parallel-protein-overview.html",
+        "visuals/predictive-risk-overview.html",
+        "visuals/strobe-ai-architecture.html",
+        "visuals/strobe-ai-overview.html",
+        "work.html"
+      ],
+      "method": "GET",
+      "checkedAtUTC": "2026-11-14T01:32:21.489Z",
+      "status": 999,
+      "finalURL": "https://www.linkedin.com/in/vigodang",
+      "elapsedMs": 418,
+      "contentType": "text/html",
+      "ok": false,
+      "gap": "LinkedIn blocks automated access (HTTP 999); profile availability requires manual user verification."
+    }
+  ],
+  "contactTargets": [
+    "mailto:n11721138@qut.edu.au",
+    "tel:+61410107614"
+  ],
+  "contactNote": "URI targets inspected; no email sent and no telephone call placed.",
+  "pdfHTTP": {
+    "url": "http://127.0.0.1:4173/assets/Vigo_Dang_Resume_2026_Redesigned.pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "bytes": 7265,
+    "sha256": "a014f194b0c1daaea41953da696905491ca7610a1ce21026a8f48da18bfeaeb7",
+    "matchesSource": true
+  },
+  "browserDownloadEvent": "An earlier event-capture attempt was interrupted; the actual file-link download was subsequently completed and verified byte-for-byte.",
+  "browserDownload": {
+    "method": "CUA downloadMedia on the actual header PDF link",
+    "bytes": 7265,
+    "sha256": "a014f194b0c1daaea41953da696905491ca7610a1ce21026a8f48da18bfeaeb7",
+    "matchesSource": true,
+    "verified": true
+  }
+}

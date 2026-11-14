@@ -1,0 +1,117 @@
+{
+  "expanded": {
+    "expanded": "true",
+    "nav": [
+      "Work",
+      "About",
+      "Contact",
+      "Résumé ↗"
+    ]
+  },
+  "escape": {
+    "expanded": "false",
+    "focus": "Menu +"
+  },
+  "resumeNav": {
+    "downloadCount": 2,
+    "headerResumeLinks": 1,
+    "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf",
+    "path": "/resume.html"
+  },
+  "downloadKeyboard": {
+    "nextFocus": "Print this page ↗",
+    "pdfLinkHeight": 56
+  },
+  "viewer": [
+    {
+      "width": 320,
+      "fit": {
+        "image": 259,
+        "pageWidth": 305,
+        "status": "29%",
+        "viewport": 259
+      },
+      "actual": {
+        "image": 900,
+        "pageWidth": 305,
+        "status": "100%",
+        "viewport": 259
+      }
+    },
+    {
+      "width": 375,
+      "fit": {
+        "image": 314,
+        "pageWidth": 360,
+        "status": "35%",
+        "viewport": 314
+      },
+      "actual": {
+        "image": 900,
+        "pageWidth": 360,
+        "status": "100%",
+        "viewport": 314
+      }
+    },
+    {
+      "width": 768,
+      "fit": {
+        "image": 687,
+        "pageWidth": 753,
+        "status": "76%",
+        "viewport": 687
+      },
+      "actual": {
+        "image": 900,
+        "pageWidth": 753,
+        "status": "100%",
+        "viewport": 687
+      }
+    },
+    {
+      "width": 1024,
+      "fit": {
+        "image": 900,
+        "pageWidth": 1009,
+        "status": "100%",
+        "viewport": 943
+      },
+      "actual": {
+        "image": 900,
+        "pageWidth": 1009,
+        "status": "100%",
+        "viewport": 943
+      }
+    },
+    {
+      "width": 1440,
+      "fit": {
+        "image": 900,
+        "pageWidth": 1425,
+        "status": "100%",
+        "viewport": 1278
+      },
+      "actual": {
+        "image": 900,
+        "pageWidth": 1425,
+        "status": "100%",
+        "viewport": 1278
+      }
+    }
+  ],
+  "keyboardScroll": {
+    "innerWidth": 320,
+    "pageWidth": 305,
+    "scrollLeft": 40
+  },
+  "caseReturn": {
+    "h1": "Dataset Health Analyzer",
+    "path": "/projects/dataset-health.html"
+  },
+  "about": {
+    "hasEducation": true,
+    "portrait": true,
+    "unsupportedHobby": false
+  },
+  "logs": []
+}

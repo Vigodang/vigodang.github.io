@@ -1,0 +1,109 @@
+{
+  "checked_on": "2026-11-14",
+  "baseline": "work/final-release/before",
+  "checks": {
+    "case_main": {
+      "count": 6,
+      "unchanged": true,
+      "source_matches_dist": true,
+      "files": [
+        "crdc-capstone.html",
+        "dataset-health.html",
+        "graph-optimisation.html",
+        "parallel-protein.html",
+        "predictive-risk.html",
+        "strobe-ai.html"
+      ],
+      "matches_prechange_captured_hashes": true
+    },
+    "viewer_main": {
+      "count": 10,
+      "unchanged": true,
+      "source_matches_dist": true
+    },
+    "project_data": {
+      "unchanged": true,
+      "sha256": "a630772a1815d3dc6915a760449e3d7424539040bd0d3a4f374bff279ccbc1f0",
+      "matches_prechange_captured_hash": true
+    },
+    "non_pdf_assets": {
+      "count": 19,
+      "unchanged": true,
+      "source_matches_dist": true,
+      "changed": [],
+      "added": [],
+      "removed": [],
+      "files": [
+        "crdc-workflow.svg",
+        "dataset-health-correlations.jpg",
+        "dataset-health-report.jpg",
+        "dataset-health-scaling.csv",
+        "dataset-health-scaling.svg",
+        "dataset-health.svg",
+        "favicon.svg",
+        "graph-engine.svg",
+        "og-image.png",
+        "og-image.svg",
+        "openmp-benchmark-data.csv",
+        "openmp-benchmark.svg",
+        "risk-flow.svg",
+        "strobe-architecture.svg",
+        "strobe-tests.svg",
+        "vigo-portrait-400.webp",
+        "vigo-portrait-640.jpg",
+        "vigo-portrait-640.webp",
+        "vigo-portrait-960.webp"
+      ],
+      "manifest_sha256": "c5f9b883f064a8143d8ce11c3827013e6436224eed1fd0f291bf961a94391d11",
+      "captured_15_assets_unchanged": true
+    },
+    "css": {
+      "count": 3,
+      "unchanged": true,
+      "source_matches_dist": true,
+      "files": [
+        "case-refinement.css",
+        "layout-refinement.css",
+        "styles.css"
+      ]
+    },
+    "client_javascript": {
+      "count": 1,
+      "unchanged": true,
+      "source_matches_dist": true,
+      "files": [
+        "script.js"
+      ]
+    },
+    "deployment_workflow": {
+      "file": ".github/workflows/pages.yml",
+      "unchanged": true,
+      "sha256": "c1982e0c4520f102883cc6148fc52629a5fba1e6b68b255de4df0609c9ce8364"
+    },
+    "build_scripts": {
+      "unchanged": true,
+      "files": [
+        "scripts/build.js",
+        "scripts/build-resume.js",
+        "scripts/check.js"
+      ]
+    },
+    "render_template_scope": {
+      "only_header_pdf_and_unsupported_hobby_removed": true
+    },
+    "header_navigation": {
+      "pages": 22,
+      "four_links_and_exactly_one_html_resume_no_pdf_on_every_page": true
+    },
+    "footer_pdf_actions": {
+      "pages": 22,
+      "preserved_on_every_page": true
+    }
+  },
+  "intentional_exclusions": [
+    "Resume PDF bytes, content/resume.js and scripts/check-resume.js were intentionally revised and are outside this preservation claim."
+  ],
+  "scope": "Read-only comparison; no repository changes, push or deployment.",
+  "result": "pass",
+  "failed_checks": []
+}

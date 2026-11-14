@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://vigodang.github.io/sitemap.xml

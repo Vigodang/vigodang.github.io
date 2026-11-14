@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-14",
+  "menu": {
+    "width": 320,
+    "open": true,
+    "escapeCloses": true,
+    "escapeRestoresFocus": true,
+    "aboutLinkNavigates": true
+  },
+  "viewer": [
+    {
+      "imageWidth": 900,
+      "regionWidth": 259,
+      "scrollWidth": 900,
+      "status": "100%",
+      "step": "initial"
+    },
+    {
+      "imageWidth": 259,
+      "regionWidth": 259,
+      "status": "29%",
+      "step": "fit"
+    },
+    {
+      "imageWidth": 323.75,
+      "status": "36%",
+      "step": "zoom-in"
+    },
+    {
+      "focus": "region",
+      "imageWidth": 900,
+      "overflow": -15,
+      "scrollLeft": 0,
+      "status": "100%",
+      "step": "actual-and-keyboard"
+    },
+    {
+      "imageWidth": 900,
+      "pageWidth": 305,
+      "regionWidth": 259,
+      "scrollLeft": 40,
+      "step": "settled-keyboard-scroll",
+      "viewport": 320
+    }
+  ],
+  "noJSHome": {
+    "htmlHasJS": false,
+    "navDisplay": "flex",
+    "navWrap": "wrap",
+    "pageWidth": 305,
+    "toggleDisplay": "none",
+    "viewport": 320
+  },
+  "noJSViewer": {
+    "controlsHidden": true,
+    "imageWidth": 900,
+    "overflow": "auto",
+    "pageWidth": 305,
+    "regionTabIndex": 0,
+    "regionWidth": 259,
+    "viewport": 320
+  }
+}

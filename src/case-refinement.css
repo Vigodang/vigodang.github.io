@@ -1,0 +1,781 @@
+/* Case-study refinement. Intentionally scoped away from the home and About pages. */
+.case-breadcrumb {
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding-top: 24px;
+}
+
+.case-breadcrumb > .label,
+.case-breadcrumb > .text-link {
+  font-size: 12px;
+}
+
+.case-breadcrumb > .label {
+  max-width: none;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.case-header {
+  padding-top: 42px;
+  padding-bottom: 32px;
+}
+
+.case-header > .label {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.case-header h1 {
+  max-width: 19ch;
+  margin-bottom: 24px;
+  font-size: clamp(2.35rem, 5.9vw, 5.65rem);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  overflow-wrap: anywhere;
+}
+
+.case-header em,
+.case-body em,
+.case-next em,
+.viewer-page em {
+  font-style: normal;
+}
+
+.case-deck {
+  max-width: 68ch;
+  margin-bottom: 30px;
+  color: var(--muted);
+  font: 19px/1.65 var(--sans);
+  letter-spacing: 0;
+}
+
+.case-meta {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, .7fr);
+  gap: 24px;
+  padding: 22px 24px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+}
+
+.case-meta > div {
+  min-width: 0;
+}
+
+.case-meta dt {
+  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.case-meta dd {
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.case-visual {
+  padding-bottom: 24px;
+}
+
+.case-visual .figure-label,
+.case-visual .project-figure figcaption,
+.case-visual .project-figure .visual-link {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.case-visual .project-figure figcaption {
+  max-width: 85ch;
+}
+
+.case-layout {
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+  padding-top: 34px;
+  padding-bottom: 40px;
+}
+
+.case-layout > .contents {
+  min-width: 0;
+  top: 24px;
+  padding-top: 18px;
+  border-top: 2px solid var(--forest);
+}
+
+.case-layout .contents > .label {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.case-layout .contents nav {
+  margin-top: 14px;
+  gap: 0;
+  border-top: 0;
+}
+
+.case-layout .contents nav a {
+  align-items: baseline;
+  gap: 12px;
+  min-height: 46px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.case-layout .contents nav span {
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.case-layout .contents nav a:hover {
+  color: var(--forest);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.case-body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+  min-width: 0;
+  max-width: 900px;
+}
+
+.case-body > section {
+  grid-column: 1 / -1;
+  min-width: 0;
+  margin: 0;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 28px;
+}
+
+.case-body > section > .label {
+  margin-bottom: 14px;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: .075em;
+}
+
+.case-body h2 {
+  max-width: 26ch;
+  margin-bottom: 20px;
+  font-size: 36px;
+  line-height: 1.16;
+  letter-spacing: -.035em;
+}
+
+.case-body p {
+  max-width: 70ch;
+  margin-bottom: 18px;
+  font-size: 17px;
+  line-height: 1.75;
+  overflow-wrap: break-word;
+}
+
+.case-body > section > p:last-child {
+  margin-bottom: 0;
+}
+
+.case-body > #context {
+  margin-bottom: 4px;
+  padding: 28px 30px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.case-body #context .article-lede {
+  max-width: 64ch;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.case-body > #problem,
+.case-body > #contribution {
+  grid-column: auto;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.case-body > #contribution {
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.case-body #problem h2,
+.case-body #contribution h2 {
+  margin-bottom: 16px;
+  font-size: 30px;
+}
+
+.case-body #problem p,
+.case-body #contribution p {
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.case-body .project-figure {
+  margin-top: 28px;
+  margin-bottom: 0;
+}
+
+.case-body .project-figure .figure-label,
+.case-body .project-figure figcaption,
+.case-body .project-figure .visual-link {
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.case-body .project-figure figcaption {
+  max-width: 85ch;
+}
+
+.case-body .project-figure .visual-link,
+.case-body .resources .text-link {
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+
+.case-body .decisions {
+  display: grid;
+  gap: 0;
+  margin-top: 4px;
+}
+
+.case-body .decisions li {
+  min-width: 0;
+  padding: 24px 0 24px 48px;
+  border-top: 1px solid var(--line);
+}
+
+.case-body .decisions li:first-child {
+  padding-top: 6px;
+  border-top: 0;
+}
+
+.case-body .decisions li:last-child {
+  padding-bottom: 0;
+}
+
+.case-body .decisions li::before {
+  top: 28px;
+  font-size: 12px;
+}
+
+.case-body .decisions li:first-child::before {
+  top: 10px;
+}
+
+.case-body .decisions h3 {
+  margin: 0 0 12px;
+  font: 600 18px/1.4 var(--sans);
+  letter-spacing: 0;
+}
+
+.case-body .decisions p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.case-body .evidence-box {
+  padding: 24px 28px;
+  border-left-width: 3px;
+}
+
+.case-body .evidence-box p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.case-body .evidence-notes {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.case-body .evidence-notes li {
+  margin: 0;
+  padding-left: 2px;
+}
+
+.case-body .source-note {
+  max-width: none;
+  margin: 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  background: var(--white);
+  font-size: 12px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.case-body .table-wrap {
+  margin-top: 24px;
+}
+
+.case-body table {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.case-body table caption,
+.case-body thead th {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.case-body > #limitations {
+  margin-top: 20px;
+  padding: 26px 28px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.case-body > .resources {
+  padding-top: 30px;
+  padding-bottom: 0;
+  border: 0;
+}
+
+.case-body .resources .text-link {
+  gap: 20px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.case-body .resources .text-link > span {
+  flex-shrink: 0;
+}
+
+.case-next {
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 50px;
+}
+
+.case-next > .label {
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.case-next .next-title {
+  max-width: 30ch;
+  min-width: 0;
+  gap: 24px;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  overflow-wrap: anywhere;
+}
+
+.case-next .next-title > span {
+  flex-shrink: 0;
+}
+
+/* Original-resolution visuals remain native scroll regions, including without JS. */
+.viewer-page {
+  padding-top: 36px;
+  padding-bottom: 50px;
+}
+
+.viewer-page > .label {
+  max-width: 85ch;
+  margin-bottom: 16px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.viewer-page h1 {
+  max-width: 24ch;
+  margin: 0 0 20px;
+  font-size: clamp(2.1rem, 4.8vw, 4rem);
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.viewer-page .viewer-caption {
+  max-width: 75ch;
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.viewer-page .viewer-toolbar {
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--white);
+}
+
+.viewer-page .viewer-toolbar button {
+  min-height: 44px;
+  padding: 9px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.viewer-page .viewer-toolbar output {
+  min-width: 4ch;
+  margin-left: 8px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.viewer-page .viewer-help {
+  max-width: 75ch;
+  margin-bottom: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.viewer-page .visual-viewport {
+  height: clamp(300px, 68vh, 760px);
+}
+
+.viewer-page .viewer-actions {
+  gap: 12px 30px;
+  margin-top: 20px;
+}
+
+.viewer-page .viewer-actions .text-link {
+  min-width: 0;
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 1100px) {
+  .case-layout {
+    grid-template-columns: 165px minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .case-body {
+    gap: 0 22px;
+  }
+
+  .case-body > #contribution {
+    padding-left: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .case-header {
+    padding-top: 34px;
+  }
+
+  .case-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 28px;
+  }
+
+  .case-meta > div:last-child {
+    grid-column: 1 / -1;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding-top: 28px;
+  }
+
+  .case-layout > .contents {
+    position: static;
+    margin: 0;
+    padding-top: 16px;
+  }
+
+  .case-layout .contents nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 20px;
+    margin-top: 10px;
+    border-bottom: 0;
+  }
+
+  .case-layout .contents nav a {
+    height: 100%;
+    padding: 12px 0;
+  }
+
+  .case-body {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .case-breadcrumb {
+    align-items: start;
+    padding-top: 18px;
+  }
+
+  .case-breadcrumb > .label {
+    width: 100%;
+    padding-top: 0;
+    text-align: left;
+  }
+
+  .case-header {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+
+  .case-header h1 {
+    margin-bottom: 20px;
+    font-size: clamp(2.25rem, 9.6vw, 3.4rem);
+    line-height: 1.1;
+  }
+
+  .case-header > .label {
+    margin-bottom: 16px;
+  }
+
+  .case-deck {
+    margin-bottom: 24px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .case-meta {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .case-meta > div + div {
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .case-meta dd {
+    font-size: 14px;
+  }
+
+  .case-visual {
+    padding-bottom: 18px;
+  }
+
+  .case-layout {
+    gap: 24px;
+    padding-top: 24px;
+    padding-bottom: 28px;
+  }
+
+  .case-layout .contents nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+  }
+
+  .case-layout .contents nav a {
+    gap: 9px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .case-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-body > section {
+    padding: 26px 0;
+  }
+
+  .case-body > #context,
+  .case-body > #limitations {
+    padding: 22px 20px;
+  }
+
+  .case-body > #context {
+    margin-bottom: 0;
+  }
+
+  .case-body > #problem,
+  .case-body > #contribution {
+    grid-column: 1 / -1;
+    padding: 26px 0;
+    border-left: 0;
+  }
+
+  .case-body > section > .label {
+    margin-bottom: 12px;
+  }
+
+  .case-body h2,
+  .case-body #problem h2,
+  .case-body #contribution h2 {
+    margin-bottom: 18px;
+    font-size: 29px;
+    line-height: 1.2;
+  }
+
+  .case-body p,
+  .case-body #problem p,
+  .case-body #contribution p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .case-body #context .article-lede {
+    font-size: 17px;
+    line-height: 1.75;
+  }
+
+  .case-body .project-figure {
+    margin-top: 24px;
+  }
+
+  .case-body .decisions li {
+    padding: 22px 0 22px 34px;
+  }
+
+  .case-body .decisions li::before {
+    top: 26px;
+  }
+
+  .case-body .decisions h3 {
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .case-body .evidence-box {
+    padding: 20px;
+  }
+
+  .case-body .evidence-box p {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .case-body .evidence-notes {
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .case-body table {
+    font-size: 13px;
+  }
+
+  .case-body .source-note {
+    padding: 14px 16px;
+  }
+
+  .case-body > #limitations {
+    margin-top: 12px;
+  }
+
+  .case-next {
+    display: block;
+    padding-top: 24px;
+    padding-bottom: 36px;
+  }
+
+  .case-next > .label {
+    margin-bottom: 14px;
+  }
+
+  .case-next .next-title {
+    gap: 20px;
+    font-size: 28px;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .viewer-page {
+    padding-top: 28px;
+    padding-bottom: 36px;
+  }
+
+  .viewer-page .viewer-caption {
+    font-size: 15px;
+  }
+
+  .viewer-page .viewer-toolbar {
+    padding: 10px;
+  }
+
+  .viewer-page .viewer-toolbar button {
+    padding: 9px 12px;
+  }
+
+  .viewer-page .viewer-toolbar output {
+    margin-left: 0;
+  }
+
+  .viewer-page .viewer-actions {
+    align-items: start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media print {
+  .case-header h1 {
+    max-width: none;
+    font-size: 32pt;
+  }
+
+  .case-deck {
+    font-size: 12pt;
+  }
+
+  .case-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 16px 0;
+    background: transparent;
+  }
+
+  .case-meta > div,
+  .case-meta > div + div,
+  .case-meta > div:last-child {
+    grid-column: auto;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .case-body {
+    display: block;
+    max-width: none;
+  }
+
+  .case-body > section,
+  .case-body > #context,
+  .case-body > #problem,
+  .case-body > #contribution,
+  .case-body > #limitations {
+    margin: 0 0 16px;
+    padding: 16px 0;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+  }
+
+  .case-body h2 {
+    font-size: 24pt;
+  }
+
+  .case-body p,
+  .case-body #context .article-lede {
+    max-width: none;
+    font-size: 11pt;
+  }
+
+  .viewer-page .visual-viewport {
+    height: auto;
+    overflow: visible;
+  }
+}

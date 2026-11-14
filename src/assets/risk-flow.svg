@@ -1,50 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc">
-  <title id="title">Predictive risk application data flow</title>
-  <desc id="desc">PyQt6 UI, service layer, machine learning pipeline, model registry, prediction result and report flow.</desc>
-  <defs>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0 0L10 5L0 10z" fill="#45d6ff"/>
-    </marker>
-    <style>
-      .bg{fill:#06101d}.box{fill:#0d1d2f;stroke:#29425f;stroke-width:2}.group{fill:#12243a;stroke:#315174;stroke-width:2}.warn{fill:#17243a;stroke:#45d6ff;stroke-width:2}.title{font:700 23px Arial,sans-serif;fill:#eaf2fb}.label{font:700 16px Arial,sans-serif;fill:#eaf2fb}.small{font:13px Arial,sans-serif;fill:#b9c8d6}.line{fill:none;stroke:#45d6ff;stroke-width:2.3;marker-end:url(#arrow)}
-    </style>
-  </defs>
-  <rect class="bg" width="1080" height="620"/>
-  <text x="48" y="54" class="title">Full-stack predictive risk application</text>
-  <text x="48" y="82" class="small">Training, prediction and reporting workflow based on repository evidence.</text>
-
-  <rect x="64" y="130" width="230" height="92" rx="10" class="box"/>
-  <text x="88" y="164" class="label">PyQt6 interface</text>
-  <text x="88" y="190" class="small">Login, prediction, dashboard, reports</text>
-
-  <rect x="420" y="130" width="240" height="92" rx="10" class="group"/>
-  <text x="444" y="164" class="label">Service layer</text>
-  <text x="444" y="190" class="small">Auth, ML, data quality, model management</text>
-
-  <rect x="786" y="130" width="230" height="92" rx="10" class="box"/>
-  <text x="810" y="164" class="label">MySQL-oriented data</text>
-  <text x="810" y="190" class="small">Users, customers, prediction logs</text>
-
-  <rect x="110" y="336" width="230" height="92" rx="10" class="box"/>
-  <text x="134" y="370" class="label">Training workflow</text>
-  <text x="134" y="396" class="small">30,000 rows, 41-feature schema</text>
-
-  <rect x="426" y="336" width="230" height="92" rx="10" class="box"/>
-  <text x="450" y="370" class="label">Models</text>
-  <text x="450" y="396" class="small">XGBoost, LightGBM, calibrated LR</text>
-
-  <rect x="742" y="336" width="230" height="92" rx="10" class="box"/>
-  <text x="766" y="370" class="label">Prediction result</text>
-  <text x="766" y="396" class="small">Probability, risk label, model context</text>
-
-  <rect x="285" y="490" width="510" height="68" rx="10" class="warn"/>
-  <text x="310" y="522" class="label">Public link gated by cleanup</text>
-  <text x="310" y="546" class="small">Generated logs and sensitive outputs must be removed before linking this repo.</text>
-
-  <path class="line" d="M294 176h116"/>
-  <path class="line" d="M660 176h116"/>
-  <path class="line" d="M540 222v102"/>
-  <path class="line" d="M340 382h76"/>
-  <path class="line" d="M656 382h76"/>
-  <path class="line" d="M857 428v50"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+<title id="title">Predictive Credit Scoring System application structure</title><desc id="desc">A Python and PyQt6 interface calls application services, which invoke a model preprocessing and inference pipeline. Prediction history is stored in MySQL and used for reporting. The schematic does not imply production or bank-grade validation.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#31584B"/></marker>
+<style>.paper{fill:#F5F2EB}.box{fill:#FFFDF8;stroke:#C9CEC5;stroke-width:1.5}.panel{fill:#E7ECE4;stroke:#AAB8AC;stroke-width:1.5}.label{font:600 22px Arial,sans-serif;fill:#202622}.small{font:20px Arial,sans-serif;fill:#59645C}.kicker{font:20px Arial,sans-serif;fill:#31584B;letter-spacing:1.3px}.title{font:32px Georgia,serif;fill:#202622}.flow{fill:none;stroke:#31584B;stroke-width:2;marker-end:url(#arrow)}.dashed{stroke-dasharray:5 5}.rule{stroke:#C9CEC5;stroke-width:1}.mono{font:20px Consolas,monospace;fill:#31584B}</style></defs>
+<rect width="900" height="560" class="paper"/>
+<path d="M20 32V20H32M868 20H880V32M20 528V540H32M868 540H880V528" fill="none" stroke="#AAB8AC"/>
+<text x="44" y="43" class="kicker">04 / DESKTOP APPLICATION</text><text x="44" y="84" class="title">A clear path from inputs to prediction</text><text x="44" y="115" class="small">Predictive Credit Scoring System · student project</text>
+<path d="M264 211H340" class="flow"/><path d="M560 211H636" class="flow"/><path d="M450 256V354" class="flow"/><path d="M340 399H264" class="flow"/><rect x="44" y="166" width="220" height="90" rx="4" class="box"/><text x="64" y="200" class="label">PyQt6 interface</text><text x="64" y="230" class="small">Inputs + prediction</text><rect x="340" y="166" width="220" height="90" rx="4" class="panel"/><text x="360" y="200" class="label">Service layer</text><text x="360" y="230" class="small">Application logic</text><rect x="636" y="166" width="220" height="200" rx="4" class="box"/><text x="656" y="200" class="label">Model pipeline</text><text x="656" y="230" class="small">Preprocess inputs</text><text x="656" y="258" class="small">Run inference</text><text x="656" y="286" class="small">Return prediction</text><rect x="340" y="354" width="220" height="90" rx="4" class="box"/><text x="360" y="388" class="label">MySQL</text><text x="360" y="418" class="small">Prediction history</text><rect x="44" y="354" width="220" height="90" rx="4" class="box"/><text x="64" y="388" class="label">Reports</text><text x="64" y="418" class="small">History + export</text><text x="44" y="489" class="small">Compared: Logistic Regression, XGBoost and LightGBM</text>
+<path d="M44 512H856" class="rule"/><text x="44" y="541" class="small">Application schematic · model comparison, not lending validation</text>
 </svg>

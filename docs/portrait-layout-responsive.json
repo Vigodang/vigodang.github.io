@@ -1,0 +1,3803 @@
+{
+  "date": "2026-11-14",
+  "widths": [
+    320,
+    375,
+    768,
+    1024,
+    1440
+  ],
+  "scope": "Final source, after About mobile sequence, footer/contact download targets and email wrapping fixes. HTML text sizes exclude embedded image text; detailed originals retain zoom viewers.",
+  "checks": [
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "14px",
+        "13px",
+        "15px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/about.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "43.2px",
+        "17px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/contact.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "15px",
+        "14px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/experience.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [
+        "assets/openmp-benchmark.svg"
+      ],
+      "h1": 1,
+      "italics": [
+        "useful systems."
+      ],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "13px",
+        "17px",
+        "14px",
+        "32px",
+        "15px",
+        "23px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/index.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "14px",
+        "23px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/resume.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 56,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [
+        "assets/crdc-workflow.svg",
+        "assets/risk-flow.svg",
+        "assets/openmp-benchmark.svg",
+        "assets/graph-engine.svg"
+      ],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "30px",
+        "14px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/work.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/crdc-capstone-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/dataset-health-architecture.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/dataset-health-detail-1.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/dataset-health-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/dataset-health-results.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/graph-optimisation-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/parallel-protein-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/predictive-risk-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/strobe-ai-architecture.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 305,
+      "path": "/visuals/strobe-ai-overview.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/crdc-capstone.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/dataset-health.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/graph-optimisation.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/parallel-protein.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/predictive-risk.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 305,
+      "path": "/projects/strobe-ai.html",
+      "portraits": [],
+      "viewport": 320,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "14px",
+        "13px",
+        "15px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/about.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "45px",
+        "17px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/contact.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "15px",
+        "14px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/experience.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [
+        "useful systems."
+      ],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "13px",
+        "17px",
+        "14px",
+        "32px",
+        "15px",
+        "23px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/index.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "14px",
+        "23px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/resume.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 56,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "40px",
+        "30px",
+        "14px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/work.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/crdc-capstone-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/dataset-health-architecture.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/dataset-health-detail-1.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/dataset-health-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/dataset-health-results.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/graph-optimisation-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/parallel-protein-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/predictive-risk-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/strobe-ai-architecture.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "15px",
+        "14px",
+        "13px",
+        "48px",
+        "30px"
+      ],
+      "pageWidth": 360,
+      "path": "/visuals/strobe-ai-overview.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/crdc-capstone.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/dataset-health.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/graph-optimisation.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/parallel-protein.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/predictive-risk.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "16px",
+        "20px",
+        "36px",
+        "12px",
+        "24px",
+        "19px",
+        "18px",
+        "17px",
+        "14px",
+        "13px",
+        "28px",
+        "30px",
+        "48px"
+      ],
+      "pageWidth": 360,
+      "path": "/projects/strobe-ai.html",
+      "portraits": [],
+      "viewport": 375,
+      "visiblePDFLinks": [
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "15px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/about.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "54.4px",
+        "16px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 768,
+      "path": "/contact.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 61.375,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "48px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/experience.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [
+        "useful systems."
+      ],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "20px",
+        "14px",
+        "24px",
+        "32px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/index.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "48px",
+        "20px",
+        "14px",
+        "15px",
+        "24px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/resume.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 56,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [
+        "assets/crdc-workflow.svg",
+        "assets/risk-flow.svg",
+        "assets/graph-engine.svg"
+      ],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "48px",
+        "30.4px",
+        "14px",
+        "20px",
+        "24px",
+        "16px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/work.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/crdc-capstone-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/dataset-health-architecture.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/dataset-health-detail-1.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/dataset-health-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/dataset-health-results.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/graph-optimisation-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/parallel-protein-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/predictive-risk-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/strobe-ai-architecture.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "40px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 753,
+      "path": "/visuals/strobe-ai-overview.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/crdc-capstone.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/dataset-health.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/graph-optimisation.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/parallel-protein.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/predictive-risk.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "25.6px",
+        "30px",
+        "40px",
+        "44px"
+      ],
+      "pageWidth": 753,
+      "path": "/projects/strobe-ai.html",
+      "portraits": [],
+      "viewport": 768,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "15px",
+        "20px",
+        "16px",
+        "14px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/about.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "67.584px",
+        "20.48px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/contact.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "57.344px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/experience.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [
+        "useful systems."
+      ],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "20px",
+        "16px",
+        "15px",
+        "24px",
+        "44px",
+        "36px",
+        "51.2px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/index.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "57.344px",
+        "20px",
+        "14px",
+        "15px",
+        "24px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/resume.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 56,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "57.344px",
+        "30.72px",
+        "14px",
+        "20px",
+        "24px",
+        "16px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/work.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/crdc-capstone-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/dataset-health-architecture.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/dataset-health-detail-1.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/dataset-health-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/dataset-health-results.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/graph-optimisation-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/parallel-protein-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/predictive-risk-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/strobe-ai-architecture.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "51.2px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1009,
+      "path": "/visuals/strobe-ai-overview.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/crdc-capstone.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/dataset-health.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/graph-optimisation.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/parallel-protein.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/predictive-risk.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "30.72px",
+        "30px",
+        "51.2px",
+        "44px"
+      ],
+      "pageWidth": 1009,
+      "path": "/projects/strobe-ai.html",
+      "portraits": [],
+      "viewport": 1024,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "15px",
+        "20px",
+        "16px",
+        "14px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/about.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "95.04px",
+        "23.2px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/contact.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 53,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "80.64px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/experience.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [
+        "useful systems."
+      ],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "20px",
+        "16px",
+        "15px",
+        "24px",
+        "52px",
+        "36px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/index.html",
+      "portraits": [
+        {
+          "alt": "Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt.",
+          "height": "800",
+          "loaded": true,
+          "src": "http://127.0.0.1:4173/assets/vigo-portrait-400.webp",
+          "width": "640"
+        }
+      ],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "80.64px",
+        "20px",
+        "14px",
+        "15px",
+        "24px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/resume.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 56,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "80.64px",
+        "41.6px",
+        "14px",
+        "20px",
+        "24px",
+        "16px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/work.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/crdc-capstone-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/dataset-health-architecture.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/dataset-health-detail-1.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/dataset-health-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/dataset-health-results.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/graph-optimisation-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/parallel-protein-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/predictive-risk-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/strobe-ai-architecture.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "16px",
+        "14px",
+        "20px",
+        "72px",
+        "44px",
+        "30px"
+      ],
+      "pageWidth": 1425,
+      "path": "/visuals/strobe-ai-overview.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/crdc-capstone.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/dataset-health.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/graph-optimisation.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/parallel-protein.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/predictive-risk.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    },
+    {
+      "brokenImages": [],
+      "deferredImages": [],
+      "h1": 1,
+      "italics": [],
+      "minTextSizes": [
+        "17px",
+        "22px",
+        "43px",
+        "12px",
+        "13px",
+        "19px",
+        "18px",
+        "14px",
+        "24px",
+        "20px",
+        "16px",
+        "33.6px",
+        "30px",
+        "72px",
+        "44px"
+      ],
+      "pageWidth": 1425,
+      "path": "/projects/strobe-ai.html",
+      "portraits": [],
+      "viewport": 1440,
+      "visiblePDFLinks": [
+        {
+          "height": 44,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        },
+        {
+          "height": 52,
+          "href": "../assets/Vigo_Dang_Resume_2026_Redesigned.pdf"
+        }
+      ]
+    }
+  ]
+}
