@@ -2,7 +2,7 @@
 
 A small, dependency-free editorial portfolio. Node 22 builds semantic static HTML for the existing GitHub Pages workflow.
 
-The final local release fixes and verification are documented in `docs/final-release-report.md`. The earlier portrait/layout pass is in `docs/portrait-layout-report.md`, and the corrected portrait history is in `docs/portrait-provenance.md`. Earlier refinement reports preserve the prior evidence/CV work.
+The current repository/deployment audit is in `docs/pages-repair/report.md`; the single release procedure, verification and rollback commands are in `docs/pages-repair/deployment.md`. The earlier final release and portrait passes are documented in `docs/final-release-report.md` and `docs/portrait-layout-report.md`. Corrected portrait history is in `docs/portrait-provenance.md`. Earlier reports preserve the state and evidence at the time of those passes.
 
 ## Build and preview
 
@@ -23,8 +23,9 @@ On Windows, use `npm.cmd` if PowerShell blocks `npm.ps1`. Preview at `http://loc
 - `src/styles.css` retains the approved base design. `src/layout-refinement.css` groups the portrait, home/About, résumé and contact layouts; `src/case-refinement.css` scopes the case/viewer refinements. `src/script.js` and `src/assets/` contain the progressive enhancements and local imagery.
 - `npm run build` renders the HTML into `src/`, regenerates sitemap/robots, then copies `src/` to `dist/`. Do not hand-edit generated HTML; edit the templates/content and rebuild.
 - `scripts/check.js` validates routes, internal references/fragments, metadata, local assets, headings, encoding and public-content hygiene. `scripts/check-resume.js` verifies that the committed PDF matches its exact content-source fingerprint.
+- `scripts/check-release.js` requires all three stylesheets in order, approved theme tokens, the complete page set, portrait/PDF assets, matching source/build hashes and the checked `dist/` Pages artifact. The generated `dist/release-manifest.json` records required asset hashes and the Actions commit SHA (null for a local build).
 
-All original HTML URLs remain. New case studies include `projects/dataset-health.html` and `projects/parallel-protein.html`. Dedicated `visuals/` pages display diagrams, charts and real screenshots at original size, with accessible zoom controls and native keyboard/touch scrolling. No framework or remote font dependency was introduced.
+`src/index.html` is the sole repository homepage path; it is generated from `content/site.js` and `scripts/render.js`, then copied to `dist/index.html`. Do not maintain a separate root or nested `portfolio/index.html`, or copy the ZIP's `dist/` back into source. All original HTML URLs remain. Dedicated `visuals/` pages display diagrams, charts and real screenshots at original size, with accessible zoom controls and native keyboard/touch scrolling. No framework or remote font dependency was introduced.
 
 ## Résumé
 
@@ -36,4 +37,4 @@ To regenerate after a CV edit, install ReportLab in a Python environment, set `P
 
 Read `docs/refinement-report.md` and `docs/refinement-evidence.md` for the final change log, current evidence, verification and deployment readiness. The original `docs/portfolio-audit.md`, `docs/project-evidence.md` and `docs/delivery.md` preserve the initial rebuild's history; later refinement findings supersede their earlier Dataset/PDF gaps. `docs/design-system.md` remains the approved visual direction.
 
-`.github/workflows/pages.yml` is unchanged. It installs, builds, checks, uploads `dist/`, then deploys GitHub Pages on pushes to `main` or manual dispatch. Neither the rebuild nor this refinement has been pushed or deployed. User approval is required before either action.
+`.github/workflows/pages.yml` is the only publishing workflow. It installs, builds, checks and uploads `dist/`. Pull requests validate without publishing; only `main` can deploy, on a push or explicit manual dispatch. Repository Settings → Pages → Build and deployment → Source must be **GitHub Actions**. Current remote `main` at `ad4e92c` was published before this repair audit. This repair branch remains local and has not been pushed or deployed. See the current deployment guide before publishing.

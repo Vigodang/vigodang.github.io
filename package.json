@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.js",
-    "check": "node scripts/check.js && node scripts/check-resume.js",
+    "check": "node scripts/check.js && node scripts/check-resume.js && node scripts/check-release.js",
     "serve": "python -m http.server 4173 --directory dist",
     "resume:build": "node scripts/build-resume.js"
   },
