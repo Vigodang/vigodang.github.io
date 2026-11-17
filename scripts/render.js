@@ -1,23 +1,25 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import { profile as p, projects } from '../content/site.js';
 import { resumeData as r } from '../content/resume.js';
+import { icon } from '../src/play/icons.js';
 
 const esc = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
-const arrow = '<span aria-hidden="true">↗</span>';
+const arrow = '';
 const link = (href, text, cls='text-link') => `<a class="${cls}" href="${esc(href)}">${esc(text)} ${arrow}</a>`;
-const stamp = '<span class="crosshair" aria-hidden="true">+</span>';
+const stamp = '';
 const pdfLink = (prefix, cls='') => p.pdf ? `<a class="${cls}" href="${esc(prefix+p.pdf)}" download>Download résumé PDF ${arrow}</a>` : '';
 
 function shell(route, title, description, body, active='') {
   const pre = route.includes('/') ? '../' : '';
   const canonical = `https://vigodang.github.io/${route === 'index.html' ? '' : route}`;
   const nav = [['work.html','Work'],['about.html','About'],['contact.html','Contact']].map(([url,label])=>`<a href="${pre}${url}"${active===label?` aria-current="${route===url?'page':'true'}"`:''}>${label}</a>`).join('');
+  const pageClass=route.startsWith('projects/')?'case-study':route.startsWith('visuals/')?'visual':route==='index.html'?'home':route.replace('.html','');
   return `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#F5F2EB">
+  <meta name="theme-color" content="#091521">
   <title>${esc(title)} | Vigo Dang</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${canonical}">
@@ -32,19 +34,22 @@ function shell(route, title, description, body, active='') {
   <link rel="stylesheet" href="${pre}styles.css">
   <link rel="stylesheet" href="${pre}layout-refinement.css">
   <link rel="stylesheet" href="${pre}case-refinement.css">
+  <link rel="preload" href="${pre}assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="${pre}portfolio-brand.css">
+  <link rel="stylesheet" href="${pre}portfolio-pages.css">
   <script src="${pre}script.js" defer></script>
 </head>
-<body>
+<body class="portfolio page-${pageClass}">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home">${stamp}<span>Vigo Dang<span class="brand-sub">Software & data</span></span></a>
+    <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home"><span class="brand-symbol">${icon('portal',28)}</span><span>Vigo Dang<span class="brand-sub">Software & data</span></span></a>
     <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>Menu <span aria-hidden="true">+</span></button>
-    <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé ${arrow}</a></nav>
+    <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé</a><a class="nav-play" href="/play/">${icon('portal',18)}<span>Play After Dark</span></a></nav>
   </header>
   <main id="main" tabindex="-1">${body}</main>
   <footer class="site-footer wrap">
-    <div class="footer-top"><p class="label">Software & data opportunities</p>${link('mailto:'+p.email,'Let’s talk.','footer-title')}</div>
-    <div class="footer-bottom"><p>${stamp} ${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}${pdfLink(pre,'text-link')}</div><small>Python / SQL / AWS / Applied AI</small></div>
+    <div class="footer-top"><div><p class="label">Software & data opportunities</p>${link('mailto:'+p.email,'Let’s build something useful.','footer-title')}</div><a class="footer-play" href="/play/">${icon('portal',25)}<span>There’s another way to explore.<strong>Play Vigo After Dark</strong></span></a></div>
+    <div class="footer-bottom"><p>${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}${pdfLink(pre,'text-link')}</div><small>Python / SQL / AWS / Applied AI</small></div>
   </footer>
 </body>
 </html>
@@ -65,7 +70,7 @@ function figure(project, prefix='', cover=false, visual=null) {
   const v=visual || visualEntries(project)[0];
   return `<figure class="project-figure ${project.theme} ${v.kind}${cover?' cover':''}">
     <div class="figure-label"><span>${esc(v.label)}</span>${stamp}</div>
-    <div class="visual-stage"><img src="${prefix}assets/${esc(v.src)}" width="${v.width}" height="${v.height}" alt="${esc(v.alt)}"${cover?' loading="lazy"':''}></div>
+    <div class="visual-stage"${v.kind==='screenshot'&&!cover?` tabindex="0" role="region" aria-label="${esc(v.label)} — scrollable screenshot"`:''}><img src="${prefix}assets/${esc(v.src)}" width="${v.width}" height="${v.height}" alt="${esc(v.alt)}"${cover?' loading="lazy"':''}></div>
     <figcaption>${esc(cover?(project.coverCaption || v.label):v.caption)}</figcaption>
     ${!cover?link(prefix+viewerRoute(project,v),'Explore full-size visual','visual-link'):''}
   </figure>`;
@@ -85,7 +90,7 @@ function viewerPage(pr,v) {
 }
 
 function folio(project, extra='') {
-  return `<article class="folio ${extra}"><a class="folio-image" href="projects/${project.slug}.html" aria-label="Read ${esc(project.title)} case study">${figure(project,'',true)}<span class="image-action" aria-hidden="true">↗</span></a><div class="folio-copy"><p class="label"><span>${project.number}</span> ${esc(project.category)}</p><h3><a href="projects/${project.slug}.html">${esc(project.shortTitle)}</a></h3><p>${esc(project.summary)}</p><p class="tech">${esc(project.technologies)}</p>${link('projects/'+project.slug+'.html','Read case study')}</div></article>`;
+  return `<article class="folio ${extra}"><a class="folio-image" href="projects/${project.slug}.html" aria-label="Read ${esc(project.title)} case study">${figure(project,'',true)}</a><div class="folio-copy"><p class="label">${esc(project.category)}</p><h3><a href="projects/${project.slug}.html">${esc(project.shortTitle)}</a></h3><p>${esc(project.summary)}</p><p class="tech">${esc(project.technologies)}</p><p class="folio-evidence"><span>Evidence</span>${esc(project.evidenceLabel)}</p>${link('projects/'+project.slug+'.html','Read case study')}</div></article>`;
 }
 
 function portrait(cls, sizes) {
@@ -94,17 +99,18 @@ function portrait(cls, sizes) {
 
 function home() {
   return `<section class="hero wrap">
-    <div class="hero-top"><p class="label">Software & data engineering</p><p class="label">${esc(p.location)} <span class="location-dot" aria-hidden="true"></span></p></div>
-    <div class="hero-grid"><div class="hero-copy"><h1>From complex data<br>to <em>useful systems.</em></h1><p class="hero-intro">${esc(p.homeIntro)}</p><p class="hero-focus">Software engineering · Machine learning · TensorFlow/Keras deep learning</p><div class="hero-actions">${link('#selected-work','Explore selected work','button')}${link('resume.html','View résumé')}</div></div><figure class="hero-profile">${portrait('hero-portrait','(max-width: 600px) 124px, (max-width: 900px) 240px, (max-width: 1100px) 280px, 320px')}<figcaption><div><p class="portrait-name">Vigo Dang</p><p class="portrait-location">Brisbane, Australia</p></div></figcaption></figure></div>
+    <div class="hero-top"><p class="label">Software / Cloud / Applied AI</p><p class="hero-location">${esc(p.location)} <span class="location-dot" aria-hidden="true"></span></p></div>
+    <div class="hero-grid"><div class="hero-copy"><h1>From complex data<br>to <em>useful systems.</em></h1><p class="hero-intro">${esc(p.homeIntro)}</p><p class="hero-focus">Software engineering · Machine learning · TensorFlow/Keras deep learning</p><div class="hero-actions">${link('#selected-work','Explore selected work','button')}${pdfLink('','button button-secondary')}</div><a class="hero-play" href="/play/">${icon('portal',22)}<span>Play Vigo After Dark<small>Six engineering stories. An interactive night market.</small></span>${icon('arrow-right',18)}</a></div><figure class="hero-profile">${portrait('hero-portrait','(max-width: 600px) 170px, (max-width: 900px) 240px, 320px')}<figcaption><p class="portrait-name">Vigo Dang</p><p class="portrait-location">QUT Data Science</p></figcaption></figure></div>
     <dl class="hero-context"><div><dt>Studying</dt><dd>${esc(p.degree)}<span>QUT · ${esc(p.minor)} minor</span></dd></div><div><dt>Graduation</dt><dd>Expected ${esc(p.graduation)}<span>${esc(p.location)}</span></dd></div><div><dt>Looking for</dt><dd>Internship & early-career roles<span>Data, analytics, software & cloud engineering</span></dd></div></dl>
   </section>
-  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading"><div><p class="label">01 / Selected work</p><h2 id="selected-title">Selected projects.</h2></div><p>Cloud applications, applied AI and performance engineering. Open a project for the decisions and evidence.</p>${link('work.html','All work')}</div>${folio(projects[0],'featured')}<div class="folio-pair">${folio(projects[1])}${folio(projects[4])}</div><div class="more-projects">${[projects[2],projects[3]].map(pr=>`<div><p class="label">${esc(pr.category)}</p>${link('projects/'+pr.slug+'.html',pr.title)}</div>`).join('')}</div></section>
-  <section class="human-note wrap"><p class="label">02 / Behind the work</p><h2>Connecting the pieces.</h2><div><p>A model needs a usable interface. A queue needs a failure path. An answer needs a source. I’m interested in making those connections clear to the next person.</p>${link('about.html','How I approach the work')}</div></section>`;
+  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading"><div><p class="label">Selected work</p><h2 id="selected-title">Real work.<br><span>Clear evidence.</span></h2></div><p>Cloud applications, applied AI and performance engineering. Open a project for the decisions and evidence.</p>${link('work.html','All projects')}</div>${folio(projects[0],'featured')}<div class="folio-pair">${folio(projects[1])}${folio(projects[4])}</div><div class="more-projects">${[projects[2],projects[3],projects[5]].map(pr=>`<div><p class="label">${esc(pr.category)}</p>${link('projects/'+pr.slug+'.html',pr.title)}</div>`).join('')}</div></section>
+  <section class="game-bridge wrap" aria-labelledby="night-market-title"><div class="game-bridge-copy"><p class="label">The same work. Another way in.</p><h2 id="night-market-title">Vigo <span>After Dark.</span></h2><p>Step into a neon night market. Restore six systems, see the ideas in motion, and uncover the real engineering behind them.</p><p class="game-bridge-note">A short, optional adventure. Project evidence is always open.</p>${link('/play/','Play Vigo After Dark','button')}</div><a class="night-market-preview" href="/play/" aria-label="Enter Vigo After Dark, the interactive portfolio"><img src="play/assets/after-dark/city-panorama.webp" width="2172" height="724" loading="lazy" alt="Original illustrated neon night-market environment from Vigo After Dark."><span>${icon('portal',22)} Enter the night market</span></a></section>
+  <section class="human-note wrap"><p class="label">Behind the work</p><h2>Connecting<br>the pieces.</h2><div><p>A model needs a usable interface. A queue needs a failure path. An answer needs a source. I’m interested in making those connections clear to the next person.</p>${link('about.html','How I approach the work')}</div></section>`;
 }
 
 function work() {
   return `<section class="page-intro wrap"><p class="label">Selected projects / 01—06</p><h1>Selected work.<br><span class="heading-continuation">Open the details.</span></h1><p class="lede">Cloud applications, research workflows, machine learning and performance engineering. Each case explains my contribution, the implementation and the results.</p></section>
-  <section class="work-index wrap" aria-label="Project case studies">${projects.map(project=>`<article class="work-row"><div class="work-number label">${project.number} /</div><div class="work-summary"><p class="label">${esc(project.type)}</p><h2><a href="projects/${project.slug}.html">${esc(project.title)}</a></h2><p>${esc(project.summary)}</p><dl class="row-details"><div><dt>Scope</dt><dd>${esc(project.role)}</dd></div><div><dt>Tools</dt><dd>${esc(project.technologies)}</dd></div></dl><p class="evidence-line">${esc(project.evidenceLabel)}</p>${link('projects/'+project.slug+'.html','Open case study')}</div><a class="work-preview" href="projects/${project.slug}.html" aria-label="Read ${esc(project.title)}">${figure(project,'',true)}</a></article>`).join('')}</section><div class="further-work wrap"><p class="label">Deep Learning / Further implementation</p><h2>Drone imagery segmentation</h2><p>A TensorFlow/Keras residual U-Net-style pipeline with RGB + DSM inputs and tiled inference. Implementation experience is supported by source; model-quality results have not been independently reproduced.</p>${link(p.deepLearningSource,'Inspect the model implementation')}</div>`;
+  <section class="work-index wrap" aria-label="Project case studies">${projects.map(project=>`<article class="work-row"><a class="work-preview" href="projects/${project.slug}.html" aria-label="Read ${esc(project.title)}">${figure(project,'',true)}</a><div class="work-summary"><p class="label">${esc(project.type)}</p><h2><a href="projects/${project.slug}.html">${esc(project.title)}</a></h2><p>${esc(project.summary)}</p><dl class="row-details"><div><dt>Scope</dt><dd>${esc(project.role)}</dd></div><div><dt>Tools</dt><dd>${esc(project.technologies)}</dd></div></dl><p class="evidence-line">${esc(project.evidenceLabel)}</p>${link('projects/'+project.slug+'.html','Open case study')}</div></article>`).join('')}</section><div class="further-work wrap"><p class="label">Deep Learning / Further implementation</p><h2>Drone imagery segmentation</h2><p>A TensorFlow/Keras residual U-Net-style pipeline with RGB + DSM inputs and tiled inference. Implementation experience is supported by source; model-quality results have not been independently reproduced.</p>${link(p.deepLearningSource,'Inspect the model implementation')}</div>`;
 }
 
 function about() {

@@ -8,7 +8,8 @@
     "build": "node scripts/build.js",
     "check": "node scripts/check.js && node scripts/check-resume.js && node scripts/check-release.js",
     "serve": "python -m http.server 4173 --directory dist",
-    "resume:build": "node scripts/build-resume.js"
+    "resume:build": "node scripts/build-resume.js",
+    "test:game": "node --test scripts/test-missions.js scripts/test-physics.js scripts/test-presentation.js scripts/test-audio.js"
   },
   "devDependencies": {}
 }
