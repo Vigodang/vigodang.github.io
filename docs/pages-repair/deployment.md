@@ -1,25 +1,10 @@
-# One GitHub Pages release procedure
+# GitHub Pages release and verification
 
-Use the existing repository and its repair branch. Do not upload another nested `portfolio/`, hand-copy `dist/` into the root, create a replacement repository, rewrite `main`, or push a separate `gh-pages` branch.
+Run from the current repository root. The approved release is the navy/mint professional portfolio plus Vigo After Dark at `/play/`; retain both résumé URLs and all project evidence. The 14 November cream/Georgia verification procedure is superseded.
 
-## Manual settings check
-
-In [repository Settings → Pages](https://github.com/Vigodang/vigodang.github.io/settings/pages), set **Build and deployment → Source → GitHub Actions**. The source branch/folder picker belongs to branch publishing and should not be used for this build. The sole workflow is `.github/workflows/pages.yml`: install, build, check, upload `dist/`, deploy. The Pages artifact must contain `index.html` at its top level. See [GitHub's publishing-source guide](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) and [custom Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
-
-The existing Node 22/static build needs no site secret or extra UI library. Do not enable a second publishing workflow. Pull requests build/check/upload an artifact but cannot deploy; a push or manual dispatch from `main` can deploy after its checked build.
-
-## Windows PowerShell: review, commit, then push only after approval
-
-The following commands target the prepared isolated checkout. Execute each section deliberately, stopping on any failed Git command. A source-only ZIP is a review artifact; the existing checkout contains the history and branch needed for these commands.
+## Local checks and pull-request validation
 
 ```powershell
-$ErrorActionPreference = 'Stop'
-$pagesRepo = Join-Path $env:USERPROFILE 'Documents\Codex\2026-11-14\files-pasted-by-the-user-coding\work\pages-repair'
-Set-Location -LiteralPath $pagesRepo
-if ((git branch --show-current) -ne 'codex/repair-pages-release') { throw 'Wrong branch: stop and inspect the checkout.' }
-git fetch origin
-if ($LASTEXITCODE -ne 0) { throw 'Fetch failed.' }
-if ((git rev-parse origin/main) -ne 'ad4e92c58c500400dc99c2a94c7a15fcfdd7a619') { throw 'Remote main changed: reconcile/review before proceeding.' }
 npm.cmd install --ignore-scripts
 if ($LASTEXITCODE -ne 0) { throw 'Install failed.' }
 npm.cmd run build
@@ -29,37 +14,42 @@ if ($LASTEXITCODE -ne 0) { throw 'Checks failed.' }
 git diff --check
 if ($LASTEXITCODE -ne 0) { throw 'Whitespace check failed.' }
 git status --short
-git diff HEAD --stat
+git diff --stat
 ```
 
-Review the diff and the report. The legacy PDF deletion is already staged in the prepared branch. After approval, stage only the repair's known paths, then commit and push the repair branch:
+The check command preserves the 16 game unit tests and adds release checks. The expected build contains 23 HTML routes and a manifest for 54 non-HTML source files. Route-set errors report missing and unexpected paths. Confirm `play/index.html` is expected, all five editorial CSS links load in order, and the game has its own five stylesheet links. An unexpected route should be investigated; do not weaken exact-set checking or remove a legitimate route merely to reach an old count.
+
+Stage only the reviewed source, test, workflow and documentation changes for the current repair. Keep generated `dist/`, generated editorial HTML changes, screenshots, caches, dependency folders and temporary archives out of the source commit. Both existing résumé PDF paths must remain in the resulting source tree. Use the current working branch and existing [pull request #1](https://github.com/Vigodang/vigodang.github.io/pull/1), rather than recreating the old November 14 checkout or starting a second publication path:
 
 ```powershell
-git add -- .github/workflows/pages.yml .gitignore README.md package.json scripts/build.js scripts/release-assets.js scripts/check-release.js docs/pages-repair
-if ($LASTEXITCODE -ne 0) { throw 'Staging failed.' }
-git add -u -- src/assets
-if ($LASTEXITCODE -ne 0) { throw 'Asset deletion staging failed.' }
+$pagesBranch = (git branch --show-current).Trim()
+if ($LASTEXITCODE -ne 0 -or !$pagesBranch -or $pagesBranch -eq 'main') { throw 'Use the reviewed repair branch.' }
 git diff --cached --check
 if ($LASTEXITCODE -ne 0) { throw 'Staged whitespace check failed.' }
 git diff --cached --name-status
-# Inspect this list before continuing; it must contain only the reviewed repair.
-git commit -m "Harden Pages release checks and remove obsolete resume"
+git commit -m "Align release checks with the approved After Dark portfolio"
 if ($LASTEXITCODE -ne 0) { throw 'Commit failed.' }
-git push -u origin codex/repair-pages-release
+git push origin HEAD:refs/heads/codex/repair-pages-review
 if ($LASTEXITCODE -ne 0) { throw 'Push failed.' }
 ```
 
-Open a pull request into `main` on GitHub. Review its build checks and diff; merge only after approval. Squash-and-merge makes a later single-commit rollback simple. Do not dispatch a deployment from the repair branch. Merging into `main` triggers the normal deployment workflow.
+Wait for the new PR build result and inspect its commit SHA before merging the existing PR. The prior failing run describes an obsolete validator, not a reason to replace the approved dark design. A successful corrected PR build is still required; this document does not assert one has completed. Merging into `main` triggers the normal deployment. Manual dispatch from a feature branch does not publish.
 
-## After deployment: verify the actual release
+## Single publishing workflow
 
-1. Open Actions → Deploy GitHub Pages. Confirm the successful run uses the merged `main` commit and that both build and deploy jobs succeeded. In the build log, check the release checks and `path: dist` upload. The workflow is unchanged in its artifact directory.
-2. Compare the published manifest's `sourceCommit` with current `main`, then verify the actual transferred asset hashes. This read-only PowerShell block uses `origin/main` as the expected deployed commit; run it after the successful deployment, from the same checkout:
+In [repository Settings → Pages](https://github.com/Vigodang/vigodang.github.io/settings/pages), use **Build and deployment → Source → GitHub Actions**. The only workflow is `.github/workflows/pages.yml`: Node 22 install → build → check → upload checked `dist/` → deploy. The artifact has `index.html` at its top level. Pull requests build/check/upload but cannot deploy; only `main`, outside a pull-request event, receives the deployment job and scoped Pages/OIDC write permissions. Per-ref concurrency separates PR validation from the main queue.
+
+No nested `portfolio/`, second publishing workflow, manual root copy of `dist/` or `gh-pages` branch is needed. The existing static build requires no new site secret or remote font service.
+
+## Verify the actual published commit
+
+After the main deployment succeeds, confirm both build and deploy jobs belong to the expected merged commit. Then compare the public manifest and transferred bytes with that main commit:
 
 ```powershell
 git fetch origin
 if ($LASTEXITCODE -ne 0) { throw 'Fetch failed.' }
 $pagesExpected = (git rev-parse origin/main).Trim()
+if ($LASTEXITCODE -ne 0) { throw 'Cannot resolve expected main commit.' }
 $pagesBase = 'https://vigodang.github.io'
 $pagesManifest = Invoke-RestMethod -Uri "$pagesBase/release-manifest.json?verify=$pagesExpected" -Headers @{ 'Cache-Control' = 'no-cache' }
 if ($pagesManifest.sourceCommit -ne $pagesExpected) { throw 'Published manifest is not the expected main commit.' }
@@ -75,35 +65,12 @@ foreach ($pagesAsset in $pagesManifest.assetSHA256.PSObject.Properties) {
 Write-Host "Verified main commit and all required asset hashes: $pagesExpected"
 ```
 
-The unique query and no-cache request are diagnostic freshness checks, not a replacement for correct deployment. A 404 for the new manifest is expected until this repair is published; a local manifest has `sourceCommit: null` and must not be uploaded by hand. Inspect `styles.css`, `layout-refinement.css` and `case-refinement.css` in browser Network: each must return 200/304 as CSS, with those names and order. Check `--paper:#f5f2eb`, `--forest:#31584b`, serif headings and the portrait.
+The expected manifest covers all 54 non-HTML source files, including both PDFs, game modules/art and the font/license. A local build has `sourceCommit: null`; do not upload it by hand. Fresh query parameters aid diagnosis but do not substitute for verifying the actual deployment.
 
-3. Open Home, About, Work, all six cases, Contact and Résumé at 1440, 1024, 768, 375 and 320px. Check mobile Menu/Escape, full-size diagram Fit/100%/scroll, GitHub/LinkedIn and the PDF. The PDF should show QUT, Expected July 2027 and Deep learning & AI on page 1.
-4. If one browser still looks navy while transferred files/hashes match, compare a fresh browser profile/private window and inspect any appearance/theme extension. Hard-refresh with Ctrl+F5. GitHub's observed cache policy was ten minutes; wait for publication/cache propagation before concluding that source is wrong. Do not change CSS merely to mask an unverified client override.
+Inspect the five editorial stylesheets in Network, in this order: `styles.css`, `layout-refinement.css`, `case-refinement.css`, `portfolio-brand.css`, `portfolio-pages.css`. Check the navy `--bg:#091521`, mint `--green:#87f5c2`, Inter/sans headings and portrait on screen. White paper and dark text remain intentional in print media. On `/play/`, separately inspect `styles.css`, `briefing.css`, `missions.css`, `evidence.css`, `after-dark.css` under the `play/` path.
 
-## Rollback without rewriting history
+Open Home, Work, About, Contact, Résumé, all six cases and `/play/` on desktop and mobile. Verify Menu/Escape, portfolio → game → portfolio, a game → case study → game round trip, full-size visual Fit/100%/scroll and the primary résumé download. Confirm both PDF URLs return their preserved files. If appearance differs despite correct transferred bytes, inspect computed styles and browser appearance overrides before changing the design.
 
-Before this repair, live `ad4e92c` already matches the approved visual design; do **not** revert that redesign commit to the initial navy portfolio. If the repair itself causes a verified regression after a squash merge, create a rollback branch and revert only the repair's squash commit. Substitute its verified SHA below:
+## Roll back a verified repair regression
 
-```powershell
-git switch main
-if ($LASTEXITCODE -ne 0) { throw 'Switch failed: preserve any uncommitted work first.' }
-git pull --ff-only origin main
-if ($LASTEXITCODE -ne 0) { throw 'Pull failed.' }
-git switch -c codex/rollback-pages-repair
-if ($LASTEXITCODE -ne 0) { throw 'Rollback branch creation failed.' }
-$pagesRepairCommit = Read-Host 'Paste the verified repair squash commit SHA'
-if ($pagesRepairCommit -notmatch '^[a-fA-F0-9]{40}$') { throw 'Use the full verified repair commit SHA.' }
-git revert $pagesRepairCommit
-if ($LASTEXITCODE -ne 0) { throw 'Resolve/review the revert before continuing.' }
-# If this was a true merge commit, use instead: git revert -m 1 $pagesRepairCommit
-npm.cmd install --ignore-scripts
-if ($LASTEXITCODE -ne 0) { throw 'Install failed.' }
-npm.cmd run build
-if ($LASTEXITCODE -ne 0) { throw 'Build failed.' }
-npm.cmd run check
-if ($LASTEXITCODE -ne 0) { throw 'Checks failed.' }
-# Stop on any failure; inspect the revert and obtain approval before pushing.
-git push -u origin codex/rollback-pages-repair
-```
-
-Open/review/merge a rollback PR, then verify the deployed files again. A rollback may intentionally remove the new manifest; compare assets against the known-good commit instead. `git revert` adds history; never use force-push, reset `main`, delete the repository or remove its history.
+Use a new repair branch and `git revert` for the specific merged repair commit, then build/check and open a rollback PR. A true merge commit requires its verified mainline selection. Preserve the approved After Dark application and both PDF URLs; do not reset main, force-push, delete history or return to the superseded cream release. Verify the deployed rollback commit and actual asset bytes again. A rollback that intentionally removes the manifest must instead be compared against the known-good source commit.

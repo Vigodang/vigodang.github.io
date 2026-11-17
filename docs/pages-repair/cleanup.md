@@ -1,36 +1,33 @@
-# Repair inventory and cleanup
+# Release source preservation and historical inventory
 
-Final-ZIP authority: `portfolio-final-local.zip`, SHA-256 `0d9a2d0add821b541f9b3785626b127b1279472dfd15409f246b16209a5418a3`. Only its `portfolio/` source tree is authoritative; generated `dist/` is excluded from this source inventory.
+Current boundary: the approved After Dark portfolio and separate game are preserved. The older cream-release inventory dated 14 November 2026 is retained for provenance and is superseded as a source of current cleanup instructions.
 
-## What was removed
+## Preserve the approved application
 
-Only `src/assets/resume-truong-lieu-dong-vigo-dang.pdf` was removed. It was a **119,895-byte legacy CV**, absent from the authoritative ZIP and unreferenced by runtime source. The sole tracked-text reference is the historical deletion entry in `docs/changed-files.txt:42`; that historical evidence is retained.
+- Keep all 23 HTML routes: 22 editorial routes generated from the shared renderer/content and the separate `src/play/index.html` source.
+- Keep the five editorial stylesheets and the game's separate five-stylesheet cascade. Keep all game entry/runtime/shared modules, mission/evidence/audio files and original WebP art. A short `game.js` import is the current entry point; its shared robot, physics, content and briefing dependencies are still required.
+- Keep project screenshots, diagrams, measured CSVs, portraits, source content/CV data and Inter with its OFL license. Runtime artwork and fonts are application assets, even though their authoring involved generation or conversion.
+- Preserve both `src/assets/Vigo_Dang_Resume_2026_Redesigned.pdf` and `src/assets/resume-truong-lieu-dong-vigo-dang.pdf`. The older branch deletion of the latter is reversed; no replacement or shortening of either file is part of the release-check correction.
 
-The updated **7,184-byte** `src/assets/Vigo_Dang_Resume_2026_Redesigned.pdf` remains byte-identical to the authoritative ZIP. Current HTML résumé navigation and the direct PDF actions remain intact.
+The corrected manifest covers all **54 non-HTML source files**. This is broader than the historical nine-asset manifest and protects both the professional pages and `/play/`. Source/build byte equality, expected required paths and exact stylesheet order remain useful guards. The manifest itself is generated only in `dist/` with optional full Actions SHA provenance.
 
-## Limited release changes
+## Bounded repair paths
 
 | Path | Purpose |
 | --- | --- |
-| `.github/workflows/pages.yml` | Build and check main pushes and pull requests; upload only checked dist. Deploy main only outside pull requests, with Pages/OIDC write permissions scoped to the deploy job and concurrency isolated per ref. |
-| `.gitignore` | Keep generated dist, node_modules and Python cache/bytecode out of source control. |
-| `README.md` | Document the single src-to-dist release path and link the current repair/deployment guidance. |
-| `package.json` | Add release-integrity checks to npm run check without changing the dependency-free build. |
-| `scripts/build.js` | Generate a dist release manifest containing required asset hashes and optional full Actions commit SHA. |
-| `scripts/check-release.js` | New guard for all approved routes, stylesheet order, theme, portraits, source/build hashes, manifest and Pages workflow. |
-| `scripts/release-assets.js` | New shared list and SHA-256 hashing of the required stylesheets, client script, portraits and current PDF. |
+| `.github/workflows/pages.yml` | Validate PRs and main, upload checked dist, deploy main only outside PR events with scoped permissions. |
+| `.gitignore` | Exclude dist, dependencies and cache/bytecode. |
+| `package.json` | Add release/guard checks while retaining the 16 existing game unit tests. |
+| `scripts/build.js` | Preserve render/copy behavior and produce the release manifest. |
+| `scripts/check-release.js` | Validate 23 routes, dark professional screen styles, separate CSS cascades, required assets, source/build hashes, provenance and workflow. |
+| `scripts/release-assets.js` | Define the complete non-HTML application asset inventory and hashing. |
+| `src/assets/resume-truong-lieu-dong-vigo-dang.pdf` | Restore the existing URL with the original main-release bytes. |
+| README and active pages-repair documents | Explain the approved release and mark older cream/deletion claims as historical. |
 
-New documentation is grouped under `docs/pages-repair/`: this cleanup note and `inventory.json`; `report.md` and `deployment.md` provide the final findings, verification and rollback procedure. Existing documentation, historical reports and technical evidence are preserved.
+The correction changes release validation and documentation rather than application design. Generated editorial HTML, build output, captures, temporary archives, dependencies and caches do not belong in the repair source commit. Required runtime art/fonts, genuine project evidence and both PDF files do belong in source.
 
-## What remains exact
+## Historical inventory — do not apply as a current whitelist
 
-- All **52 protected source files** match the final ZIP byte-for-byte: **22 HTML pages, 3 stylesheets, the client JavaScript, 20 current assets**, public content/CV data, CV TeX and the rendering template.
-- All diagram, measured-chart, screenshot, portrait, CSV and current PDF bytes are preserved. The CV TeX source is also byte-exact.
-- There is no CSS redesign or text-normalization change. The pre-edit audit found every common file already identical in the checkout and Git-index blob; all three CSS files were already correct.
-- The pipeline now checks the approved source-to-dist artifact and produces release provenance; a generated `dist/release-manifest.json` is intentionally outside the source ZIP comparison.
+[`inventory.json`](inventory.json) remains the unmodified 14 November audit of `portfolio-final-local.zip`, SHA-256 `0d9a2d0add821b541f9b3785626b127b1279472dfd15409f246b16209a5418a3`, against the older cream release. It recorded 81 KEEP, 11 UPDATE, 1 REMOVE and 0 INVESTIGATE, with a 52-file protected subset and 22 HTML / three stylesheet assumptions. These are dated results, not checks newly run for the After Dark release.
 
-## Categorization
-
-**KEEP: 81**, **UPDATE: 11**, **REMOVE: 1**, **INVESTIGATE: 0**. `inventory.json` records every baseline path, current added path and the single removal. New repair documentation is categorized as UPDATE, not as a source-design change.
-
-Final build, HTTP and browser results are recorded in `report.md`; release and rollback instructions are in `deployment.md`. This inventory makes no claim that a new deployment has occurred. No push or deployment is authorized by this documentation.
+Its single REMOVE entry names the legacy résumé PDF. That action is superseded by the current requirement to preserve both URLs. Newer game files, fonts and portfolio CSS are absent from the old inventory because they were added later; their absence does not authorize deletion. Current validation results belong in [the repair report](report.md), and the current publishing/verification procedure is in [deployment instructions](deployment.md).

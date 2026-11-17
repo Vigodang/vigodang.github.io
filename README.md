@@ -1,10 +1,12 @@
-# Vigo Dang — Measured work
+# Vigo Dang — Vigo After Dark portfolio
 
-A small, dependency-free editorial portfolio. Node 22 builds semantic static HTML for the existing GitHub Pages workflow.
+A dependency-free professional portfolio with a separate interactive night-market experience at `/play/`. Node 22 renders semantic static pages for GitHub Pages. The approved professional surface uses midnight navy, mint accents and self-hosted Inter; the game retains its own artwork, styles and runtime.
 
-The current repository/deployment audit is in `docs/pages-repair/report.md`; the single release procedure, verification and rollback commands are in `docs/pages-repair/deployment.md`. The earlier final release and portrait passes are documented in `docs/final-release-report.md` and `docs/portrait-layout-report.md`. Corrected portrait history is in `docs/portrait-provenance.md`. Earlier reports preserve the state and evidence at the time of those passes.
+Current release-check findings are in [the repair report](docs/pages-repair/report.md); [deployment and verification](docs/pages-repair/deployment.md) describes the single publishing path. The cream/Georgia audit and inventory dated 14 November 2026 are historical, superseded records, not the visual or file-deletion authority for this release.
 
 ## Build and preview
+
+Run from the repository root:
 
 ```sh
 npm install --ignore-scripts
@@ -13,28 +15,26 @@ npm run check
 npm run serve
 ```
 
-On Windows, use `npm.cmd` if PowerShell blocks `npm.ps1`. Preview at `http://localhost:4173`. The serve command needs Python; the build and checker use Node only.
+On Windows, use `npm.cmd` if PowerShell blocks `npm.ps1`. Preview the portfolio at `http://localhost:4173/` and the game at `http://localhost:4173/play/`. Python is needed only for this local server; the build and checks use Node.
 
-## Edit the site
+## Source ownership
 
-- `content/site.js` is the source of public profile facts, homepage positioning, project copy and evidence boundaries.
-- `content/current-cv.tex` preserves the current CV supplied by Vigo. `content/resume.js` parses its content for both the HTML résumé and PDF, with the documented Dataset project-stack correction.
-- `scripts/render.js` contains shared navigation, footer, page and case-study templates.
-- `src/styles.css` retains the approved base design. `src/layout-refinement.css` groups the portrait, home/About, résumé and contact layouts; `src/case-refinement.css` scopes the case/viewer refinements. `src/script.js` and `src/assets/` contain the progressive enhancements and local imagery.
-- `npm run build` renders the HTML into `src/`, regenerates sitemap/robots, then copies `src/` to `dist/`. Do not hand-edit generated HTML; edit the templates/content and rebuild.
-- `scripts/check.js` validates routes, internal references/fragments, metadata, local assets, headings, encoding and public-content hygiene. `scripts/check-resume.js` verifies that the committed PDF matches its exact content-source fingerprint.
-- `scripts/check-release.js` requires all three stylesheets in order, approved theme tokens, the complete page set, portrait/PDF assets, matching source/build hashes and the checked `dist/` Pages artifact. The generated `dist/release-manifest.json` records required asset hashes and the Actions commit SHA (null for a local build).
+- `content/site.js` owns public profile facts, project copy and evidence boundaries. `content/current-cv.tex` preserves the supplied CV; `content/resume.js` supplies résumé content with the documented Dataset stack correction.
+- `scripts/render.js` owns shared navigation, footer, editorial pages and case-study templates. It generates 22 editorial HTML pages, sitemap and robots into `src/`; build then copies `src/` into a fresh `dist/`. Edit templates/content rather than generated editorial HTML.
+- Editorial styles load in this order: `styles.css`, `layout-refinement.css`, `case-refinement.css`, `portfolio-brand.css`, `portfolio-pages.css`. The last two translate the After Dark identity into a professional reading surface. Legacy base tokens remain part of the cascade; screen appearance is determined by the complete ordered stylesheet set.
+- `src/play/index.html` is the separate game source. Its ordered styles are `play/styles.css`, `play/briefing.css`, `play/missions.css`, `play/evidence.css`, `play/after-dark.css`. `play/game.js` imports the approved `after-dark-game.js`; shared physics, robot drawing, project content and briefing modules remain required dependencies.
+- `src/assets/` retains genuine project evidence, portraits, both résumé PDFs and the local Inter font/license. Runtime WebP artwork and fonts are required source assets. `dist/`, dependencies and caches are generated output and remain untracked.
 
-`src/index.html` is the sole repository homepage path; it is generated from `content/site.js` and `scripts/render.js`, then copied to `dist/index.html`. Do not maintain a separate root or nested `portfolio/index.html`, or copy the ZIP's `dist/` back into source. All original HTML URLs remain. Dedicated `visuals/` pages display diagrams, charts and real screenshots at original size, with accessible zoom controls and native keyboard/touch scrolling. No framework or remote font dependency was introduced.
+There are **23 built HTML routes: 22 editorial pages plus `play/index.html`**. The release manifest hashes **54 non-HTML files from `src/`**, covering both portfolio and game, including both PDFs. `dist/release-manifest.json` adds those hashes and the Actions `GITHUB_SHA` (null locally); the generated manifest is not committed as application source.
 
-## Résumé
+## Checks and résumé
 
-The selectable-text PDF is `src/assets/Vigo_Dang_Resume_2026_Redesigned.pdf`. A single header Résumé link opens the HTML résumé; direct PDF downloads remain on the résumé, About, Contact and footer. QUT education and expected July 2027 graduation appear on PDF page 1. The PDF preserves the current supplied CV's four-project content, Deep Learning/PyTorch/TensorFlow skills, analytical work and phone number. The Dataset project stack corrects Python to JavaScript/Node.js to match the inspected implementation.
+`npm run check` includes local-link/metadata checks, actual current-PDF provenance checks, all **16 existing game unit tests** and release-integrity checks. The release guard checks the exact route set, separate editorial/game stylesheet order, approved dark screen styling, portrait markup, required source/build asset identity, manifest provenance and the checked `dist/` workflow. Route failures distinguish missing and unexpected HTML paths; restore the canonical route list rather than deleting the game to satisfy an obsolete count.
 
-To regenerate after a CV edit, install ReportLab in a Python environment, set `PORTFOLIO_PYTHON` if needed, then run `npm run resume:build`. Inspect every rendered page and extracted text, then run `npm run build` and `npm run check`. The deployed site and CI need only Node: Python generates the committed asset, and the check rejects a stale PDF. See `docs/resume-provenance.md` for the exact workflow and limitations.
+The primary selectable-text résumé is `src/assets/Vigo_Dang_Resume_2026_Redesigned.pdf`; the existing `src/assets/resume-truong-lieu-dong-vigo-dang.pdf` URL is also preserved. The header opens the HTML résumé, and direct current-PDF downloads remain available without playing. To regenerate the current PDF after a CV edit, follow [résumé provenance](docs/resume-provenance.md), inspect every rendered page and extracted text, then rebuild and check. CI uses the committed PDF and needs no PDF-generation dependency.
 
 ## Evidence and deployment
 
-Read `docs/refinement-report.md` and `docs/refinement-evidence.md` for the final change log, current evidence, verification and deployment readiness. The original `docs/portfolio-audit.md`, `docs/project-evidence.md` and `docs/delivery.md` preserve the initial rebuild's history; later refinement findings supersede their earlier Dataset/PDF gaps. `docs/design-system.md` remains the approved visual direction.
+Project evidence and its limits remain in the case studies and [evidence notes](docs/refinement-evidence.md). Older rebuild, portrait, release and design reports describe their dated states; their cream palette, three-stylesheet counts and historical PDF-removal decision are superseded by the approved After Dark release.
 
-`.github/workflows/pages.yml` is the only publishing workflow. It installs, builds, checks and uploads `dist/`. Pull requests validate without publishing; only `main` can deploy, on a push or explicit manual dispatch. Repository Settings → Pages → Build and deployment → Source must be **GitHub Actions**. Current remote `main` at `ad4e92c` was published before this repair audit. This repair branch remains local and has not been pushed or deployed. See the current deployment guide before publishing.
+`.github/workflows/pages.yml` is the only publishing workflow. Main pushes and pull requests install, build, check and upload `dist/`; pull requests validate without publishing. Only `main` may deploy, on push or manual dispatch, with Pages/OIDC write permissions scoped to deployment. Settings → Pages → Build and deployment → Source uses **GitHub Actions**. [Pull request #1](https://github.com/Vigodang/vigodang.github.io/pull/1) carries the repair; its corrected CI and any subsequent deployment must be verified from their actual run results. No successful corrected run is asserted by these instructions.
