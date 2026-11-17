@@ -1,0 +1,756 @@
+/* The professional reading layer of Vigo After Dark.
+   Page classes keep these refinements separate from the interactive game. */
+
+/* About: one human introduction, followed by generous, purposeful sections. */
+.page-about .about-intro {
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 350px);
+  gap: clamp(40px, 8vw, 112px);
+  align-items: center;
+  padding: clamp(48px, 6vw, 86px) 0 90px;
+}
+
+.page-about .about-intro-copy { max-width: 66ch; }
+.page-about .about-intro h1 {
+  margin: 20px 0 26px;
+  font-size: clamp(3rem, 5.8vw, 5.25rem);
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+.page-about .about-intro .lede {
+  max-width: 49ch;
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+.page-about .about-portrait {
+  position: relative;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--panel-soft);
+  box-shadow: 0 24px 70px #020a1240;
+}
+.page-about .about-photo {
+  border-radius: 15px;
+  background: var(--panel);
+}
+.page-about .about-photo img { aspect-ratio: 4 / 5; }
+.page-about .about-portrait figcaption {
+  padding: 15px 7px 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.page-about .about-facts {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px 28px;
+  padding: 0;
+  margin: 0 0 32px;
+  border: 0;
+}
+.page-about .about-facts > div { display: block; min-width: 0; }
+.page-about .about-facts > div:last-child { grid-column: 1 / -1; }
+.page-about .about-facts dt { margin: 0 0 6px; font-size: 12px; color: var(--muted); }
+.page-about .about-facts dd { margin: 0; font-size: 15px; line-height: 1.65; }
+.page-about :is(.about-practice, .skills-section, .education) {
+  padding: 0 0 88px;
+  border: 0;
+}
+.page-about .block-heading {
+  grid-template-columns: 1fr 1.05fr;
+  gap: 18px 8%;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.page-about :is(.block-heading h2, .skills-section h2, .education h2) {
+  max-width: 18ch;
+  margin: 16px 0 0;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.16;
+  letter-spacing: -.045em;
+}
+.page-about .block-heading > p:last-child { font-size: 17px; line-height: 1.8; }
+.page-about .practice-grid { gap: 18px; }
+.page-about .practice-grid li {
+  padding: 28px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--panel-soft);
+}
+.page-about .practice-grid li > .label { color: var(--green); }
+.page-about .practice-grid h3 {
+  margin: 24px 0 12px;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+}
+.page-about .practice-grid p { font-size: 16px; line-height: 1.75; }
+.page-about :is(.skills-section, .education) {
+  grid-template-columns: .8fr 1.2fr;
+  gap: 8%;
+}
+.page-about .section-summary {
+  max-width: 38ch;
+  margin: 24px 0 0;
+  font-size: 17px;
+  line-height: 1.8;
+}
+.page-about .skills-section .skill-lines {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  padding-top: 6px;
+}
+.page-about .skills-section .skill-lines > p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.page-about .skills-section .skill-lines strong {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.page-about .implementation-note {
+  margin-top: 2px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--panel);
+}
+.page-about .implementation-note p { font-size: 15px; line-height: 1.8; }
+.page-about .implementation-note .text-link { font-size: 14px; }
+.page-about .education > div:last-child {
+  padding: 30px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--panel-soft);
+}
+.page-about .education h3 { margin: 0 0 18px; font-size: 23px; line-height: 1.35; }
+.page-about .education > div:last-child > p { font-size: 16px; line-height: 1.8; }
+.page-about .recognition {
+  padding-left: 0;
+  border-left: 0;
+  color: var(--green);
+}
+.page-about .opportunity-panel {
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  gap: 8%;
+  padding: clamp(28px, 4vw, 48px);
+  margin-bottom: 80px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(115deg, #163b3e 0%, var(--panel-soft) 82%);
+}
+.page-about .opportunity-panel h2 {
+  margin: 16px 0 0;
+  max-width: 16ch;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -.04em;
+}
+.page-about .opportunity-panel > div > p:not(.label) {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+/* Contact: a clear direct route, with the same quiet light as the homepage. */
+.page-contact .contact-page { padding: 64px 0 100px; }
+.page-contact .contact-page > .label { margin-bottom: 28px; }
+.page-contact .contact-page h1 {
+  margin-bottom: 56px;
+  font-size: clamp(3rem, 6.5vw, 6.4rem);
+  line-height: 1.04;
+  letter-spacing: -.06em;
+}
+.page-contact .contact-page .heading-continuation { color: var(--green); }
+.page-contact .contact-grid {
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 7%;
+  align-items: start;
+}
+.page-contact .contact-grid > .lede {
+  max-width: 40ch;
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--muted);
+  padding-top: 10px;
+}
+.page-contact .contact-grid > .lede p { margin: 0 0 22px; }
+.page-contact .contact-links {
+  padding: clamp(26px, 4vw, 44px);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: radial-gradient(ellipse at 0% 0%, #244d4d70, transparent 75%), var(--panel-soft);
+}
+.page-contact .contact-links > .label { margin: 0 0 20px; }
+.page-contact .contact-email {
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 48px;
+  gap: 12px;
+  color: var(--ink);
+  font-size: clamp(1.1rem, 1.9vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -.025em;
+  text-decoration-color: var(--green);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
+  overflow-wrap: anywhere;
+}
+.page-contact .contact-links > p:not(.label) {
+  margin: 24px 0 28px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.page-contact .contact-links .profile-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+}
+.page-contact .contact-links .profile-links .text-link { width: fit-content; font-size: 14px; }
+
+/* The résumé stays fast to scan and simple to download. */
+:is(.page-resume, .page-experience) .page-intro { padding: 64px 0 58px; }
+:is(.page-resume, .page-experience) .page-intro h1 {
+  max-width: 20ch;
+  font-size: clamp(2.8rem, 5.2vw, 5.1rem);
+  line-height: 1.08;
+  letter-spacing: -.05em;
+}
+:is(.page-resume, .page-experience) .page-intro .lede {
+  max-width: 65ch;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.page-resume .page-intro .action-row { gap: 18px 28px; margin-top: 28px; }
+.page-resume .page-intro .source-note { font-size: 13px; margin-top: 18px; }
+.page-resume .resume-content { padding-bottom: 70px; }
+.page-resume .resume-content > section {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 7%;
+  padding: 28px 0 38px;
+  border: 0;
+}
+.page-resume .resume-content > section > div { max-width: 74ch; min-width: 0; }
+.page-resume .resume-content h2 {
+  font-size: 21px;
+  line-height: 1.4;
+  letter-spacing: -.02em;
+  color: var(--green);
+}
+.page-resume .resume-content h3 { margin-bottom: 14px; font-size: 21px; line-height: 1.45; }
+.page-resume .resume-content p { font-size: 16px; line-height: 1.85; }
+.page-resume .resume-content .skill-lines {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+.page-resume .resume-content .skill-lines p { margin: 0; }
+.page-resume .resume-content .skill-lines strong { margin-bottom: 8px; }
+.page-resume .resume-project {
+  margin-bottom: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.page-resume .resume-project:last-child { margin-bottom: 0; }
+.page-resume .resume-project .label { margin-bottom: 12px; font-size: 12px; }
+.page-resume .resume-project h3 .text-link {
+  font: 600 24px/1.35 var(--sans);
+  letter-spacing: -.025em;
+}
+.page-resume .resume-project .tech {
+  padding: 0;
+  margin: 14px 0;
+  border: 0;
+  color: var(--green);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.page-resume .resume-project ul { padding-left: 20px; }
+.page-resume .resume-project li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.page-resume .resume-content > section:last-child p { margin-bottom: 6px; }
+
+.page-experience .timeline { padding-bottom: 80px; border: 0; }
+.page-experience .timeline article {
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 7%;
+  margin-bottom: 28px;
+  padding: 28px 32px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--panel-soft);
+}
+.page-experience .timeline article > .label { margin: 5px 0 0; color: var(--green); }
+.page-experience .timeline h2 { margin: 0 0 18px; font-size: 30px; line-height: 1.3; letter-spacing: -.03em; }
+.page-experience .timeline article > div > p { font-size: 17px; line-height: 1.8; }
+
+/* Cases: the evidence is the content, and the surrounding interface stays quiet. */
+.page-case-study .case-breadcrumb { padding-top: 32px; gap: 14px 30px; }
+.page-case-study .case-breadcrumb > .label { font-size: 12px; }
+.page-case-study .case-breadcrumb > .text-link { font-size: 14px; }
+.page-case-study .case-header { padding: 42px 0 40px; }
+.page-case-study .case-header > .label { margin-bottom: 22px; }
+.page-case-study .case-header h1 {
+  max-width: 22ch;
+  margin-bottom: 26px;
+  font-size: clamp(2.75rem, 5.6vw, 5.5rem);
+  line-height: 1.07;
+  letter-spacing: -.055em;
+  overflow-wrap: break-word;
+}
+.page-case-study .case-deck {
+  max-width: 66ch;
+  margin-bottom: 36px;
+  color: var(--muted);
+  font: 19px/1.8 var(--sans);
+  letter-spacing: 0;
+}
+.page-case-study .case-meta {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, .7fr);
+  gap: 28px;
+  padding: 26px 30px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--panel-soft);
+}
+.page-case-study .case-meta > div { padding: 0; border: 0; grid-column: auto; }
+.page-case-study .case-meta dt { margin-bottom: 9px; font-size: 12px; }
+.page-case-study .case-meta dd { color: var(--ink); font-size: 15px; line-height: 1.75; }
+.page-case-study .case-visual { padding-bottom: 0; }
+.page-case-study :is(.case-visual, .case-body) .project-figure {
+  max-width: 100%;
+  margin-inline: 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel-soft);
+}
+.page-case-study .project-figure .figure-label {
+  padding: 0 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .07em;
+}
+.page-case-study .project-figure .figure-label .crosshair { display: none; }
+.page-case-study .project-figure .visual-stage {
+  margin-inline: auto;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #f5f2eb;
+}
+.page-case-study .project-figure .visual-stage > img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  mix-blend-mode: normal;
+  filter: none;
+}
+.page-case-study .project-figure.screenshot .visual-stage {
+  max-width: 599px;
+  max-height: 620px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: white;
+}
+.page-case-study .project-figure figcaption {
+  max-width: 85ch;
+  margin-top: 18px;
+  padding-top: 0;
+  border: 0;
+  color: var(--muted);
+  font: 13px/1.8 var(--sans);
+}
+.page-case-study .project-figure .visual-link {
+  margin-top: 12px;
+  color: var(--green);
+  font: 500 14px/1.6 var(--sans);
+}
+.page-case-study .case-layout {
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 80px);
+  padding: 64px 0 54px;
+}
+.page-case-study .case-layout > .contents {
+  position: sticky;
+  top: 116px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.page-case-study .contents > .label { margin-bottom: 16px; color: var(--muted); }
+.page-case-study .contents nav { display: grid; gap: 3px; margin: 0; border: 0; }
+.page-case-study .contents nav a {
+  min-height: 44px;
+  padding: 10px 12px;
+  gap: 12px;
+  border: 0;
+  border-radius: 9px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.page-case-study .contents nav span { color: var(--green); font-size: 11px; opacity: .75; }
+.page-case-study .contents nav a:hover { background: var(--panel-soft); color: var(--ink); text-decoration: none; }
+.page-case-study .case-body {
+  display: block;
+  width: 100%;
+  max-width: 76ch;
+  min-width: 0;
+}
+.page-case-study .case-body > section {
+  margin: 0;
+  padding: 0 0 52px;
+  border: 0;
+  scroll-margin-top: 116px;
+}
+.page-case-study .case-body > section > .label { margin-bottom: 14px; font-size: 12px; }
+.page-case-study .case-body h2 {
+  max-width: 28ch;
+  margin-bottom: 22px;
+  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+  line-height: 1.22;
+  letter-spacing: -.035em;
+}
+.page-case-study .case-body p {
+  max-width: 70ch;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+.page-case-study .case-body > :is(#context, #limitations) {
+  margin: 0 0 46px;
+  padding: 28px 30px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--panel-soft);
+}
+.page-case-study .case-body #context .article-lede { color: var(--ink); font-size: 18px; line-height: 1.85; }
+.page-case-study .case-body > :is(#problem, #contribution) { padding: 0 0 48px; border: 0; }
+.page-case-study .case-body :is(#problem, #contribution) h2 { font-size: clamp(1.9rem, 2.6vw, 2.5rem); }
+.page-case-study .case-body :is(#problem, #contribution) p { font-size: 17px; line-height: 1.85; }
+.page-case-study .case-body .project-figure { margin-top: 28px; margin-bottom: 28px; }
+.page-case-study .case-body .decisions { gap: 28px; margin-top: 28px; }
+.page-case-study .case-body .decisions li,
+.page-case-study .case-body .decisions li:first-child,
+.page-case-study .case-body .decisions li:last-child {
+  padding: 0 0 0 42px;
+  border: 0;
+}
+.page-case-study .case-body .decisions li::before,
+.page-case-study .case-body .decisions li:first-child::before {
+  top: 3px;
+  color: var(--green);
+  font-size: 12px;
+}
+.page-case-study .case-body .decisions h3 { margin: 0 0 12px; font-size: 19px; line-height: 1.45; }
+.page-case-study .case-body .decisions p { margin: 0; font-size: 16px; line-height: 1.85; }
+.page-case-study .case-body .evidence-box {
+  margin: 26px 0;
+  padding: 26px 28px;
+  border: 1px solid #3a6a65;
+  border-radius: 16px;
+  background: #143532;
+}
+.page-case-study .case-body .evidence-box p { margin: 0; color: var(--ink); font-size: 17px; line-height: 1.85; }
+.page-case-study .case-body .evidence-notes { gap: 14px; margin: 24px 0; font-size: 16px; line-height: 1.85; color: var(--muted); }
+.page-case-study .case-body .source-note {
+  margin: 22px 0 0;
+  padding: 20px 22px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--panel-soft);
+  font-size: 13px;
+  line-height: 1.85;
+}
+.page-case-study .case-body .table-wrap {
+  max-width: 100%;
+  margin: 26px 0;
+  padding: 4px 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.page-case-study .case-body table { min-width: 480px; font-size: 14px; line-height: 1.7; }
+.page-case-study .case-body caption { margin-bottom: 16px; font-size: 13px; color: var(--muted); }
+.page-case-study .case-body :is(th, td) { padding: 15px 20px 15px 0; border-color: var(--line); }
+.page-case-study .case-body thead th { color: var(--muted); font-size: 12px; }
+.page-case-study .case-body tbody th { color: var(--ink); }
+.page-case-study .case-body td { color: var(--muted); }
+.page-case-study .case-body > .resources { padding: 0; }
+.page-case-study .case-body .resources .text-link { font-size: 14px; line-height: 1.7; margin: 8px 0; }
+.page-case-study .case-next {
+  padding: 28px 30px;
+  margin-bottom: 72px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--panel-soft);
+}
+.page-case-study .case-next .next-title { max-width: 30ch; font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.3; letter-spacing: -.03em; }
+
+/* The original-resolution viewer deliberately keeps native image scrolling. */
+.page-visual .viewer-page { padding: 48px 0 72px; }
+.page-visual .viewer-page > .label { margin-bottom: 18px; }
+.page-visual .viewer-page h1 {
+  max-width: 26ch;
+  margin-bottom: 22px;
+  font-size: clamp(2.4rem, 4.8vw, 4.5rem);
+  line-height: 1.12;
+  letter-spacing: -.045em;
+}
+.page-visual .viewer-caption { max-width: 72ch; font-size: 17px; line-height: 1.85; }
+.page-visual .viewer-toolbar {
+  width: fit-content;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel-soft);
+}
+.page-visual .viewer-toolbar button {
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 14px;
+}
+.page-visual .viewer-toolbar button:hover { border-color: var(--green); background: #1d4546; color: var(--ink); }
+.page-visual .viewer-toolbar output { color: var(--muted); font-size: 13px; }
+.page-visual .viewer-help { margin-bottom: 16px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.page-visual .visual-viewport {
+  height: clamp(320px, 68vh, 760px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: white;
+  overscroll-behavior: contain;
+  scrollbar-color: #547b77 #e9efeb;
+}
+.page-visual .visual-viewport img { mix-blend-mode: normal; filter: none; }
+.page-visual .viewer-actions { gap: 16px 32px; margin-top: 24px; }
+.page-visual .viewer-actions .text-link { font-size: 14px; }
+
+/* Keyboard users receive the same prominent focus on nested regions as links. */
+:is(.page-case-study .table-wrap, .page-case-study .project-figure .visual-stage, .page-visual .visual-viewport):focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 5px;
+}
+
+@media (max-width: 1050px) {
+  .page-about .about-intro { grid-template-columns: minmax(0, 1fr) 290px; gap: 40px; }
+  .page-about .practice-grid li { padding: 23px; }
+  .page-contact .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; }
+  .page-contact .contact-links { padding: 28px; }
+  .page-case-study .case-layout { grid-template-columns: 165px minmax(0, 1fr); gap: 38px; }
+}
+
+@media (max-width: 900px) {
+  .page-about .about-intro { grid-template-columns: minmax(0, 1fr) 250px; gap: 32px; padding: 40px 0 64px; }
+  .page-about .about-intro h1 { font-size: 50px; }
+  .page-about .about-facts { grid-template-columns: 1fr; gap: 16px; }
+  .page-about .about-facts > div:last-child { grid-column: auto; }
+  .page-about .practice-grid { grid-template-columns: 1fr; gap: 14px; }
+  .page-about .practice-grid li { display: grid; grid-template-columns: 28px .8fr 1.2fr; gap: 18px; padding: 24px; }
+  .page-about .practice-grid h3 { margin: 0; }
+  .page-about .skills-section .skill-lines { grid-template-columns: 1fr; gap: 25px; }
+  .page-about .skills-section .implementation-note { grid-column: auto; }
+  .page-about :is(.about-practice, .skills-section, .education) { padding-bottom: 64px; }
+  .page-about .opportunity-panel { gap: 30px; margin-bottom: 64px; }
+  .page-contact .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+  .page-contact .contact-grid > .lede { max-width: 60ch; padding: 0; font-size: 18px; }
+  .page-contact .contact-links { max-width: 650px; padding: 32px; }
+  .page-contact .contact-email { font-size: 25px; }
+  .page-resume .resume-content > section { grid-template-columns: 160px minmax(0, 1fr); gap: 6%; }
+  .page-resume .resume-content .skill-lines { grid-template-columns: 1fr; }
+  .page-experience .timeline article { grid-template-columns: 160px minmax(0, 1fr); gap: 28px; }
+  .page-experience .timeline h2 { font-size: 26px; }
+  .page-case-study .case-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-case-study .case-meta > div:last-child { grid-column: 1 / -1; }
+  .page-case-study .case-layout { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 40px; }
+  .page-case-study .case-layout > .contents { position: static; }
+  .page-case-study .contents nav { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3px 10px; }
+  .page-case-study .contents nav a { padding-left: 0; }
+  .page-case-study .case-body { max-width: 76ch; margin-inline: auto; }
+}
+
+@media (max-width: 600px) {
+  .page-about .about-intro { align-items: stretch; }
+  .page-about .about-intro { display: flex; gap: 22px; padding: 32px 0 54px; }
+  .page-about .about-intro-copy { display: contents; }
+  .page-about .about-intro h1 { font-size: clamp(2.65rem, 11vw, 3.4rem); margin: 0; }
+  .page-about .about-intro .lede { font-size: 17px; margin: 0; }
+  .page-about .about-portrait { max-width: 340px; padding: 10px; margin: 8px auto; border-radius: 20px; }
+  .page-about .about-facts { grid-template-columns: 1fr; gap: 18px; }
+  .page-about .about-facts > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 14px; }
+  .page-about .about-facts dt { margin-top: 2px; }
+  .page-about .about-facts dd { font-size: 14px; }
+  .page-about .block-heading { display: block; margin-bottom: 26px; }
+  .page-about .block-heading h2 { margin: 16px 0 22px; }
+  .page-about .block-heading > p:last-child { font-size: 16px; }
+  .page-about :is(.block-heading h2, .skills-section h2, .education h2) { font-size: 32px; }
+  .page-about :is(.about-practice, .skills-section, .education) { display: block; padding-bottom: 54px; }
+  .page-about .practice-grid li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px 14px; padding: 22px; }
+  .page-about .practice-grid h3 { font-size: 19px; }
+  .page-about .practice-grid p { grid-column: 2; font-size: 15px; }
+  .page-about .section-summary { margin: 22px 0 28px; font-size: 16px; }
+  .page-about .skills-section .skill-lines { gap: 26px; }
+  .page-about .skills-section .skill-lines > p { font-size: 15px; }
+  .page-about .implementation-note { padding: 22px; }
+  .page-about .education > div:last-child { margin-top: 28px; padding: 24px; }
+  .page-about .education h3 { font-size: 21px; }
+  .page-about .opportunity-panel { display: block; padding: 26px; margin-bottom: 54px; border-radius: 20px; }
+  .page-about .opportunity-panel h2 { margin-bottom: 24px; font-size: 32px; }
+  .page-about .opportunity-panel > div > p:not(.label) { font-size: 16px; }
+  .page-contact .contact-page { padding: 36px 0 64px; }
+  .page-contact .contact-page > .label { margin-bottom: 22px; }
+  .page-contact .contact-page h1 { font-size: clamp(2.65rem, 11vw, 4rem); margin-bottom: 30px; }
+  .page-contact .contact-grid > .lede { font-size: 17px; }
+  .page-contact .contact-links { padding: 24px; border-radius: 20px; }
+  .page-contact .contact-email { font-size: clamp(1rem, 4.3vw, 1.3rem); }
+  .page-contact .contact-links .profile-links { grid-template-columns: 1fr; gap: 6px; }
+  :is(.page-resume, .page-experience) .page-intro { padding: 36px 0 38px; }
+  :is(.page-resume, .page-experience) .page-intro h1 { font-size: clamp(2.6rem, 10.5vw, 3.6rem); }
+  :is(.page-resume, .page-experience) .page-intro .lede { font-size: 17px; }
+  .page-resume .page-intro .action-row { align-items: flex-start; gap: 12px 24px; }
+  .page-resume .page-intro .action-row .button { width: 100%; justify-content: center; }
+  .page-resume .resume-content > section { display: block; padding: 18px 0 28px; }
+  .page-resume .resume-content h2 { font-size: 22px; margin-bottom: 22px; }
+  .page-resume .resume-content p { font-size: 15px; }
+  .page-resume .resume-project { margin-bottom: 32px; }
+  .page-resume .resume-project h3 .text-link { font-size: 22px; }
+  .page-resume .resume-project li { font-size: 15px; }
+  .page-experience .timeline { padding-bottom: 44px; }
+  .page-experience .timeline article { display: block; margin-bottom: 20px; padding: 24px; }
+  .page-experience .timeline article > .label { margin: 0 0 20px; }
+  .page-experience .timeline h2 { font-size: 25px; }
+  .page-experience .timeline article > div > p { font-size: 16px; }
+  .page-case-study .case-breadcrumb { padding-top: 24px; }
+  .page-case-study .case-header { padding: 30px 0; }
+  .page-case-study .case-header h1 { font-size: clamp(2.35rem, 9.8vw, 3.5rem); line-height: 1.1; }
+  .page-case-study .case-deck { font-size: 17px; margin-bottom: 28px; }
+  .page-case-study .case-meta { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
+  .page-case-study .case-meta > div:last-child { grid-column: auto; }
+  .page-case-study .case-meta dd { font-size: 14px; }
+  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 16px; border-radius: 16px; }
+  .page-case-study .project-figure .visual-stage { padding: 4px; border-radius: 4px; }
+  .page-case-study .project-figure .figure-label { padding-bottom: 14px; font-size: 11px; }
+  .page-case-study .project-figure figcaption { font-size: 13px; }
+  .page-case-study .project-figure .visual-link { font-size: 13px; }
+  .page-case-study .case-layout { padding-top: 34px; padding-bottom: 38px; gap: 28px; }
+  .page-case-study .contents nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 12px; }
+  .page-case-study .contents nav a { font-size: 12px; gap: 9px; }
+  .page-case-study .case-body > section { padding-bottom: 38px; scroll-margin-top: 90px; }
+  .page-case-study .case-body > :is(#context, #limitations) { padding: 24px; margin-bottom: 36px; }
+  .page-case-study .case-body > :is(#problem, #contribution) { padding-bottom: 38px; }
+  .page-case-study .case-body h2,
+  .page-case-study .case-body :is(#problem, #contribution) h2 { margin-bottom: 20px; font-size: 28px; }
+  .page-case-study .case-body p,
+  .page-case-study .case-body :is(#problem, #contribution) p { font-size: 16px; }
+  .page-case-study .case-body #context .article-lede { font-size: 17px; }
+  .page-case-study .case-body .decisions { gap: 26px; }
+  .page-case-study .case-body .decisions li,
+  .page-case-study .case-body .decisions li:first-child,
+  .page-case-study .case-body .decisions li:last-child { padding-left: 32px; }
+  .page-case-study .case-body .decisions h3 { font-size: 18px; }
+  .page-case-study .case-body .decisions p { font-size: 15px; }
+  .page-case-study .case-body .evidence-box { padding: 22px; }
+  .page-case-study .case-body .evidence-box p { font-size: 16px; }
+  .page-case-study .case-body .evidence-notes { font-size: 15px; }
+  .page-case-study .case-body .source-note { padding: 18px; font-size: 12px; }
+  .page-case-study .case-next { display: block; padding: 24px; margin-bottom: 54px; }
+  .page-case-study .case-next .next-title { margin-top: 16px; font-size: 25px; }
+  .page-visual .viewer-page { padding: 34px 0 54px; }
+  .page-visual .viewer-page h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  .page-visual .viewer-caption { font-size: 16px; }
+  .page-visual .viewer-toolbar { padding: 8px; gap: 6px; }
+  .page-visual .viewer-toolbar button { padding: 8px 10px; font-size: 13px; }
+  .page-visual .viewer-toolbar output { margin-left: 3px; font-size: 12px; }
+  .page-visual .viewer-actions { gap: 12px; }
+  .page-visual .viewer-actions .text-link { font-size: 13px; }
+}
+
+@media print {
+  .page-case-study .project-figure.screenshot .visual-stage { max-height: none; overflow: visible; }
+  .portfolio:is(.page-about, .page-contact, .page-resume, .page-experience, .page-case-study, .page-visual) {
+    --bg: #fff;
+    --panel: #fff;
+    --panel-soft: #fff;
+    --ink: #101820;
+    --muted: #34434b;
+    --green: #155a47;
+    --line: #ccd4d6;
+    background: white !important;
+    color: #101820;
+  }
+  :is(.page-about, .page-contact, .page-resume, .page-experience, .page-case-study, .page-visual) main {
+    background: white;
+    color: #101820;
+  }
+  .page-about :is(.about-intro, .about-practice, .skills-section, .education, .opportunity-panel),
+  .page-contact :is(.contact-page, .contact-grid),
+  .page-experience .timeline article,
+  .page-resume .resume-content > section { display: block; padding: 12px 0; margin-bottom: 12px; }
+  .page-about :is(.about-portrait, .practice-grid li, .implementation-note, .education > div:last-child, .opportunity-panel),
+  .page-contact .contact-links,
+  .page-experience .timeline article { background: transparent; box-shadow: none; border: 0; border-radius: 0; }
+  .page-about .about-intro-copy { display: block; }
+  .page-about .about-portrait { max-width: 45mm; }
+  .page-about .about-facts { display: block; }
+  .page-about .practice-grid { display: block; }
+  .page-about .practice-grid li { display: block; padding: 10px 0; break-inside: avoid; }
+  .page-about .skills-section .skill-lines { display: block; }
+  .page-about .skills-section .skill-lines > p { margin-bottom: 10px; }
+  :is(.page-resume, .page-experience) .page-intro { padding: 0 0 12px; }
+  :is(.page-resume, .page-experience) .page-intro h1 { max-width: none; font-size: 27pt; }
+  :is(.page-resume, .page-experience) .page-intro .lede { font-size: 10pt; }
+  .page-resume .resume-content { padding: 0; }
+  .page-resume .resume-content > section { break-inside: auto; }
+  .page-resume .resume-content h2 { margin: 0 0 9px; font-size: 14pt; color: #155a47; }
+  .page-resume .resume-content h3,
+  .page-resume .resume-project h3 .text-link { font-size: 12pt; line-height: 1.4; }
+  .page-resume .resume-content :is(p, li) { font-size: 10pt; line-height: 1.5; color: #34434b; }
+  .page-resume .resume-project { margin-bottom: 16px; padding: 0; background: transparent; break-inside: avoid; }
+  .page-resume .resume-project .label { margin-bottom: 4px; font-size: 8pt; }
+  .page-resume .resume-project .tech { margin: 8px 0; font-size: 8pt; }
+  .page-resume .resume-project li { margin-bottom: 5px; }
+  .page-resume .resume-content .skill-lines { gap: 10px 24px; }
+  .page-case-study .case-header { padding: 0 0 16px; }
+  .page-case-study .case-header h1 { max-width: none; font-size: 28pt; }
+  .page-case-study .case-deck { font-size: 11pt; }
+  .page-case-study .case-meta { display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 0; border: 0; border-radius: 0; }
+  .page-case-study .case-meta > div:last-child { grid-column: auto; }
+  .page-case-study .case-layout { display: block; padding: 20px 0; }
+  .page-case-study .case-body { max-width: none; }
+  .page-case-study .case-body > section,
+  .page-case-study .case-body > :is(#context, #problem, #contribution, #limitations) {
+    margin: 0 0 14px;
+    padding: 12px 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+  }
+  .page-case-study .case-body h2,
+  .page-case-study .case-body :is(#problem, #contribution) h2 { font-size: 20pt; }
+  .page-case-study .case-body p,
+  .page-case-study .case-body :is(#context .article-lede, #problem p, #contribution p) { max-width: none; font-size: 10.5pt; line-height: 1.6; }
+  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 12px; background: white; border: 1px solid #ccd4d6; border-radius: 0; }
+  .page-case-study .case-body .evidence-box { background: #eef5f1; border-color: #b8cec3; }
+  .page-case-study .case-body .source-note { padding: 12px 0; background: transparent; }
+  .page-case-study .case-body table { min-width: 0; font-size: 9pt; }
+  .page-case-study .case-body .table-wrap { overflow: visible; }
+  .page-visual .viewer-page { padding: 0; }
+  .page-visual .visual-viewport { height: auto; border: 0; border-radius: 0; overflow: visible; }
+}
