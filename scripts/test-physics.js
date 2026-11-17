@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createHero,jumpHero,stepHero} from '../src/play/physics.js';
+const ground=400,width=4220,dt=1000/60;
+const tick=(hero,input={},platforms=[])=>stepHero(hero,input,platforms,ground,width,dt);
+test('walking accelerates to bounded speed; released movement comes to rest',()=>{const h=createHero(ground);for(let i=0;i<90;i++)tick(h,{right:true});assert(h.x>450&&h.vx<=5.6);for(let i=0;i<60;i++)tick(h);assert.equal(h.vx,0);});
+test('world edges keep the complete character inside the scene',()=>{const h=createHero(ground);h.x=17;for(let i=0;i<20;i++)tick(h,{left:true});assert.equal(h.x,16);h.x=width-h.w-17;for(let i=0;i<20;i++)tick(h,{right:true});assert.equal(h.x+h.w,width-16);});
+test('jump rises, falls and lands on the continuous floor',()=>{const h=createHero(ground),start=h.y;assert(jumpHero(h));let peak=start;for(let i=0;i<100;i++){tick(h);peak=Math.min(peak,h.y);}assert(peak<start-80);assert.equal(h.y+h.h,ground);assert(h.onGround);});
+test('landing on platform is from above; underside does not capture an ascent',()=>{const p={x:80,y:305,w:112,h:14};const h=createHero(ground);jumpHero(h);let passedThrough=false,landed=false;for(let i=0;i<100;i++){tick(h,{},[p]);if(h.y+h.h<p.y)passedThrough=true;if(h.onGround&&h.y+h.h===p.y)landed=true;}assert(passedThrough&&landed);});
+test('a long background delta is clamped instead of tunnelling across the world',()=>{const h=createHero(ground);h.vx=5.6;const start=h.x;stepHero(h,{right:true},[],ground,width,10000);assert(h.x-start<12);assert.equal(h.y+h.h,ground);});
+test('airborne repeated jump cannot grant unlimited height',()=>{const h=createHero(ground);jumpHero(h);for(let i=0;i<12;i++)tick(h);const vy=h.vy;assert(!jumpHero(h));assert.equal(h.vy,vy);});
+test('buffered jump triggers on a near landing without a precision timing gate',()=>{const h=createHero(ground);h.y=ground-h.h-5;h.vy=4;h.onGround=false;h.coyote=0;jumpHero(h);tick(h);tick(h);assert(h.vy<0&&!h.onGround);});

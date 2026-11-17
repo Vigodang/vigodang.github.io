@@ -558,6 +558,13 @@ export function getRobotPose({ pose = 'idle', poseAge = 0, walkTime = 0, animate
     rightArm = [[26, 24 + lift], [28, 30 + lift * .5], [29, 35 + lift * .3]];
     leftLeg = [[11, 34 + lift], [6, 41 + settle], [7, 46]];
     rightLeg = [[21, 34 + lift], [26, 41 + settle], [25, 46]];
+  } else if (pose === 'interact') {
+    lean = 2;
+    rightArm = [[26, 24], [29, 21], [28, 16]];
+  } else if (pose === 'celebrate') {
+    leftArm = [[6, 24], [3, 19], [4, 14]];
+    rightArm = [[26, 24], [29, 19], [28, 14]];
+    headLift = -1;
   } else if (animated) {
     lift = Math.sin(age * .0025) * .55;
     headLift = lift;
@@ -581,7 +588,7 @@ function limb(ctx, points, back = false, hand = false) {
   }
 }
 
-function robot(ctx, s, effects) {
+export function drawRobot(ctx, s, effects) {
   const h = s.hero;
   if (!h) return;
   const x = Math.round(h.x - s.camera), y = Math.round(h.y);
@@ -638,7 +645,7 @@ export function drawWorld(ctx, s) {
   for (const p of s.platforms || []) platform(ctx, p, s);
   for (const item of s.collectibles || []) collectible(ctx, item, s, effects);
   dust(ctx, s, effects);
-  robot(ctx, s, effects);
+  drawRobot(ctx, s, effects);
   atmosphere(ctx, s, effects, true);
   ctx.restore();
 }
