@@ -4,16 +4,17 @@ const asset = filename => new URL(`../assets/${filename}`, import.meta.url).href
 
 export const evidenceInventory = Object.freeze({
   'crdc-capstone': {
-    status: 'PRIVATE',
-    label: 'Public-safe conceptual workflow',
+    status: 'DEMO',
+    label: 'Actual public interface capture',
     primary: {
-      file: 'crdc-workflow.svg', width: 900, height: 560,
-      type: 'Conceptual illustration',
-      alt: 'A scoped question passes through lead-agent planning, task-specific retrieval, reranking and provenance-linked synthesis.',
-      caption: 'Sanitized conceptual workflow from the existing case study. This is an explanatory diagram; it contains no partner documents or research results.',
+      file: 'crdc-research-demo.jpg', width: 1440, height: 1050,
+      type: 'Actual public demo capture · 18 November 2026',
+      alt: 'CRDC Research Assistant sample report with citation buttons and sample question navigation.',
+      caption: 'Unaltered capture of the deployed browser demo. Reports are hand-authored examples using synthetic notes; no AI was run.',
     },
-    gap: 'Public research outputs and evaluation artifacts are unavailable. Partner material remains private; the diagram does not establish retrieval quality.',
-    sources: ['docs/refinement-evidence.md', 'src/assets/crdc-workflow.svg'],
+    related: [{file:'crdc-workflow.svg',width:900,height:560,type:'Conceptual research workflow',alt:'Lead planning, task-specific retrieval, reranking and provenance-linked synthesis.',caption:'Original public-safe conceptual diagram. Partner research documents and results remain private.'}],
+    gap: 'The deployed demo demonstrates interface interactions. It does not run the Python/AI pipeline or establish retrieval quality; original research outputs and partner documents remain private.',
+    sources: ['docs/refinement-evidence.md', 'src/assets/crdc-workflow.svg', 'src/assets/crdc-research-demo.jpg'],
   },
   'dataset-health': {
     status: 'VERIFIED',

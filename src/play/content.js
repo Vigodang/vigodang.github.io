@@ -15,12 +15,17 @@ export const projects = [
     ],
     "why": "A relevant document is not enough: the passage used in an answer must support the task and retain its source.",
     "evidence": {
-      "label": "Team capstone · private partner material",
-      "summary": "The public case explains my contribution and a sanitized conceptual workflow. No retrieval-quality score is published.",
-      "basis": "Student-team contribution account and a sanitized conceptual workflow. Public-release permission is required for detailed partner artefacts."
+      "label": "Interactive interface demo · synthetic examples",
+      "summary": "Explore the deployed CRDC interface: three sample reports, source citations and HTML/Markdown exports. Sample reports are hand-authored; no AI runs in this demo.",
+      "basis": "Student-team contribution account, sanitized workflow and an actual public demo capture on 18 November 2026. Partner research remains private."
     },
     "evidenceLimit": "A QUT student-team capstone with CRDC, not employment or an internship. Partner material is private; no independent quality result or partner endorsement is claimed.",
     "links": [
+      {
+        "label": "Open live demo",
+        "href": "https://crdc-research-assistant.jazzyactor4.chatgpt.site/",
+        "kind": "live-demo"
+      },
       {
         "label": "Read case study",
         "href": "/projects/crdc-capstone.html",
