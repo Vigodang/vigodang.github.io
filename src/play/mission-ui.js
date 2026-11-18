@@ -320,7 +320,7 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
     status = select('.mission-status');
     select('.mission-close-slot').append(button('Back to city', close, 'mission-button-secondary mission-close'));
     select('.mission-evidence-actions').append(button('Open full project dossier', () => { sound('ui'); onDossier(activeId); }, 'mission-button-secondary'));
-    const study = project.links.find(link => link.kind === 'case-study') || project.links[0];
+    const study = project.links.find(link => link.kind === 'live-demo') || project.links.find(link => link.kind === 'case-study') || project.links[0];
     if (study) {
       const link = document.createElement('a');
       link.className = 'mission-source-link';

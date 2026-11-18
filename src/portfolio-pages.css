@@ -1,4 +1,4 @@
-/* The professional reading layer of Vigo After Dark.
+/* The bright professional reading layer beside Vigo After Dark.
    Page classes keep these refinements separate from the interactive game. */
 
 /* About: one human introduction, followed by generous, purposeful sections. */
@@ -25,15 +25,15 @@
 }
 .page-about .about-portrait {
   position: relative;
-  padding: 12px;
+  padding: 8px;
   border: 1px solid var(--line);
-  border-radius: 24px;
-  background: var(--panel-soft);
-  box-shadow: 0 24px 70px #020a1240;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: none;
 }
 .page-about .about-photo {
-  border-radius: 15px;
-  background: var(--panel);
+  border-radius: 11px;
+  background: var(--surface-2);
 }
 .page-about .about-photo img { aspect-ratio: 4 / 5; }
 .page-about .about-portrait figcaption {
@@ -75,8 +75,8 @@
 .page-about .practice-grid li {
   padding: 28px;
   border: 0;
-  border-radius: 18px;
-  background: var(--panel-soft);
+  border-radius: 12px;
+  background: var(--surface);
 }
 .page-about .practice-grid li > .label { color: var(--green); }
 .page-about .practice-grid h3 {
@@ -116,16 +116,16 @@
 .page-about .implementation-note {
   margin-top: 2px;
   padding: 24px;
-  border-radius: 16px;
-  background: var(--panel);
+  border-radius: 12px;
+  background: var(--surface-2);
 }
 .page-about .implementation-note p { font-size: 15px; line-height: 1.8; }
 .page-about .implementation-note .text-link { font-size: 14px; }
 .page-about .education > div:last-child {
-  padding: 30px;
+  padding: 6px 0;
   border: 0;
-  border-radius: 18px;
-  background: var(--panel-soft);
+  border-radius: 0;
+  background: transparent;
 }
 .page-about .education h3 { margin: 0 0 18px; font-size: 23px; line-height: 1.35; }
 .page-about .education > div:last-child > p { font-size: 16px; line-height: 1.8; }
@@ -140,9 +140,9 @@
   gap: 8%;
   padding: clamp(28px, 4vw, 48px);
   margin-bottom: 80px;
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: linear-gradient(115deg, #163b3e 0%, var(--panel-soft) 82%);
+  border: 0;
+  border-radius: 14px;
+  background: var(--surface-2);
 }
 .page-about .opportunity-panel h2 {
   margin: 16px 0 0;
@@ -183,9 +183,9 @@
 .page-contact .contact-grid > .lede p { margin: 0 0 22px; }
 .page-contact .contact-links {
   padding: clamp(26px, 4vw, 44px);
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  background: radial-gradient(ellipse at 0% 0%, #244d4d70, transparent 75%), var(--panel-soft);
+  border: 0;
+  border-radius: 14px;
+  background: var(--surface);
 }
 .page-contact .contact-links > .label { margin: 0 0 20px; }
 .page-contact .contact-email {
@@ -289,8 +289,8 @@
   margin-bottom: 28px;
   padding: 28px 32px;
   border: 0;
-  border-radius: 20px;
-  background: var(--panel-soft);
+  border-radius: 12px;
+  background: var(--surface);
 }
 .page-experience .timeline article > .label { margin: 5px 0 0; color: var(--green); }
 .page-experience .timeline h2 { margin: 0 0 18px; font-size: 30px; line-height: 1.3; letter-spacing: -.03em; }
@@ -322,8 +322,8 @@
   gap: 28px;
   padding: 26px 30px;
   border: 0;
-  border-radius: 18px;
-  background: var(--panel-soft);
+  border-radius: 12px;
+  background: var(--surface-2);
 }
 .page-case-study .case-meta > div { padding: 0; border: 0; grid-column: auto; }
 .page-case-study .case-meta dt { margin-bottom: 9px; font-size: 12px; }
@@ -334,8 +334,8 @@
   margin-inline: 0;
   padding: 22px;
   border: 1px solid var(--line);
-  border-radius: 20px;
-  background: var(--panel-soft);
+  border-radius: 12px;
+  background: var(--surface);
 }
 .page-case-study .project-figure .figure-label {
   padding: 0 0 16px;
@@ -402,8 +402,8 @@
   font-size: 13px;
   line-height: 1.6;
 }
-.page-case-study .contents nav span { color: var(--green); font-size: 11px; opacity: .75; }
-.page-case-study .contents nav a:hover { background: var(--panel-soft); color: var(--ink); text-decoration: none; }
+.page-case-study .contents nav span { color: var(--green); font-size: 12px; opacity: 1; }
+.page-case-study .contents nav a:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
 .page-case-study .case-body {
   display: block;
   width: 100%;
@@ -435,9 +435,10 @@
   margin: 0 0 46px;
   padding: 28px 30px;
   border: 0;
-  border-radius: 18px;
-  background: var(--panel-soft);
+  border-radius: 12px;
+  background: var(--surface-2);
 }
+.page-case-study .case-body > #context { padding: 0; border-radius: 0; background: transparent; }
 .page-case-study .case-body #context .article-lede { color: var(--ink); font-size: 18px; line-height: 1.85; }
 .page-case-study .case-body > :is(#problem, #contribution) { padding: 0 0 48px; border: 0; }
 .page-case-study .case-body :is(#problem, #contribution) h2 { font-size: clamp(1.9rem, 2.6vw, 2.5rem); }
@@ -461,9 +462,9 @@
 .page-case-study .case-body .evidence-box {
   margin: 26px 0;
   padding: 26px 28px;
-  border: 1px solid #3a6a65;
-  border-radius: 16px;
-  background: #143532;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
 }
 .page-case-study .case-body .evidence-box p { margin: 0; color: var(--ink); font-size: 17px; line-height: 1.85; }
 .page-case-study .case-body .evidence-notes { gap: 14px; margin: 24px 0; font-size: 16px; line-height: 1.85; color: var(--muted); }
@@ -472,7 +473,7 @@
   padding: 20px 22px;
   border: 0;
   border-radius: 12px;
-  background: var(--panel-soft);
+  background: var(--surface);
   font-size: 13px;
   line-height: 1.85;
 }
@@ -492,11 +493,11 @@
 .page-case-study .case-body > .resources { padding: 0; }
 .page-case-study .case-body .resources .text-link { font-size: 14px; line-height: 1.7; margin: 8px 0; }
 .page-case-study .case-next {
-  padding: 28px 30px;
+  padding: 24px 0;
   margin-bottom: 72px;
   border: 0;
-  border-radius: 18px;
-  background: var(--panel-soft);
+  border-radius: 0;
+  background: transparent;
 }
 .page-case-study .case-next .next-title { max-width: 30ch; font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.3; letter-spacing: -.03em; }
 
@@ -515,20 +516,20 @@
   width: fit-content;
   max-width: 100%;
   padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--panel-soft);
+  border: 0;
+  border-radius: 10px;
+  background: var(--surface-2);
 }
 .page-visual .viewer-toolbar button {
   min-width: 44px;
   min-height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--panel);
+  background: var(--surface);
   color: var(--ink);
   font-size: 14px;
 }
-.page-visual .viewer-toolbar button:hover { border-color: var(--green); background: #1d4546; color: var(--ink); }
+.page-visual .viewer-toolbar button:hover { border-color: var(--green); background: var(--mint); color: var(--ink); }
 .page-visual .viewer-toolbar output { color: var(--muted); font-size: 13px; }
 .page-visual .viewer-help { margin-bottom: 16px; color: var(--muted); font-size: 14px; line-height: 1.75; }
 .page-visual .visual-viewport {
@@ -537,7 +538,7 @@
   border-radius: 12px;
   background: white;
   overscroll-behavior: contain;
-  scrollbar-color: #547b77 #e9efeb;
+  scrollbar-color: var(--green) var(--surface-2);
 }
 .page-visual .visual-viewport img { mix-blend-mode: normal; filter: none; }
 .page-visual .viewer-actions { gap: 16px 32px; margin-top: 24px; }
@@ -592,7 +593,7 @@
   .page-about .about-intro-copy { display: contents; }
   .page-about .about-intro h1 { font-size: clamp(2.65rem, 11vw, 3.4rem); margin: 0; }
   .page-about .about-intro .lede { font-size: 17px; margin: 0; }
-  .page-about .about-portrait { max-width: 340px; padding: 10px; margin: 8px auto; border-radius: 20px; }
+  .page-about .about-portrait { max-width: 340px; padding: 8px; margin: 8px auto; border-radius: 16px; }
   .page-about .about-facts { grid-template-columns: 1fr; gap: 18px; }
   .page-about .about-facts > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 14px; }
   .page-about .about-facts dt { margin-top: 2px; }
@@ -609,16 +610,16 @@
   .page-about .skills-section .skill-lines { gap: 26px; }
   .page-about .skills-section .skill-lines > p { font-size: 15px; }
   .page-about .implementation-note { padding: 22px; }
-  .page-about .education > div:last-child { margin-top: 28px; padding: 24px; }
+  .page-about .education > div:last-child { margin-top: 28px; padding: 0; }
   .page-about .education h3 { font-size: 21px; }
-  .page-about .opportunity-panel { display: block; padding: 26px; margin-bottom: 54px; border-radius: 20px; }
+  .page-about .opportunity-panel { display: block; padding: 26px; margin-bottom: 54px; border-radius: 14px; }
   .page-about .opportunity-panel h2 { margin-bottom: 24px; font-size: 32px; }
   .page-about .opportunity-panel > div > p:not(.label) { font-size: 16px; }
   .page-contact .contact-page { padding: 36px 0 64px; }
   .page-contact .contact-page > .label { margin-bottom: 22px; }
   .page-contact .contact-page h1 { font-size: clamp(2.65rem, 11vw, 4rem); margin-bottom: 30px; }
   .page-contact .contact-grid > .lede { font-size: 17px; }
-  .page-contact .contact-links { padding: 24px; border-radius: 20px; }
+  .page-contact .contact-links { padding: 24px; border-radius: 14px; }
   .page-contact .contact-email { font-size: clamp(1rem, 4.3vw, 1.3rem); }
   .page-contact .contact-links .profile-links { grid-template-columns: 1fr; gap: 6px; }
   :is(.page-resume, .page-experience) .page-intro { padding: 36px 0 38px; }
@@ -644,9 +645,9 @@
   .page-case-study .case-meta { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
   .page-case-study .case-meta > div:last-child { grid-column: auto; }
   .page-case-study .case-meta dd { font-size: 14px; }
-  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 16px; border-radius: 16px; }
+  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 16px; border-radius: 12px; }
   .page-case-study .project-figure .visual-stage { padding: 4px; border-radius: 4px; }
-  .page-case-study .project-figure .figure-label { padding-bottom: 14px; font-size: 11px; }
+  .page-case-study .project-figure .figure-label { padding-bottom: 14px; font-size: 12px; }
   .page-case-study .project-figure figcaption { font-size: 13px; }
   .page-case-study .project-figure .visual-link { font-size: 13px; }
   .page-case-study .case-layout { padding-top: 34px; padding-bottom: 38px; gap: 28px; }
@@ -654,6 +655,7 @@
   .page-case-study .contents nav a { font-size: 12px; gap: 9px; }
   .page-case-study .case-body > section { padding-bottom: 38px; scroll-margin-top: 90px; }
   .page-case-study .case-body > :is(#context, #limitations) { padding: 24px; margin-bottom: 36px; }
+  .page-case-study .case-body > #context { padding: 0; }
   .page-case-study .case-body > :is(#problem, #contribution) { padding-bottom: 38px; }
   .page-case-study .case-body h2,
   .page-case-study .case-body :is(#problem, #contribution) h2 { margin-bottom: 20px; font-size: 28px; }
@@ -669,8 +671,8 @@
   .page-case-study .case-body .evidence-box { padding: 22px; }
   .page-case-study .case-body .evidence-box p { font-size: 16px; }
   .page-case-study .case-body .evidence-notes { font-size: 15px; }
-  .page-case-study .case-body .source-note { padding: 18px; font-size: 12px; }
-  .page-case-study .case-next { display: block; padding: 24px; margin-bottom: 54px; }
+  .page-case-study .case-body .source-note { padding: 18px; font-size: 13px; }
+  .page-case-study .case-next { display: block; padding: 20px 0; margin-bottom: 54px; }
   .page-case-study .case-next .next-title { margin-top: 16px; font-size: 25px; }
   .page-visual .viewer-page { padding: 34px 0 54px; }
   .page-visual .viewer-page h1 { font-size: clamp(2rem, 9vw, 3rem); }
@@ -686,8 +688,8 @@
   .page-case-study .project-figure.screenshot .visual-stage { max-height: none; overflow: visible; }
   .portfolio:is(.page-about, .page-contact, .page-resume, .page-experience, .page-case-study, .page-visual) {
     --bg: #fff;
-    --panel: #fff;
-    --panel-soft: #fff;
+    --surface: #fff;
+    --surface-2: #fff;
     --ink: #101820;
     --muted: #34434b;
     --green: #155a47;

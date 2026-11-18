@@ -248,8 +248,8 @@ export const projects = [
     "cover": "crdc-workflow.svg",
     "theme": "paper",
     "deck": "Retrieve for the task, then keep the answer connected to its sources.",
-    "summary": "Task-specific retrieval and source-linked synthesis for a QUT team capstone with CRDC. My focus is orchestration, reranking and evidence evaluation.",
-    "evidenceLabel": "Team capstone · private partner material",
+    "summary": "A source-linked research workflow from a QUT team capstone with CRDC. Explore the deployed interface, sample reports and citations.",
+    "evidenceLabel": "Interactive demo · private original research",
     "contribution": "In a QUT student team partnering with the Cotton Research and Development Corporation, my emphasis was lead-agent orchestration, task-specific retrieval, document/chunk evaluation, cross-encoder reranking, provenance and temporal diversity. The wider capstone is team work. This was not employment or an internship with CRDC.",
     "problem": "A relevant document can still contain chunks that do not answer the analytical task. Giving every specialist the same retrieval query can produce fluent synthesis that overlooks context, provenance or older evidence.",
     "approach": "Separate the research question from the analytical task and retrieval intent. A lead agent coordinates task-specific retrieval, ranking and evidence selection before synthesis. Keep source references attached to the evidence and inspect usefulness at both document and chunk level.",
@@ -271,11 +271,12 @@ export const projects = [
     "proof": "The contribution account covers lead-agent and retrieval integration, task-specific evidence selection and document/chunk evaluation. No public retrieval-quality score, completed independent review result or partner endorsement is claimed. Private run material cannot be used as public evaluation evidence without release permission.",
     "proofNotes": [
       "A relevant source document does not guarantee that the selected chunk supports an answer.",
-      "The public case explains the implementation approach, not an independently validated research outcome."
+      "The public case explains the implementation approach, not an independently validated research outcome.",
+      "The public interface demo was checked on 18 November 2026: all three sample reports, citation/source inspection, and HTML/Markdown exports worked. These are hand-authored examples, not AI evaluation results."
     ],
     "limitations": "The public account cannot independently establish retrieval quality. Within an approved evaluation, I would compare fixed question sets, inspect citation support and track how evidence selection changes across time periods. Partner review would be required before publishing any detailed findings.",
     "resources": [],
-    "source": "Student-team contribution account and a sanitized conceptual workflow. Public-release permission is required for detailed partner artefacts.",
+    "source": "Student-team contribution account, sanitized conceptual workflow, and an actual capture of the public interface demo on 18 November 2026. Detailed partner artefacts remain private.",
     "period": "2026 · Team capstone",
     "context": "A QUT student team capstone partnering with the Cotton Research and Development Corporation. The aim is to help researchers work across historical scientific reports while retaining evidence provenance.",
     "visual": {
@@ -287,7 +288,17 @@ export const projects = [
       "alt": "A public-safe workflow separates the research question, lead-agent planning, task-specific retrieval, reranking and provenance-linked synthesis.",
       "caption": "Conceptual workflow only. Partner documents, private source, corpus details and unpublished results are withheld."
     },
-    "resumeBullet": "Contributed lead-agent orchestration, task-specific retrieval, cross-encoder reranking and evidence evaluation to a QUT team capstone with CRDC; private partner material remains confidential."
+    "resumeBullet": "Contributed lead-agent orchestration, task-specific retrieval, cross-encoder reranking and evidence evaluation to a QUT team capstone with CRDC; private partner material remains confidential.",
+    "liveDemo": {
+      "url": "https://crdc-research-assistant.jazzyactor4.chatgpt.site/",
+      "image": "crdc-research-demo.jpg",
+      "width": 1440,
+      "height": 1050,
+      "label": "CRDC Research Assistant",
+      "description": "Choose a sample question, inspect its source passages, and export a report. Try the actual deployed interface in your browser.",
+      "scope": "Hand-authored sample reports and synthetic source notes. This public demo does not run AI; original partner research remains private.",
+      "deployment": "The public demo is a static website published on ChatGPT Sites. The original Python retrieval and multi-agent pipeline is a separate application."
+    }
   },
   {
     "slug": "predictive-risk",

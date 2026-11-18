@@ -117,14 +117,14 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved dark portfolio and intact game release passes with 23 pages and 54 protected assets', async t => {
+test('Approved bright portfolio and intact night game release passes with 23 pages and 55 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), gameStyles);
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 54 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 55 });
 });
 
-test('Legacy cream foundation followed by approved dark styling permits white print overrides', async t => {
+test('Legacy cream foundation followed by approved bright styling permits white print overrides', async t => {
   const directory = await fixture(t);
   const print = '\n@media print { :root { color-scheme: light; --bg: #fff; --paper: #fff; --ink: #000; --green: #31584b; } body.portfolio { background-color: #fff !important; } }\n';
   assert.doesNotThrow(() => checkTheme(approvedCSS + print));
@@ -189,35 +189,37 @@ test('Editorial markup must retain the portfolio theme class', async t => {
 });
 
 for (const [name, previous, next] of [
-  ['midnight base', '--bg:#091521', '--bg:#f5f2eb'],
-  ['off-white ink', '--ink:#f1f7f5', '--ink:#202622'],
-  ['mint accent', '--green:#87f5c2', '--green:#31584b'],
-  ['dark color scheme', 'color-scheme:dark', 'color-scheme:light'],
+  ['cool-light base', '--bg:#eff7f6', '--bg:#091521'],
+  ['navy ink', '--ink:#14303e', '--ink:#f1f7f5'],
+  ['teal accent', '--green:#006e62', '--green:#87f5c2'],
+  ['light color scheme', 'color-scheme:light', 'color-scheme:dark'],
 ]) {
   test(`Approved ${name} cannot drift even with rebuilt matching assets and manifest`, async t => {
     const directory = await fixture(t);
     await changeShippedAsset(directory, 'portfolio-brand.css', bytes => Buffer.from(replaceOnce(bytes.toString(), previous, next)));
-    await assert.rejects(checkRelease(directory), /Approved dark|Screen color scheme/);
+    await assert.rejects(checkRelease(directory), /Approved bright portfolio|Screen portfolio color scheme/);
   });
 }
 
 for (const [name, override] of [
   ['later cream root', ':root { --bg: #f5f2eb; }'],
+  ['previous dark root', ':root { --bg: #091521; }'],
   ['later portfolio background-color', 'body.portfolio { background-color: #fff; }'],
   ['important plain-body background', 'body { background-color: #fff !important; }'],
-  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #091521; }'],
+  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #eff7f6; }'],
   ['portfolio-local palette override', 'body.portfolio { --bg: #fff; }'],
-  ['portfolio-local light color scheme', 'body.portfolio { color-scheme: light; }'],
+  ['portfolio-local dark color scheme', 'body.portfolio { color-scheme: dark; }'],
 ]) {
   test(`Screen styling rejects ${name} while assets remain internally consistent`, async t => {
     const directory = await fixture(t);
     await changeShippedAsset(directory, 'portfolio-pages.css', bytes => Buffer.from(bytes.toString() + '\n' + override + '\n'));
-    await assert.rejects(checkRelease(directory), /Approved dark|Screen (?:portfolio background|color scheme)/);
+    await assert.rejects(checkRelease(directory), /Approved bright portfolio|Screen portfolio (?:background|color scheme)/);
   });
 }
 
 for (const [name, file] of [
   ['self-hosted font', 'assets/fonts/InterVariable.woff2'],
+  ['captured CRDC interface demo', 'assets/crdc-research-demo.jpg'],
   ['original city artwork', 'play/assets/after-dark/city-panorama.webp'],
   ['mission runtime module', 'play/missions.js'],
   ['current redesigned résumé PDF', 'assets/Vigo_Dang_Resume_2026_Redesigned.pdf'],
@@ -232,6 +234,7 @@ for (const [name, file] of [
 
 for (const [name, previous, next] of [
   ['font', 'assets/fonts/InterVariable.woff2', 'assets/fonts/intervariable.woff2'],
+  ['CRDC demo screenshot', 'assets/crdc-research-demo.jpg', 'assets/CRDC-Research-Demo.jpg'],
   ['district artwork', 'play/assets/after-dark/district-atlas.webp', 'play/assets/after-dark/District-atlas.webp'],
 ]) {
   test(`Required ${name} filename case must match even on Windows`, async t => {

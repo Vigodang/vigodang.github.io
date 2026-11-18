@@ -38,8 +38,8 @@ export function checkTheme(source) {
     assert(depth === 0, 'Unclosed print stylesheet');
     css = css.slice(0, print.index) + css.slice(end);
   }
-  // The retained foundation declares the old light palette before the approved
-  // dark layer. Check the winning declarations, not every historical value.
+  // The retained foundation declares the old cream palette before the approved
+  // bright portfolio layer. Check the winning declarations, not every historical value.
   const rootRules = [...css.matchAll(/(?:^|[{}])\s*:root\s*\{([^{}]*)\}/g)].map(rule => rule[1]);
   const bodyRules = [...css.matchAll(/(?:^|[{}])\s*(body(?:\.portfolio)?)\s*\{([^{}]*)\}/g)];
   function winning(declarations) {
@@ -50,17 +50,17 @@ export function checkTheme(source) {
         || (important === winner.important && candidate.specificity >= winner.specificity) ? candidate : winner;
     }, null);
   }
-  for (const [token, value] of [['bg', '#091521'], ['ink', '#f1f7f5'], ['green', '#87f5c2'], ['paper', 'var(--bg)']]) {
+  for (const [token, value] of [['bg', '#eff7f6'], ['ink', '#14303e'], ['green', '#006e62'], ['paper', 'var(--bg)']]) {
     const declarations = rootRules.flatMap(rule => [...rule.matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:0})));
     const local = bodyRules.flatMap(rule => [...rule[2].matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved dark ${token} theme token must be ${value}`);
+    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved bright portfolio ${token} theme token must be ${value}`);
   }
   const schemes = rootRules.flatMap(rule => [...rule.matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:0})));
   const localSchemes = bodyRules.flatMap(rule => [...rule[2].matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-  assert(winning(schemes)?.value === 'dark' && (!localSchemes.length || winning(localSchemes)?.value === 'dark'), 'Screen color scheme must remain dark');
+  assert(winning(schemes)?.value === 'light' && (!localSchemes.length || winning(localSchemes)?.value === 'light'), 'Screen portfolio color scheme must remain light');
   const backgrounds = bodyRules
     .flatMap(rule => [...rule[2].matchAll(/\bbackground(?:-color)?\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved midnight token');
+  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved light token');
 }
 
 export async function checkRelease(repo = here) {
@@ -108,5 +108,5 @@ export async function checkRelease(repo = here) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, dark portfolio and game styles, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
+  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, bright portfolio and intact night-game styles, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
 }
