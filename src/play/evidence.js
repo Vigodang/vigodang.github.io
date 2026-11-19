@@ -18,14 +18,19 @@ export const evidenceInventory = Object.freeze({
   },
   'dataset-health': {
     status: 'VERIFIED',
-    label: 'Real application capture + recorded experiment',
+    label: 'Live browser demo + recorded AWS experiment',
     primary: {
-      file: 'dataset-health-report.jpg', width: 599, height: 2881,
-      type: 'Actual interface capture · 17 October 2026', scroll: true,
-      alt: 'Unaltered Dataset Health Analyzer report showing its dataset summary, quality findings, cohort charts and missing-value analysis.',
-      caption: 'Real report capture of a separate showcase file. Scroll the full report, or open the original. This interface snapshot is separate from the controlled AWS experiment.',
+      file: 'dataset-health-demo.jpg', width: 1440, height: 1050,
+      type: 'Actual public demo capture · 19 November 2026',
+      alt: 'Dataset Health Analyzer browser demo showing a synthetic retail report, completeness, duplicate findings and eight report views.',
+      caption: 'Actual deployed interface. Synthetic examples are analysed locally; no AWS queue, worker or account is running in this browser demo.',
     },
-    related: [
+    related: [{
+      file: 'dataset-health-report.jpg', width: 599, height: 2881,
+      type: 'Original application capture · 17 October 2026', scroll: true,
+      alt: 'Original Dataset Health Analyzer application report capture with dataset summary and quality analysis.',
+      caption: 'Retained original application capture, separate from the new browser demo and archived AWS experiment.',
+    },
       {
         file: 'dataset-health-scaling.svg', width: 1200, height: 1200,
         type: 'Recorded AWS experiment · 12 October 2026',
@@ -46,8 +51,8 @@ export const evidenceInventory = Object.freeze({
       },
     ],
     conditions: 'Recorded test conditions: generated CSV inputs with 80,001 data rows, seven columns and all six analysis modules selected. The later interface captures and undeployed correctness fixes are separate snapshots.',
-    gap: 'A new AWS run and a safe public application deployment are unavailable. Gameplay queue activity is an architectural illustration, separate from these recorded observations.',
-    sources: ['docs/refinement-evidence.md', 'src/assets/dataset-health-scaling.csv', 'src/assets/dataset-health-report.jpg'],
+    gap: 'The public demo runs analysis locally and does not exercise AWS authentication, queueing or autoscaling. The archived cloud experiment has not been repeated; game queue activity is a separate educational illustration.',
+    sources: ['docs/refinement-evidence.md', 'src/assets/dataset-health-scaling.csv', 'src/assets/dataset-health-report.jpg', 'src/assets/dataset-health-demo.jpg'],
   },
   'predictive-risk': {
     status: 'VERIFIED',

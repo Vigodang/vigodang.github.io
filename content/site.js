@@ -39,7 +39,13 @@ export const profile = {
   "deepLearningSource": "https://github.com/Vigodang/Drone-Imagery-Semantic-Segmentation/blob/d1d344d2abb1ad25e414a15c41183294c37c1679/libs/models_UNet.py",
   "homeIntro": "I’m Vigo, a QUT data science student in Brisbane. I build Python/SQL applications, AWS workflows and retrieval-based AI.",
   "phone": "0410 107 614",
-  "locationShort": "Brisbane, QLD"
+  "locationShort": "Brisbane, QLD",
+  "positioning": {
+    "role": "Data & Cloud Engineering",
+    "opportunity": "Seeking internship and graduate opportunities",
+    "intro": "I’m Vigo, a QUT Data Science student in Brisbane. I build data tools and cloud workflows, and I’m looking for a team to learn with.",
+    "approach": "I listen first, ask when something is unclear, and use feedback to make the next version better."
+  }
 };
 
 export const projects = [
@@ -135,8 +141,8 @@ export const projects = [
     "cover": "dataset-health.svg",
     "theme": "sage",
     "deck": "Upload a CSV. Queue the analysis. See what needs attention.",
-    "summary": "Authenticated CSV quality analysis with direct S3 uploads, queued Fargate workers and an interactive report. Recorded scaling evidence accompanies the working interface.",
-    "evidenceLabel": "40/40 jobs completed · observed workers 1 → 4 → 1",
+    "summary": "A CSV analysis workflow with a deployed browser demo. My cloud project connects uploads, queued workers, progress tracking and reports.",
+    "evidenceLabel": "Live analysis demo · recorded AWS experiment",
     "contribution": "For my QUT cloud computing project, I developed the CSV analysis workflow and integrated the authenticated control plane, queued workers and reporting interface. The submission reuses earlier course infrastructure; I do not claim every inherited component was written from scratch.",
     "problem": "CSV profiling can take longer than a normal browser request. Uploading data, authorizing a user, tracking a job and running analysis need separate boundaries so the user can see progress while workers handle the compute.",
     "approach": "The React frontend uses Cognito authentication and uploads directly to private S3 storage. API Gateway and Lambda verify ownership and upload state, create DynamoDB job records and enqueue SQS messages. Fargate workers claim queued jobs, read the CSV, write private analysis results and update job state. CloudWatch-backed scaling adjusts worker capacity.",
@@ -159,9 +165,10 @@ export const projects = [
     "proofNotes": [
       "The original measured deployment, 17 October UI captures and 24 October source corrections are different snapshots.",
       "The 24 October correctness fixes were local and were not deployed to the measured AWS baseline.",
-      "Six analysis modules cover profiling, completeness, duplicates, numeric statistics, IQR outliers and correlation."
+      "Six analysis modules cover profiling, completeness, duplicates, numeric statistics, IQR outliers and correlation.",
+      "The public browser demo was checked on 19 November 2026: all eight report views, JSON export and a small synthetic CSV analysis worked. The demo computes locally and does not reproduce the archived AWS load experiment."
     ],
-    "limitations": "The source uses bounded in-memory CSV analysis rather than unlimited streaming. A worker crash after claiming a job can leave it RUNNING; SQS redrive does not repair that state automatically. DynamoDB transitions and SQS submission are not atomic, so exactly-once processing is not claimed. I would add recovery/reconciliation for abandoned jobs and test that path in a newly deployed, versioned environment.",
+    "limitations": "The source uses bounded in-memory CSV analysis rather than unlimited streaming. A worker crash after claiming a job can leave it RUNNING; SQS redrive does not repair that state automatically. DynamoDB transitions and SQS submission are not atomic, so exactly-once processing is not claimed. I would add recovery/reconciliation for abandoned jobs and test that path in a newly deployed, versioned environment. The public demo provides a separate browser-local version with limits of 1 MiB, 5,000 rows and 30 columns. It does not exercise cloud authentication, queueing or autoscaling.",
     "resources": [],
     "source": "Original submission source, accepted 12 October experiment CSV/JSON and unaltered 17 October interface captures. Only aggregate measurements and safe UI views are published.",
     "period": "October 2026",
@@ -234,7 +241,20 @@ export const projects = [
         "caption": "Actual interface capture, 17 October 2026. This is exploratory analysis of a showcase CSV, not a model-quality result or part of the autoscaling load fixture."
       }
     ],
-    "coverCaption": "Actual interface · showcase CSV · 17 October 2026"
+    "coverCaption": "Actual interface · showcase CSV · 17 October 2026",
+    "liveDemo": {
+      "url": "https://vigodang.github.io/dataset-health-analyzer-demo/",
+      "image": "dataset-health-demo.jpg",
+      "width": 1440,
+      "height": 1050,
+      "label": "Dataset Health Analyzer",
+      "category": "Data & cloud workflows",
+      "description": "Explore a dataset report, inspect data-quality findings, or analyse a small CSV on your own device.",
+      "scope": "Real browser-local analysis with synthetic examples. Files stay in the tab; this demo does not connect to AWS.",
+      "deployment": "This public demo is a static React application on GitHub Pages. CSV analysis runs locally in the browser. The original AWS queue, workers and recorded load experiment are separate.",
+      "alt": "Dataset Health Analyzer public demo showing the synthetic retail report, eight report views, completeness and duplicate findings.",
+      "caption": "Actual deployed interface · 19 November 2026 · Synthetic sample analysed locally"
+    }
   },
   {
     "slug": "crdc-capstone",
@@ -297,7 +317,10 @@ export const projects = [
       "label": "CRDC Research Assistant",
       "description": "Choose a sample question, inspect its source passages, and export a report. Try the actual deployed interface in your browser.",
       "scope": "Hand-authored sample reports and synthetic source notes. This public demo does not run AI; original partner research remains private.",
-      "deployment": "The public demo is a static website published on ChatGPT Sites. The original Python retrieval and multi-agent pipeline is a separate application."
+      "deployment": "The public demo is a static website published on ChatGPT Sites. The original Python retrieval and multi-agent pipeline is a separate application.",
+      "category": "Applied AI & research tools",
+      "alt": "CRDC Research Assistant public demo showing a sample report, citations and sample question navigation.",
+      "caption": "Actual deployed interface · 18 November 2026 · Hand-authored sample content"
     }
   },
   {

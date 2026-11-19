@@ -2,6 +2,9 @@
    Page classes keep these refinements separate from the interactive game. */
 
 /* About: one human introduction, followed by generous, purposeful sections. */
+.page-about .label,
+.page-contact :is(.contact-page, .contact-links) > .label,
+:is(.page-resume, .page-experience) .page-intro > .label { font-size: 14px; }
 .page-about .about-intro {
   grid-template-columns: minmax(0, 1fr) minmax(260px, 350px);
   gap: clamp(40px, 8vw, 112px);
@@ -106,7 +109,7 @@
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.8;
 }
 .page-about .skills-section .skill-lines strong {
@@ -119,7 +122,7 @@
   border-radius: 12px;
   background: var(--surface-2);
 }
-.page-about .implementation-note p { font-size: 15px; line-height: 1.8; }
+.page-about .implementation-note p { font-size: 16px; line-height: 1.8; }
 .page-about .implementation-note .text-link { font-size: 14px; }
 .page-about .education > div:last-child {
   padding: 6px 0;
@@ -329,6 +332,7 @@
 .page-case-study .case-meta dt { margin-bottom: 9px; font-size: 12px; }
 .page-case-study .case-meta dd { color: var(--ink); font-size: 15px; line-height: 1.75; }
 .page-case-study .case-visual { padding-bottom: 0; }
+.page-case-study .case-visual > .visual-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 12px; font-size: 14px; color: var(--green); }
 .page-case-study :is(.case-visual, .case-body) .project-figure {
   max-width: 100%;
   margin-inline: 0;
@@ -605,10 +609,10 @@
   .page-about :is(.about-practice, .skills-section, .education) { display: block; padding-bottom: 54px; }
   .page-about .practice-grid li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px 14px; padding: 22px; }
   .page-about .practice-grid h3 { font-size: 19px; }
-  .page-about .practice-grid p { grid-column: 2; font-size: 15px; }
+  .page-about .practice-grid p { grid-column: 2; font-size: 16px; }
   .page-about .section-summary { margin: 22px 0 28px; font-size: 16px; }
   .page-about .skills-section .skill-lines { gap: 26px; }
-  .page-about .skills-section .skill-lines > p { font-size: 15px; }
+  .page-about .skills-section .skill-lines > p { font-size: 16px; }
   .page-about .implementation-note { padding: 22px; }
   .page-about .education > div:last-child { margin-top: 28px; padding: 0; }
   .page-about .education h3 { font-size: 21px; }
@@ -629,10 +633,10 @@
   .page-resume .page-intro .action-row .button { width: 100%; justify-content: center; }
   .page-resume .resume-content > section { display: block; padding: 18px 0 28px; }
   .page-resume .resume-content h2 { font-size: 22px; margin-bottom: 22px; }
-  .page-resume .resume-content p { font-size: 15px; }
+  .page-resume .resume-content p { font-size: 16px; }
   .page-resume .resume-project { margin-bottom: 32px; }
   .page-resume .resume-project h3 .text-link { font-size: 22px; }
-  .page-resume .resume-project li { font-size: 15px; }
+  .page-resume .resume-project li { font-size: 16px; }
   .page-experience .timeline { padding-bottom: 44px; }
   .page-experience .timeline article { display: block; margin-bottom: 20px; padding: 24px; }
   .page-experience .timeline article > .label { margin: 0 0 20px; }
@@ -667,10 +671,10 @@
   .page-case-study .case-body .decisions li:first-child,
   .page-case-study .case-body .decisions li:last-child { padding-left: 32px; }
   .page-case-study .case-body .decisions h3 { font-size: 18px; }
-  .page-case-study .case-body .decisions p { font-size: 15px; }
+  .page-case-study .case-body .decisions p { font-size: 16px; }
   .page-case-study .case-body .evidence-box { padding: 22px; }
   .page-case-study .case-body .evidence-box p { font-size: 16px; }
-  .page-case-study .case-body .evidence-notes { font-size: 15px; }
+  .page-case-study .case-body .evidence-notes { font-size: 16px; }
   .page-case-study .case-body .source-note { padding: 18px; font-size: 13px; }
   .page-case-study .case-next { display: block; padding: 20px 0; margin-bottom: 54px; }
   .page-case-study .case-next .next-title { margin-top: 16px; font-size: 25px; }

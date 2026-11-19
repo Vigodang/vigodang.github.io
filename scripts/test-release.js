@@ -1,4 +1,5 @@
 import test, { before, after } from 'node:test';
+import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { access, cp, mkdtemp, readFile, rename, rm, unlink, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -117,11 +118,11 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved bright portfolio and intact night game release passes with 23 pages and 55 protected assets', async t => {
+test('Approved bright portfolio and intact night game release passes with 23 pages and 56 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), gameStyles);
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 55 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 56 });
 });
 
 test('Legacy cream foundation followed by approved bright styling permits white print overrides', async t => {
@@ -220,6 +221,7 @@ for (const [name, override] of [
 for (const [name, file] of [
   ['self-hosted font', 'assets/fonts/InterVariable.woff2'],
   ['captured CRDC interface demo', 'assets/crdc-research-demo.jpg'],
+  ['captured Dataset interface demo', 'assets/dataset-health-demo.jpg'],
   ['original city artwork', 'play/assets/after-dark/city-panorama.webp'],
   ['mission runtime module', 'play/missions.js'],
   ['current redesigned résumé PDF', 'assets/Vigo_Dang_Resume_2026_Redesigned.pdf'],
@@ -235,6 +237,7 @@ for (const [name, file] of [
 for (const [name, previous, next] of [
   ['font', 'assets/fonts/InterVariable.woff2', 'assets/fonts/intervariable.woff2'],
   ['CRDC demo screenshot', 'assets/crdc-research-demo.jpg', 'assets/CRDC-Research-Demo.jpg'],
+  ['Dataset demo screenshot', 'assets/dataset-health-demo.jpg', 'assets/Dataset-Health-Demo.jpg'],
   ['district artwork', 'play/assets/after-dark/district-atlas.webp', 'play/assets/after-dark/District-atlas.webp'],
 ]) {
   test(`Required ${name} filename case must match even on Windows`, async t => {
@@ -302,4 +305,29 @@ test('A second Pages publisher cannot bypass the checked release workflow', asyn
   const directory = await fixture(t);
   await writeFile(path.join(directory, '.github/workflows/second-publisher.yml'), 'name: Unapproved publisher\njobs:\n  publish:\n    steps:\n      - uses: actions/deploy-pages@v4\n');
   await assert.rejects(checkRelease(directory), /Conflicting Pages publishing workflow/);
+});
+
+// A separately deployed GitHub project site is a navigation destination, not a
+// reason to stop checking missing portfolio pages or required local assets.
+function runLinkCheck(directory) {
+  return spawnSync(process.execPath, [path.join(repo, 'scripts/check.js')], {cwd:directory, encoding:'utf8'});
+}
+test('Exact separately deployed Dataset navigation URL passes the local link check', async t => {
+  const directory = await fixture(t);
+  const result = runLinkCheck(directory);
+  assert.equal(result.status, 0, result.stderr);
+});
+test('An unknown path inside the separate deployment still fails local validation', async t => {
+  const directory = await fixture(t);
+  await edit(directory, 'dist/index.html', html => replaceOnce(html, 'href="https://vigodang.github.io/dataset-health-analyzer-demo/"', 'href="https://vigodang.github.io/dataset-health-analyzer-demo/missing.html"'));
+  const result = runLinkCheck(directory);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /missing href .*dataset-health-analyzer-demo\/missing.html/);
+});
+test('Separate deployment navigation exemption cannot hide a missing image asset', async t => {
+  const directory = await fixture(t);
+  await edit(directory, 'dist/index.html', html => replaceOnce(html, 'src="assets/dataset-health-demo.jpg"', 'src="https://vigodang.github.io/dataset-health-analyzer-demo/"'));
+  const result = runLinkCheck(directory);
+  assert.equal(result.status, 1);
+  assert.match(result.stderr, /missing src .*dataset-health-analyzer-demo/);
 });
