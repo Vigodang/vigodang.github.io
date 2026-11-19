@@ -151,3 +151,58 @@ body{background:#eff7f6}
   .profile-details:not([open]) > :not(summary) { display: block; }
   .profile-details > summary { display: none; }
 }
+
+/* A short, optional introduction to the person and decisions behind the projects. */
+.scene-intro h1 { font-size: clamp(32px, 4.1vw, 61px); white-space: normal; }
+.scene-intro .eyebrow { font-size: 14px; letter-spacing: .06em; }
+.intro-copy { max-width: 42ch; }
+.intro-copy p { font-size: 16px; line-height: 1.65; }
+.walk-guide { display: grid; grid-template-columns: minmax(180px, .6fr) minmax(0, 1.8fr); gap: 24px; padding: 0 0 28px; }
+.walk-guide h2 { margin: 0; color: #006e62; font-size: 16px; line-height: 1.65; font-weight: 600; }
+.walk-guide p { max-width: 82ch; margin: 0; color: #486675; font-size: 16px; line-height: 1.65; }
+.walk-guide strong { color: #14303e; font-weight: 600; }
+.launch-card .micro { font-size: 14px; line-height: 1.5; letter-spacing: .04em; }
+.launch-card h2 { margin: 12px 0; font-size: clamp(26px, 2.5vw, 34px); line-height: 1.12; }
+.launch-card p { margin: 0 0 12px; font-size: 16px; line-height: 1.5; }
+.launch-card .primary-button { min-height: 44px; margin-top: 0; font-size: 16px; }
+.launch-links { margin: 8px 0 0; }
+.launch-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; }
+.launch-tip { margin-top: 8px; }
+.directory-lead p, .profile-origins, .site-end p, .completion-panel p:last-child { font-size: 16px; line-height: 1.65; }
+.profile-heading .eyebrow, .contact-section .eyebrow, .completion-panel .micro { font-size: 14px; letter-spacing: .04em; }
+.profile-origins { color: #486675; margin: 10px 0 20px; }
+.contact-section > div > p:last-child { font-size: 16px; }
+.mission-workstation .mission-human-context { margin: 0 0 20px; color: #d3e5e3; font-size: 16px; line-height: 1.65; }
+.mission-work-style { margin: 0 0 24px; padding: 0 0 20px; border-bottom: 1px solid #35565d; }
+.mission-workstation .mission-work-style-label { margin: 0 0 8px; color: #87f5c2; font-size: 14px; line-height: 1.5; }
+.mission-workstation .mission-work-style > p:last-child { margin: 0; color: #d3e5e3; font-size: 16px; line-height: 1.65; }
+.mission-work-style strong { display: block; margin-bottom: 7px; color: #f1f7f5; font-size: 16px; font-weight: 600; }
+.mission-completion .mission-work-reflection { margin-top: 16px; color: #e3f2ea; font-size: 16px; line-height: 1.65; }
+.mission-work-reflection strong { display: block; margin-bottom: 5px; color: #a8e3c9; font-size: 14px; font-weight: 600; }
+.mission-completion .mission-walk-ending { flex: 1 1 100%; margin: 0; font-size: 16px; line-height: 1.65; }
+.mission-workstation .mission-walk-next { font-size: 16px; }
+.mission-conversation { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; color: #a8e3c9; font-size: 16px; line-height: 1.5; text-decoration: underline; }
+.mission-conversation:hover { color: #f1f7f5; }
+.mission-conversation:focus-visible { outline: 3px solid #f6bc70; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .walk-guide { display: block; padding-bottom: 24px; }
+  .walk-guide h2 { margin-bottom: 8px; }
+  .scene-intro .eyebrow { font-size: 14px; }
+  .intro-copy { max-width: none; }
+  .launch-card { padding: 18px; }
+  .mission-conversation { width: 100%; }
+}
+@media print {
+  .walk-guide { display: none; }
+}
+
+/* Keep the invitation short enough to reach Start on a phone. */
+.scene-intro { padding: 24px 0 16px; }
+.walk-guide { display: block; padding-bottom: 18px; }
+.walk-guide h2, .walk-guide p { display: inline; margin: 0; }
+@media (max-width: 767px) {
+  .scene-intro { padding: 20px 0 14px; }
+  .intro-copy { margin-top: 12px; }
+  .walk-guide { padding-bottom: 16px; }
+  .walk-guide h2 { margin: 0; }
+}

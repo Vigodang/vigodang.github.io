@@ -1,4 +1,4 @@
-// Condensed from the existing verified portfolio; themed stations are fictional navigation.
+// Public project evidence and self-described working habits; the market is fictional navigation.
 export const projects = [
   {
     "title": "AI-Assisted Research Synthesis",
@@ -37,7 +37,12 @@ export const projects = [
     "name": "AI-Assisted Research Synthesis",
     "short": "AI Lab",
     "icon": "retrieval",
-    "x": 440
+    "x": 440,
+    "workStyle": {
+      "label": "Leave room for questions",
+      "reason": "An answer should be possible to question. Check whether the selected passage supports the claim before accepting it.",
+      "reflection": "In the team capstone, I focused on retrieval and evidence handling. I want another person to be able to inspect a source, question the answer and help improve it."
+    }
   },
   {
     "title": "Dataset Health Analyzer",
@@ -57,12 +62,17 @@ export const projects = [
     ],
     "why": "Long-running analysis stays outside the browser request while users can track progress and retrieve results.",
     "evidence": {
-      "label": "40/40 jobs completed · observed workers 1 → 4 → 1",
-      "summary": "The archived 12 October 2026 AWS experiment completed 40/40 jobs; observed workers scaled 1 → 4 → 1, with no failed/cancelled jobs and an empty final dead-letter queue.",
-      "basis": "Original submission source, accepted 12 October experiment CSV/JSON and unaltered 17 October interface captures. Only aggregate measurements and safe UI views are published."
+      "label": "Live browser analysis · archived 40/40 AWS jobs",
+      "summary": "Try the deployed browser demo with synthetic examples or a small local CSV. Separately, the archived 12 October 2026 AWS experiment completed 40/40 jobs; observed workers scaled 1 → 4 → 1.",
+      "basis": "Original submission source, accepted 12 October experiment CSV/JSON and unaltered 17 October interface captures. Only aggregate measurements and safe UI views are published. The public browser demo and actual capture were checked on 19 November 2026; they are separate from the archived cloud experiment."
     },
     "evidenceLimit": "The run was not repeated. Bounded in-memory analysis, abandoned RUNNING jobs and non-atomic DynamoDB/SQS submission remain limits. The 17 October UI and 24 October undeployed fixes are separate snapshots; production readiness is not established.",
     "links": [
+      {
+        "label": "Open live demo",
+        "href": "https://vigodang.github.io/dataset-health-analyzer-demo/",
+        "kind": "live-demo"
+      },
       {
         "label": "Read case study",
         "href": "/projects/dataset-health.html",
@@ -79,7 +89,12 @@ export const projects = [
     "name": "Dataset Health Analyzer",
     "short": "Cloud Hub",
     "icon": "cloud",
-    "x": 1080
+    "x": 1080,
+    "workStyle": {
+      "label": "Make work easy to follow",
+      "reason": "When someone submits a file, they need to know what happens next. This stop is about keeping work moving and making its status visible.",
+      "reflection": "I connected analysis with progress tracking and reporting. The next improvement I would make is stronger recovery when a worker stops."
+    }
   },
   {
     "title": "Predictive Credit Scoring System",
@@ -120,7 +135,12 @@ export const projects = [
     "name": "Predictive Credit Scoring System",
     "short": "Data City",
     "icon": "data",
-    "x": 1720
+    "x": 1720,
+    "workStyle": {
+      "label": "Explain the result",
+      "reason": "A prediction needs context. Explore how data, a model and a recorded result fit together.",
+      "reflection": "I built the application around model context and prediction history. Before relying on its output, I would investigate leakage, calibration and fairness."
+    }
   },
   {
     "title": "Strobe AI",
@@ -161,7 +181,12 @@ export const projects = [
     "name": "Strobe AI",
     "short": "Agent HQ",
     "icon": "agent",
-    "x": 2360
+    "x": 2360,
+    "workStyle": {
+      "label": "Keep responsibilities clear",
+      "reason": "A useful assistant needs clear boundaries. Follow which part of the application owns each step.",
+      "reflection": "I worked on agent integration alongside a separate cloud media pipeline. Identity and access still need a complete multi-user implementation."
+    }
   },
   {
     "title": "Parallel Protein Signature Generation",
@@ -200,7 +225,12 @@ export const projects = [
     "name": "Parallel Protein Signature Generation",
     "short": "Compute",
     "icon": "parallel",
-    "x": 3000
+    "x": 3000,
+    "workStyle": {
+      "label": "Improve it, then check it",
+      "reason": "A faster version is useful only if it keeps the result correct. Compare the work and inspect the output.",
+      "reflection": "I measured runtime against an optimized sequential version and checked output bytes. I would improve the comparison by tightening the test conditions."
+    }
   },
   {
     "title": "Drone Imagery Semantic Segmentation",
@@ -239,20 +269,25 @@ export const projects = [
     "short": "Vision",
     "icon": "vision",
     "x": 3640,
-    "contributionLabel": "Implementation focus"
+    "contributionLabel": "Implementation focus",
+    "workStyle": {
+      "label": "Be clear about what is untested",
+      "reason": "Inspect the inputs and labels, then separate an illustration from an actual model result.",
+      "reflection": "This stop reflects a habit I want to keep: inspect what the available evidence can establish, and say what still needs checking."
+    }
   }
 ];
 export const profile = {
   "name": "Vigo Dang",
   "fullName": "Truong Lieu Dong (Vigo) Dang",
   "headline": "QUT Data Science undergraduate · software, cloud & applied AI",
-  "intro": "I’m Vigo, a QUT Data Science student in Brisbane. I build data applications, AWS workflows and retrieval-based AI, with an emphasis on implementation, evaluation and clear evidence.",
+  "intro": "I’m Vigo, a QUT Data Science student in Brisbane, looking for Data and Cloud Engineering internship or graduate opportunities. I listen carefully, welcome feedback and want to keep improving in a team.",
   "location": "Brisbane, Australia",
   "university": "Queensland University of Technology",
   "degree": "Bachelor of Data Science",
   "minor": "Advanced Computing for Data Science",
   "graduation": "Expected July 2027",
-  "opportunity": "Seeking internship or early-career opportunities in data, analytics, software and cloud engineering.",
+  "opportunity": "Seeking Data and Cloud Engineering internship or graduate opportunities.",
   "skills": [
     {
       "label": "Programming & data",

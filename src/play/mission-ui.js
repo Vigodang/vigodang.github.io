@@ -31,6 +31,19 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
     return element;
   };
   const select = selector => workstation.querySelector(selector);
+  const continueShortWalk = () => {
+    const map = document.getElementById('station-map');
+    const next = map?.querySelectorAll('button')[0];
+    const connect = document.getElementById('open-nearby');
+    if (!next || !connect) {
+      announce('AI Alley is available from the district shortcuts. You can also browse its project below.');
+      return;
+    }
+    const disclosure = map.closest('details');
+    if (disclosure) disclosure.open = true;
+    next.click();
+    if (!connect.disabled) connect.click();
+  };
   const complete = message => {
     if (completed || activeId === null) return;
     completed = true;
@@ -39,8 +52,25 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
     select('.mission-progress-label').textContent = missionDefinitions[activeId].verb;
     announce(message);
     const result = select('.mission-completion');
+    const project = projects.find(item => item.id === activeId);
+    const reflection = typeof project?.workStyle?.reflection === 'string' ? project.workStyle.reflection.trim() : '';
     result.hidden = false;
-    result.innerHTML = `<span class="mission-completion-mark" aria-hidden="true">✓</span><div><h3>System restored</h3><p>${escapeHTML(message)}</p><p class="mission-fineprint">Fictional city progress. The project evidence below has its own scope and limitations.</p></div>`;
+    result.innerHTML = `<span class="mission-completion-mark" aria-hidden="true">✓</span><div><h3>System restored</h3><p>${escapeHTML(message)}</p>${reflection ? `<p class="mission-work-reflection"><strong>What I take from this</strong>${escapeHTML(reflection)}</p>` : ''}<p class="mission-fineprint">Fictional city progress. The project evidence below has its own scope and limitations.</p></div>`;
+    if (activeId === 1) {
+      const next = button('Next: check a source', continueShortWalk, 'mission-walk-next');
+      next.dataset.walkNext = 'ai-alley';
+      result.append(next);
+    }
+    if (activeId === 0) {
+      const ending = document.createElement('p');
+      ending.className = 'mission-walk-ending';
+      ending.textContent = 'That’s the short introduction. Explore more, or tell me what you would approach differently.';
+      const contact = document.createElement('a');
+      contact.className = 'mission-conversation';
+      contact.href = '#contact';
+      contact.textContent = 'Talk about working together';
+      result.append(ending, contact);
+    }
     result.append(button('Replay illustration', () => open(activeId), 'mission-button-secondary'));
     onRestore(activeId);
   };
@@ -62,6 +92,7 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
 
   function evidenceMission(stage) {
     stage.innerHTML = `<div class="mission-scene-kicker">Fictional archive · no partner material</div>
+      <p class="mission-human-context">Someone needs an answer they can check. Read the notes, then keep the supporting source attached.</p>
       <h3>Which fragment supports this claim?</h3>
       <blockquote class="mission-claim">“The market lanterns switch on after dusk.”</blockquote>
       <fieldset class="mission-options"><legend>Select a supporting source</legend>
@@ -90,6 +121,7 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
     let queue = createQueue();
     let loopRunning = false;
     stage.innerHTML = `<div class="mission-scene-kicker">12 toy jobs · no AWS calls or timings</div>
+      <p class="mission-human-context">Imagine a stall owner handling a rush of orders. They need to see what is waiting, what is being handled and what is finished. The same queue idea sits behind my dataset workflow.</p>
       <h3>Orders in. Workers out. Queue drained.</h3>
       <p>Dispatch a batch, scale from one worker to four, then return to one idle worker.</p>
       <div class="mission-worker-bank" aria-label="Illustrative worker count"></div>
@@ -307,6 +339,10 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
     activeId = project.id;
     completed = false;
     const definition = missionDefinitions[activeId];
+    const workStyle = project.workStyle && typeof project.workStyle === 'object' ? project.workStyle : null;
+    const workStyleLabel = typeof workStyle?.label === 'string' ? workStyle.label.trim() : '';
+    const workStyleReason = typeof workStyle?.reason === 'string' ? workStyle.reason.trim() : '';
+    const personalContext = workStyleLabel || workStyleReason ? `<div class="mission-work-style"><p class="mission-work-style-label">A habit I bring to the work</p><p>${workStyleLabel ? `<strong>${escapeHTML(workStyleLabel)}</strong>` : ''}${escapeHTML(workStyleReason)}</p></div>` : '';
     host.hidden = false;
     host.classList.add('mission-dock');
     host.setAttribute('aria-labelledby', 'workstation-title');
@@ -314,7 +350,7 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
       <header class="mission-header"><div><p class="mission-eyebrow">Station ${String(activeId + 1).padStart(2, '0')} / ${escapeHTML(definition.district)}</p><h2 id="workstation-title" tabindex="-1">${escapeHTML(definition.title)}</h2><p class="mission-project-name">${escapeHTML(project.title)}</p></div><div class="mission-close-slot"></div></header>
       <div class="mission-meta"><span class="mission-illustration-label">Educational illustration, not original application</span><span class="mission-progress-label">Awaiting activation</span></div>
       <div class="mission-body"><div class="mission-interaction"><div class="mission-stage"></div><p class="mission-status" role="status" aria-live="polite" aria-atomic="true"></p></div>
-      <aside class="mission-evidence" aria-label="Actual project evidence"><p class="mission-eyebrow">Real project / recorded evidence</p><h3>${escapeHTML(project.evidence.label)}</h3><p>${escapeHTML(project.evidence.summary)}</p><details><summary>Scope and limitations</summary><p>${escapeHTML(project.evidenceLimit)}</p><p><strong>${escapeHTML(project.contributionLabel || 'My contribution')}:</strong> ${escapeHTML(project.contribution)}</p></details><div class="mission-evidence-actions"></div></aside></div>
+      <aside class="mission-evidence" aria-label="Actual project evidence">${personalContext}<p class="mission-eyebrow">Real project / recorded evidence</p><h3>${escapeHTML(project.evidence.label)}</h3><p>${escapeHTML(project.evidence.summary)}</p><details><summary>Scope and limitations</summary><p>${escapeHTML(project.evidenceLimit)}</p><p><strong>${escapeHTML(project.contributionLabel || 'My contribution')}:</strong> ${escapeHTML(project.contribution)}</p></details><div class="mission-evidence-actions"></div></aside></div>
       <div class="mission-completion" hidden></div><footer class="mission-footer"><span>Evidence and career links are available throughout the game.</span><span>Esc closes this workstation.</span></footer></div>`;
     workstation = host.firstElementChild;
     status = select('.mission-status');
@@ -326,6 +362,11 @@ export function createMissionUI({ host, projects, onRestore = () => {}, onSound 
       link.className = 'mission-source-link';
       link.href = study.href;
       link.textContent = study.label;
+      if (study.kind === 'live-demo') {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.setAttribute('aria-label', `${study.label} (opens in a new tab)`);
+      }
       select('.mission-evidence-actions').append(link);
     }
     workstation.addEventListener('keydown', event => {

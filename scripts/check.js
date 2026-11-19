@@ -3,6 +3,9 @@ import path from "node:path";
 
 const root = path.resolve("dist");
 const siteOrigin = "https://vigodang.github.io";
+// This GitHub project Pages app is published by its own repository, outside
+// this portfolio's dist. Exempt only its exact verified navigation URL.
+const separateProjectPages = new Set(["https://vigodang.github.io/dataset-health-analyzer-demo/"]);
 const errors = [];
 const files = [];
 const pages = new Map();
@@ -80,6 +83,7 @@ function resolveReference(value, from) {
 
 async function checkReference(value, from, kind, { fragment = true } = {}) {
   try {
+    if (kind === "href" && separateProjectPages.has(decodeHTML(value).trim())) return null;
     const resolved = resolveReference(value, from);
     if (!resolved) return null;
     checkedReferences++;
