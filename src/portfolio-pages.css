@@ -1,4 +1,4 @@
-/* The bright professional reading layer beside Vigo After Dark.
+/* Reading layouts for the forest, cream and orange portfolio.
    Page classes keep these refinements separate from the interactive game. */
 
 /* About: one human introduction, followed by generous, purposeful sections. */
@@ -28,17 +28,17 @@
 }
 .page-about .about-portrait {
   position: relative;
-  padding: 8px;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: var(--surface);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-2);
   box-shadow: none;
 }
 .page-about .about-photo {
-  border-radius: 11px;
-  background: var(--surface-2);
+  border-radius: 0;
+  background: transparent;
 }
-.page-about .about-photo img { aspect-ratio: 4 / 5; }
+.page-about .about-photo img { aspect-ratio: 1122 / 1402; object-fit: contain; }
 .page-about .about-portrait figcaption {
   padding: 15px 7px 4px;
   color: var(--muted);
@@ -78,7 +78,7 @@
 .page-about .practice-grid li {
   padding: 28px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
 }
 .page-about .practice-grid li > .label { color: var(--green); }
@@ -119,7 +119,7 @@
 .page-about .implementation-note {
   margin-top: 2px;
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-about .implementation-note p { font-size: 16px; line-height: 1.8; }
@@ -144,7 +144,7 @@
   padding: clamp(28px, 4vw, 48px);
   margin-bottom: 80px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-about .opportunity-panel h2 {
@@ -187,7 +187,7 @@
 .page-contact .contact-links {
   padding: clamp(26px, 4vw, 44px);
   border: 0;
-  border-radius: 14px;
+  border-radius: 2px;
   background: var(--surface);
 }
 .page-contact .contact-links > .label { margin: 0 0 20px; }
@@ -292,7 +292,7 @@
   margin-bottom: 28px;
   padding: 28px 32px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
 }
 .page-experience .timeline article > .label { margin: 5px 0 0; color: var(--green); }
@@ -325,7 +325,7 @@
   gap: 28px;
   padding: 26px 30px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-case-study .case-meta > div { padding: 0; border: 0; grid-column: auto; }
@@ -338,7 +338,7 @@
   margin-inline: 0;
   padding: 22px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
 }
 .page-case-study .project-figure .figure-label {
@@ -352,7 +352,7 @@
   margin-inline: auto;
   padding: 8px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 2px;
   background: #f5f2eb;
 }
 .page-case-study .project-figure .visual-stage > img {
@@ -401,7 +401,7 @@
   padding: 10px 12px;
   gap: 12px;
   border: 0;
-  border-radius: 9px;
+  border-radius: 2px;
   color: var(--muted);
   font-size: 13px;
   line-height: 1.6;
@@ -439,7 +439,7 @@
   margin: 0 0 46px;
   padding: 28px 30px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-case-study .case-body > #context { padding: 0; border-radius: 0; background: transparent; }
@@ -467,7 +467,7 @@
   margin: 26px 0;
   padding: 26px 28px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-case-study .case-body .evidence-box p { margin: 0; color: var(--ink); font-size: 17px; line-height: 1.85; }
@@ -476,7 +476,7 @@
   margin: 22px 0 0;
   padding: 20px 22px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 2px;
   background: var(--surface);
   font-size: 13px;
   line-height: 1.85;
@@ -521,14 +521,14 @@
   max-width: 100%;
   padding: 10px;
   border: 0;
-  border-radius: 10px;
+  border-radius: 2px;
   background: var(--surface-2);
 }
 .page-visual .viewer-toolbar button {
   min-width: 44px;
   min-height: 44px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 2px;
   background: var(--surface);
   color: var(--ink);
   font-size: 14px;
@@ -539,7 +539,7 @@
 .page-visual .visual-viewport {
   height: clamp(320px, 68vh, 760px);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 2px;
   background: white;
   overscroll-behavior: contain;
   scrollbar-color: var(--green) var(--surface-2);
@@ -568,7 +568,7 @@
   .page-about .about-facts { grid-template-columns: 1fr; gap: 16px; }
   .page-about .about-facts > div:last-child { grid-column: auto; }
   .page-about .practice-grid { grid-template-columns: 1fr; gap: 14px; }
-  .page-about .practice-grid li { display: grid; grid-template-columns: 28px .8fr 1.2fr; gap: 18px; padding: 24px; }
+  .page-about .practice-grid li { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; padding: 24px; }
   .page-about .practice-grid h3 { margin: 0; }
   .page-about .skills-section .skill-lines { grid-template-columns: 1fr; gap: 25px; }
   .page-about .skills-section .implementation-note { grid-column: auto; }
@@ -597,7 +597,7 @@
   .page-about .about-intro-copy { display: contents; }
   .page-about .about-intro h1 { font-size: clamp(2.65rem, 11vw, 3.4rem); margin: 0; }
   .page-about .about-intro .lede { font-size: 17px; margin: 0; }
-  .page-about .about-portrait { max-width: 340px; padding: 8px; margin: 8px auto; border-radius: 16px; }
+  .page-about .about-portrait { max-width: 340px; padding: 0; margin: 8px auto; border-radius: 2px; }
   .page-about .about-facts { grid-template-columns: 1fr; gap: 18px; }
   .page-about .about-facts > div { display: grid; grid-template-columns: 85px minmax(0, 1fr); gap: 14px; }
   .page-about .about-facts dt { margin-top: 2px; }
@@ -607,23 +607,23 @@
   .page-about .block-heading > p:last-child { font-size: 16px; }
   .page-about :is(.block-heading h2, .skills-section h2, .education h2) { font-size: 32px; }
   .page-about :is(.about-practice, .skills-section, .education) { display: block; padding-bottom: 54px; }
-  .page-about .practice-grid li { grid-template-columns: 26px minmax(0, 1fr); gap: 10px 14px; padding: 22px; }
-  .page-about .practice-grid h3 { font-size: 19px; }
-  .page-about .practice-grid p { grid-column: 2; font-size: 16px; }
+  .page-about .practice-grid li { display: block; padding: 22px; }
+  .page-about .practice-grid h3 { font-size: 19px; margin-bottom: 12px; }
+  .page-about .practice-grid p { font-size: 16px; }
   .page-about .section-summary { margin: 22px 0 28px; font-size: 16px; }
   .page-about .skills-section .skill-lines { gap: 26px; }
   .page-about .skills-section .skill-lines > p { font-size: 16px; }
   .page-about .implementation-note { padding: 22px; }
   .page-about .education > div:last-child { margin-top: 28px; padding: 0; }
   .page-about .education h3 { font-size: 21px; }
-  .page-about .opportunity-panel { display: block; padding: 26px; margin-bottom: 54px; border-radius: 14px; }
+  .page-about .opportunity-panel { display: block; padding: 26px; margin-bottom: 54px; border-radius: 2px; }
   .page-about .opportunity-panel h2 { margin-bottom: 24px; font-size: 32px; }
   .page-about .opportunity-panel > div > p:not(.label) { font-size: 16px; }
   .page-contact .contact-page { padding: 36px 0 64px; }
   .page-contact .contact-page > .label { margin-bottom: 22px; }
   .page-contact .contact-page h1 { font-size: clamp(2.65rem, 11vw, 4rem); margin-bottom: 30px; }
   .page-contact .contact-grid > .lede { font-size: 17px; }
-  .page-contact .contact-links { padding: 24px; border-radius: 14px; }
+  .page-contact .contact-links { padding: 24px; border-radius: 2px; }
   .page-contact .contact-email { font-size: clamp(1rem, 4.3vw, 1.3rem); }
   .page-contact .contact-links .profile-links { grid-template-columns: 1fr; gap: 6px; }
   :is(.page-resume, .page-experience) .page-intro { padding: 36px 0 38px; }
@@ -649,8 +649,8 @@
   .page-case-study .case-meta { grid-template-columns: 1fr; gap: 22px; padding: 24px; }
   .page-case-study .case-meta > div:last-child { grid-column: auto; }
   .page-case-study .case-meta dd { font-size: 14px; }
-  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 16px; border-radius: 12px; }
-  .page-case-study .project-figure .visual-stage { padding: 4px; border-radius: 4px; }
+  .page-case-study :is(.case-visual, .case-body) .project-figure { padding: 16px; border-radius: 2px; }
+  .page-case-study .project-figure .visual-stage { padding: 4px; border-radius: 2px; }
   .page-case-study .project-figure .figure-label { padding-bottom: 14px; font-size: 12px; }
   .page-case-study .project-figure figcaption { font-size: 13px; }
   .page-case-study .project-figure .visual-link { font-size: 13px; }
@@ -687,6 +687,13 @@
   .page-visual .viewer-actions { gap: 12px; }
   .page-visual .viewer-actions .text-link { font-size: 13px; }
 }
+
+/* Regular controls and field labels stay readable at every breakpoint. */
+.page-about .about-facts dt,
+.page-case-study .case-meta dt,
+.page-case-study .project-figure .visual-link,
+.page-visual .viewer-toolbar button,
+.page-visual .viewer-actions .text-link { font-size: .875rem; }
 
 @media print {
   .page-case-study .project-figure.screenshot .visual-stage { max-height: none; overflow: visible; }
