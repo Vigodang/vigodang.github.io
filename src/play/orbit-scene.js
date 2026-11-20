@@ -62,16 +62,16 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     front.fillStyle='#013230';front.fillRect(72,1424,936,2);front.font=font(550,23);front.fillText('LISTEN. ASK. IMPROVE.',72,1480);
     front.textAlign='right';front.fillText('TURN TO EXPLORE',1008,1480);front.textAlign='left';
     const backCanvas=document.createElement('canvas');backCanvas.width=1080;backCanvas.height=1560;
-    const back=backCanvas.getContext('2d');back.fillStyle='#013230';back.fillRect(0,0,1080,1560);
-    back.fillStyle='#ff6a1f';back.fillRect(72,180,72,8);back.fillStyle='#f3ebdd';back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
-    back.font=font(450,30);back.fillStyle='#c2d1c5';back.fillText('The work. The tools. The person.',72,402);
+    const back=backCanvas.getContext('2d');back.fillStyle='#f3ebdd';back.fillRect(0,0,1080,1560);
+    back.fillStyle='#ff6a1f';back.fillRect(72,180,72,8);back.fillStyle='#013230';back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
+    back.font=font(450,30);back.fillStyle='#38574e';back.fillText('The work. The tools. The person.',72,402);
     const rowY=[.7,.15,-.4,-.95,-1.5],cardHeight=4.35,cardWidth=3;
     chapters.forEach((id,index)=>{
-      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle='#66877b';back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
-      back.font=font(500,24);back.fillStyle='#ff6a1f';back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillStyle='#f3ebdd';back.fillText(labels[index],185,y+18);
-      back.fillStyle='#c2d1c5';back.fillRect(967,y-4,16,16);
+      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle='#a8b5a6';back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
+      back.font=font(500,24);back.fillStyle='#6b402c';back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillStyle='#013230';back.fillText(labels[index],185,y+18);
+      back.fillStyle='#ff6a1f';back.fillRect(967,y-4,16,16);
     });
-    back.font=font(450,24);back.fillStyle='#c2d1c5';back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
+    back.font=font(450,24);back.fillStyle='#38574e';back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
     const badge=new THREE.Group();badge.name='portfolio-badge';scene.add(badge);
     const shape=roundedShape(cardWidth,cardHeight,.14),slot=roundedShape(.64,.13,.06);
     slot.curves.forEach(curve=>{for(const property of ['v0','v1','v2','v3'])if(curve[property])curve[property].y+=1.965;});shape.holes.push(slot);
@@ -107,9 +107,10 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const object=mesh(geometry,keep(new THREE.MeshStandardMaterial({map:ribbonTexture(primary),roughness:.87,metalness:0,side:THREE.DoubleSide})));object.frustumCulled=false;object.name=primary?'forest-lanyard':'orange-lanyard';return{object,geometry,primary,segments};
     });
     let width=1,height=1,frame=0,lastTime=0,time=0,disposed=false,contextLost=false;
-    let yaw=0,targetYaw=0,pitch=.015,targetPitch=.015,selected=null;
+    let yaw=0,targetYaw=0,pitch=.015,targetPitch=.015,selected=null,swing=0,swingVelocity=0;
     let paused=false,reduced=reducedMotion,visible=!document.hidden,interacting=false,lastRender=0;
     const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
+    const cardCorners=[];for(const x of [-1.54,1.54])for(const y of [-2.215,2.215])for(const z of [-.11,.11])cardCorners.push(new THREE.Vector3(x,y,z));
     const worldAt=(u,v,z)=>{const direction=new THREE.Vector3(u*2-1,1-v*2,.5).unproject(camera).sub(camera.position).normalize();return camera.position.clone().addScaledVector(direction,(z-camera.position.z)/direction.z);};
     const schedule=()=>{if(!disposed&&!contextLost&&!frame&&visible)frame=requestAnimationFrame(draw);};
     function updateRibbons(){
@@ -119,10 +120,10 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
         // On compact screens the continuous ribbons follow the right margin.
         const points=heroLayout
           ?width<=800
-            ?primary?[worldAt(-.08,-.09,-.65),worldAt(.22,.015,-.5),worldAt(.46,.10,-.35),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.08,-.11,-.9),worldAt(.82,.02,-.7),worldAt(.62,.10,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
-            :primary?[worldAt(.33,-.14,-.65),worldAt(.52,.012,-.5),worldAt(.66,.08,-.35),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.08,-.10,-.9),worldAt(.92,.025,-.7),worldAt(.79,.10,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            ?primary?[worldAt(-.08,-.10,-.65),worldAt(.10,.06,-.6),worldAt(.18,.20,-.5),worldAt(.34,.26,-.4),worldAt(.44,.13,-.25),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.08,-.12,-.9),worldAt(.90,.07,-.75),worldAt(.82,.22,-.6),worldAt(.69,.23,-.4),worldAt(.59,.11,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            :primary?[worldAt(.30,-.14,-.65),worldAt(.50,.025,-.6),worldAt(.55,.16,-.5),worldAt(.63,.22,-.4),worldAt(.70,.14,-.25),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.08,-.10,-.9),worldAt(.98,.08,-.75),worldAt(.91,.25,-.6),worldAt(.79,.11,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
           :width<=800
           ?primary?[worldAt(-.08,-.10,-.65),worldAt(.48,.012,-.5),worldAt(.86,.012,-.4),worldAt(.99,.14,-.35),worldAt(.97,.34,-.2),end.clone().add(new THREE.Vector3(-.07,0,0))]
             :[worldAt(1.07,-.20,-.9),worldAt(1.03,.01,-.8),worldAt(1,.24,-.5),worldAt(.89,.35,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
@@ -132,7 +133,9 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
         let previous=curve.getPoint(0),length=0;
         for(let i=0;i<=segments;i++){
           const t=i/segments,point=curve.getPoint(t),tangent=curve.getTangent(t).normalize();length+=point.distanceTo(previous);previous=point.clone();
-          const side=new THREE.Vector3(tangent.y,-tangent.x,0).normalize();point.z+=(reduced?0:Math.sin(t*8+time*.7)*.09)*Math.sin(Math.PI*t);
+          const side=new THREE.Vector3(tangent.y,-tangent.x,0).normalize(),wave=reduced?0:Math.sin(Math.PI*t),phase=primary?0:1.7;
+          point.x+=Math.sin(t*7+time*1.2+phase)*.10*wave;point.y+=Math.sin(t*9-time*.95+phase)*.09*wave;
+          point.z+=Math.sin(t*8+time*.85+phase)*.17*wave;
           side.applyAxisAngle(tangent,(primary?.2:-.35)+Math.sin(t*Math.PI)*.24+Math.sin(yaw)*.18*t*t);
           for(let j=0;j<2;j++){const vertex=point.clone().addScaledVector(side,(j?1:-1)*.17);positions.setXYZ(i*2+j,vertex.x,vertex.y,vertex.z);uv.setXY(i*2+j,(primary?1:-1)*length/5.6,primary?1-j:j);}
         }
@@ -146,7 +149,11 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       lastRender=stamp;const dt=Math.min(.04,lastTime?(stamp-lastTime)/1000:0);lastTime=stamp;
       const auto=!paused&&!reduced;if(auto)time+=dt;
       const easing=reduced?1:1-Math.exp(-dt*8);yaw+=(targetYaw-yaw)*easing;pitch+=(targetPitch-pitch)*easing;
-      badge.rotation.set(pitch+.035,yaw+(!reduced?Math.sin(time*.35)*.035:0),-.065+(!reduced?Math.sin(time*.7)*.025:0));badge.position.y=!reduced?Math.sin(time*.8)*.028:0;badge.updateMatrixWorld(true);
+      // A damped pendulum follows wind and keeps a short recoil after dragging.
+      if(auto){const wind=(Math.sin(time*1.12)*.14+Math.sin(time*1.93)*.024)*(interacting?.35:1);swingVelocity+=((wind-swing)*20-swingVelocity*4.2)*dt;swing=clamp(swing+swingVelocity*dt,-.20,.20);}
+      const activeSwing=reduced?0:swing;
+      badge.rotation.set(pitch+.035+(!reduced?Math.sin(time*.9)*.018:0),yaw+(!reduced?Math.sin(time*.8)*.09+activeSwing*.18:0),-.035+activeSwing);
+      badge.position.x=activeSwing*1.15;badge.position.y=!reduced?Math.sin(time*.8)*.025-Math.abs(activeSwing)*.05:0;badge.updateMatrixWorld(true);
       nodes.forEach(node=>{node.material.opacity=node.id===selected ? .20 : 0;});
       updateRibbons();renderer.render(scene,camera);
       const normal=new THREE.Vector3(0,0,-1).transformDirection(badge.matrixWorld),facing=normal.dot(camera.position.clone().sub(badge.position).normalize())>.38;
@@ -159,12 +166,16 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       });
       onFrame?.({yaw,pitch,projected,selected});canvas.dataset.yaw=yaw.toFixed(3);canvas.dataset.pitch=pitch.toFixed(3);canvas.dataset.selected=selected||'';
       canvas.dataset.frames=String(Number(canvas.dataset.frames||0)+1);canvas.dataset.face=facing?'back':'front';canvas.dataset.anchors=JSON.stringify(projected);
+      const corners=cardCorners.map(point=>point.clone().applyMatrix4(badge.matrixWorld).project(camera));
+      const xs=corners.map(point=>(point.x*.5+.5)*width),ys=corners.map(point=>(-.5*point.y+.5)*height);
+      canvas.dataset.cardBounds=JSON.stringify({left:Math.min(...xs),right:Math.max(...xs),top:Math.min(...ys),bottom:Math.max(...ys)});
+      canvas.dataset.roll=badge.rotation.z.toFixed(4);canvas.dataset.sway=badge.position.x.toFixed(4);
       const moving=Math.abs(targetYaw-yaw)>.0003||Math.abs(targetPitch-pitch)>.0003;if(auto||moving||interacting)schedule();
     }
     const resize=()=>{
-      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?6.6:7.25):(compact?12.4:8.3);
-      const xOffset=heroLayout?(compact?0:-width*.205):(compact?0:-width*.12);
-      const yOffset=heroLayout?height*(compact?-.045:.02):-height*(compact?.10:.02);
+      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?Math.max(6.9,4.65*height/width):7.5):(compact?12.4:8.3);
+      const xOffset=heroLayout?(compact?0:-width*.22):(compact?0:-width*.12);
+      const yOffset=heroLayout?-height*(compact?.08:.12):-height*(compact?.10:.02);
       camera.aspect=width/height;camera.fov=2*Math.atan(worldHeight/24)*180/Math.PI;camera.setViewOffset(width,height,xOffset,yOffset,width,height);camera.updateProjectionMatrix();renderer.setSize(width,height,false);schedule();
     };
     const observer=new ResizeObserver(resize);observer.observe(stage);let drag=null;const pointers=new Set();
@@ -176,7 +187,8 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     const move=event=>{
       if(!drag||drag.id!==event.pointerId||drag.rejected)return;const totalX=event.clientX-drag.x,totalY=event.clientY-drag.y;
       if(!drag.started){if(Math.hypot(totalX,totalY)<7)return;if(drag.type==='touch'&&Math.abs(totalY)>Math.abs(totalX)*1.15){drag.rejected=true;return;}drag.started=true;interacting=true;stage.classList.add('is-dragging');stage.setPointerCapture(event.pointerId);stage.focus({preventScroll:true});}
-      targetYaw+=(event.clientX-drag.lastX)*.007;if(drag.type!=='touch')targetPitch=clamp(targetPitch+(event.clientY-drag.lastY)*.0018,-.22,.25);
+      const dx=event.clientX-drag.lastX;targetYaw+=dx*.007;if(drag.type!=='touch')targetPitch=clamp(targetPitch+(event.clientY-drag.lastY)*.0018,-.22,.25);
+      if(!paused&&!reduced){swing=clamp(swing+dx*.00065,-.18,.18);swingVelocity=clamp(swingVelocity+dx*.018,-1.2,1.2);}
       drag.lastX=event.clientX;drag.lastY=event.clientY;event.preventDefault();schedule();
     };
     const finish=event=>{
@@ -184,7 +196,7 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const click=!drag.started&&!drag.rejected;drag=null;interacting=false;stage.classList.remove('is-dragging');if(stage.hasPointerCapture?.(event.pointerId))stage.releasePointerCapture(event.pointerId);
       if(click&&event.type==='pointerup'){
         const bounds=canvas.getBoundingClientRect();pointer.set((event.clientX-bounds.left)/bounds.width*2-1,-(event.clientY-bounds.top)/bounds.height*2+1);raycaster.setFromCamera(pointer,camera);
-        const hit=raycaster.intersectObjects(interactables,false)[0];if(hit?.object.userData.chapter)onSelect?.(hit.object.userData.chapter);else if(hit?.object.userData.action==='flip'){targetYaw+=Math.PI;schedule();}
+        const hit=raycaster.intersectObjects(interactables,false)[0];if(hit?.object.userData.chapter)onSelect?.(hit.object.userData.chapter);else if(hit?.object.userData.action==='flip'){targetYaw+=Math.PI;if(!paused&&!reduced)swingVelocity=clamp(swingVelocity+.5,-1.2,1.2);schedule();}
       }schedule();
     };
     const keydown=event=>{
@@ -199,8 +211,8 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     resize();canvas.dataset.ready='true';canvas.dataset.scene='badge';
     return{
       focus(id){if(!chapters.includes(id))return;selected=id;targetYaw=nearest(Math.PI,targetYaw);targetPitch=.015;schedule();},
-      reset(){yaw=((yaw+Math.PI)%TAU+TAU)%TAU-Math.PI;targetYaw=0;targetPitch=.015;selected=null;time=0;schedule();},
-      turn(){targetYaw+=Math.PI/4;schedule();},setPaused(value){paused=value;lastTime=0;schedule();},setReducedMotion(value){reduced=value;lastTime=0;if(value){yaw=targetYaw;pitch=targetPitch;}schedule();},
+      reset(){yaw=((yaw+Math.PI)%TAU+TAU)%TAU-Math.PI;targetYaw=0;targetPitch=.015;selected=null;time=0;swing=0;swingVelocity=0;schedule();},
+      turn(){targetYaw+=Math.PI/4;if(!paused&&!reduced)swingVelocity=clamp(swingVelocity+.35,-1.2,1.2);schedule();},setPaused(value){paused=value;if(value)swingVelocity=0;lastTime=0;schedule();},setReducedMotion(value){reduced=value;lastTime=0;if(value){yaw=targetYaw;pitch=targetPitch;swing=0;swingVelocity=0;}schedule();},
       dispose(){disposed=true;if(frame)cancelAnimationFrame(frame);observer.disconnect();stage.removeEventListener('pointerdown',down);stage.removeEventListener('pointermove',move);stage.removeEventListener('pointerup',finish);stage.removeEventListener('pointercancel',finish);stage.removeEventListener('lostpointercapture',finish);stage.removeEventListener('keydown',keydown);document.removeEventListener('visibilitychange',visibility);canvas.removeEventListener('webglcontextlost',lost);resources.forEach(resource=>resource.dispose?.());renderer.dispose();}
     };
   }catch(error){resources.forEach(resource=>resource.dispose?.());renderer?.dispose();throw error;}
