@@ -62,16 +62,16 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     front.fillStyle='#013230';front.fillRect(72,1424,936,2);front.font=font(550,23);front.fillText('LISTEN. ASK. IMPROVE.',72,1480);
     front.textAlign='right';front.fillText('TURN TO EXPLORE',1008,1480);front.textAlign='left';
     const backCanvas=document.createElement('canvas');backCanvas.width=1080;backCanvas.height=1560;
-    const back=backCanvas.getContext('2d');back.fillStyle='#f3ebdd';back.fillRect(0,0,1080,1560);
-    back.fillStyle='#ff6a1f';back.fillRect(72,180,72,8);back.fillStyle='#013230';back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
-    back.font=font(450,30);back.fillStyle='#38574e';back.fillText('The work. The tools. The person.',72,402);
+    const back=backCanvas.getContext('2d');back.fillStyle='#8d4e34';back.fillRect(0,0,1080,1560);
+    back.fillStyle='#ff6a1f';back.fillRect(72,180,72,8);back.fillStyle='#f3ebdd';back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
+    back.font=font(450,30);back.fillText('The work. The tools. The person.',72,402);
     const rowY=[.7,.15,-.4,-.95,-1.5],cardHeight=4.35,cardWidth=3;
     chapters.forEach((id,index)=>{
-      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle='#a8b5a6';back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
-      back.font=font(500,24);back.fillStyle='#6b402c';back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillStyle='#013230';back.fillText(labels[index],185,y+18);
+      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle='#c2987f';back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
+      back.font=font(500,24);back.fillStyle='#f3ebdd';back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillText(labels[index],185,y+18);
       back.fillStyle='#ff6a1f';back.fillRect(967,y-4,16,16);
     });
-    back.font=font(450,24);back.fillStyle='#38574e';back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
+    back.font=font(450,24);back.fillStyle='#f3ebdd';back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
     const badge=new THREE.Group();badge.name='portfolio-badge';scene.add(badge);
     const shape=roundedShape(cardWidth,cardHeight,.14),slot=roundedShape(.64,.13,.06);
     slot.curves.forEach(curve=>{for(const property of ['v0','v1','v2','v3'])if(curve[property])curve[property].y+=1.965;});shape.holes.push(slot);
@@ -94,8 +94,8 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     });
     function ribbonTexture(primary){
       const textile=document.createElement('canvas');textile.width=2048;textile.height=128;
-      const ctx=textile.getContext('2d');ctx.fillStyle=primary?(heroLayout?'#f3ebdd':'#013230'):'#ff6a1f';ctx.fillRect(0,0,2048,128);
-      ctx.fillStyle=primary?'#ff6a1f':'#013230';ctx.fillRect(0,6,2048,3);ctx.fillRect(0,119,2048,3);
+      const ctx=textile.getContext('2d');ctx.fillStyle=primary?(heroLayout?'#c4b49b':'#013230'):'#bc704c';ctx.fillRect(0,0,2048,128);
+      ctx.fillStyle=primary?'#8d4e34':'#013230';ctx.fillRect(0,6,2048,3);ctx.fillRect(0,119,2048,3);
       ctx.fillStyle=primary&&!heroLayout?'#f3ebdd':'#013230';ctx.font=font(650,42);ctx.textBaseline='middle';
       for(let x=30;x<2048;x+=850)ctx.fillText('VIGO DANG / DATA + CLOUD',x,66);
       ctx.fillStyle='#fff';ctx.globalAlpha=.055;for(let y=0;y<128;y+=4)ctx.fillRect(0,y,2048,1);ctx.globalAlpha=1;
@@ -117,13 +117,13 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const end=attachment.getWorldPosition(new THREE.Vector3());
       ribbons.forEach(({geometry,primary,segments})=>{
         // Leave the heading and hiring copy clear without opaque HTML masks.
-        // On compact screens the continuous ribbons follow the right margin.
+        // Each strap makes one shallow bend into the clip, without looping back.
         const points=heroLayout
           ?width<=800
-            ?primary?[worldAt(-.08,-.10,-.65),worldAt(.10,.06,-.6),worldAt(.18,.20,-.5),worldAt(.34,.26,-.4),worldAt(.44,.13,-.25),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.08,-.12,-.9),worldAt(.90,.07,-.75),worldAt(.82,.22,-.6),worldAt(.69,.23,-.4),worldAt(.59,.11,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
-            :primary?[worldAt(.30,-.14,-.65),worldAt(.50,.025,-.6),worldAt(.55,.16,-.5),worldAt(.63,.22,-.4),worldAt(.70,.14,-.25),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.08,-.10,-.9),worldAt(.98,.08,-.75),worldAt(.91,.25,-.6),worldAt(.79,.11,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            ?primary?[worldAt(-.04,-.025,-.65),worldAt(.15,.025,-.5),end.clone().add(new THREE.Vector3(-.7,.16,-.12)),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.02,-.045,-.9),worldAt(.82,.025,-.65),end.clone().add(new THREE.Vector3(.8,.2,-.1)),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            :primary?[worldAt(.49,-.055,-.65),worldAt(.58,.065,-.5),end.clone().add(new THREE.Vector3(-.7,.16,-.12)),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.015,-.04,-.9),worldAt(.89,.035,-.65),end.clone().add(new THREE.Vector3(.8,.2,-.1)),end.clone().add(new THREE.Vector3(.07,0,-.035))]
           :width<=800
           ?primary?[worldAt(-.08,-.10,-.65),worldAt(.48,.012,-.5),worldAt(.86,.012,-.4),worldAt(.99,.14,-.35),worldAt(.97,.34,-.2),end.clone().add(new THREE.Vector3(-.07,0,0))]
             :[worldAt(1.07,-.20,-.9),worldAt(1.03,.01,-.8),worldAt(1,.24,-.5),worldAt(.89,.35,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
@@ -134,10 +134,10 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
         for(let i=0;i<=segments;i++){
           const t=i/segments,point=curve.getPoint(t),tangent=curve.getTangent(t).normalize();length+=point.distanceTo(previous);previous=point.clone();
           const side=new THREE.Vector3(tangent.y,-tangent.x,0).normalize(),wave=reduced?0:Math.sin(Math.PI*t),phase=primary?0:1.7;
-          point.x+=Math.sin(t*7+time*1.2+phase)*.10*wave;point.y+=Math.sin(t*9-time*.95+phase)*.09*wave;
-          point.z+=Math.sin(t*8+time*.85+phase)*.17*wave;
-          side.applyAxisAngle(tangent,(primary?.2:-.35)+Math.sin(t*Math.PI)*.24+Math.sin(yaw)*.18*t*t);
-          for(let j=0;j<2;j++){const vertex=point.clone().addScaledVector(side,(j?1:-1)*.17);positions.setXYZ(i*2+j,vertex.x,vertex.y,vertex.z);uv.setXY(i*2+j,(primary?1:-1)*length/5.6,primary?1-j:j);}
+          point.x+=Math.sin(t*7+time*1.2+phase)*.025*wave;point.y+=Math.sin(t*9-time*.95+phase)*.018*wave;
+          point.z+=Math.sin(t*8+time*.85+phase)*.045*wave;
+          side.applyAxisAngle(tangent,(primary?.2:-.35)+Math.sin(t*Math.PI)*.12+Math.sin(yaw)*.18*t*t);
+          for(let j=0;j<2;j++){const vertex=point.clone().addScaledVector(side,(j?1:-1)*.15);positions.setXYZ(i*2+j,vertex.x,vertex.y,vertex.z);uv.setXY(i*2+j,(primary?1:-1)*length/5.6,primary?1-j:j);}
         }
         positions.needsUpdate=true;uv.needsUpdate=true;geometry.computeVertexNormals();
       });
@@ -173,9 +173,9 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const moving=Math.abs(targetYaw-yaw)>.0003||Math.abs(targetPitch-pitch)>.0003;if(auto||moving||interacting)schedule();
     }
     const resize=()=>{
-      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?Math.max(6.9,4.65*height/width):7.5):(compact?12.4:8.3);
+      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?Math.max(6.5,4.65*height/width):(width<=1100?6.5:6.6)):(compact?12.4:8.3);
       const xOffset=heroLayout?(compact?0:-width*.22):(compact?0:-width*.12);
-      const yOffset=heroLayout?-height*(compact?.08:.12):-height*(compact?.10:.02);
+      const yOffset=heroLayout?-height*(compact?.035:.045):-height*(compact?.10:.02);
       camera.aspect=width/height;camera.fov=2*Math.atan(worldHeight/24)*180/Math.PI;camera.setViewOffset(width,height,xOffset,yOffset,width,height);camera.updateProjectionMatrix();renderer.setSize(width,height,false);schedule();
     };
     const observer=new ResizeObserver(resize);observer.observe(stage);let drag=null;const pointers=new Set();
