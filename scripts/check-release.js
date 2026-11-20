@@ -2,7 +2,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { projects } from '../content/site.js';
-import { assetHashes, stylesheets, gameStylesheets } from './release-assets.js';
+import { assetHashes, stylesheets, explorerStylesheets } from './release-assets.js';
 
 const here = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const normalize = value => value.replaceAll('\r\n', '\n');
@@ -63,6 +63,30 @@ export function checkTheme(source) {
   assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved cream token');
 }
 
+export function checkExplorer(source) {
+  const html = source.replace(/<!--[\s\S]*?-->/g, '');
+  const attributes = tag => Object.fromEntries([...tag.matchAll(/\s([^\s=<>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
+    .map(match => [match[1].toLowerCase(), match[2] ?? match[3] ?? match[4] ?? '']));
+  const scriptTags = [...html.matchAll(/<script\b[^>]*>/gi)].map(match => attributes(match[0]));
+  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)]
+    .map(match => ({attributes:attributes(match[1]), body:match[2]}));
+  assert(!scriptTags.some(script => /(?:^|\/)(?:game|after-dark-game)\.js(?:[?#]|$)/i.test(script.src || '')),
+    'play/index.html: legacy game engine must remain dormant');
+  assert(scriptTags.length === 1 && scripts.length === 1 && scripts[0].attributes.src === 'orbit.js'
+    && scripts[0].attributes.type === 'module' && !scripts[0].body.trim(),
+  'play/index.html: expected only the orbit.js module entry at its exact relative path');
+  const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+  const tags = [...markup.matchAll(/<([a-z][\w-]*)\b[^>]*>/gi)].map(match => ({name:match[1].toLowerCase(), attributes:attributes(match[0])}));
+  assert(tags.some(tag => tag.name === 'canvas' && tag.attributes.id === 'orbit-canvas'), 'play/index.html: missing orbit canvas');
+  assert(tags.some(tag => tag.attributes.id === 'orbit-stage'), 'play/index.html: missing orbit stage');
+  assert(tags.some(tag => tag.name === 'dialog' && tag.attributes.id === 'chapter-dialog'), 'play/index.html: missing chapter dialog');
+  const chapters = [...markup.matchAll(/<nav\b[^>]*>([\s\S]*?)<\/nav\s*>/gi)]
+    .flatMap(match => [...match[1].matchAll(/<a\b[^>]*>/gi)].map(match => attributes(match[0])))
+    .filter(tag => 'data-chapter' in tag);
+  assert(chapters.length === 5, 'play/index.html: expected five chapter navigation anchors');
+  assert(!tags.some(tag => tag.attributes.id === 'game' || tag.attributes.id === 'start-game'), 'play/index.html: legacy gameplay controls must remain dormant');
+}
+
 export async function checkRelease(repo = here) {
   const dist = path.join(repo, 'dist');
   const hashes = await assetHashes(dist);
@@ -84,11 +108,12 @@ export async function checkRelease(repo = here) {
   for (const route of routes) {
     const html = await readFile(path.join(dist, route), 'utf8');
     const linked = [...html.matchAll(/<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="([^"]+)"[^>]*>/gi)].map(match => match[1]);
-    const isGame = route === 'play/index.html';
-    const prefix = !isGame && route.includes('/') ? '../' : '';
-    const expected = (isGame ? gameStylesheets : stylesheets).map(file => prefix + file);
-    assert(JSON.stringify(linked) === JSON.stringify(expected), `${route}: expected ${isGame ? 'game' : 'portfolio'} stylesheets in approved order with exact relative paths`);
-    if (!isGame) assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
+    const isExplorer = route === 'play/index.html';
+    const prefix = !isExplorer && route.includes('/') ? '../' : '';
+    const expected = (isExplorer ? explorerStylesheets : stylesheets).map(file => prefix + file);
+    assert(JSON.stringify(linked) === JSON.stringify(expected), `${route}: expected ${isExplorer ? 'explorer' : 'portfolio'} stylesheets in approved order with exact relative paths`);
+    if (isExplorer) checkExplorer(html);
+    else assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
     if (route === 'index.html' || route === 'about.html') {
       const portrait = [...html.matchAll(/<picture\b([^>]*)>([\s\S]*?)<\/picture>/gi)]
         .find(match => /(?:^|\s)class="([^"]*)"/i.exec(match[1])?.[1].split(/\s+/).includes('portrait-picture'));
@@ -114,5 +139,5 @@ export async function checkRelease(repo = here) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, forest/cream portfolio and intact night-game styles, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
+  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, forest/cream portfolio, orbit explorer and retained legacy files, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
 }

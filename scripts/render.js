@@ -51,7 +51,7 @@ function shell(route, title, description, body, active='') {
   <main id="main" tabindex="-1">${body}</main>
   <footer class="site-footer">
     <div class="wrap"><div class="footer-invitation" data-reveal><p class="label">Data & Cloud Engineering · Internship / Graduate</p><h2>Good work starts<br>with a conversation.</h2>${link(pre+'contact.html','Let’s talk','button')}</div>
-    <div class="footer-bottom"><p>${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}<a class="text-link footer-experiment" href="/play/">After Dark <span>· interactive experiment</span></a></div></div></div>
+    <div class="footer-bottom"><p>${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}<a class="text-link footer-experiment" href="/play/">After Dark <span>· interactive ID badge</span></a></div></div></div>
   </footer>
 </body>
 </html>

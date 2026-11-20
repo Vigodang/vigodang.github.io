@@ -2,6 +2,7 @@ import { cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { render } from "./render.js";
+import { renderOrbit } from "./render-orbit.js";
 import { assetHashes } from "./release-assets.js";
 
 const root = path.resolve(".");
@@ -13,6 +14,7 @@ if (!existsSync(src)) {
 }
 
 await render();
+await renderOrbit();
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(src, dist, { recursive: true });
