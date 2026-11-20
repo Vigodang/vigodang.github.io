@@ -120,10 +120,10 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
         // Each strap makes one shallow bend into the clip, without looping back.
         const points=heroLayout
           ?width<=800
-            ?primary?[worldAt(-.04,-.025,-.65),worldAt(.15,.025,-.5),worldAt(.34,.08,-.3),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.02,-.045,-.9),worldAt(.82,.025,-.65),worldAt(.65,.08,-.3),end.clone().add(new THREE.Vector3(.07,0,-.035))]
-            :primary?[worldAt(.49,-.055,-.65),worldAt(.58,.065,-.5),worldAt(.67,.12,-.3),end.clone().add(new THREE.Vector3(-.07,0,0))]
-              :[worldAt(1.015,-.04,-.9),worldAt(.89,.035,-.65),worldAt(.81,.11,-.3),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            ?primary?[worldAt(-.04,-.025,-.65),worldAt(.15,.025,-.5),end.clone().add(new THREE.Vector3(-.7,.16,-.12)),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.02,-.045,-.9),worldAt(.82,.025,-.65),end.clone().add(new THREE.Vector3(.8,.2,-.1)),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            :primary?[worldAt(.49,-.055,-.65),worldAt(.58,.065,-.5),end.clone().add(new THREE.Vector3(-.7,.16,-.12)),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.015,-.04,-.9),worldAt(.89,.035,-.65),end.clone().add(new THREE.Vector3(.8,.2,-.1)),end.clone().add(new THREE.Vector3(.07,0,-.035))]
           :width<=800
           ?primary?[worldAt(-.08,-.10,-.65),worldAt(.48,.012,-.5),worldAt(.86,.012,-.4),worldAt(.99,.14,-.35),worldAt(.97,.34,-.2),end.clone().add(new THREE.Vector3(-.07,0,0))]
             :[worldAt(1.07,-.20,-.9),worldAt(1.03,.01,-.8),worldAt(1,.24,-.5),worldAt(.89,.35,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
