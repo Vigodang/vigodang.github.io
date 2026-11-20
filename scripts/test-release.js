@@ -132,12 +132,43 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved portfolio and orbit explorer retain legacy source with 23 pages and 67 protected assets', async t => {
+test('Approved badge homepage and orbit explorer retain legacy source with 23 pages and 68 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), explorerStyles);
   await Promise.all(['src', 'dist'].flatMap(tree => gameStyles.map(file => access(path.join(directory, tree, 'play', file)))));
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 67 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 68 });
+});
+
+for (const [name, transform] of [
+  ['missing module', html => html.replace(/<script\b(?=[^>]*\ssrc="hero-badge\.js")[^>]*>[\s\S]*?<\/script\s*>/i, '')],
+  ['parent-relative module', html => replaceOnce(html, 'src="hero-badge.js"', 'src="../hero-badge.js"')],
+  ['classic script', html => {
+    const entry = html.match(/<script\b(?=[^>]*\ssrc="hero-badge\.js")[^>]*>[\s\S]*?<\/script\s*>/i)?.[0];
+    assert(entry, 'Fixture is missing its homepage badge module');
+    return replaceOnce(html, entry, replaceOnce(entry, 'type="module"', 'type="text/javascript"'));
+  }],
+  ['duplicate module', html => replaceOnce(html, '</head>', '<script type="module" src="hero-badge.js"></script></head>')],
+]) {
+  test(`Homepage badge rejects ${name}`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/index.html', transform);
+    await assert.rejects(checkRelease(directory), /expected only the hero-badge\.js module/);
+  });
+}
+
+for (const id of ['hero-badge-canvas', 'hero-badge-stage', 'hero-badge-dialog']) {
+  test(`Homepage badge retains its ${id} element`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/index.html', html => replaceOnce(html, `id="${id}"`, `id="missing-${id}"`));
+    await assert.rejects(checkRelease(directory), new RegExp(`missing or duplicate ${id}`));
+  });
+}
+
+test('Homepage badge runtime cannot leak into another editorial page', async t => {
+  const directory = await fixture(t);
+  await edit(directory, 'dist/about.html', html => replaceOnce(html, '</head>', '<script type="module" src="hero-badge.js"></script></head>'));
+  await assert.rejects(checkRelease(directory), /about\.html: the badge hero must remain homepage-only/);
 });
 
 test('Retained foundation followed by approved forest/cream styling permits white print overrides', async t => {
@@ -321,6 +352,7 @@ for (const [name, override] of [
 }
 
 for (const [name, file] of [
+  ['homepage badge module', 'hero-badge.js'],
   ['self-hosted font', 'assets/fonts/InterVariable.woff2'],
   ['captured CRDC interface demo', 'assets/crdc-research-demo.jpg'],
   ['captured Dataset interface demo', 'assets/dataset-health-demo.jpg'],
@@ -348,6 +380,7 @@ for (const [name, file] of [
 }
 
 for (const [name, previous, next] of [
+  ['homepage badge module', 'hero-badge.js', 'Hero-Badge.js'],
   ['font', 'assets/fonts/InterVariable.woff2', 'assets/fonts/intervariable.woff2'],
   ['CRDC demo screenshot', 'assets/crdc-research-demo.jpg', 'assets/CRDC-Research-Demo.jpg'],
   ['Dataset demo screenshot', 'assets/dataset-health-demo.jpg', 'assets/Dataset-Health-Demo.jpg'],

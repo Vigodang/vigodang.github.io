@@ -9,7 +9,7 @@ export const gameStylesheets = ['styles.css', 'briefing.css', 'missions.css', 'e
 export const explorerStylesheets = ['orbit.css'];
 const gameModules = ['game.js', 'after-dark-game.js', 'after-dark-world.js', 'audio-content.js', 'audio-engine.js',
   'briefing.js', 'content.js', 'evidence.js', 'icons.js', 'mission-ui.js', 'missions.js', 'physics.js', 'presentation.js', 'world-art.js'];
-export const releaseAssets = [...stylesheets, 'script.js',
+export const releaseAssets = [...stylesheets, 'script.js', 'hero-badge.js',
   'assets/vigo-portrait-400.webp', 'assets/vigo-portrait-640.webp',
   'assets/vigo-portrait-960.webp', 'assets/vigo-portrait-640.jpg', 'assets/vigo-portrait-cutout.png', 'assets/vigo-portrait-cutout.webp',
   'assets/crdc-research-demo.jpg', 'assets/dataset-health-demo.jpg', 'assets/strobe-ai-demo.jpg', profile.pdf,
