@@ -56,22 +56,22 @@ export const orbitContent = {
           height: 1050
         },
         {
-          label: 'Strobe social + assistant',
-          description: 'Create a sample photo post, then ask the assistant to find it.',
-          scope: 'Simulated sign-in and template replies. No live AI or AWS.',
-          href: 'https://vigodang.github.io/strobe-ai-demo/#/login',
-          image: '../assets/strobe-ai-demo.jpg',
-          imageAlt: 'Actual Strobe Assistant public demo showing a sample beach-photo result.',
-          width: 1440,
-          height: 1050
-        },
-        {
           label: 'Research synthesis',
           description: 'Choose a sample question and inspect its source passages.',
           scope: 'Hand-authored samples. No live AI; partner research stays private.',
           href: 'https://crdc-research-assistant.jazzyactor4.chatgpt.site/',
           image: '../assets/crdc-research-demo.jpg',
           imageAlt: 'Actual Research Assistant public demo showing sample content and source references.',
+          width: 1440,
+          height: 1050
+        },
+        {
+          label: 'Strobe social + assistant',
+          description: 'Create a sample photo post, then ask the assistant to find it.',
+          scope: 'Simulated sign-in and template replies. No live AI or AWS.',
+          href: 'https://vigodang.github.io/strobe-ai-demo/#/login',
+          image: '../assets/strobe-ai-demo.jpg',
+          imageAlt: 'Actual Strobe Assistant public demo showing a sample beach-photo result.',
           width: 1440,
           height: 1050
         }

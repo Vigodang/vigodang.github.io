@@ -8,8 +8,8 @@ const link = (href, text, cls='text-link') => `<a class="${cls}" href="${esc(hre
 const stamp = '';
 const pdfLink = (prefix, cls='') => p.pdf ? `<a class="${cls}" href="${esc(prefix+p.pdf)}" download>Download résumé PDF ${arrow}</a>` : '';
 const projectFor = slug => projects.find(project => project.slug === slug);
-const orderedProjects = ['dataset-health','strobe-ai','crdc-capstone','predictive-risk','parallel-protein','graph-optimisation'].map(projectFor);
-const projectPath = project => ['dataset-health','strobe-ai'].includes(project.slug) ? 'Data & cloud workflows' : ['crdc-capstone','predictive-risk'].includes(project.slug) ? 'Applied AI & research tools' : 'Software foundations';
+const orderedProjects = ['dataset-health','crdc-capstone','strobe-ai','predictive-risk','parallel-protein','graph-optimisation'].map(projectFor);
+const projectPath = project => project.slug==='dataset-health' ? 'Featured · Data & Cloud' : project.slug==='strobe-ai' ? 'Data & cloud workflows' : ['crdc-capstone','predictive-risk'].includes(project.slug) ? 'Applied AI & research tools' : 'Software foundations';
 
 function shell(route, title, description, body, active='') {
   const pre = route.includes('/') ? '../' : '';
@@ -110,7 +110,7 @@ function demoFeature(pr) {
    'crdc-capstone': ['Start with the source.', 'Explore a research workflow built around questions, evidence and traceability.', 'Synthetic research demo · example responses']
  }[pr.slug];
  const title=pr.slug==='crdc-capstone'?'CRDC Research Assistant':pr.title;
- return `<article class="project-showcase showcase-${esc(pr.slug)}" data-reveal><div class="showcase-copy"><p class="label">${esc(d.category)}</p><h3><a href="projects/${pr.slug}.html">${esc(title)}</a></h3><p class="showcase-idea">${esc(copy[0])}</p><p class="showcase-description">${esc(copy[1])}</p><div class="demo-actions">${link(d.url,'Try the demo','button')}${link('projects/'+pr.slug+'.html','Read the case study')}</div><p class="demo-scope">${esc(copy[2])}</p></div><a class="showcase-preview" href="${esc(d.url)}" aria-label="Try the ${esc(pr.title)} live demo"><div class="browser-top" aria-hidden="true"><span></span><span></span><span></span><span class="browser-title">${esc(d.label)}</span></div><img src="assets/${esc(d.image)}" width="${d.width}" height="${d.height}" alt="${esc(d.alt)}" loading="lazy" decoding="async"></a></article>`;
+ return `<article class="project-showcase showcase-${esc(pr.slug)}" data-reveal><div class="showcase-copy"><p class="label">${esc(pr.slug==='dataset-health'?'Featured · Data & Cloud':d.category)}</p><h3><a href="projects/${pr.slug}.html">${esc(title)}</a></h3><p class="showcase-idea">${esc(copy[0])}</p><p class="showcase-description">${esc(copy[1])}</p><div class="demo-actions">${link(d.url,'Try the demo','button')}${link('projects/'+pr.slug+'.html','Read the case study')}</div><p class="demo-scope">${esc(copy[2])}</p></div><a class="showcase-preview" href="${esc(d.url)}" aria-label="Try the ${esc(pr.title)} live demo"><div class="browser-top" aria-hidden="true"><span></span><span></span><span></span><span class="browser-title">${esc(d.label)}</span></div><img src="assets/${esc(d.image)}" width="${d.width}" height="${d.height}" alt="${esc(d.alt)}" loading="lazy" decoding="async"></a></article>`;
 }
 
 function portrait(cls, sizes) {
@@ -127,7 +127,7 @@ function home() {
     <div class="hero-baseline"><span>Listen. Ask. Improve.</span><span>QUT · Graduating ${esc(p.graduation)}</span></div>
   </div></section>
   <dialog id="hero-badge-dialog" aria-labelledby="hero-chapter-title" aria-describedby="hero-chapter-intro"><div class="hero-chapter-header"><p class="label" id="hero-chapter-eyebrow"></p><button type="button" data-badge-close aria-label="Close chapter" autofocus>×</button></div><div class="chapter-scroll"><h2 id="hero-chapter-title"></h2><p id="hero-chapter-intro" class="hero-chapter-intro"></p><div id="hero-chapter-body"></div></div><footer class="hero-chapter-footer"><span>VIGO DANG</span><button type="button" data-badge-close>Back to the badge</button></footer></dialog>
-  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading" data-reveal><div><p class="label">Selected work</p><h2 id="selected-title">Built to be<br><span>used.</span></h2></div><div><p>Three demos you can explore.<br>Real project decisions behind each one.</p>${link('work.html','View all six projects')}</div></div><div class="project-showcases">${['dataset-health','strobe-ai','crdc-capstone'].map(projectFor).filter(pr=>pr.liveDemo).map(demoFeature).join('')}</div></section>
+  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading" data-reveal><div><p class="label">Selected work</p><h2 id="selected-title">Built to be<br><span>used.</span></h2></div><div><p>Three demos you can explore.<br>Real project decisions behind each one.</p>${link('work.html','View all six projects')}</div></div><div class="project-showcases">${['dataset-health','crdc-capstone','strobe-ai'].map(projectFor).filter(pr=>pr.liveDemo).map(demoFeature).join('')}</div></section>
   <section class="human-note wrap" data-reveal><p class="label">A little about me</p><h2>Curious by nature.<br>Better with feedback.</h2><div><p>I grew up in Biên Hòa, Đồng Nai, and now study in Brisbane. I listen first, ask when I’m unsure and keep improving what I build.</p>${link('about.html','Meet the person behind the work')}</div></section>`;
 }
 
