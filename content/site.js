@@ -51,6 +51,19 @@ export const profile = {
 export const projects = [
   {
     "slug": "strobe-ai",
+    "liveDemo": {
+      "url": "https://vigodang.github.io/strobe-ai-demo/#/login",
+      "image": "strobe-ai-demo.jpg",
+      "width": 1440,
+      "height": 1050,
+      "label": "Strobe social + assistant demo",
+      "category": "Cloud & applied AI",
+      "description": "Create a sample photo post, add a comment, then ask the assistant to find your posts and photos.",
+      "scope": "Browser-only social app with simulated sign-in and template-based assistant replies. Sample data resets on refresh; no AWS or AI model is connected.",
+      "deployment": "React static app on GitHub Pages. Posts, comments and demo identities stay in memory in the current tab. Authentication, ACP/MCP activity and AI responses are simulated. This portfolio adaptation builds on the QUT CAB432 starter and upstream social interface work; the original engineering contribution is described separately below.",
+      "alt": "Actual Strobe Assistant interface showing a sample beach-photo keyword result, suggested prompts and the browser-demo disclosure.",
+      "caption": "Actual deployed interface · 20 November 2026 · Browser-local sample data and simulated assistant"
+    },
     "number": "01",
     "title": "Strobe AI",
     "shortTitle": "Strobe AI",

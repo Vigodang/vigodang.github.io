@@ -3,9 +3,12 @@ import path from "node:path";
 
 const root = path.resolve("dist");
 const siteOrigin = "https://vigodang.github.io";
-// This GitHub project Pages app is published by its own repository, outside
-// this portfolio's dist. Exempt only its exact verified navigation URL.
-const separateProjectPages = new Set(["https://vigodang.github.io/dataset-health-analyzer-demo/"]);
+// These GitHub project Pages apps are published by their own repositories,
+// outside this portfolio's dist. Exempt only exact verified anchor destinations.
+const separateProjectPages = new Set([
+  "https://vigodang.github.io/dataset-health-analyzer-demo/",
+  "https://vigodang.github.io/strobe-ai-demo/#/login",
+]);
 const errors = [];
 const files = [];
 const pages = new Map();
@@ -81,9 +84,9 @@ function resolveReference(value, from) {
   return { target, fragment: decodedFragment };
 }
 
-async function checkReference(value, from, kind, { fragment = true } = {}) {
+async function checkReference(value, from, kind, { fragment = true, navigation = false } = {}) {
   try {
-    if (kind === "href" && separateProjectPages.has(decodeHTML(value).trim())) return null;
+    if (kind === "href" && navigation && separateProjectPages.has(decodeHTML(value).trim())) return null;
     const resolved = resolveReference(value, from);
     if (!resolved) return null;
     checkedReferences++;
@@ -188,7 +191,7 @@ for (const [file, { html, markup, tags }] of pages) {
   for (const { name, a, tag } of tags) {
     if (name === "img" && !("alt" in a)) errors.push(`${rel}: image missing alt text: ${tag}`);
     if (("href" in a && !a.href.trim()) || ("src" in a && !a.src.trim())) errors.push(`${rel}: empty ${"href" in a ? "href" : "src"} on ${name}`);
-    if ("href" in a) await checkReference(a.href, file, "href");
+    if ("href" in a) await checkReference(a.href, file, "href", { navigation: name === "a" });
     if ("src" in a) await checkReference(a.src, file, "src");
     if ("poster" in a) await checkReference(a.poster, file, "poster");
     if (a.srcset && !a.srcset.trim().startsWith("data:")) {

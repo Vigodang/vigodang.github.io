@@ -38,8 +38,8 @@ export function checkTheme(source) {
     assert(depth === 0, 'Unclosed print stylesheet');
     css = css.slice(0, print.index) + css.slice(end);
   }
-  // The retained foundation declares the old cream palette before the approved
-  // bright portfolio layer. Check the winning declarations, not every historical value.
+  // Retained foundation layers may declare superseded palettes. Check the
+  // winning forest/cream declarations, not every historical value.
   const rootRules = [...css.matchAll(/(?:^|[{}])\s*:root\s*\{([^{}]*)\}/g)].map(rule => rule[1]);
   const bodyRules = [...css.matchAll(/(?:^|[{}])\s*(body(?:\.portfolio)?)\s*\{([^{}]*)\}/g)];
   function winning(declarations) {
@@ -50,17 +50,17 @@ export function checkTheme(source) {
         || (important === winner.important && candidate.specificity >= winner.specificity) ? candidate : winner;
     }, null);
   }
-  for (const [token, value] of [['bg', '#eff7f6'], ['ink', '#14303e'], ['green', '#006e62'], ['paper', 'var(--bg)']]) {
+  for (const [token, value] of [['bg', '#f3ebdd'], ['ink', '#013230'], ['green', '#013230'], ['orange', '#ff6a1f'], ['paper', 'var(--bg)']]) {
     const declarations = rootRules.flatMap(rule => [...rule.matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:0})));
     const local = bodyRules.flatMap(rule => [...rule[2].matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved bright portfolio ${token} theme token must be ${value}`);
+    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved forest/cream portfolio ${token} theme token must be ${value}`);
   }
   const schemes = rootRules.flatMap(rule => [...rule.matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:0})));
   const localSchemes = bodyRules.flatMap(rule => [...rule[2].matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
   assert(winning(schemes)?.value === 'light' && (!localSchemes.length || winning(localSchemes)?.value === 'light'), 'Screen portfolio color scheme must remain light');
   const backgrounds = bodyRules
     .flatMap(rule => [...rule[2].matchAll(/\bbackground(?:-color)?\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved light token');
+  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved cream token');
 }
 
 export async function checkRelease(repo = here) {
@@ -89,7 +89,13 @@ export async function checkRelease(repo = here) {
     const expected = (isGame ? gameStylesheets : stylesheets).map(file => prefix + file);
     assert(JSON.stringify(linked) === JSON.stringify(expected), `${route}: expected ${isGame ? 'game' : 'portfolio'} stylesheets in approved order with exact relative paths`);
     if (!isGame) assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
-    if (route === 'index.html' || route === 'about.html') assert(html.includes('class="portrait-picture ') && html.includes('assets/vigo-portrait-640.jpg'), `${route}: portrait markup missing`);
+    if (route === 'index.html' || route === 'about.html') {
+      const portrait = [...html.matchAll(/<picture\b([^>]*)>([\s\S]*?)<\/picture>/gi)]
+        .find(match => /(?:^|\s)class="([^"]*)"/i.exec(match[1])?.[1].split(/\s+/).includes('portrait-picture'));
+      const image = portrait?.[2].match(/<img\b[^>]*>/i)?.[0] || '';
+      assert(/\ssrc="([^"]*)"/i.exec(image)?.[1] === 'assets/vigo-portrait-cutout.png'
+        && /\swidth="1122"/i.test(image) && /\sheight="1402"/i.test(image), `${route}: cutout portrait markup or intrinsic dimensions missing`);
+    }
   }
   const manifest = JSON.parse(await readFile(path.join(dist, 'release-manifest.json'), 'utf8'));
   assert(manifest.schemaVersion === 1 && (manifest.sourceCommit === null || /^[a-f0-9]{40}$/i.test(manifest.sourceCommit)), 'Invalid release manifest provenance');
@@ -108,5 +114,5 @@ export async function checkRelease(repo = here) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, bright portfolio and intact night-game styles, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
+  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, forest/cream portfolio and intact night-game styles, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
 }

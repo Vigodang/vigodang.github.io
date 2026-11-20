@@ -1,7 +1,6 @@
 import { writeFile, mkdir } from 'node:fs/promises';
 import { profile as p, projects } from '../content/site.js';
 import { resumeData as r } from '../content/resume.js';
-import { icon } from '../src/play/icons.js';
 
 const esc = value => String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 const arrow = '';
@@ -22,7 +21,7 @@ function shell(route, title, description, body, active='') {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#eff7f6">
+  <meta name="theme-color" content="${route==='index.html'?'#013230':'#f3ebdd'}">
   <title>${esc(title)} | Vigo Dang</title>
   <meta name="description" content="${esc(description)}">
   <link rel="canonical" href="${canonical}">
@@ -45,13 +44,14 @@ function shell(route, title, description, body, active='') {
 <body class="portfolio page-${pageClass}">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
-    <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home"><span class="brand-symbol">${icon('portal',28)}</span><span>Vigo Dang<span class="brand-sub">Data & cloud</span></span></a>
+    <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home">VIGO<span class="brand-stop" aria-hidden="true">.</span><span class="brand-sub">DANG</span></a>
     <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>Menu <span aria-hidden="true">+</span></button>
-    <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé</a><a class="nav-play" href="/play/">${icon('portal',18)}<span>Play After Dark</span></a></nav>
+    <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé</a></nav>
   </header>
   <main id="main" tabindex="-1">${body}</main>
-  <footer class="site-footer wrap">
-    <div class="footer-bottom"><p>${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}</div></div>
+  <footer class="site-footer">
+    <div class="wrap"><div class="footer-invitation" data-reveal><p class="label">Data & Cloud Engineering · Internship / Graduate</p><h2>Good work starts<br>with a conversation.</h2>${link(pre+'contact.html','Let’s talk','button')}</div>
+    <div class="footer-bottom"><p>${esc(p.name)}<span>${esc(p.location)}</span></p><div>${link(p.github,'GitHub')}${link(p.linkedin,'LinkedIn')}${link(pre+'resume.html','Résumé')}<a class="text-link footer-experiment" href="/play/">After Dark <span>· interactive experiment</span></a></div></div></div>
   </footer>
 </body>
 </html>
@@ -102,35 +102,39 @@ function demoCapture(pr, prefix='') {
 }
 function demoFeature(pr) {
  const d=pr.liveDemo;
- return `<article class="live-demo-feature">${demoCapture(pr)}<div class="demo-copy"><p class="label">${esc(d.category)}</p><h3>${esc(d.label)}</h3><p>${esc(d.description)}</p><div class="demo-actions">${link(d.url,'Open live demo','button')}${link('projects/'+pr.slug+'.html','Project & my contribution')}</div><p class="demo-scope">${esc(d.scope)}</p></div></article>`;
+ const copy = {
+   'dataset-health': ['Make sense of a dataset.', 'Upload a CSV, spot gaps and explore what needs attention.', 'Browser-local analysis · synthetic samples'],
+   'strobe-ai': ['Find the story in your media.', 'Create a sample post, then ask the assistant to find your photos.', 'Simulated sign-in · template replies · no live AI'],
+   'crdc-capstone': ['Start with the source.', 'Explore a research workflow built around questions, evidence and traceability.', 'Synthetic research demo · example responses']
+ }[pr.slug];
+ const title=pr.slug==='crdc-capstone'?'CRDC Research Assistant':pr.title;
+ return `<article class="project-showcase showcase-${esc(pr.slug)}" data-reveal><div class="showcase-copy"><p class="label">${esc(d.category)}</p><h3><a href="projects/${pr.slug}.html">${esc(title)}</a></h3><p class="showcase-idea">${esc(copy[0])}</p><p class="showcase-description">${esc(copy[1])}</p><div class="demo-actions">${link(d.url,'Try the demo','button')}${link('projects/'+pr.slug+'.html','Read the case study')}</div><p class="demo-scope">${esc(copy[2])}</p></div><a class="showcase-preview" href="${esc(d.url)}" aria-label="Try the ${esc(pr.title)} live demo"><div class="browser-top" aria-hidden="true"><span></span><span></span><span></span><span class="browser-title">${esc(d.label)}</span></div><img src="assets/${esc(d.image)}" width="${d.width}" height="${d.height}" alt="${esc(d.alt)}" loading="lazy" decoding="async"></a></article>`;
 }
 
 function portrait(cls, sizes) {
-  return `<picture class="portrait-picture ${cls}"><source type="image/webp" srcset="assets/vigo-portrait-400.webp 400w, assets/vigo-portrait-640.webp 640w, assets/vigo-portrait-960.webp 960w" sizes="${sizes}"><img src="assets/vigo-portrait-640.jpg" width="640" height="800" alt="Vigo Dang smiling outdoors, wearing a rust-coloured polo shirt." fetchpriority="high" decoding="async"></picture>`;
+  return `<picture class="portrait-picture ${cls}"><source type="image/webp" srcset="assets/vigo-portrait-cutout.webp"><img src="assets/vigo-portrait-cutout.png" width="1122" height="1402" alt="Vigo Dang smiling, wearing a rust-coloured polo shirt." fetchpriority="high" decoding="async"></picture>`;
 }
 
 function home() {
-  return `<section class="hero wrap">
-    <div class="hero-top"><p class="label">${esc(p.positioning.role)}</p><p class="hero-location">${esc(p.location)} <span class="location-dot" aria-hidden="true"></span></p></div>
-    <div class="hero-grid"><div class="hero-copy"><h1>Hi, I’m<br><em>${esc(p.name)}.</em></h1><p class="hero-intro">${esc(p.positioning.intro)}</p><p class="hero-focus hero-opportunity">${esc(p.positioning.opportunity)}</p><div class="hero-actions">${link('#selected-work','Explore selected work','button')}${pdfLink('','text-link')}</div></div><figure class="hero-profile">${portrait('hero-portrait','(max-width: 600px) 170px, (max-width: 900px) 240px, 320px')}<figcaption><p class="portrait-name">Vigo Dang</p><p class="portrait-location">QUT Data Science</p></figcaption></figure></div>
-    <dl class="hero-context"><div><dt>Studying</dt><dd>${esc(p.degree)}<span>QUT · ${esc(p.minor)} minor</span></dd></div><div><dt>Graduation</dt><dd>Expected ${esc(p.graduation)}<span>${esc(p.location)}</span></dd></div><div><dt>How I work</dt><dd>Listen, ask, improve<span>Open to feedback and ready to learn with a team</span></dd></div></dl>
-  </section>
-  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading"><div><p class="label">Selected work</p><h2 id="selected-title">Start with the work.<br><span>Try the public demos.</span></h2></div><p>These two interfaces show the data tools and research workflows I’ve worked on. The case studies explain my contribution and what the evidence supports.</p>${link('work.html','All projects')}</div><div class="live-demo-grid">${[projectFor('dataset-health'),projectFor('crdc-capstone')].map(demoFeature).join('')}</div><p class="supporting-work-label label">Cloud workflows & software foundations</p><div class="folio-pair">${folio(projectFor('strobe-ai'))}${folio(projectFor('parallel-protein'))}</div><div class="more-projects">${[projectFor('predictive-risk'),projectFor('graph-optimisation')].map(pr=>`<div><p class="label">${esc(pr.category)}</p>${link('projects/'+pr.slug+'.html',pr.title)}</div>`).join('')}</div></section>
-  <section class="game-bridge wrap" aria-labelledby="night-market-title"><div class="game-bridge-copy"><p class="label">A short walk through how I work</p><h2 id="night-market-title">Vigo <span>After Dark.</span></h2><p>Take a short walk through a night market and try the ideas behind my projects. Each stop connects back to the real work.</p><p class="game-bridge-note">Stay for a few minutes, or read the projects directly.</p></div><a class="night-market-preview" href="/play/" aria-label="Explore Vigo After Dark, the interactive portfolio"><img src="play/assets/after-dark/city-panorama.webp" width="2172" height="724" loading="lazy" alt="Original illustrated neon night-market environment from Vigo After Dark."><span>${icon('portal',22)} Take a look around</span></a></section>
-  <section class="human-note wrap"><p class="label">Working together</p><h2>Listen first.<br> Keep improving.</h2><div><p>${esc(p.positioning.approach)}</p>${link('contact.html','Get in touch')}</div></section>`;
+  return `<section class="hero" aria-labelledby="hero-name"><div class="wrap">
+    <div class="hero-top"><p class="label">${esc(p.positioning.role)}</p><p class="hero-location">${esc(p.location)}</p></div>
+    <div class="hero-stage"><div class="hero-copy"><h1 id="hero-name" class="hero-name"><span>VIGO</span> <span>DANG<span class="name-stop">.</span></span></h1><div class="hero-story"><p class="hero-intro">I build tools that<br>make data useful.</p><p class="hero-focus">QUT Data Science student.<br>Seeking a Data / Cloud Engineering<br>internship or graduate role.</p><div class="hero-actions">${link('#selected-work','Explore the work','button')}${pdfLink('','text-link')}</div></div></div><div class="hero-portrait-scene" data-portrait-scene><div class="portrait-plane" aria-hidden="true"></div><div class="portrait-accent" aria-hidden="true"></div>${portrait('hero-cutout','')}<span class="portrait-caption">Hi, I’m Vigo.</span></div></div>
+    <div class="hero-baseline"><span>Listen. Ask. Improve.</span><span>QUT · Graduating ${esc(p.graduation)}</span></div>
+  </div></section>
+  <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading" data-reveal><div><p class="label">Selected work</p><h2 id="selected-title">Built to be<br><span>used.</span></h2></div><div><p>Three demos you can explore.<br>Real project decisions behind each one.</p>${link('work.html','View all six projects')}</div></div><div class="project-showcases">${['dataset-health','strobe-ai','crdc-capstone'].map(projectFor).filter(pr=>pr.liveDemo).map(demoFeature).join('')}</div></section>
+  <section class="human-note wrap" data-reveal><p class="label">A little about me</p><h2>Curious by nature.<br>Better with feedback.</h2><div><p>I grew up in Biên Hòa, Đồng Nai, and now study in Brisbane. I listen first, ask when I’m unsure and keep improving what I build.</p>${link('about.html','Meet the person behind the work')}</div></section>`;
 }
 
 function work() {
-  return `<section class="page-intro wrap"><p class="label">Selected projects / 01—06</p><h1>My project work.<br><span class="heading-continuation">Data & cloud first.</span></h1><p class="lede">I’m working towards data and cloud engineering roles. Start with the data and cloud workflows, then explore applied AI and the software foundations behind them. Each case explains my contribution, the decisions and the limits.</p></section>
+  return `<section class="page-intro wrap" data-reveal><p class="label">Selected projects</p><h1>Ideas into<br><span class="heading-continuation">working tools.</span></h1><p class="lede">Data and cloud workflows, applied AI and the software foundations behind them. Start with a live demo, or read how I approached the work.</p></section>
   <section class="work-index wrap" aria-label="Project case studies">${orderedProjects.map(project=>`<article class="work-row"><div class="work-preview">${project.liveDemo?demoCapture(project,''):figure(project,'',true)}</div><div class="work-summary"><p class="label">${esc(projectPath(project))}</p><p class="work-project-type">${esc(project.type)}</p><h2><a href="projects/${project.slug}.html">${esc(project.title)}</a></h2><p>${esc(project.summary)}</p><dl class="row-details"><div><dt>Scope</dt><dd>${esc(project.role)}</dd></div><div><dt>Tools</dt><dd>${esc(project.technologies)}</dd></div></dl><p class="evidence-line">${esc(project.evidenceLabel)}</p></div></article>`).join('')}</section><div class="further-work wrap"><p class="label">Deep Learning / Further implementation</p><h2>Drone imagery segmentation</h2><p>A TensorFlow/Keras residual U-Net-style pipeline with RGB + DSM inputs and tiled inference. Implementation experience is supported by source; model-quality results have not been independently reproduced.</p>${link(p.deepLearningSource,'Inspect the model implementation')}</div>`;
 }
 
 function about() {
   return `<section class="about-intro wrap"><div class="about-intro-copy"><p class="label">About Vigo</p><h1>Hi, I’m Vigo.</h1><p class="lede">I’m ${esc(p.fullName)}, usually Vigo. I grew up in Biên Hòa, Đồng Nai, Vietnam, and now study Data Science at QUT in Brisbane.</p><dl class="about-facts"><div><dt>Study</dt><dd>Bachelor of Data Science at QUT</dd></div><div><dt>Graduation</dt><dd>Expected ${esc(p.graduation)}</dd></div><div><dt>Focus</dt><dd>${esc(p.positioning.role)}</dd></div></dl><div class="hero-actions">${link('work.html','Explore my work')}</div></div><figure class="about-portrait">${portrait('about-photo','(max-width: 403px) calc(100vw - 44px), (max-width: 600px) 360px, (max-width: 900px) 280px, (max-width: 1100px) 320px, 360px')}<figcaption>Brisbane, Australia</figcaption></figure></section>
-  <section class="about-practice wrap"><header class="block-heading"><p class="label">01 / How I work with people</p><h2>Listen. Build.<br>Learn together.</h2><p>${esc(p.positioning.approach)}</p></header><ol class="practice-grid" role="list"><li><span class="label">01</span><h3>Listen first.</h3><p>I try to understand what someone needs before deciding what to make.</p></li><li><span class="label">02</span><h3>Use feedback.</h3><p>I’m open to different views and use feedback to improve the next version.</p></li><li><span class="label">03</span><h3>Keep learning.</h3><p>I ask when something is unclear, test what I can and explain what still needs work.</p></li></ol></section>
-  <section class="skills-section wrap"><div><p class="label">02 / Technical practice</p><h2>Software around data.</h2><p class="section-summary">My projects span desktop prediction workflows, asynchronous cloud processing and source-linked retrieval.</p></div><div class="skill-lines">${p.skills.map(group=>`<p><strong>${esc(group.label)}</strong>${esc(group.items)}</p>`).join('')}<div class="implementation-note"><p>My deep learning work includes RGB and elevation inputs, a TensorFlow/Keras segmentation model and tiled inference for drone imagery.</p>${link(p.deepLearningSource,'View the segmentation implementation')}</div></div></section>
-  <section class="education wrap"><div><p class="label">03 / Education & recognition</p><h2>A foundation to build on.</h2></div><div><h3>${esc(p.university)}</h3><p>${esc(p.degree)}<br>Minor: ${esc(p.minor)}<br>Expected graduation: ${esc(p.graduation)}</p><p class="recognition">${esc(p.award)}</p>${link('experience.html','Education & project experience')}</div></section>
-  <section class="opportunity-panel wrap"><div><p class="label">04 / Opportunities</p><h2>Learning alongside a team.</h2></div><div><p>I’m seeking internship and graduate opportunities in data and cloud engineering. I’d like to contribute to a team, learn from experienced colleagues and improve through feedback.</p><div class="hero-actions">${link('mailto:'+p.email,'Get in touch')}</div></div></section>`;
+  <section class="about-practice wrap" data-reveal><header class="block-heading"><p class="label">How I work with people</p><h2>Listen. Build.<br>Learn together.</h2><p>${esc(p.positioning.approach)}</p></header><ol class="practice-grid" role="list"><li><h3>Listen first.</h3><p>I try to understand what someone needs before deciding what to make.</p></li><li><h3>Use feedback.</h3><p>I’m open to different views and use feedback to improve the next version.</p></li><li><h3>Keep learning.</h3><p>I ask when something is unclear, test what I can and explain what still needs work.</p></li></ol></section>
+  <section class="skills-section wrap" data-reveal><div><p class="label">Technical practice</p><h2>Software around data.</h2><p class="section-summary">My projects span desktop prediction workflows, asynchronous cloud processing and source-linked retrieval.</p></div><div class="skill-lines">${p.skills.map(group=>`<p><strong>${esc(group.label)}</strong>${esc(group.items)}</p>`).join('')}<div class="implementation-note"><p>My deep learning work includes RGB and elevation inputs, a TensorFlow/Keras segmentation model and tiled inference for drone imagery.</p>${link(p.deepLearningSource,'View the segmentation implementation')}</div></div></section>
+  <section class="education wrap" data-reveal><div><p class="label">Education & recognition</p><h2>A foundation to build on.</h2></div><div><h3>${esc(p.university)}</h3><p>${esc(p.degree)}<br>Minor: ${esc(p.minor)}<br>Expected graduation: ${esc(p.graduation)}</p><p class="recognition">${esc(p.award)}</p>${link('experience.html','Education & project experience')}</div></section>`;
 }
 
 function experience() {
@@ -154,7 +158,7 @@ function caseStudy(pr) {
  <section id="contribution"><p class="label">03 / My contribution</p><h2>My part in the work.</h2><p>${esc(pr.contribution)}</p></section>
  <section id="approach"><p class="label">04 / Architecture & implementation</p><h2>How the pieces work.</h2><p>${esc(pr.approach)}</p>${pr.liveDemo&&pr.slug==='crdc-capstone'?figure(pr,'../'):''}${pr.architecture?figure(pr,'../',false,entries.find(v=>v.key==='architecture')):''}${(pr.details||[]).map((v,i)=>figure(pr,'../',false,entries.find(v=>v.key==='detail-'+(i+1)))).join('')}</section>
  <section id="decisions"><p class="label">05 / Engineering trade-offs</p><h2>Why these choices.</h2><ol class="decisions" role="list">${pr.decisions.map(([heading,text])=>`<li><h3>${esc(heading)}</h3><p>${esc(text)}</p></li>`).join('')}</ol></section>
- <section id="evidence"><p class="label">06 / Evidence & verification</p><h2>Results and verification.</h2><div class="evidence-box"><p>${esc(pr.proof)}</p></div>${pr.evidenceVisual?figure(pr,'../',false,entries.find(v=>v.key==='results')):''}${evidenceTable(pr)}<ul class="evidence-notes">${pr.proofNotes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul><p class="source-note">${esc(pr.source)}</p></section>
+ <section id="evidence"><p class="label">06 / Evidence & verification</p><h2>Results and verification.</h2><div class="evidence-box"><p>${esc(pr.proof)}</p></div>${pr.liveDemo&&pr.slug==='strobe-ai'?figure(pr,'../'):''}${pr.evidenceVisual?figure(pr,'../',false,entries.find(v=>v.key==='results')):''}${evidenceTable(pr)}<ul class="evidence-notes">${pr.proofNotes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul><p class="source-note">${esc(pr.source)}</p></section>
  <section id="limitations"><p class="label">07 / Limitations</p><h2>Limits and next steps.</h2><p>${esc(pr.limitations)}</p></section>${pr.resources.length?`<section class="resources"><h2>Source & resources.</h2>${pr.resources.map(([label,url])=>link(url,label)).join('')}</section>`:''}</article></div><div class="case-next wrap"><p class="label">Next project</p>${link('../projects/'+orderedProjects[(orderedProjects.indexOf(pr)+1)%orderedProjects.length].slug+'.html',orderedProjects[(orderedProjects.indexOf(pr)+1)%orderedProjects.length].title,'next-title')}</div>`;
 }
 

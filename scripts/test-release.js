@@ -60,6 +60,13 @@ function replaceOnce(source, previous, next) {
   return source.replace(previous, next);
 }
 
+function replaceCSSValue(source, property, previous, next) {
+  const escaped = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const declaration = new RegExp(`(${escaped(property)}\\s*:\\s*)${escaped(previous)}(?=\\s*(?:!important\\s*)?[;}])`, 'i');
+  assert(declaration.test(source), `Fixture does not contain ${property}: ${previous}`);
+  return source.replace(declaration, (_, prefix) => prefix + next);
+}
+
 async function updateManifest(directory, change) {
   const location = path.join(directory, manifestFile);
   const manifest = JSON.parse(await readFile(location, 'utf8'));
@@ -118,14 +125,14 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved bright portfolio and intact night game release passes with 23 pages and 56 protected assets', async t => {
+test('Approved forest/cream portfolio and intact night game release passes with 23 pages and 59 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), gameStyles);
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 56 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 59 });
 });
 
-test('Legacy cream foundation followed by approved bright styling permits white print overrides', async t => {
+test('Retained foundation followed by approved forest/cream styling permits white print overrides', async t => {
   const directory = await fixture(t);
   const print = '\n@media print { :root { color-scheme: light; --bg: #fff; --paper: #fff; --ink: #000; --green: #31584b; } body.portfolio { background-color: #fff !important; } }\n';
   assert.doesNotThrow(() => checkTheme(approvedCSS + print));
@@ -189,32 +196,66 @@ test('Editorial markup must retain the portfolio theme class', async t => {
   await assert.rejects(checkRelease(directory), /missing portfolio theme class/);
 });
 
-for (const [name, previous, next] of [
-  ['cool-light base', '--bg:#eff7f6', '--bg:#091521'],
-  ['navy ink', '--ink:#14303e', '--ink:#f1f7f5'],
-  ['teal accent', '--green:#006e62', '--green:#87f5c2'],
-  ['light color scheme', 'color-scheme:light', 'color-scheme:dark'],
+for (const route of ['index.html', 'about.html']) {
+  test(`${route} must use the approved cutout portrait rather than the old photograph`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, `dist/${route}`, html => replaceOnce(html, 'src="assets/vigo-portrait-cutout.png"', 'src="assets/vigo-portrait-640.jpg"'));
+    await assert.rejects(checkRelease(directory), /cutout portrait markup or intrinsic dimensions missing/);
+  });
+  test(`${route} cutout portrait retains its picture class`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, `dist/${route}`, html => {
+      const picture = html.match(/<picture\b(?=[^>]*\bclass="[^"]*\bportrait-picture\b)[^>]*>/i)?.[0];
+      assert(picture, 'Fixture is missing its approved cutout picture');
+      return replaceOnce(html, picture, replaceOnce(picture, 'portrait-picture', 'previous-portrait'));
+    });
+    await assert.rejects(checkRelease(directory), /cutout portrait markup or intrinsic dimensions missing/);
+  });
+  for (const [dimension, previous, next] of [['width', '1122', '1121'], ['height', '1402', '1401']]) {
+    test(`${route} cutout portrait retains its intrinsic ${dimension}`, async t => {
+      const directory = await fixture(t);
+      await edit(directory, `dist/${route}`, html => {
+        const image = html.match(/<img\b(?=[^>]*\ssrc="assets\/vigo-portrait-cutout\.png")[^>]*>/i)?.[0];
+        assert(image, 'Fixture is missing its approved cutout portrait');
+        return replaceOnce(html, image, replaceOnce(image, `${dimension}="${previous}"`, `${dimension}="${next}"`));
+      });
+      await assert.rejects(checkRelease(directory), /cutout portrait markup or intrinsic dimensions missing/);
+    });
+  }
+}
+
+for (const [name, property, previous, next] of [
+  ['warm-cream base', '--bg', '#f3ebdd', '#eff7f6'],
+  ['forest ink', '--ink', '#013230', '#14303e'],
+  ['forest green', '--green', '#013230', '#006e62'],
+  ['orange accent', '--orange', '#ff6a1f', '#87f5c2'],
+  ['paper alias', '--paper', 'var(--bg)', '#f3ebdd'],
+  ['previous night ink', '--ink', '#013230', '#f1f7f5'],
+  ['previous night accent', '--green', '#013230', '#87f5c2'],
+  ['light color scheme', 'color-scheme', 'light', 'dark'],
 ]) {
   test(`Approved ${name} cannot drift even with rebuilt matching assets and manifest`, async t => {
     const directory = await fixture(t);
-    await changeShippedAsset(directory, 'portfolio-brand.css', bytes => Buffer.from(replaceOnce(bytes.toString(), previous, next)));
-    await assert.rejects(checkRelease(directory), /Approved bright portfolio|Screen portfolio color scheme/);
+    await changeShippedAsset(directory, 'portfolio-brand.css', bytes => Buffer.from(replaceCSSValue(bytes.toString(), property, previous, next)));
+    await assert.rejects(checkRelease(directory), /Approved forest\/cream portfolio|Screen portfolio color scheme/);
   });
 }
 
 for (const [name, override] of [
-  ['later cream root', ':root { --bg: #f5f2eb; }'],
+  ['superseded cream root', ':root { --bg: #f5f2eb; }'],
+  ['previous pale-mint root', ':root { --bg: #eff7f6; }'],
   ['previous dark root', ':root { --bg: #091521; }'],
   ['later portfolio background-color', 'body.portfolio { background-color: #fff; }'],
   ['important plain-body background', 'body { background-color: #fff !important; }'],
-  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #eff7f6; }'],
+  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #f3ebdd; }'],
   ['portfolio-local palette override', 'body.portfolio { --bg: #fff; }'],
+  ['portfolio-local orange override', 'body.portfolio { --orange: #7655a7; }'],
   ['portfolio-local dark color scheme', 'body.portfolio { color-scheme: dark; }'],
 ]) {
   test(`Screen styling rejects ${name} while assets remain internally consistent`, async t => {
     const directory = await fixture(t);
     await changeShippedAsset(directory, 'portfolio-pages.css', bytes => Buffer.from(bytes.toString() + '\n' + override + '\n'));
-    await assert.rejects(checkRelease(directory), /Approved bright portfolio|Screen portfolio (?:background|color scheme)/);
+    await assert.rejects(checkRelease(directory), /Approved forest\/cream portfolio|Screen portfolio (?:background|color scheme)/);
   });
 }
 
@@ -222,6 +263,9 @@ for (const [name, file] of [
   ['self-hosted font', 'assets/fonts/InterVariable.woff2'],
   ['captured CRDC interface demo', 'assets/crdc-research-demo.jpg'],
   ['captured Dataset interface demo', 'assets/dataset-health-demo.jpg'],
+  ['captured Strobe interface demo', 'assets/strobe-ai-demo.jpg'],
+  ['cutout portrait', 'assets/vigo-portrait-cutout.png'],
+  ['WebP cutout portrait', 'assets/vigo-portrait-cutout.webp'],
   ['original city artwork', 'play/assets/after-dark/city-panorama.webp'],
   ['mission runtime module', 'play/missions.js'],
   ['current redesigned résumé PDF', 'assets/Vigo_Dang_Resume_2026_Redesigned.pdf'],
@@ -238,6 +282,9 @@ for (const [name, previous, next] of [
   ['font', 'assets/fonts/InterVariable.woff2', 'assets/fonts/intervariable.woff2'],
   ['CRDC demo screenshot', 'assets/crdc-research-demo.jpg', 'assets/CRDC-Research-Demo.jpg'],
   ['Dataset demo screenshot', 'assets/dataset-health-demo.jpg', 'assets/Dataset-Health-Demo.jpg'],
+  ['Strobe demo screenshot', 'assets/strobe-ai-demo.jpg', 'assets/Strobe-AI-Demo.jpg'],
+  ['cutout portrait', 'assets/vigo-portrait-cutout.png', 'assets/Vigo-Portrait-Cutout.png'],
+  ['WebP cutout portrait', 'assets/vigo-portrait-cutout.webp', 'assets/Vigo-Portrait-Cutout.webp'],
   ['district artwork', 'play/assets/after-dark/district-atlas.webp', 'play/assets/after-dark/District-atlas.webp'],
 ]) {
   test(`Required ${name} filename case must match even on Windows`, async t => {
@@ -312,22 +359,45 @@ test('A second Pages publisher cannot bypass the checked release workflow', asyn
 function runLinkCheck(directory) {
   return spawnSync(process.execPath, [path.join(repo, 'scripts/check.js')], {cwd:directory, encoding:'utf8'});
 }
-test('Exact separately deployed Dataset navigation URL passes the local link check', async t => {
+for (const [name, url, unknownPath] of [
+  ['Dataset', 'https://vigodang.github.io/dataset-health-analyzer-demo/', 'https://vigodang.github.io/dataset-health-analyzer-demo/missing.html'],
+  ['Strobe', 'https://vigodang.github.io/strobe-ai-demo/#/login', 'https://vigodang.github.io/strobe-ai-demo/missing.html#/login'],
+]) {
+  // Inject one reference instead of depending on a particular homepage layout.
+  const inject = (directory, markup) => edit(directory, 'dist/index.html', html => replaceOnce(html, '</main>', markup + '</main>'));
+  test(`Exact separately deployed ${name} anchor URL passes the local link check`, async t => {
+    const directory = await fixture(t);
+    await inject(directory, `<a href="${url}">${name} demo</a>`);
+    const result = runLinkCheck(directory);
+    assert.equal(result.status, 0, result.stderr);
+  });
+  test(`An unknown path inside the ${name} deployment still fails local validation`, async t => {
+    const directory = await fixture(t);
+    await inject(directory, `<a href="${unknownPath}">${name} demo</a>`);
+    const result = runLinkCheck(directory);
+    assert.equal(result.status, 1);
+    assert(result.stderr.includes(`missing href ${unknownPath}`), result.stderr);
+  });
+  test(`${name} navigation exemption cannot hide a missing image asset`, async t => {
+    const directory = await fixture(t);
+    await inject(directory, `<img src="${url}" alt="Demo reference test" width="1" height="1">`);
+    const result = runLinkCheck(directory);
+    assert.equal(result.status, 1);
+    assert(result.stderr.includes(`missing src ${url}`), result.stderr);
+  });
+  test(`${name} navigation exemption cannot hide a stylesheet asset`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/index.html', html => replaceOnce(html, '</head>', `<link rel="stylesheet" href="${url}"></head>`));
+    const result = runLinkCheck(directory);
+    assert.equal(result.status, 1);
+    assert(result.stderr.includes(`missing href ${url}`), result.stderr);
+  });
+}
+test('An unapproved Strobe hash route cannot use the exact login navigation exemption', async t => {
   const directory = await fixture(t);
-  const result = runLinkCheck(directory);
-  assert.equal(result.status, 0, result.stderr);
-});
-test('An unknown path inside the separate deployment still fails local validation', async t => {
-  const directory = await fixture(t);
-  await edit(directory, 'dist/index.html', html => replaceOnce(html, 'href="https://vigodang.github.io/dataset-health-analyzer-demo/"', 'href="https://vigodang.github.io/dataset-health-analyzer-demo/missing.html"'));
+  const url = 'https://vigodang.github.io/strobe-ai-demo/#/missing';
+  await edit(directory, 'dist/index.html', html => replaceOnce(html, '</main>', `<a href="${url}">Demo route test</a></main>`));
   const result = runLinkCheck(directory);
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /missing href .*dataset-health-analyzer-demo\/missing.html/);
-});
-test('Separate deployment navigation exemption cannot hide a missing image asset', async t => {
-  const directory = await fixture(t);
-  await edit(directory, 'dist/index.html', html => replaceOnce(html, 'src="assets/dataset-health-demo.jpg"', 'src="https://vigodang.github.io/dataset-health-analyzer-demo/"'));
-  const result = runLinkCheck(directory);
-  assert.equal(result.status, 1);
-  assert.match(result.stderr, /missing src .*dataset-health-analyzer-demo/);
+  assert(result.stderr.includes(`missing href ${url}`), result.stderr);
 });
