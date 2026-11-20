@@ -4,7 +4,9 @@ import path from 'node:path';
 import { profile } from '../content/site.js';
 
 export const stylesheets = ['styles.css', 'layout-refinement.css', 'case-refinement.css', 'portfolio-brand.css', 'portfolio-pages.css'];
+// Retain the legacy files as dormant source; the replacement entry has its own stylesheet.
 export const gameStylesheets = ['styles.css', 'briefing.css', 'missions.css', 'evidence.css', 'after-dark.css'];
+export const explorerStylesheets = ['orbit.css'];
 const gameModules = ['game.js', 'after-dark-game.js', 'after-dark-world.js', 'audio-content.js', 'audio-engine.js',
   'briefing.js', 'content.js', 'evidence.js', 'icons.js', 'mission-ui.js', 'missions.js', 'physics.js', 'presentation.js', 'world-art.js'];
 export const releaseAssets = [...stylesheets, 'script.js',
@@ -13,6 +15,9 @@ export const releaseAssets = [...stylesheets, 'script.js',
   'assets/crdc-research-demo.jpg', 'assets/dataset-health-demo.jpg', 'assets/strobe-ai-demo.jpg', profile.pdf,
   'assets/resume-truong-lieu-dong-vigo-dang.pdf', 'assets/fonts/InterVariable.woff2', 'assets/fonts/Inter-OFL.txt',
   ...gameStylesheets.map(file => 'play/' + file), ...gameModules.map(file => 'play/' + file),
+  ...explorerStylesheets.map(file => 'play/' + file),
+  'play/orbit.js', 'play/orbit-scene.js', 'play/orbit-content.js', 'play/portrait-shape.js',
+  'play/vendor/three.module.js', 'play/vendor/three.core.js', 'play/vendor/THREE-LICENSE.txt',
   'play/assets/favicon.svg', 'play/assets/vigo-portrait.webp',
   'play/assets/after-dark/city-panorama.webp', 'play/assets/after-dark/district-atlas.webp'];
 

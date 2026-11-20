@@ -11,5 +11,7 @@
     "resume:build": "node scripts/build-resume.js",
     "test:game": "node --test scripts/test-missions.js scripts/test-physics.js scripts/test-presentation.js scripts/test-audio.js"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "three": "0.187.0"
+  }
 }

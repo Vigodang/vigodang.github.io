@@ -11,6 +11,7 @@ import { checkRelease, checkTheme, checkWorkflow } from './check-release.js';
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const editorialStyles = ['styles.css', 'layout-refinement.css', 'case-refinement.css', 'portfolio-brand.css', 'portfolio-pages.css'];
 const gameStyles = ['styles.css', 'briefing.css', 'missions.css', 'evidence.css', 'after-dark.css'];
+const explorerStyles = ['orbit.css'];
 const manifestFile = 'dist/release-manifest.json';
 const hash = bytes => createHash('sha256').update(bytes).digest('hex');
 let temporaryRoot;
@@ -114,6 +115,12 @@ function swapStyles(html, a, b) {
   return html.replace(matches[a][0], '__FIRST_STYLESHEET__').replace(matches[b][0], matches[a][0]).replace('__FIRST_STYLESHEET__', matches[b][0]);
 }
 
+function explorerModule(html) {
+  const entry = html.match(/<script\b(?=[^>]*\ssrc="orbit\.js")[^>]*>[\s\S]*?<\/script\s*>/i)?.[0];
+  assert(entry, 'Fixture is missing its orbit module entry');
+  return entry;
+}
+
 async function withGithubSHA(value, callback) {
   const previous = process.env.GITHUB_SHA;
   if (value === undefined) delete process.env.GITHUB_SHA;
@@ -125,11 +132,12 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved forest/cream portfolio and intact night game release passes with 23 pages and 59 protected assets', async t => {
+test('Approved portfolio and orbit explorer retain legacy source with 23 pages and 67 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
-  assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), gameStyles);
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 59 });
+  assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), explorerStyles);
+  await Promise.all(['src', 'dist'].flatMap(tree => gameStyles.map(file => access(path.join(directory, tree, 'play', file)))));
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 67 });
 });
 
 test('Retained foundation followed by approved forest/cream styling permits white print overrides', async t => {
@@ -146,7 +154,7 @@ test('A later plain-body rule does not override the more specific approved portf
   await checkRelease(directory);
 });
 
-test('Missing game entry cannot be released as an editorial-only build', async t => {
+test('Missing explorer entry cannot be released as an editorial-only build', async t => {
   const directory = await fixture(t);
   await unlink(path.join(directory, 'dist/play/index.html'));
   await assert.rejects(checkRelease(directory), /HTML routes.*play\/index\.html/);
@@ -172,23 +180,76 @@ test('Nested case-study pages enforce all five editorial stylesheets in the appr
   await assert.rejects(checkRelease(directory), /dataset-health\.html: expected portfolio stylesheets/);
 });
 
-test('The game rejects a missing fifth stylesheet', async t => {
+test('The explorer rejects a missing orbit stylesheet', async t => {
   const directory = await fixture(t);
-  await edit(directory, 'dist/play/index.html', html => html.replace(links(html)[4][0], ''));
-  await assert.rejects(checkRelease(directory), /play\/index\.html: expected game stylesheets/);
+  await edit(directory, 'dist/play/index.html', html => html.replace(links(html)[0][0], ''));
+  await assert.rejects(checkRelease(directory), /play\/index\.html: expected explorer stylesheets/);
 });
 
-test('The game enforces its own five-stylesheet order', async t => {
+test('The explorer cannot inherit a dormant game stylesheet', async t => {
   const directory = await fixture(t);
-  await edit(directory, 'dist/play/index.html', html => swapStyles(html, 3, 4));
-  await assert.rejects(checkRelease(directory), /play\/index\.html: expected game stylesheets/);
+  await edit(directory, 'dist/play/index.html', html => replaceOnce(html, '</head>', '<link rel="stylesheet" href="after-dark.css"></head>'));
+  await assert.rejects(checkRelease(directory), /play\/index\.html: expected explorer stylesheets/);
 });
 
-test('The game cannot inherit editorial parent-relative stylesheet paths', async t => {
+test('The explorer enforces its exact local stylesheet path', async t => {
   const directory = await fixture(t);
-  await edit(directory, 'dist/play/index.html', html => replaceOnce(html, 'href="after-dark.css"', 'href="../after-dark.css"'));
-  await assert.rejects(checkRelease(directory), /play\/index\.html: expected game stylesheets/);
+  await edit(directory, 'dist/play/index.html', html => replaceOnce(html, 'href="orbit.css"', 'href="../orbit.css"'));
+  await assert.rejects(checkRelease(directory), /play\/index\.html: expected explorer stylesheets/);
 });
+
+for (const [name, transform] of [
+  ['missing module', html => replaceOnce(html, explorerModule(html), '')],
+  ['parent-relative module', html => replaceOnce(html, 'src="orbit.js"', 'src="../orbit.js"')],
+  ['wrong module entry', html => replaceOnce(html, 'src="orbit.js"', 'src="orbit-scene.js"')],
+  ['classic script', html => {
+    const entry = explorerModule(html);
+    return replaceOnce(html, entry, replaceOnce(entry, 'type="module"', 'type="text/javascript"'));
+  }],
+  ['duplicate module', html => replaceOnce(html, explorerModule(html), explorerModule(html).repeat(2))],
+  ['inline script injection', html => replaceOnce(html, '</body>', '<script>window.unapproved = true;</script></body>')],
+  ['unclosed script injection', html => replaceOnce(html, '</body>', '<script src="orbit-scene.js"></body>')],
+]) {
+  test(`The explorer rejects ${name}`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/play/index.html', transform);
+    await assert.rejects(checkRelease(directory), /expected only the orbit\.js module entry/);
+  });
+}
+
+for (const engine of ['game.js', 'after-dark-game.js']) {
+  test(`The explorer cannot reactivate the legacy ${engine} entry`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/play/index.html', html => replaceOnce(html, '</body>', `<script type="module" src="${engine}"></script></body>`));
+    await assert.rejects(checkRelease(directory), /legacy game engine must remain dormant/);
+  });
+}
+
+for (const [id, message] of [['orbit-canvas', /missing orbit canvas/], ['orbit-stage', /missing orbit stage/], ['chapter-dialog', /missing chapter dialog/]]) {
+  test(`The explorer retains its ${id} element`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/play/index.html', html => replaceOnce(html, `id="${id}"`, `id="missing-${id}"`));
+    await assert.rejects(checkRelease(directory), message);
+  });
+}
+
+test('The explorer retains five chapter navigation anchors', async t => {
+  const directory = await fixture(t);
+  await edit(directory, 'dist/play/index.html', html => {
+    const chapter = html.match(/<a\b(?=[^>]*\sdata-chapter(?:\s|=|>))[^>]*>/i)?.[0];
+    assert(chapter, 'Fixture is missing its chapter navigation');
+    return replaceOnce(html, chapter, chapter.replace(/\sdata-chapter(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?/i, ''));
+  });
+  await assert.rejects(checkRelease(directory), /expected five chapter navigation anchors/);
+});
+
+for (const id of ['game', 'start-game']) {
+  test(`The explorer cannot restore the legacy #${id} gameplay control`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/play/index.html', html => replaceOnce(html, '</main>', `<button id="${id}">Legacy control</button></main>`));
+    await assert.rejects(checkRelease(directory), /legacy gameplay controls must remain dormant/);
+  });
+}
 
 test('Editorial markup must retain the portfolio theme class', async t => {
   const directory = await fixture(t);
@@ -266,6 +327,14 @@ for (const [name, file] of [
   ['captured Strobe interface demo', 'assets/strobe-ai-demo.jpg'],
   ['cutout portrait', 'assets/vigo-portrait-cutout.png'],
   ['WebP cutout portrait', 'assets/vigo-portrait-cutout.webp'],
+  ['orbit stylesheet', 'play/orbit.css'],
+  ['orbit entry module', 'play/orbit.js'],
+  ['orbit scene module', 'play/orbit-scene.js'],
+  ['orbit chapter content', 'play/orbit-content.js'],
+  ['portrait shape module', 'play/portrait-shape.js'],
+  ['vendored Three renderer module', 'play/vendor/three.module.js'],
+  ['vendored Three core module', 'play/vendor/three.core.js'],
+  ['vendored Three license', 'play/vendor/THREE-LICENSE.txt'],
   ['original city artwork', 'play/assets/after-dark/city-panorama.webp'],
   ['mission runtime module', 'play/missions.js'],
   ['current redesigned résumé PDF', 'assets/Vigo_Dang_Resume_2026_Redesigned.pdf'],
@@ -285,6 +354,14 @@ for (const [name, previous, next] of [
   ['Strobe demo screenshot', 'assets/strobe-ai-demo.jpg', 'assets/Strobe-AI-Demo.jpg'],
   ['cutout portrait', 'assets/vigo-portrait-cutout.png', 'assets/Vigo-Portrait-Cutout.png'],
   ['WebP cutout portrait', 'assets/vigo-portrait-cutout.webp', 'assets/Vigo-Portrait-Cutout.webp'],
+  ['orbit stylesheet', 'play/orbit.css', 'play/Orbit.css'],
+  ['orbit entry module', 'play/orbit.js', 'play/Orbit.js'],
+  ['orbit scene module', 'play/orbit-scene.js', 'play/Orbit-Scene.js'],
+  ['orbit chapter content', 'play/orbit-content.js', 'play/Orbit-Content.js'],
+  ['portrait shape module', 'play/portrait-shape.js', 'play/Portrait-Shape.js'],
+  ['Three renderer module', 'play/vendor/three.module.js', 'play/vendor/Three.module.js'],
+  ['Three core module', 'play/vendor/three.core.js', 'play/vendor/Three.core.js'],
+  ['Three license', 'play/vendor/THREE-LICENSE.txt', 'play/vendor/three-license.txt'],
   ['district artwork', 'play/assets/after-dark/district-atlas.webp', 'play/assets/after-dark/District-atlas.webp'],
 ]) {
   test(`Required ${name} filename case must match even on Windows`, async t => {
@@ -300,7 +377,7 @@ test('Empty game artwork is rejected even after both copies and manifest are upd
   await assert.rejects(checkRelease(directory), /Empty release asset/);
 });
 
-for (const [tree, file] of [['src', 'play/missions.js'], ['dist', 'assets/dataset-health-scaling.csv']]) {
+for (const [tree, file] of [['src', 'play/missions.js'], ['dist', 'assets/dataset-health-scaling.csv'], ['dist', 'play/vendor/three.core.js']]) {
   test(`${tree}-only asset byte drift is rejected before release`, async t => {
     const directory = await fixture(t);
     await edit(directory, `${tree}/${file}`, source => source + '\n');
