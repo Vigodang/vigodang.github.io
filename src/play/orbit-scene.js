@@ -173,7 +173,7 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const moving=Math.abs(targetYaw-yaw)>.0003||Math.abs(targetPitch-pitch)>.0003;if(auto||moving||interacting)schedule();
     }
     const resize=()=>{
-      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?Math.max(6.9,4.25*height/width):7.5):(compact?12.4:8.3);
+      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?Math.max(6.9,4.65*height/width):7.5):(compact?12.4:8.3);
       const xOffset=heroLayout?(compact?0:-width*.22):(compact?0:-width*.12);
       const yOffset=heroLayout?-height*(compact?.08:.12):-height*(compact?.10:.02);
       camera.aspect=width/height;camera.fov=2*Math.atan(worldHeight/24)*180/Math.PI;camera.setViewOffset(width,height,xOffset,yOffset,width,height);camera.updateProjectionMatrix();renderer.setSize(width,height,false);schedule();
