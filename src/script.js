@@ -19,6 +19,7 @@ if (toggle && nav) {
     const anchor = event.target.closest('a');
     if (anchor) close(anchor.hasAttribute('download'));
   });
+  document.querySelector('.header-after-dark')?.addEventListener('click', () => close());
   document.addEventListener('keydown', event => { if (event.key === 'Escape') close(true); });
   document.addEventListener('click', event => { if (!event.target.closest('.site-header')) close(); });
   window.matchMedia('(min-width: 601px)').addEventListener('change', () => close());

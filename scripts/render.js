@@ -40,11 +40,13 @@ function shell(route, title, description, body, active='') {
   <link rel="stylesheet" href="${pre}portfolio-brand.css">
   <link rel="stylesheet" href="${pre}portfolio-pages.css">
   <script src="${pre}script.js" defer></script>
+  ${route==='index.html'?'<script src="hero-badge.js" type="module"></script>':''}
 </head>
 <body class="portfolio page-${pageClass}">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
     <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home">VIGO<span class="brand-stop" aria-hidden="true">.</span><span class="brand-sub">DANG</span></a>
+    <a class="header-after-dark" href="${route==='index.html'?'#hero-badge-stage':'/#hero-badge-stage'}">After Dark</a>
     <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>Menu <span aria-hidden="true">+</span></button>
     <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé</a></nav>
   </header>
@@ -116,11 +118,15 @@ function portrait(cls, sizes) {
 }
 
 function home() {
-  return `<section class="hero" aria-labelledby="hero-name"><div class="wrap">
+  return `<section class="hero hero-badge-experience" aria-labelledby="hero-name"><div class="wrap">
     <div class="hero-top"><p class="label">${esc(p.positioning.role)}</p><p class="hero-location">${esc(p.location)}</p></div>
-    <div class="hero-stage"><div class="hero-copy"><h1 id="hero-name" class="hero-name"><span>VIGO</span> <span>DANG<span class="name-stop">.</span></span></h1><div class="hero-story"><p class="hero-intro">I build tools that<br>make data useful.</p><p class="hero-focus">QUT Data Science student.<br>Seeking a Data / Cloud Engineering<br>internship or graduate role.</p><div class="hero-actions">${link('#selected-work','Explore the work','button')}${pdfLink('','text-link')}</div></div></div><div class="hero-portrait-scene" data-portrait-scene><div class="portrait-plane" aria-hidden="true"></div><div class="portrait-accent" aria-hidden="true"></div>${portrait('hero-cutout','')}<span class="portrait-caption">Hi, I’m Vigo.</span></div></div>
+    <div class="hero-stage"><div class="hero-copy"><h1 id="hero-name" class="hero-name"><span>VIGO</span> <span>DANG<span class="name-stop">.</span></span></h1><div class="hero-story"><p class="hero-intro">I build tools that<br> make data useful.</p><p class="hero-focus">QUT Data Science student.<br>Seeking a Data / Cloud Engineering<br> internship or graduate role.</p><div class="hero-actions">${link('#selected-work','Explore the work','button')}${pdfLink('','text-link')}</div></div></div>
+      <div id="hero-badge-stage" class="hero-badge-stage" role="region" aria-label="Vigo Dang’s portfolio badge. Choose a chapter below to explore." aria-describedby="hero-badge-hint"><div class="hero-portrait-scene hero-badge-fallback" data-portrait-scene><p class="hero-badge-fallback-label">PORTFOLIO ID</p>${portrait('hero-cutout','')}<div class="hero-badge-fallback-copy"><p>Vigo Dang</p><span>Data &amp; Cloud Engineering</span><small>Open to work</small></div></div><canvas id="hero-badge-canvas" aria-hidden="true"></canvas></div>
+      <div class="hero-badge-tools"><div class="hero-badge-control-row"><p id="hero-badge-hint" class="hero-badge-hint">Meet the person. Explore the work.</p><div class="hero-badge-controls"><button type="button" data-badge-turn hidden>Turn card</button><button type="button" data-badge-motion aria-pressed="false" hidden>Pause motion</button></div></div><nav class="hero-badge-chapters" aria-label="Explore Vigo’s badge"><a href="work.html" data-hero-chapter="work">Work</a><a href="#selected-work" data-hero-chapter="demos">Demos</a><a href="about.html" data-hero-chapter="skills">Skills</a><a href="about.html" data-hero-chapter="about">About</a><a href="contact.html" data-hero-chapter="contact">Contact</a></nav></div><p class="hero-badge-status" data-badge-status role="status" aria-live="polite"></p>
+    </div>
     <div class="hero-baseline"><span>Listen. Ask. Improve.</span><span>QUT · Graduating ${esc(p.graduation)}</span></div>
   </div></section>
+  <dialog id="hero-badge-dialog" aria-labelledby="hero-chapter-title" aria-describedby="hero-chapter-intro"><div class="hero-chapter-header"><p class="label" id="hero-chapter-eyebrow"></p><button type="button" data-badge-close aria-label="Close chapter" autofocus>×</button></div><div class="chapter-scroll"><h2 id="hero-chapter-title"></h2><p id="hero-chapter-intro" class="hero-chapter-intro"></p><div id="hero-chapter-body"></div></div><footer class="hero-chapter-footer"><span>VIGO DANG</span><button type="button" data-badge-close>Back to the badge</button></footer></dialog>
   <section class="selected wrap" id="selected-work" aria-labelledby="selected-title"><div class="section-heading" data-reveal><div><p class="label">Selected work</p><h2 id="selected-title">Built to be<br><span>used.</span></h2></div><div><p>Three demos you can explore.<br>Real project decisions behind each one.</p>${link('work.html','View all six projects')}</div></div><div class="project-showcases">${['dataset-health','strobe-ai','crdc-capstone'].map(projectFor).filter(pr=>pr.liveDemo).map(demoFeature).join('')}</div></section>
   <section class="human-note wrap" data-reveal><p class="label">A little about me</p><h2>Curious by nature.<br>Better with feedback.</h2><div><p>I grew up in Biên Hòa, Đồng Nai, and now study in Brisbane. I listen first, ask when I’m unsure and keep improving what I build.</p>${link('about.html','Meet the person behind the work')}</div></section>`;
 }

@@ -21,7 +21,8 @@ function faceUV(geometry,width,height){
 
 // A designed portfolio badge, not an employment credential or human scan.
 // The camera stays fixed. Both printed faces, the card body and clip rotate.
-export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMotion=false}){
+export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMotion=false,layout='standalone'}){
+  const heroLayout=layout==='hero';
   let renderer;const resources=[];const keep=resource=>(resources.push(resource),resource);
   try{
     renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});
@@ -44,7 +45,7 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     const mesh=(geometry,material,parent=scene)=>{const object=new THREE.Mesh(keep(geometry),material);parent.add(object);return object;};
     const textureFrom=element=>{const texture=keep(new THREE.CanvasTexture(element));texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());return texture;};
     await document.fonts.ready;
-    const photograph=await new Promise((resolve,reject)=>new THREE.TextureLoader().load('../assets/vigo-portrait-cutout.webp',resolve,undefined,()=>reject(new Error('Portrait texture unavailable'))));keep(photograph);
+    const photograph=await new Promise((resolve,reject)=>new THREE.TextureLoader().load(new URL('../assets/vigo-portrait-cutout.webp',import.meta.url).href,resolve,undefined,()=>reject(new Error('Portrait texture unavailable'))));keep(photograph);
     const font=(weight,size)=>`${weight} ${size}px InterVariable, Arial, sans-serif`;
     const frontCanvas=document.createElement('canvas');frontCanvas.width=1080;frontCanvas.height=1560;
     const front=frontCanvas.getContext('2d');front.fillStyle='#f3ebdd';front.fillRect(0,0,1080,1560);
@@ -93,9 +94,9 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     });
     function ribbonTexture(primary){
       const textile=document.createElement('canvas');textile.width=2048;textile.height=128;
-      const ctx=textile.getContext('2d');ctx.fillStyle=primary?'#013230':'#ff6a1f';ctx.fillRect(0,0,2048,128);
+      const ctx=textile.getContext('2d');ctx.fillStyle=primary?(heroLayout?'#f3ebdd':'#013230'):'#ff6a1f';ctx.fillRect(0,0,2048,128);
       ctx.fillStyle=primary?'#ff6a1f':'#013230';ctx.fillRect(0,6,2048,3);ctx.fillRect(0,119,2048,3);
-      ctx.fillStyle=primary?'#f3ebdd':'#013230';ctx.font=font(650,42);ctx.textBaseline='middle';
+      ctx.fillStyle=primary&&!heroLayout?'#f3ebdd':'#013230';ctx.font=font(650,42);ctx.textBaseline='middle';
       for(let x=30;x<2048;x+=850)ctx.fillText('VIGO DANG / DATA + CLOUD',x,66);
       ctx.fillStyle='#fff';ctx.globalAlpha=.055;for(let y=0;y<128;y+=4)ctx.fillRect(0,y,2048,1);ctx.globalAlpha=1;
       const texture=textureFrom(textile);texture.wrapS=THREE.RepeatWrapping;return texture;
@@ -116,7 +117,13 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       ribbons.forEach(({geometry,primary,segments})=>{
         // Leave the heading and hiring copy clear without opaque HTML masks.
         // On compact screens the continuous ribbons follow the right margin.
-        const points=width<=800
+        const points=heroLayout
+          ?width<=800
+            ?primary?[worldAt(-.08,-.09,-.65),worldAt(.22,.015,-.5),worldAt(.46,.10,-.35),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.08,-.11,-.9),worldAt(.82,.02,-.7),worldAt(.62,.10,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+            :primary?[worldAt(.33,-.14,-.65),worldAt(.52,.012,-.5),worldAt(.66,.08,-.35),end.clone().add(new THREE.Vector3(-.07,0,0))]
+              :[worldAt(1.08,-.10,-.9),worldAt(.92,.025,-.7),worldAt(.79,.10,-.35),end.clone().add(new THREE.Vector3(.07,0,-.035))]
+          :width<=800
           ?primary?[worldAt(-.08,-.10,-.65),worldAt(.48,.012,-.5),worldAt(.86,.012,-.4),worldAt(.99,.14,-.35),worldAt(.97,.34,-.2),end.clone().add(new THREE.Vector3(-.07,0,0))]
             :[worldAt(1.07,-.20,-.9),worldAt(1.03,.01,-.8),worldAt(1,.24,-.5),worldAt(.89,.35,-.2),end.clone().add(new THREE.Vector3(.07,0,-.035))]
           :primary?[worldAt(-.08,-.12,-.65),worldAt(.22,.012,-.5),worldAt(.48,.028,-.35),end.clone().add(new THREE.Vector3(-.07,0,0))]
@@ -155,8 +162,10 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
       const moving=Math.abs(targetYaw-yaw)>.0003||Math.abs(targetPitch-pitch)>.0003;if(auto||moving||interacting)schedule();
     }
     const resize=()=>{
-      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=compact?12.4:8.3;
-      camera.aspect=width/height;camera.fov=2*Math.atan(worldHeight/24)*180/Math.PI;camera.setViewOffset(width,height,compact?0:-width*.12,-height*(compact?.10:.02),width,height);camera.updateProjectionMatrix();renderer.setSize(width,height,false);schedule();
+      const bounds=stage.getBoundingClientRect();width=Math.max(1,bounds.width);height=Math.max(1,bounds.height);const compact=width<=800,worldHeight=heroLayout?(compact?6.6:7.25):(compact?12.4:8.3);
+      const xOffset=heroLayout?(compact?0:-width*.205):(compact?0:-width*.12);
+      const yOffset=heroLayout?height*(compact?-.045:.02):-height*(compact?.10:.02);
+      camera.aspect=width/height;camera.fov=2*Math.atan(worldHeight/24)*180/Math.PI;camera.setViewOffset(width,height,xOffset,yOffset,width,height);camera.updateProjectionMatrix();renderer.setSize(width,height,false);schedule();
     };
     const observer=new ResizeObserver(resize);observer.observe(stage);let drag=null;const pointers=new Set();
     const down=event=>{

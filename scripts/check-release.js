@@ -87,6 +87,30 @@ export function checkExplorer(source) {
   assert(!tags.some(tag => tag.attributes.id === 'game' || tag.attributes.id === 'start-game'), 'play/index.html: legacy gameplay controls must remain dormant');
 }
 
+export function checkHero(source, route = 'index.html') {
+  const html = source.replace(/<!--[\s\S]*?-->/g, '');
+  const attributes = tag => Object.fromEntries([...tag.matchAll(/\s([^\s=<>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
+    .map(match => [match[1].toLowerCase(), match[2] ?? match[3] ?? match[4] ?? '']));
+  const opening = [...html.matchAll(/<script\b[^>]*>/gi)].map(match => attributes(match[0]));
+  const heroScripts = opening.filter(script => /(?:^|\/)hero-badge\.js(?:[?#]|$)/i.test(script.src || ''));
+  const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+  const tags = [...markup.matchAll(/<([a-z][\w-]*)\b[^>]*>/gi)].map(match => ({name:match[1].toLowerCase(), attributes:attributes(match[0])}));
+  const hooks = ['hero-badge-canvas', 'hero-badge-stage', 'hero-badge-dialog'];
+  if (route !== 'index.html') {
+    assert(!heroScripts.length && !tags.some(tag => hooks.includes(tag.attributes.id)), `${route}: the badge hero must remain homepage-only`);
+    return;
+  }
+  const modules = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)]
+    .map(match => ({attributes:attributes(match[1]), body:match[2]})).filter(script => script.attributes.type === 'module');
+  assert(opening.filter(script => script.type === 'module').length === 1 && heroScripts.length === 1 && modules.length === 1
+    && modules[0].attributes.src === 'hero-badge.js' && !modules[0].body.trim(),
+  'index.html: expected only the hero-badge.js module at its exact relative path');
+  for (const [id, name] of [['hero-badge-canvas', 'canvas'], ['hero-badge-stage', null], ['hero-badge-dialog', 'dialog']]) {
+    const matching = tags.filter(tag => tag.attributes.id === id);
+    assert(matching.length === 1 && (!name || matching[0].name === name), `index.html: missing or duplicate ${id} element`);
+  }
+}
+
 export async function checkRelease(repo = here) {
   const dist = path.join(repo, 'dist');
   const hashes = await assetHashes(dist);
@@ -113,7 +137,10 @@ export async function checkRelease(repo = here) {
     const expected = (isExplorer ? explorerStylesheets : stylesheets).map(file => prefix + file);
     assert(JSON.stringify(linked) === JSON.stringify(expected), `${route}: expected ${isExplorer ? 'explorer' : 'portfolio'} stylesheets in approved order with exact relative paths`);
     if (isExplorer) checkExplorer(html);
-    else assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
+    else {
+      assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
+      checkHero(html, route);
+    }
     if (route === 'index.html' || route === 'about.html') {
       const portrait = [...html.matchAll(/<picture\b([^>]*)>([\s\S]*?)<\/picture>/gi)]
         .find(match => /(?:^|\s)class="([^"]*)"/i.exec(match[1])?.[1].split(/\s+/).includes('portrait-picture'));
