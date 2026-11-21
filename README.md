@@ -1,6 +1,6 @@
 # Vigo Dang — Vigo After Dark portfolio
 
-A professional portfolio with an interactive 3D ID badge and diagonal cloth lanyard in the homepage hero. Node 22 renders semantic static pages for GitHub Pages. The portfolio uses forest green, warm cream, orange accents and bold self-hosted Inter. The existing cutout portrait remains the hero fallback when graphics are unavailable. Header links lead directly to the native hero; the separate After Dark experience at `/play/` remains available from the footer and returns to the main portfolio.
+A professional portfolio with an interactive 3D ID badge and diagonal cloth lanyard in the homepage hero. Node 22 renders semantic static pages for GitHub Pages. The portfolio uses forest green, warm cream, orange accents and bold self-hosted Inter. The existing cutout portrait remains the hero fallback when graphics are unavailable. The separate After Dark experience at `/play/` remains available from the footer and returns to the main portfolio.
 
 Current release-check findings are in [the repair report](docs/pages-repair/report.md); [deployment and verification](docs/pages-repair/deployment.md) describes the single publishing path. The cream/Georgia audit and inventory dated 14 November 2026 are historical, superseded records, not the visual or file-deletion authority for this release.
 
