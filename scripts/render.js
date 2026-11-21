@@ -46,7 +46,6 @@ function shell(route, title, description, body, active='') {
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header wrap">
     <a class="brand" href="${pre}index.html" aria-label="Vigo Dang home">VIGO<span class="brand-stop" aria-hidden="true">.</span><span class="brand-sub">DANG</span></a>
-    <a class="header-after-dark" href="${route==='index.html'?'#hero-badge-stage':'/#hero-badge-stage'}">After Dark</a>
     <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>Menu <span aria-hidden="true">+</span></button>
     <nav id="site-nav" aria-label="Main navigation" data-nav-links>${nav}<a class="nav-cv" href="${pre}resume.html"${active==='Resume'?' aria-current="page"':''}>Résumé</a></nav>
   </header>

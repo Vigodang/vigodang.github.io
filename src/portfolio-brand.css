@@ -17,11 +17,9 @@ a{transition:color .2s,background-color .2s,border-color .2s}a:hover{color:var(-
 .button:hover{background:#ff864a;border-color:#ff864a;color:var(--ink);transform:translateY(-3px)}.button:active{transform:translateY(0)}.button:focus-visible{outline-color:var(--ink);box-shadow:0 0 0 3px var(--bg)}.button-secondary{background:transparent;border-color:var(--ink)}
 .crosshair,.image-action{display:none}
 
-/* Four navigation destinations and a direct entry to After Dark. */
+/* Four navigation destinations; the interactive badge lives in the homepage. */
 .site-header{position:sticky;top:0;z-index:30;width:100%;max-width:none;min-height:84px;padding:14px max(48px,calc((100% - 1280px)/2));display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:28px;border:0;border-bottom:1px solid var(--line);background:var(--bg)}
 .site-header>.brand{margin-right:auto}
-.site-header .header-after-dark{display:inline-flex;flex:0 0 auto;align-items:center;justify-content:center;min-height:44px;padding:11px 14px;border:1px solid var(--orange);border-radius:2px;background:var(--orange);color:var(--ink);font:700 .875rem/1.2 var(--sans);text-decoration:none;white-space:nowrap}
-.site-header .header-after-dark:hover{background:#ff864a;border-color:#ff864a;color:var(--ink)}.site-header .header-after-dark:focus-visible{outline-color:var(--ink)}.page-home .site-header .header-after-dark:focus-visible{outline-color:var(--bg)}
 .brand{display:inline-flex;gap:0;align-items:baseline;color:var(--ink);font:900 1.9rem/1 var(--sans);letter-spacing:-.07em;white-space:nowrap;text-decoration:none}.brand-stop{color:var(--orange)}.brand-sub{display:inline;margin:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:none}
 .site-header nav{display:flex;align-items:center;gap:32px}.site-header nav a{display:inline-flex;align-items:center;min-height:44px;padding:0;color:var(--ink);font:550 .875rem/1.5 var(--sans);text-decoration:none}.site-header nav a::after{display:none}.site-header nav a:hover,.site-header nav a[aria-current]{color:var(--brown);text-decoration:underline;text-underline-offset:8px}.site-header nav .nav-cv{margin:0;border:0}
 .nav-toggle{display:none;min-height:44px;padding:9px 14px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--ink);font-size:.875rem;gap:18px}
@@ -98,7 +96,6 @@ a{transition:color .2s,background-color .2s,border-color .2s}a:hover{color:var(-
 }
 @media(max-width:600px){
   .site-header{column-gap:8px}
-  .site-header .header-after-dark{padding-inline:12px}
   .site-header .nav-toggle{flex:0 0 auto;margin-left:0;gap:10px;padding-inline:10px}
   .site-header nav{flex-basis:100%}
 }
@@ -135,7 +132,7 @@ a{transition:color .2s,background-color .2s,border-color .2s}a:hover{color:var(-
 #hero-badge-dialog .chapter-demo{padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid var(--line)}#hero-badge-dialog .chapter-demo:last-child{margin-bottom:0}#hero-badge-dialog .chapter-demo>a{display:grid;grid-template-columns:100px minmax(0,1fr);gap:18px;align-items:start;text-decoration:none}#hero-badge-dialog .chapter-demo img{width:100px;height:auto;aspect-ratio:4/3;object-fit:contain;object-position:top;border:1px solid var(--line);background:white}#hero-badge-dialog .chapter-demo strong{display:block;font-size:16px;line-height:1.4;margin-bottom:8px}#hero-badge-dialog .chapter-demo span>span{display:block;font-size:16px;line-height:1.7;color:var(--muted)}#hero-badge-dialog .chapter-demo small{display:block;margin-top:10px;padding-left:10px;border-left:2px solid var(--orange);font-size:13px;line-height:1.65;color:var(--muted)}
 #hero-badge-dialog .chapter-statement{font-size:22px;line-height:1.45;font-weight:550;letter-spacing:-.02em;padding:24px 0;margin:26px 0;border-block:1px solid var(--line)}#hero-badge-dialog .chapter-facts{display:grid;gap:20px;margin:28px 0 0}#hero-badge-dialog .chapter-facts>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:16px}#hero-badge-dialog .chapter-facts dt{font-size:14px;color:var(--muted)}#hero-badge-dialog .chapter-facts dd{margin:0;font-size:16px}
 #hero-badge-dialog .chapter-contact{display:grid;gap:18px}#hero-badge-dialog .chapter-contact p{margin:0;font-size:16px;color:var(--muted)}#hero-badge-dialog .chapter-contact a{display:inline-flex;align-items:center;min-height:44px;overflow-wrap:anywhere;font-size:16px;font-weight:600}#hero-badge-dialog .chapter-contact a[download]{font-size:14px}
-@media(min-width:601px) and (max-width:800px){.site-header{column-gap:16px}.site-header nav{gap:16px}.site-header .header-after-dark{padding-inline:12px}}
+@media(min-width:601px) and (max-width:800px){.site-header{column-gap:16px}.site-header nav{gap:16px}}
 @media(max-width:1100px) and (min-width:801px){.hero-badge-experience .hero-stage{--badge-stage-height:620px}.hero-badge-experience .hero-name{font-size:12vw}.hero-badge-experience .hero-copy{width:45%}.hero-badge-tools{width:50%}.hero-badge-control-row{flex-wrap:wrap;gap:0}.hero-badge-hint{max-width:none;flex-basis:100%}.hero-badge-controls{gap:16px}}
 @media(max-width:800px){
   .hero-badge-experience .hero-stage{--badge-stage-height:500px;grid-template-rows:auto;min-height:0;padding:28px 0 20px}
