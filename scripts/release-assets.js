@@ -12,6 +12,7 @@ const gameModules = ['game.js', 'after-dark-game.js', 'after-dark-world.js', 'au
 export const releaseAssets = [...stylesheets, 'script.js', 'hero-badge.js',
   'assets/vigo-portrait-400.webp', 'assets/vigo-portrait-640.webp',
   'assets/vigo-portrait-960.webp', 'assets/vigo-portrait-640.jpg', 'assets/vigo-portrait-cutout.png', 'assets/vigo-portrait-cutout.webp',
+  ...['everyday-celery', 'fries-candid', 'coffee-candid', 'sushi-candid', 'sushi-portrait', 'hoi-an-stop', 'travel-wander', 'table-by-the-water'].map(name => `assets/about/${name}.webp`),
   'assets/crdc-research-demo.jpg', 'assets/dataset-health-demo.jpg', 'assets/strobe-ai-demo.jpg', profile.pdf,
   'assets/resume-truong-lieu-dong-vigo-dang.pdf', 'assets/fonts/InterVariable.woff2', 'assets/fonts/Inter-OFL.txt',
   ...gameStylesheets.map(file => 'play/' + file), ...gameModules.map(file => 'play/' + file),

@@ -767,3 +767,177 @@
   .page-visual .viewer-page { padding: 0; }
   .page-visual .visual-viewport { height: auto; border: 0; border-radius: 0; overflow: visible; }
 }
+
+/* About photo essay: personal frames, with the professional context close by. */
+.page-about :is(.about-story-intro, .about-story-chapter, .story-people-inner, .about-story-foundation) { min-width: 0; }
+.page-about :is(.story-opening, .story-copy) > .label { margin: 0 0 24px; color: var(--brown); }
+.page-about :is(.story-opening, .story-copy) > p:not(.label) { max-width: 48ch; margin: 0 0 20px; font-size: 17px; line-height: 1.8; color: var(--muted); }
+.page-about :is(.story-opening, .story-copy) > p:last-child { margin-bottom: 0; }
+.page-about .about-story-intro { display: grid; grid-template-columns: minmax(0, .42fr) minmax(0, .58fr); align-items: center; gap: clamp(36px, 5vw, 72px); padding: 64px 0 90px; }
+.page-about .story-opening h1 { margin: 0 0 30px; font-size: clamp(3rem, 4.8vw, 5rem); line-height: 1.02; letter-spacing: -.06em; }
+.page-about .story-opening h1 > span { color: var(--brown); }
+.page-about .story-opening .story-lede { color: var(--ink); font-size: 19px; line-height: 1.65; }
+.page-about .story-opening .story-origin { margin-top: 28px; padding-left: 14px; border-left: 3px solid var(--orange); font-size: 14px; font-weight: 600; color: var(--ink); }
+.page-about :where(.story-cover, .story-food-photos, .story-travel-photos, .story-people-inner) figure { min-width: 0; margin: 0; padding: 0; border: 0; background: none; box-shadow: none; }
+.page-about .story-photo-media { position: relative; min-width: 0; overflow: hidden; background: var(--surface-2); }
+.page-about .story-photo-media img { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: cover; object-position: center; }
+.page-about :is(.story-cover, .story-food-photos, .story-travel-photos, .story-people-inner) figcaption { margin: 0; padding: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.page-about .story-cover { position: relative; padding: 0 0 72px 22%; }
+.page-about .story-cover-main .story-photo-media { height: clamp(380px, 37vw, 520px); }
+.page-about .story-cover-main img { object-position: center 68%; }
+.page-about .story-cover-main figcaption { padding-left: 26%; }
+.page-about .story-cover-inset { position: absolute; left: 0; bottom: 0; width: 37%; padding: 8px 8px 0 0; background: var(--bg); }
+.page-about .story-cover-inset .story-photo-media { aspect-ratio: 3 / 4; }
+.page-about .story-cover-inset img { object-position: 48% 43%; }
+.page-about .about-story-chapter { display: grid; align-items: center; column-gap: clamp(36px, 5vw, 72px); padding: 0 0 96px; }
+.page-about .story-copy h2 { margin: 0 0 26px; font-size: clamp(2.3rem, 3.8vw, 3.75rem); line-height: 1.04; letter-spacing: -.055em; }
+.page-about .story-food { grid-template-columns: minmax(0, .35fr) minmax(0, .65fr); }
+.page-about .story-copy .story-aside { padding-top: 10px; font-size: 14px; font-weight: 600; color: var(--brown); }
+.page-about .story-food-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 22px; }
+.page-about .story-food-wide { grid-column: 1 / -1; }
+.page-about .story-food-wide .story-photo-media { height: clamp(210px, 22vw, 300px); }
+.page-about .story-food-wide img { object-position: center top; }
+.page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 260px; }
+.page-about .story-food-photos > figure:not(.story-food-wide) img { object-position: center 36%; }
+.page-about .story-travel { grid-template-columns: minmax(0, .6fr) minmax(0, .4fr); }
+.page-about .story-travel-photos { display: grid; grid-template-columns: minmax(0, 2.25fr) minmax(0, 1fr); align-items: start; gap: 20px; }
+.page-about .story-travel-wide .story-photo-media { aspect-ratio: 3 / 2; }
+.page-about .story-travel-tall { margin-top: 80px; }
+.page-about .story-travel-tall .story-photo-media { aspect-ratio: 2 / 3; }
+.page-about .story-wander img { transform: scale(1.02); }
+.page-about .about-story-people { background: var(--ink); color: var(--bg); }
+.page-about .story-people-inner { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(48px, 9vw, 128px); align-items: center; padding: 76px 0; }
+.page-about .story-people-inner .story-copy > .label { color: #d3d6c8; }
+.page-about .story-people-inner .story-copy > p:not(.label) { color: #e0e0d2; }
+.page-about .story-people-inner h2 { color: var(--bg); }
+.page-about .story-people-inner > figure { width: min(100%, 370px); justify-self: end; }
+.page-about .story-people-inner .story-photo-media { aspect-ratio: 4 / 5; max-height: 460px; background: #294d41; }
+.page-about .story-people-inner img { object-position: center 42%; }
+.page-about .story-people-inner figcaption { color: #d3d6c8; }
+.page-about .story-next { display: flex; flex-wrap: wrap; gap: 12px 28px; margin-top: 24px; }
+.page-about .story-next .text-link { color: var(--bg); font-size: 14px; }
+.page-about .story-next .text-link:hover { color: var(--orange); }
+.page-about .about-story-foundation { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px 64px; padding: 68px 0 72px; }
+.page-about .story-signoff { display: flex; align-items: flex-start; gap: 24px; min-width: 0; }
+.page-about .story-signoff-photo { flex: 0 0 96px; width: 96px; background: var(--surface-2); }
+.page-about .story-signoff-photo img { width: 96px; height: 120px; object-fit: contain; object-position: center bottom; }
+.page-about .story-signoff .label { margin: 0 0 14px; }
+.page-about .story-signoff h2 { margin: 0 0 20px; font-size: clamp(1.85rem, 2.7vw, 2.5rem); line-height: 1.07; }
+.page-about :is(.story-signoff, .story-study, .story-background-content) p { margin: 0 0 18px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+.page-about .story-study h3 { margin: 0 0 16px; font-size: 20px; line-height: 1.3; letter-spacing: -.025em; }
+.page-about .story-study .text-link { margin-right: 22px; font-size: 14px; }
+.page-about .story-background { grid-column: 1 / -1; min-width: 0; border-top: 1px solid var(--line); }
+.page-about .story-background summary { min-height: 64px; padding: 18px 0; font-size: 16px; font-weight: 650; color: var(--ink); cursor: pointer; }
+.page-about .story-background summary::marker { color: var(--brown); }
+.page-about .story-background summary > span { display: inline-block; margin-left: 22px; font-size: 13px; font-weight: 400; color: var(--muted); }
+.page-about .story-background-content { padding: 14px 0 8px; max-width: 100%; }
+.page-about .story-background-content > p { max-width: 85ch; }
+.page-about .story-skill-lines { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 26px 0; }
+.page-about .story-skill-lines strong { display: block; margin-bottom: 9px; color: var(--ink); font-size: 14px; font-weight: 650; }
+.page-about .story-background-content .text-link { font-size: 14px; }
+@media (max-width: 1100px) {
+  .page-about .about-story-intro { column-gap: 36px; padding-top: 52px; }
+  .page-about .story-opening h1 { font-size: clamp(3rem, 5vw, 3.5rem); }
+  .page-about .story-opening .story-lede { font-size: 18px; }
+  .page-about :is(.story-opening, .story-copy) > p:not(.label) { font-size: 16px; }
+  .page-about .story-cover { padding-bottom: 58px; }
+  .page-about .story-cover-inset { width: 40%; }
+  .page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 230px; }
+  .page-about .story-travel { grid-template-columns: minmax(0, .57fr) minmax(0, .43fr); }
+  .page-about .story-travel-photos { gap: 15px; }
+  .page-about .story-people-inner { gap: 56px; }
+  .page-about .about-story-foundation { gap: 30px 38px; }
+}
+@media (max-width: 800px) {
+  .page-about .about-story-intro { grid-template-columns: minmax(0, 1fr); gap: 36px; padding: 44px 0 64px; }
+  .page-about .story-opening { max-width: 66ch; }
+  .page-about .story-opening h1 { font-size: clamp(3rem, 7.8vw, 4rem); }
+  .page-about .story-opening .story-lede { max-width: 52ch; }
+  .page-about .story-cover { width: min(100%, 590px); justify-self: center; padding-left: 23%; padding-bottom: 48px; }
+  .page-about .story-cover-main .story-photo-media { height: 390px; }
+  .page-about .story-cover-inset { width: 35%; }
+  .page-about .about-story-chapter { grid-template-columns: minmax(0, 1fr); row-gap: 30px; padding-bottom: 64px; }
+  .page-about .story-copy { max-width: 63ch; }
+  .page-about .story-copy h2 { font-size: clamp(2.3rem, 5.7vw, 3rem); }
+  .page-about .story-copy > p:not(.label) { max-width: 61ch; }
+  .page-about .story-food-wide .story-photo-media { height: 290px; }
+  .page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 260px; }
+  .page-about .story-travel .story-copy { grid-row: 1; }
+  .page-about .story-travel-photos { grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr); gap: 24px; }
+  .page-about .story-travel-tall { margin-top: 50px; }
+  .page-about .story-people-inner { grid-template-columns: minmax(0, 1fr); gap: 34px; padding: 56px 0; }
+  .page-about .story-people-inner > figure { width: min(70%, 340px); justify-self: center; }
+  .page-about .about-story-foundation { grid-template-columns: minmax(0, 1fr); gap: 30px; padding: 52px 0 56px; }
+  .page-about .story-signoff { max-width: 580px; }
+  .page-about .story-study { padding-left: 120px; }
+  .page-about .story-skill-lines { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}
+@media (max-width: 600px) {
+  .page-about .about-story-intro { gap: 30px; padding: 36px 0 54px; }
+  .page-about .story-opening h1 { margin-bottom: 24px; font-size: clamp(2.75rem, 10.8vw, 3.6rem); }
+  .page-about :is(.story-opening, .story-copy) > .label { margin-bottom: 18px; }
+  .page-about .story-opening .story-lede { font-size: 18px; }
+  .page-about .story-opening .story-origin { margin-top: 24px; font-size: 14px; }
+  .page-about .story-cover { width: min(100%, 390px); height: 390px; padding: 0 0 0 22%; }
+  .page-about .story-cover-main .story-photo-media { height: 320px; }
+  .page-about .story-cover-inset { bottom: 0; width: 40%; padding-right: 6px; }
+  .page-about .story-cover-inset .story-photo-media { height: 182px; aspect-ratio: auto; }
+  .page-about .story-cover-main figcaption { padding-left: 30%; }
+  .page-about .about-story-chapter { row-gap: 26px; padding-bottom: 54px; }
+  .page-about .story-copy h2 { font-size: clamp(2.2rem, 9vw, 3rem); margin-bottom: 22px; }
+  .page-about .story-food-photos { gap: 20px 14px; }
+  .page-about .story-food-wide .story-photo-media { height: 215px; }
+  .page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 210px; }
+  .page-about .story-travel-photos { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 14px; }
+  .page-about .story-travel-tall { margin-top: 36px; }
+  .page-about .story-people-inner { padding: 48px 0; }
+  .page-about .story-people-inner > figure { width: min(82%, 310px); }
+  .page-about .story-next { gap: 6px 22px; margin-top: 18px; }
+  .page-about .story-signoff { gap: 18px; }
+  .page-about .story-signoff h2 { font-size: 28px; }
+  .page-about .story-signoff .label { font-size: 13px; }
+  .page-about .story-signoff > div { min-width: 0; }
+  .page-about .story-study { padding-left: 0; }
+  .page-about .story-background summary > span { display: block; margin: 6px 0 0 20px; }
+}
+@media (max-width: 360px) {
+  .page-about .story-cover { height: 365px; }
+  .page-about .story-cover-main .story-photo-media { height: 298px; }
+  .page-about .story-cover-inset .story-photo-media { height: 165px; }
+  .page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 185px; }
+  .page-about .story-signoff { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .page-about .story-signoff h2 { font-size: 25px; }
+}
+@media print {
+  .page-about :is(.about-story-intro, .about-story-chapter, .story-people-inner, .about-story-foundation) { padding: 7mm 0; gap: 7mm; }
+  .page-about .about-story-intro { display: grid; grid-template-columns: 1fr 1fr; }
+  .page-about .story-opening h1 { font-size: 26pt; }
+  .page-about :is(.story-opening, .story-copy, .story-signoff, .story-study, .story-background-content) p { font-size: 10pt; line-height: 1.5; color: #013230; }
+  .page-about .story-copy h2 { font-size: 23pt; }
+  .page-about .story-cover { width: 100%; height: 95mm; padding-left: 22%; padding-bottom: 0; }
+  .page-about .story-cover-main .story-photo-media { height: 77mm; }
+  .page-about .story-cover-inset .story-photo-media { height: 42mm; }
+  .page-about .story-cover-inset { width: 40%; background: white; }
+  .page-about .about-story-chapter { display: grid; grid-template-columns: .85fr 1.15fr; break-inside: avoid; }
+  .page-about .story-travel { grid-template-columns: 1.15fr .85fr; }
+  .page-about .story-travel .story-copy { grid-row: auto; }
+  .page-about .story-food-wide .story-photo-media { height: 38mm; }
+  .page-about .story-food-photos > figure:not(.story-food-wide) .story-photo-media { height: 42mm; }
+  .page-about .story-travel-tall { margin-top: 12mm; }
+  .page-about .about-story-people { background: white; color: #013230; }
+  .page-about .story-people-inner { display: grid; grid-template-columns: 1.2fr .8fr; }
+  .page-about .story-people-inner :is(h2, .label, .text-link, figcaption) { color: #013230; }
+  .page-about .story-people-inner .story-copy > p:not(.label) { color: #013230; }
+  .page-about .story-people-inner > figure { width: 100%; }
+  .page-about .story-people-inner .story-photo-media { max-height: 75mm; }
+  .page-about :is(.story-cover, .story-food-photos, .story-travel-photos, .story-people-inner) figcaption { font-size: 8pt; color: #42574e; }
+  .page-about .story-next { margin-top: 2mm; }
+  .page-about .story-signoff { display: flex; }
+  .page-about .story-signoff h2 { font-size: 20pt; }
+  .page-about .story-study { padding-left: 0; }
+  .page-about .story-background-content, .page-about .story-background:not([open]) > .story-background-content { display: block !important; }
+  .page-about .story-background::details-content { content-visibility: visible !important; block-size: auto !important; }
+  .page-about .story-background summary > span { display: inline; margin-left: 5mm; }
+  .page-about .story-skill-lines { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
+  .page-about .story-background-content .text-link { font-size: 9pt; }
+}
