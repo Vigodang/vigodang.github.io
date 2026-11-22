@@ -132,12 +132,12 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved badge homepage and orbit explorer retain legacy source with 23 pages and 68 protected assets', async t => {
+test('Approved portfolio photo story and orbit explorer retain legacy source with 23 pages and 76 protected assets', async t => {
   const directory = await fixture(t);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), explorerStyles);
   await Promise.all(['src', 'dist'].flatMap(tree => gameStyles.map(file => access(path.join(directory, tree, 'play', file)))));
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 68 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 76 });
 });
 
 for (const [name, transform] of [
