@@ -11,11 +11,11 @@ export async function renderOrbit(){
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#013230">
-  <title>Vigo After Dark — A Face, a Name, a Conversation</title>
+  <title>Vigo Dang — Portfolio</title>
   <meta name="description" content="Meet Vigo Dang through an interactive ID badge: Data and Cloud Engineering work, public demos and the person behind them.">
   <link rel="canonical" href="https://vigodang.github.io/play/">
-  <meta property="og:title" content="Vigo After Dark — A Face, a Name, a Conversation">
-  <meta property="og:description" content="A face. A name. A conversation. Meet Vigo and explore the work through an interactive ID badge.">
+  <meta property="og:title" content="Vigo Dang — Portfolio">
+  <meta property="og:description" content="Vigo Dang’s data and cloud projects, public demos, technical skills and contact details.">
   <meta property="og:type" content="website"><meta property="og:url" content="https://vigodang.github.io/play/">
   <meta property="og:image" content="https://vigodang.github.io/assets/og-image.png">
   <meta property="og:image:alt" content="Vigo Dang — Data and Cloud Engineering">
@@ -29,7 +29,7 @@ export async function renderOrbit(){
 <body>
   <a class="skip-link" href="#direct-access">Skip the scene and explore the chapters</a>
   <header class="world-header">
-    <a class="world-brand" href="../" aria-label="Vigo Dang portfolio">VIGO<span>.</span><b>AFTER DARK</b></a>
+    <a class="world-brand" href="../" aria-label="Vigo Dang portfolio">VIGO<span>.</span><b>PORTFOLIO</b></a>
     <a class="portfolio-return" href="../">Back to portfolio</a>
   </header>
   <main id="main">
@@ -43,7 +43,7 @@ export async function renderOrbit(){
       <div class="orbit-hotspots" aria-label="Explore a chapter">${hotspots}</div>
       <p id="scene-hint" class="scene-hint"><span class="drag-glyph" aria-hidden="true"></span><span id="hint-text">Choose a chapter to explore.</span></p>
       <div class="view-controls" hidden><button type="button" id="turn-view" aria-label="Turn card 45 degrees">Turn card</button><button type="button" id="reset-view">Reset card</button><button type="button" id="motion-toggle" aria-pressed="false">Pause motion</button></div>
-      <nav class="chapter-nav" aria-label="Explore Vigo After Dark">${nav}</nav>
+      <nav class="chapter-nav" aria-label="Explore Vigo Dang’s portfolio">${nav}</nav>
       <p class="scene-status" id="scene-status" role="status" aria-live="polite"></p>
     </section>
     <div id="direct-access" class="direct-access" tabindex="-1"><header><p class="eyebrow">The person and the work</p><h2>Meet Vigo.<br>Explore the work.</h2></header>${staticChapters}</div>
@@ -51,7 +51,7 @@ export async function renderOrbit(){
   <dialog id="chapter-dialog" aria-labelledby="chapter-title" aria-describedby="chapter-intro">
     <div class="chapter-header"><p class="eyebrow" id="chapter-eyebrow"></p><button type="button" id="close-chapter" aria-label="Close chapter" autofocus>×</button></div>
     <div class="chapter-scroll"><h2 id="chapter-title"></h2><p class="chapter-intro" id="chapter-intro"></p><div id="chapter-body"></div></div>
-    <footer class="chapter-footer"><span>VIGO AFTER DARK</span><button type="button" id="return-scene">Back to the scene</button></footer>
+    <footer class="chapter-footer"><span>VIGO DANG</span><button type="button" id="return-scene">Back to the scene</button></footer>
   </dialog>
 </body>
 </html>
