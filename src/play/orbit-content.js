@@ -95,11 +95,11 @@ export const orbitContent = {
       label: 'About',
       eyebrow: 'The person behind the work',
       title: 'Hi, I’m Vigo.',
-      intro: 'I’m from Vietnam and I’m studying Data Science at QUT in Brisbane.',
+      intro: 'I’m from Vietnam and I’m based in Brisbane. My projects focus on data and cloud applications.',
       statement: 'In a team, I try to listen, ask questions when I’m unsure and use feedback to improve my work.',
       facts: [
-        { label: 'Study', value: 'Bachelor of Data Science · QUT' },
-        { label: 'Graduation', value: 'Expected July 2027' },
+        { label: 'Based in', value: 'Brisbane, Australia' },
+        { label: 'Projects', value: 'Data tools, cloud workflows and applied AI' },
         { label: 'Focus', value: 'Data & Cloud Engineering' }
       ]
     },
