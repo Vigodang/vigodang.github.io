@@ -156,7 +156,7 @@ export const resumeData = {
   },
   pdf, name,
   displayName: required(profile.name, 'profile.name'),
-  headline: plain(required(body.match(/DATA SCIENCE UNDERGRADUATE[\s\S]*?APPLIED AI/)?.[0], 'CV positioning headline')),
+  headline: plain(required(body.match(/\\fontsize\{9\}\{11\.5\}\\selectfont\\color\{steel\}([\s\S]*?)\}\s*&/)?.[1], 'CV positioning headline')),
   location, phone,
   email: required(profile.email, 'profile.email'),
   website: 'https://vigodang.github.io/',

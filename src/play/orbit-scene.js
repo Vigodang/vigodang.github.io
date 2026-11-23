@@ -58,7 +58,7 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     front.save();front.beginPath();front.rect(72,394,936,666);front.clip();front.drawImage(photograph.image,0,185,1122,1120,72,394,936,934);front.restore();
     front.fillStyle='#013230';front.font=font(750,66);front.fillText('DATA / CLOUD',72,1180);front.font=font(650,53);front.fillText('ENGINEERING',72,1246);
     front.fillStyle='#013230';front.fillRect(72,1300,14,14);front.font=font(650,27);front.fillText('OPEN TO INTERNSHIP / GRADUATE ROLES',105,1319);
-    front.font=font(450,27);front.fillStyle='#38574e';front.fillText('Brisbane · QUT Data Science',72,1385);
+    front.font=font(450,27);front.fillStyle='#38574e';front.fillText('Brisbane · Data & Cloud',72,1385);
     front.fillStyle='#013230';front.fillRect(72,1424,936,2);front.font=font(550,23);front.fillText('LISTEN. ASK. IMPROVE.',72,1480);
     front.textAlign='right';front.fillText('TURN TO EXPLORE',1008,1480);front.textAlign='left';
     const backCanvas=document.createElement('canvas');backCanvas.width=1080;backCanvas.height=1560;

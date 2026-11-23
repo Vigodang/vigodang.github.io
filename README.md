@@ -19,7 +19,8 @@ On Windows, use `npm.cmd` if PowerShell blocks `npm.ps1`. Preview the portfolio 
 
 ## Source ownership
 
-- `content/site.js` owns public profile facts, project copy and evidence boundaries. `content/current-cv.tex` preserves the supplied CV facts with owner-approved contact updates; `content/resume.js` supplies résumé content with the documented Dataset stack correction.
+- `content/site.js` owns public profile facts, project copy and evidence boundaries. `content/current-cv.tex` preserves the supplied CV facts with owner-approved contact and presentation updates; `content/resume.js` supplies résumé content with the documented Dataset stack correction.
+- Project introductions describe engineering work and personal or team contributions, without course codes or assessment labels. Real education remains in Education and the résumé. Team ownership, inherited code, evidence limits and archived benchmark identifiers remain explicit.
 - `scripts/render.js` owns shared navigation, footer, editorial pages and case-study templates. It generates 22 editorial HTML pages, sitemap and robots into `src/`; build then copies `src/` into a fresh `dist/`. Edit templates/content rather than generated editorial HTML.
 - About uses eight photographs supplied by Vigo, stored as compressed WebPs in `src/assets/about/`. Matching portrait and landscape pairs show complete images at their original proportions, with no overlap, crops or invented captions. The copy uses the owner’s stated interests and traits, with technical skills in a native disclosure and verified education kept visible.
 - `src/hero-badge.js` loads only on the homepage and mounts the native badge canvas, controls and a dialog for five chapters. It reuses the local scene factory and chapter content under `play/`; the hero variant leaves the separate Play entry available. Project, demo, résumé and contact destinations remain accessible without manipulating the 3D card.
