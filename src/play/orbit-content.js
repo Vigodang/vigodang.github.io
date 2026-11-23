@@ -3,7 +3,7 @@ export const orbitContent = {
   title: 'Vigo Dang',
   role: 'Data & Cloud Engineering',
   opportunity: 'Seeking internship and graduate opportunities',
-  intro: 'A closer look at what I build and how I work.',
+  intro: 'My projects, skills and a little about me.',
   instruction: 'Choose a chapter to explore.',
   portfolioLink: { label: 'Main portfolio', href: '../index.html' },
   portraitAlt: 'Vigo Dang smiling, wearing a rust-coloured polo shirt.',
@@ -12,7 +12,7 @@ export const orbitContent = {
       id: 'work',
       label: 'Work',
       eyebrow: 'Six project stories',
-      title: 'Tools, workflows and the decisions behind them.',
+      title: 'My projects',
       intro: 'I build software around data—from a CSV report to the system that processes it.',
       groups: [
         {
@@ -42,7 +42,7 @@ export const orbitContent = {
       id: 'demos',
       label: 'Demos',
       eyebrow: 'Three public demos',
-      title: 'Try a small part of the work.',
+      title: 'Demos',
       intro: 'Each demo gives you something concrete to explore. Its scope is shown below.',
       items: [
         {
@@ -81,7 +81,7 @@ export const orbitContent = {
       id: 'skills',
       label: 'Skills',
       eyebrow: 'Tools in my project work',
-      title: 'Software around data.',
+      title: 'Technical skills',
       intro: 'I’m interested in the whole workflow: preparing data, connecting services and making the result usable.',
       items: [
         { label: 'Data & applications', description: 'Python, SQL, JavaScript/Node.js, Pandas and NumPy.' },
@@ -95,8 +95,8 @@ export const orbitContent = {
       label: 'About',
       eyebrow: 'The person behind the work',
       title: 'Hi, I’m Vigo.',
-      intro: 'I’m a QUT Data Science student in Brisbane. I grew up in Biên Hòa, Đồng Nai, and I’m looking for a team to learn with.',
-      statement: 'I listen first, ask when something is unclear, and use feedback to make the next version better.',
+      intro: 'I’m from Vietnam and I’m studying Data Science at QUT in Brisbane.',
+      statement: 'In a team, I try to listen, ask questions when I’m unsure and use feedback to improve my work.',
       facts: [
         { label: 'Study', value: 'Bachelor of Data Science · QUT' },
         { label: 'Graduation', value: 'Expected July 2027' },
@@ -107,10 +107,10 @@ export const orbitContent = {
       id: 'contact',
       label: 'Contact',
       eyebrow: 'Internship / graduate opportunities',
-      title: 'Let’s talk about useful work.',
-      intro: 'I’m looking for a team where I can contribute, learn and improve.',
+      title: 'Contact me',
+      intro: 'I’m looking for a Data or Cloud Engineering internship or graduate role in Brisbane.',
       location: 'Brisbane, Australia',
-      link: { label: 'n11721138@qut.edu.au', href: 'mailto:n11721138@qut.edu.au' },
+      link: { label: 'lieudong2005@gmail.com', href: 'mailto:lieudong2005@gmail.com' },
       secondaryLink: { label: 'Download résumé PDF', href: '../assets/Vigo_Dang_Resume_2026_Redesigned.pdf', download: true }
     }
   ]

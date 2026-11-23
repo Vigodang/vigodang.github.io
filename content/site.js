@@ -3,7 +3,7 @@ export const profile = {
   "name": "Vigo Dang",
   "fullName": "Truong Lieu Dong (Vigo) Dang",
   "location": "Brisbane, Australia",
-  "email": "n11721138@qut.edu.au",
+  "email": "lieudong2005@gmail.com",
   "github": "https://github.com/Vigodang",
   "linkedin": "https://linkedin.com/in/vigodang",
   "university": "Queensland University of Technology",

@@ -12,7 +12,7 @@ const required = (value, field) => {
 
 // This small reader handles the supplied CV's text macros, not arbitrary TeX.
 // Read balanced groups so nested emphasis and PH superscripts cannot truncate
-// project bullets. Keep the exact original .tex unchanged beside this adapter.
+// project bullets. Owner-approved contact updates belong in the source .tex.
 function group(text, offset) {
   while (/\s/.test(text[offset] || '') && offset < text.length) offset++;
   if (text[offset] !== '{') throw new Error(`Expected CV text group at ${offset}`);
