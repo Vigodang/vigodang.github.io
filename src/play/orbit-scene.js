@@ -50,8 +50,8 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     const frontCanvas=document.createElement('canvas');frontCanvas.width=1080;frontCanvas.height=1560;
     const front=frontCanvas.getContext('2d');front.fillStyle='#f3ebdd';front.fillRect(0,0,1080,1560);
     front.fillStyle='#013230';front.fillRect(0,0,1080,130);
-    front.fillStyle='#f3ebdd';front.font=font(650,28);front.fillText('VIGO DANG',72,88);
-    front.textAlign='right';front.font=font(450,22);front.fillText('PORTFOLIO',1008,88);front.textAlign='left';
+    front.fillStyle='#f3ebdd';front.font=font(650,28);front.fillText('PORTFOLIO ID',72,88);
+    front.textAlign='right';front.font=font(450,22);front.fillText('BRISBANE, AU',1008,88);front.textAlign='left';
     front.fillStyle='#013230';front.font=font(850,132);front.fillText('VIGO DANG.',65,290);
     front.font=font(550,29);front.fillStyle='#38574e';front.fillText('A person to build with.',75,345);
     front.fillStyle='#c8d5c1';front.fillRect(72,394,936,666);

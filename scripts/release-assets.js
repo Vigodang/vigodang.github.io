@@ -4,12 +4,13 @@ import path from 'node:path';
 import { profile } from '../content/site.js';
 
 export const stylesheets = ['styles.css', 'layout-refinement.css', 'case-refinement.css', 'portfolio-brand.css', 'portfolio-pages.css'];
+export const storyStylesheets = ['scroll-story.css'];
 // Retain the legacy files as dormant source; the replacement entry has its own stylesheet.
 export const gameStylesheets = ['styles.css', 'briefing.css', 'missions.css', 'evidence.css', 'after-dark.css'];
 export const explorerStylesheets = ['orbit.css'];
 const gameModules = ['game.js', 'after-dark-game.js', 'after-dark-world.js', 'audio-content.js', 'audio-engine.js',
   'briefing.js', 'content.js', 'evidence.js', 'icons.js', 'mission-ui.js', 'missions.js', 'physics.js', 'presentation.js', 'world-art.js'];
-export const releaseAssets = [...stylesheets, 'script.js', 'hero-badge.js',
+export const releaseAssets = [...stylesheets, ...storyStylesheets, 'script.js', 'hero-badge.js', 'scroll-story.js',
   'assets/vigo-portrait-400.webp', 'assets/vigo-portrait-640.webp',
   'assets/vigo-portrait-960.webp', 'assets/vigo-portrait-640.jpg', 'assets/vigo-portrait-cutout.png', 'assets/vigo-portrait-cutout.webp',
   ...['everyday-celery', 'fries-candid', 'coffee-candid', 'sushi-candid', 'sushi-portrait', 'hoi-an-stop', 'travel-wander', 'table-by-the-water'].map(name => `assets/about/${name}.webp`),

@@ -1,0 +1,215 @@
+/* Home and About scroll stories. Layout, full image frames and normal scroll
+   remain the baseline; measured progress only enhances the nested targets. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  body.scroll-story-ready:is(.page-home, .page-about) {
+    background-color: var(--story-bg, var(--bg));
+    color: var(--story-ink, var(--ink));
+    transition: none;
+  }
+
+  body.scroll-story-ready.page-home .hero {
+    background-color: var(--story-bg, #013230);
+    color: var(--story-ink, #f3ebdd);
+  }
+  body.scroll-story-ready.page-about .about-story-people {
+    background: transparent;
+    color: var(--story-ink, #f3ebdd);
+  }
+
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-scene] :is(h1, h2, h3),
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] {
+    color: var(--story-ink, var(--ink));
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] > span,
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] a {
+    color: inherit;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-scene] :is(a, p, span) {
+    transition: none;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-scene] :is(.label, .hero-location, .hero-focus, .hero-baseline, .hero-badge-hint, .showcase-description, .demo-scope, .section-heading > div > p:not(.label), .human-note > div, .human-note > div > p) {
+    color: var(--story-muted, var(--muted));
+  }
+  body.scroll-story-ready.page-home .hero :is(.hero-intro, .hero-actions .text-link, .hero-badge-controls button, .hero-badge-chapters a) {
+    color: var(--story-ink, #f3ebdd);
+  }
+  body.scroll-story-ready.page-home .hero-badge-chapters {
+    background: color-mix(in srgb, var(--story-bg, #013230) 90%, transparent);
+    border-color: color-mix(in srgb, var(--story-ink, #f3ebdd) 28%, transparent);
+  }
+  body.scroll-story-ready.page-home .hero-badge-chapters a:is(:hover, [data-selected]) {
+    background: var(--orange);
+    color: #013230;
+  }
+  body.scroll-story-ready.page-home :is(.project-showcase, .human-note, .hero-baseline) {
+    border-color: color-mix(in srgb, var(--story-ink, #013230) 25%, transparent);
+  }
+  body.scroll-story-ready.page-about :is(.story-opening, .story-copy) > p:not(.label),
+  body.scroll-story-ready.page-about :is(.story-signoff, .story-study, .story-background-content) p {
+    color: var(--story-muted, var(--muted));
+  }
+  body.scroll-story-ready.page-about .story-opening > p.story-lede,
+  body.scroll-story-ready.page-about :is(.story-next, .story-study, .story-background-content) .text-link {
+    color: var(--story-ink, var(--ink));
+  }
+
+  /* Explicit surfaces keep the fixed navigation and closing contact readable
+     while the document behind them moves between light and dark chapters. */
+  body.scroll-story-ready.page-about .site-header {
+    background: #f3ebdd;
+    border-color: #cbbfad;
+    color: #013230;
+  }
+  body.scroll-story-ready.page-home .site-header {
+    background: #013230;
+    border-color: #f3ebdd33;
+    color: #f3ebdd;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) .site-footer {
+    background: #013230;
+    color: #f3ebdd;
+  }
+
+  /* The scene itself is never transformed: the 3D badge and its hit area stay
+     aligned. Old entry/reveal animations cannot compete with scroll progress. */
+  body.scroll-story-ready:is(.page-home, .page-about) :is([data-story-type], [data-story-copy], [data-story-photo], [data-story-preview]) {
+    animation: none !important;
+    transition: none !important;
+    will-change: transform;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] {
+    transform-origin: left center;
+    transform: translate3d(0, calc((1 - var(--story-enter, 1)) * 32px - var(--story-exit, 0) * 10px), 0)
+      scale(clamp(.86, calc(.9 + var(--story-enter, 1) * .16 - var(--story-progress, .5) * .1 - var(--story-exit, 0) * .03), 1.035));
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-copy] {
+    transform: translate3d(0, calc((1 - var(--story-enter, 1)) * 20px - var(--story-exit, 0) * 6px), 0);
+    opacity: 1;
+  }
+
+  /* Inherit the hero scene's progress before the heading's own measured
+     variables shadow it. The first half stays at its original composition. */
+  body.scroll-story-ready.page-home .hero-badge-experience[data-story-scene] {
+    --hero-story-progress: var(--story-progress, .5);
+  }
+  body.scroll-story-ready.page-home .hero-badge-experience #hero-name[data-story-type] {
+    --hero-leave: clamp(0, calc((var(--hero-story-progress, .5) - .5) * 2), 1);
+    transform-origin: left top;
+  }
+  body.scroll-story-ready.page-home .hero-badge-experience #hero-name > span:last-child {
+    will-change: transform;
+  }
+  @media (min-width: 801px) {
+    body.scroll-story-ready.page-home .hero-badge-experience #hero-name[data-story-type] {
+      transform: scale(calc(1 - var(--hero-leave) * .2));
+    }
+    body.scroll-story-ready.page-home .hero-badge-experience #hero-name > span:last-child {
+      transform: translate3d(calc(var(--hero-leave) * 24px), 0, 0);
+    }
+  }
+
+  @supports (-webkit-text-stroke: 1px #013230) {
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] {
+      --story-type-fill: clamp(32%, calc(var(--story-enter, 1) * 100%), 100%);
+      -webkit-text-stroke: .7px color-mix(in srgb, var(--story-ink, var(--ink)) 80%, transparent);
+      -webkit-text-fill-color: color-mix(in srgb, var(--story-ink, var(--ink)) var(--story-type-fill), transparent);
+    }
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] > span:last-child {
+      --story-type-fill: clamp(18%, calc((var(--story-enter, 1) - .2) * 125%), 100%);
+      -webkit-text-fill-color: color-mix(in srgb, var(--story-ink, var(--ink)) var(--story-type-fill), transparent);
+    }
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] .name-stop {
+      color: var(--orange);
+      -webkit-text-fill-color: var(--orange);
+      -webkit-text-stroke: 0;
+    }
+  }
+
+  /* Full figures move inside their existing grid allocations. Scaling never
+     exceeds one, and the images retain their original, uncropped proportions. */
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-photo] {
+    --story-photo-enter: clamp(0, calc((var(--story-enter, 1) - var(--story-order, 0) * .1) * 1.2), 1);
+    transform-origin: center center;
+    transform: perspective(1200px)
+      translate3d(0, calc((1 - var(--story-photo-enter)) * 26px - var(--story-exit, 0) * 8px), 0)
+      rotateX(calc((1 - var(--story-photo-enter)) * 7deg))
+      scale(calc(.86 + var(--story-photo-enter) * .14 - var(--story-exit, 0) * .015));
+    opacity: calc(.65 + var(--story-photo-enter) * .35);
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-preview] {
+    transform-origin: center center;
+    transform: perspective(1400px)
+      translate3d(0, calc((1 - var(--story-enter, 1)) * 38px - var(--story-exit, 0) * 12px), 0)
+      rotateY(calc((1 - var(--story-enter, 1)) * -7deg))
+      scale(calc(.9 + var(--story-enter, 1) * .1 - var(--story-exit, 0) * .025));
+    opacity: calc(.7 + var(--story-enter, 1) * .3);
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) :is([data-story-copy], [data-story-photo], [data-story-preview]):focus-within {
+    transform: none;
+    opacity: 1;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type]:focus-within,
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type]:focus-within > * {
+    transform: none;
+    -webkit-text-fill-color: currentColor;
+    -webkit-text-stroke: 0;
+  }
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type]::selection,
+  body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] > span::selection {
+    background: var(--orange);
+    color: #013230;
+    -webkit-text-fill-color: #013230;
+  }
+
+  @media (min-width: 901px) and (min-height: 700px) {
+    body.scroll-story-ready.page-about :is(.story-food, .story-people-inner) > .story-copy {
+      position: sticky;
+      top: calc(104px + 3vh);
+      align-self: start;
+    }
+  }
+  @media (max-width: 800px) {
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-type] {
+      transform: translate3d(0, calc((1 - var(--story-enter, 1)) * 20px - var(--story-exit, 0) * 6px), 0)
+        scale(clamp(.92, calc(.95 + var(--story-enter, 1) * .08 - var(--story-progress, .5) * .055), 1.02));
+    }
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-photo] {
+      transform: perspective(1000px)
+        translate3d(0, calc((1 - var(--story-photo-enter)) * 18px - var(--story-exit, 0) * 5px), 0)
+        rotateX(calc((1 - var(--story-photo-enter)) * 4deg))
+        scale(calc(.9 + var(--story-photo-enter) * .1 - var(--story-exit, 0) * .01));
+    }
+    body.scroll-story-ready:is(.page-home, .page-about) [data-story-preview] {
+      transform: translate3d(0, calc((1 - var(--story-enter, 1)) * 24px - var(--story-exit, 0) * 8px), 0)
+        scale(calc(.94 + var(--story-enter, 1) * .06 - var(--story-exit, 0) * .015));
+    }
+    body.scroll-story-ready.page-home .hero-badge-experience #hero-name[data-story-type] {
+      transform: scale(calc(1 - var(--hero-leave) * .1));
+    }
+    body.scroll-story-ready.page-home .hero-badge-experience #hero-name > span:last-child {
+      transform: translate3d(calc(var(--hero-leave) * 12px), 0, 0);
+    }
+  }
+}
+
+/* A static reading layout is always available, including a preference changed
+   after the module initialized. Print keeps the source photographs intact. */
+@media (prefers-reduced-motion: reduce), print {
+  body:is(.page-home, .page-about) :is([data-story-type], [data-story-copy], [data-story-photo], [data-story-preview]) {
+    transform: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+    will-change: auto;
+  }
+  body:is(.page-home, .page-about) [data-story-type],
+  body:is(.page-home, .page-about) [data-story-type] > span {
+    transform: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    -webkit-text-stroke: 0 !important;
+  }
+  body.page-about :is(.story-food, .story-people-inner) > .story-copy {
+    position: static !important;
+    top: auto;
+  }
+}

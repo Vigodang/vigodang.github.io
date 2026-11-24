@@ -2,11 +2,12 @@ import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { projects } from '../content/site.js';
-import { assetHashes, stylesheets, explorerStylesheets } from './release-assets.js';
+import { assetHashes, stylesheets, storyStylesheets, explorerStylesheets } from './release-assets.js';
 
 const here = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const normalize = value => value.replaceAll('\r\n', '\n');
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
+const storyPages = {'index.html':'home', 'about.html':'about'};
 
 // This intentionally checks this repository's small, explicit workflow format.
 // If its structure changes, review these assertions with the workflow.
@@ -102,20 +103,50 @@ export function checkHero(source, route = 'index.html') {
   }
   const modules = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)]
     .map(match => ({attributes:attributes(match[1]), body:match[2]})).filter(script => script.attributes.type === 'module');
-  assert(opening.filter(script => script.type === 'module').length === 1 && heroScripts.length === 1 && modules.length === 1
-    && modules[0].attributes.src === 'hero-badge.js' && !modules[0].body.trim(),
-  'index.html: expected only the hero-badge.js module at its exact relative path');
+  assert(opening.filter(script => script.type === 'module').length === 2 && heroScripts.length === 1 && modules.length === 2
+    && modules[0].attributes.src === 'hero-badge.js' && modules[1].attributes.src === 'scroll-story.js'
+    && modules.every(script => !script.body.trim()),
+  'index.html: expected only the hero-badge.js module and approved scroll-story.js module in order at their exact relative paths');
   for (const [id, name] of [['hero-badge-canvas', 'canvas'], ['hero-badge-stage', null], ['hero-badge-dialog', 'dialog']]) {
     const matching = tags.filter(tag => tag.attributes.id === id);
     assert(matching.length === 1 && (!name || matching[0].name === name), `index.html: missing or duplicate ${id} element`);
   }
 }
 
+export function checkStory(source, route) {
+  const html = source.replace(/<!--[\s\S]*?-->/g, '');
+  const pairs = tag => [...tag.matchAll(/\s([^\s=<>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+)))?/g)]
+    .map(match => [match[1].toLowerCase(), match[2] ?? match[3] ?? match[4] ?? '']);
+  const attributes = tag => Object.fromEntries(pairs(tag));
+  const unique = tag => new Set(pairs(tag).map(([name]) => name)).size === pairs(tag).length;
+  const bodies = [...html.matchAll(/<body\b[^>]*>/gi)].map(match => match[0]);
+  const expectedStory = storyPages[route];
+  assert(bodies.length === 1 && unique(bodies[0]) && (expectedStory
+    ? attributes(bodies[0])['data-scroll-story'] === expectedStory
+    : !('data-scroll-story' in attributes(bodies[0]))), `${route}: expected route-scoped data-scroll-story body attribute`);
+  // Check the complete external entry list instead of ignoring a filename from
+  // the hero module count. This rejects duplicates, inline/unclosed injections,
+  // encoded or alternate paths, and scripts that silently leak to other pages.
+  if (route === 'play/index.html') return; // checkExplorer enforces its own single entry.
+  const prefix = route.includes('/') ? '../' : '';
+  const expected = [{src:prefix + 'script.js', defer:''},
+    ...(route === 'index.html' ? [{src:'hero-badge.js', type:'module'}] : []),
+    ...(expectedStory ? [{src:'scroll-story.js', type:'module'}] : [])];
+  const openings = [...html.matchAll(/<script\b[^>]*>/gi)].map(match => match[0]);
+  const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)];
+  assert(openings.length === expected.length && scripts.length === expected.length
+    && scripts.every((script, index) => unique(script[1]) && !script[2].trim()
+      && JSON.stringify(Object.entries(attributes(script[1])).sort()) === JSON.stringify(Object.entries(expected[index]).sort())),
+  `${route}: expected exact shared/hero/scroll-story script entries scoped to Home and About`);
+}
+
 export async function checkRelease(repo = here) {
   const dist = path.join(repo, 'dist');
   const hashes = await assetHashes(dist);
   assert(JSON.stringify(hashes) === JSON.stringify(await assetHashes(path.join(repo, 'src'))), 'Source and built release assets differ; rebuild dist');
-  checkTheme((await Promise.all(stylesheets.map(file => readFile(path.join(dist, file), 'utf8')))).join('\n'));
+  const sharedTheme = (await Promise.all(stylesheets.map(file => readFile(path.join(dist, file), 'utf8')))).join('\n');
+  checkTheme(sharedTheme);
+  checkTheme(sharedTheme + '\n' + (await Promise.all(storyStylesheets.map(file => readFile(path.join(dist, file), 'utf8')))).join('\n'));
   const editorialRoutes = ['index.html', 'work.html', 'about.html', 'experience.html', 'resume.html', 'contact.html'];
   for (const project of projects) {
     editorialRoutes.push(`projects/${project.slug}.html`, `visuals/${project.slug}-overview.html`);
@@ -134,13 +165,14 @@ export async function checkRelease(repo = here) {
     const linked = [...html.matchAll(/<link\b(?=[^>]*\brel="stylesheet")[^>]*\bhref="([^"]+)"[^>]*>/gi)].map(match => match[1]);
     const isExplorer = route === 'play/index.html';
     const prefix = !isExplorer && route.includes('/') ? '../' : '';
-    const expected = (isExplorer ? explorerStylesheets : stylesheets).map(file => prefix + file);
+    const expected = (isExplorer ? explorerStylesheets : [...stylesheets, ...(storyPages[route] ? storyStylesheets : [])]).map(file => prefix + file);
     assert(JSON.stringify(linked) === JSON.stringify(expected), `${route}: expected ${isExplorer ? 'explorer' : 'portfolio'} stylesheets in approved order with exact relative paths`);
     if (isExplorer) checkExplorer(html);
     else {
       assert(/<body\b[^>]*class="[^"]*\bportfolio\b/.test(html), `${route}: missing portfolio theme class`);
       checkHero(html, route);
     }
+    checkStory(html, route);
     if (route === 'index.html' || route === 'about.html') {
       const portrait = [...html.matchAll(/<picture\b([^>]*)>([\s\S]*?)<\/picture>/gi)]
         .find(match => /(?:^|\s)class="([^"]*)"/i.exec(match[1])?.[1].split(/\s+/).includes('portrait-picture'));
