@@ -10,6 +10,7 @@ import { checkRelease, checkTheme, checkWorkflow } from './check-release.js';
 
 const repo = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const editorialStyles = ['styles.css', 'layout-refinement.css', 'case-refinement.css', 'portfolio-brand.css', 'portfolio-pages.css'];
+const storyStyles = [...editorialStyles, 'scroll-story.css'];
 const gameStyles = ['styles.css', 'briefing.css', 'missions.css', 'evidence.css', 'after-dark.css'];
 const explorerStyles = ['orbit.css'];
 const manifestFile = 'dist/release-manifest.json';
@@ -121,6 +122,12 @@ function explorerModule(html) {
   return entry;
 }
 
+function storyModule(html) {
+  const entry = html.match(/<script\b(?=[^>]*\ssrc="scroll-story\.js")[^>]*>[\s\S]*?<\/script\s*>/i)?.[0];
+  assert(entry, 'Fixture is missing its scroll-story module entry');
+  return entry;
+}
+
 async function withGithubSHA(value, callback) {
   const previous = process.env.GITHUB_SHA;
   if (value === undefined) delete process.env.GITHUB_SHA;
@@ -132,12 +139,84 @@ async function withGithubSHA(value, callback) {
   }
 }
 
-test('Approved portfolio photo story and orbit explorer retain legacy source with 23 pages and 76 protected assets', async t => {
+test('Approved Home/About scroll story and orbit explorer retain legacy source with 23 pages and 78 protected assets', async t => {
   const directory = await fixture(t);
-  assert.deepEqual(links(await readFile(path.join(directory, 'dist/index.html'), 'utf8')).map(match => match[1]), editorialStyles);
+  for (const route of ['index.html', 'about.html']) {
+    assert.deepEqual(links(await readFile(path.join(directory, 'dist', route), 'utf8')).map(match => match[1]), storyStyles);
+  }
+  assert.deepEqual(links(await readFile(path.join(directory, 'dist/work.html'), 'utf8')).map(match => match[1]), editorialStyles);
   assert.deepEqual(links(await readFile(path.join(directory, 'dist/play/index.html'), 'utf8')).map(match => match[1]), explorerStyles);
   await Promise.all(['src', 'dist'].flatMap(tree => gameStyles.map(file => access(path.join(directory, tree, 'play', file)))));
-  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 76 });
+  assert.deepEqual(await checkRelease(directory), { pages: 23, releaseAssets: 78 });
+});
+
+for (const route of ['index.html', 'about.html']) {
+  for (const [name, transform] of [
+    ['missing module', html => replaceOnce(html, storyModule(html), '')],
+    ['duplicate module', html => replaceOnce(html, '</head>', storyModule(html) + '</head>')],
+    ['classic script', html => replaceOnce(html, storyModule(html), replaceOnce(storyModule(html), 'type="module"', 'type="text/javascript"'))],
+    ['parent-relative module', html => replaceOnce(html, 'src="scroll-story.js"', 'src="../scroll-story.js"')],
+  ]) {
+    test(`${route} scroll story rejects ${name}`, async t => {
+      const directory = await fixture(t);
+      await edit(directory, `dist/${route}`, transform);
+      await assert.rejects(checkRelease(directory), /expected only the hero-badge\.js module|expected exact shared\/hero\/scroll-story script entries/);
+    });
+  }
+  test(`${route} requires the story stylesheet after all five shared stylesheets`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, `dist/${route}`, html => swapStyles(html, 4, 5));
+    await assert.rejects(checkRelease(directory), /expected portfolio stylesheets in approved order/);
+  });
+}
+
+for (const [name, route, transform] of [
+  ['missing Home scope', 'index.html', html => replaceOnce(html, ' data-scroll-story="home"', '')],
+  ['wrong About scope', 'about.html', html => replaceOnce(html, 'data-scroll-story="about"', 'data-scroll-story="home"')],
+  ['duplicate About scope', 'about.html', html => replaceOnce(html, 'data-scroll-story="about"', 'data-scroll-story="home" data-scroll-story="about"')],
+  ['scope leaked to Work', 'work.html', html => replaceOnce(html, '<body ', '<body data-scroll-story="home" ')],
+]) {
+  test(`Scroll story rejects ${name}`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, `dist/${route}`, transform);
+    await assert.rejects(checkRelease(directory), /route-scoped data-scroll-story body attribute/);
+  });
+}
+
+for (const [name, transform] of [
+  ['nonempty inline body', html => replaceOnce(html, storyModule(html), replaceOnce(storyModule(html), '</script>', 'window.unapproved = true;</script>'))],
+  ['unclosed script injection', html => replaceOnce(html, '</body>', '<script type="module" src="scroll-story.js"></body>')],
+  ['nomodule attribute', html => replaceOnce(html, storyModule(html), replaceOnce(storyModule(html), '<script ', '<script nomodule '))],
+  ['ambiguous duplicate src attributes', html => replaceOnce(html, 'src="scroll-story.js"', 'src="unapproved.js" src="scroll-story.js"')],
+]) {
+  test(`About scroll story rejects ${name}`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/about.html', transform);
+    await assert.rejects(checkRelease(directory), /expected exact shared\/hero\/scroll-story script entries/);
+  });
+}
+
+test('About cannot omit its sixth story stylesheet', async t => {
+  const directory = await fixture(t);
+  await edit(directory, 'dist/about.html', html => replaceOnce(html, links(html)[5][0], ''));
+  await assert.rejects(checkRelease(directory), /about\.html: expected portfolio stylesheets/);
+});
+
+for (const [name, markup, expected] of [
+  ['module', '<script type="module" src="scroll-story.js"></script>', /expected exact shared\/hero\/scroll-story script entries/],
+  ['stylesheet', '<link rel="stylesheet" href="scroll-story.css">', /work\.html: expected portfolio stylesheets/],
+]) {
+  test(`Home/About story ${name} cannot leak into Work`, async t => {
+    const directory = await fixture(t);
+    await edit(directory, 'dist/work.html', html => replaceOnce(html, '</head>', markup + '</head>'));
+    await assert.rejects(checkRelease(directory), expected);
+  });
+}
+
+test('A new story layer cannot override the shared screen palette after hashes are rebased', async t => {
+  const directory = await fixture(t);
+  await changeShippedAsset(directory, 'scroll-story.css', bytes => Buffer.from(bytes.toString() + '\nbody.portfolio { background: #fff !important; }\n'));
+  await assert.rejects(checkRelease(directory), /background must use the approved cream token/);
 });
 
 for (const [name, transform] of [
@@ -353,6 +432,8 @@ for (const [name, override] of [
 
 for (const [name, file] of [
   ['homepage badge module', 'hero-badge.js'],
+  ['Home/About story module', 'scroll-story.js'],
+  ['Home/About story stylesheet', 'scroll-story.css'],
   ['self-hosted font', 'assets/fonts/InterVariable.woff2'],
   ['captured CRDC interface demo', 'assets/crdc-research-demo.jpg'],
   ['captured Dataset interface demo', 'assets/dataset-health-demo.jpg'],
@@ -381,6 +462,8 @@ for (const [name, file] of [
 
 for (const [name, previous, next] of [
   ['homepage badge module', 'hero-badge.js', 'Hero-Badge.js'],
+  ['Home/About story module', 'scroll-story.js', 'Scroll-Story.js'],
+  ['Home/About story stylesheet', 'scroll-story.css', 'Scroll-Story.css'],
   ['font', 'assets/fonts/InterVariable.woff2', 'assets/fonts/intervariable.woff2'],
   ['CRDC demo screenshot', 'assets/crdc-research-demo.jpg', 'assets/CRDC-Research-Demo.jpg'],
   ['Dataset demo screenshot', 'assets/dataset-health-demo.jpg', 'assets/Dataset-Health-Demo.jpg'],
@@ -410,7 +493,7 @@ test('Empty game artwork is rejected even after both copies and manifest are upd
   await assert.rejects(checkRelease(directory), /Empty release asset/);
 });
 
-for (const [tree, file] of [['src', 'play/missions.js'], ['dist', 'assets/dataset-health-scaling.csv'], ['dist', 'play/vendor/three.core.js']]) {
+for (const [tree, file] of [['src', 'play/missions.js'], ['dist', 'assets/dataset-health-scaling.csv'], ['dist', 'play/vendor/three.core.js'], ['src', 'scroll-story.js'], ['dist', 'scroll-story.css']]) {
   test(`${tree}-only asset byte drift is rejected before release`, async t => {
     const directory = await fixture(t);
     await edit(directory, `${tree}/${file}`, source => source + '\n');
