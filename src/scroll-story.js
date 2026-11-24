@@ -1,264 +1,205 @@
-// Native, reversible scroll motion for the two editorial story pages.
-// CSS owns the presentation; this module only supplies bounded progress and colour.
-const storyBody = document.body;
+/* Native scroll drives pinned compositions, without wheel interception,
+   colour interpolation, fading text or a continuous render loop. */
+const body = document.body;
+if (body?.matches('[data-scroll-story="home"], [data-scroll-story="about"]')) mountSequences();
 
-if (storyBody && ['home', 'about'].includes(storyBody.dataset.scrollStory)) {
-  initialiseScrollStory(storyBody);
-}
+function mountSequences() {
+  const nodes = [...document.querySelectorAll('[data-motion-sequence]')];
+  if (!nodes.length) return;
+  const motion = matchMedia('(prefers-reduced-motion: reduce)');
+  const space = matchMedia('(min-height: 700px)');
+  const print = matchMedia('print');
+  const header = document.querySelector('.site-header');
+  const targets = nodes.flatMap(node => [...node.querySelectorAll('.sequence-title, .sequence-copy, .sequence-portrait, .sequence-feature, .sequence-rail-window, .sequence-rail, .sequence-frame')]);
+  const saved = new Map(targets.map(node => [node, node.style.getPropertyValue('transform')]));
+  const oldHeader = body.style.getPropertyValue('--motion-header');
+  const cache = new Map();
+  let items = [], active = false, disposed = false, suspended = false, printing = false;
+  let frame = 0, dirty = true, observer, headerHeight = 0;
+  const scroll = () => schedule();
+  const layout = () => schedule(true);
+  const visibility = () => document.hidden ? cancel() : schedule(true);
+  const load = event => { if (event.target instanceof HTMLImageElement) layout(); };
+  const beforePrint = () => { printing = true; sync(); };
+  const afterPrint = () => { printing = false; sync(); };
+  const pageHide = event => { suspended = true; stop(); if (!event.persisted) destroy(); };
+  const pageShow = () => { suspended = false; sync(); };
+  // Keyboard links are reached at their readable, settled position.
+  const focus = event => {
+    const item = items.find(item => item.node.contains(event.target));
+    if (item && item.progress < .86) {
+      window.scrollTo({ top: item.top - headerHeight + item.travel * .9, behavior: 'instant' });
+      schedule();
+    }
+  };
+  const cleanups = [motion, space, print].map(query => listen(query, sync));
+  addEventListener('beforeprint', beforePrint);
+  addEventListener('afterprint', afterPrint);
+  addEventListener('pagehide', pageHide);
+  addEventListener('pageshow', pageShow);
+  sync();
 
-function initialiseScrollStory(body) {
-  const scenes = [...body.querySelectorAll('[data-story-scene]')];
-  if (!scenes.length) return;
-
-  const targetSelector = '[data-story-type], [data-story-copy], [data-story-photo], [data-story-preview]';
-  const targets = [...new Set(scenes.flatMap(scene => [scene, ...scene.querySelectorAll(targetSelector)]))];
-  const progressProperties = ['--story-progress', '--story-enter', '--story-exit'];
-  const colourProperties = ['--story-bg', '--story-ink', '--story-muted'];
-  const savedStyles = new Map(targets.map(node => [node, saveProperties(node, progressProperties)]));
-  savedStyles.set(body, saveProperties(body, colourProperties));
-  const lastValues = new Map();
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const printMedia = window.matchMedia('print');
-  const palettes = {
-    cream: { bg: [243, 235, 221], ink: [1, 50, 48], muted: [83, 99, 86] },
-    sage: { bg: [200, 213, 193], ink: [1, 50, 48], muted: [64, 86, 76] },
-    forest: { bg: [1, 50, 48], ink: [243, 235, 221], muted: [211, 214, 200] },
-    clay: { bg: [234, 212, 195], ink: [1, 50, 48], muted: [92, 77, 65] }
-  };
-
-  let active = false;
-  let destroyed = false;
-  let suspended = false;
-  let printing = false;
-  let frame = 0;
-  let needsMeasure = true;
-  let viewportHeight = 1;
-  let bounds = [];
-  let themedScenes = [];
-  let resizeObserver;
-
-  const onScroll = () => schedule();
-  const onLayoutChange = () => schedule(true);
-  const onImageLoad = event => {
-    if (event.target instanceof HTMLImageElement) schedule(true);
-  };
-  const onVisibilityChange = () => {
-    if (document.hidden) cancelFrame();
-    else schedule(true);
-  };
-  const onBeforePrint = () => {
-    printing = true;
-    synchronise();
-  };
-  const onAfterPrint = () => {
-    printing = false;
-    synchronise();
-  };
-  const onPageHide = event => {
-    suspended = true;
-    stop();
-    if (!event.persisted) destroy();
-  };
-  const onPageShow = () => {
-    suspended = false;
-    synchronise();
-    schedule(true);
-  };
-
-  window.addEventListener('beforeprint', onBeforePrint);
-  window.addEventListener('afterprint', onAfterPrint);
-  window.addEventListener('pagehide', onPageHide);
-  window.addEventListener('pageshow', onPageShow);
-  const removeMotionListener = listenToMedia(reducedMotion, synchronise);
-  const removePrintListener = listenToMedia(printMedia, synchronise);
-  synchronise();
-
-  function synchronise() {
-    if (destroyed) return;
-    if (reducedMotion.matches || printMedia.matches || printing || suspended) stop();
+  function sync() {
+    if (disposed) return;
+    if (motion.matches || !space.matches || print.matches || printing || suspended) stop();
     else start();
   }
-
   function start() {
-    if (active || destroyed) return;
+    if (active) return;
     active = true;
-    needsMeasure = true;
-    // Existing one-shot reveal behaviour must not hide a story target.
-    for (const scene of scenes) {
-      scene.classList.remove('reveal-pending');
-      scene.querySelectorAll('.reveal-pending').forEach(node => node.classList.remove('reveal-pending'));
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onLayoutChange, { passive: true });
-    window.visualViewport?.addEventListener('resize', onLayoutChange, { passive: true });
-    document.addEventListener('load', onImageLoad, true);
-    document.addEventListener('toggle', onLayoutChange, true);
-    document.addEventListener('visibilitychange', onVisibilityChange);
-    document.fonts?.addEventListener('loadingdone', onLayoutChange);
+    body.classList.add('scroll-story-ready');
+    for (const node of nodes) node.querySelectorAll('img').forEach(img => { img.loading = 'eager'; });
+    addEventListener('scroll', scroll, { passive: true });
+    addEventListener('resize', layout, { passive: true });
+    window.visualViewport?.addEventListener('resize', layout, { passive: true });
+    document.addEventListener('load', load, true);
+    document.addEventListener('toggle', layout, true);
+    document.addEventListener('focusin', focus);
+    document.addEventListener('visibilitychange', visibility);
+    document.fonts?.addEventListener('loadingdone', layout);
     if ('ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(onLayoutChange);
-      resizeObserver.observe(body);
-      targets.forEach(node => resizeObserver.observe(node));
+      observer = new ResizeObserver(layout);
+      observer.observe(body);
+      if (header) observer.observe(header);
     }
-    document.fonts?.ready.then(() => {
-      if (active && !destroyed) schedule(true);
-    }).catch(() => {});
+    document.fonts?.ready.then(() => { if (active) layout(); }).catch(() => {});
     schedule(true);
   }
-
   function stop() {
     active = false;
-    cancelFrame();
+    cancel();
+    removeEventListener('scroll', scroll);
+    removeEventListener('resize', layout);
+    window.visualViewport?.removeEventListener('resize', layout);
+    document.removeEventListener('load', load, true);
+    document.removeEventListener('toggle', layout, true);
+    document.removeEventListener('focusin', focus);
+    document.removeEventListener('visibilitychange', visibility);
+    document.fonts?.removeEventListener('loadingdone', layout);
+    observer?.disconnect();
+    observer = undefined;
     body.classList.remove('scroll-story-ready');
-    window.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', onLayoutChange);
-    window.visualViewport?.removeEventListener('resize', onLayoutChange);
-    document.removeEventListener('load', onImageLoad, true);
-    document.removeEventListener('toggle', onLayoutChange, true);
-    document.removeEventListener('visibilitychange', onVisibilityChange);
-    document.fonts?.removeEventListener('loadingdone', onLayoutChange);
-    resizeObserver?.disconnect();
-    resizeObserver = undefined;
-    for (const [node, properties] of savedStyles) restoreProperties(node, properties);
-    lastValues.clear();
-    needsMeasure = true;
+    if (oldHeader) body.style.setProperty('--motion-header', oldHeader);
+    else body.style.removeProperty('--motion-header');
+    for (const [node, transform] of saved) {
+      if (transform) node.style.setProperty('transform', transform);
+      else node.style.removeProperty('transform');
+    }
+    for (const node of nodes) {
+      node.removeAttribute('data-motion-progress');
+      node.removeAttribute('data-motion-static');
+      node.style.removeProperty('--portrait-room');
+    }
+    items = [];
+    cache.clear();
+    dirty = true;
   }
-
   function destroy() {
-    if (destroyed) return;
     stop();
-    destroyed = true;
-    window.removeEventListener('beforeprint', onBeforePrint);
-    window.removeEventListener('afterprint', onAfterPrint);
-    window.removeEventListener('pagehide', onPageHide);
-    window.removeEventListener('pageshow', onPageShow);
-    removeMotionListener();
-    removePrintListener();
+    disposed = true;
+    removeEventListener('beforeprint', beforePrint);
+    removeEventListener('afterprint', afterPrint);
+    removeEventListener('pagehide', pageHide);
+    removeEventListener('pageshow', pageShow);
+    cleanups.forEach(remove => remove());
   }
-
-  function cancelFrame() {
-    if (frame) window.cancelAnimationFrame(frame);
-    frame = 0;
-  }
-
+  function cancel() { if (frame) cancelAnimationFrame(frame); frame = 0; }
   function schedule(measure = false) {
-    needsMeasure ||= measure;
-    if (!active || destroyed || document.hidden || frame) return;
-    frame = window.requestAnimationFrame(update);
+    dirty ||= measure;
+    if (!active || disposed || frame || document.hidden) return;
+    frame = requestAnimationFrame(update);
   }
-
   function measure() {
-    viewportHeight = Math.max(1, window.innerHeight || document.documentElement.clientHeight);
-    // offset geometry ignores CSS transforms, preventing scroll motion from
-    // feeding its own translated/scaled bounds back into the next measurement.
-    bounds = targets.map(node => ({ node, top: layoutTop(node), height: Math.max(1, node.offsetHeight) }));
-    const byNode = new Map(bounds.map(item => [item.node, item]));
-    themedScenes = scenes.map(node => ({ ...byNode.get(node), palette: palettes[node.dataset.storyTheme] }))
-      .filter(item => item.palette).sort((a, b) => a.top - b.top);
-    needsMeasure = false;
+    headerHeight = Math.ceil(header?.getBoundingClientRect().height || 0);
+    body.style.setProperty('--motion-header', `${headerHeight}px`);
+    for (const node of targets) node.style.removeProperty('transform');
+    cache.clear();
+    for (const node of nodes) {
+      node.removeAttribute('data-motion-static');
+      node.style.removeProperty('--portrait-room');
+    }
+    // Larger browser text can fall back per scene when the final layout cannot fit.
+    for (const node of nodes) {
+      const stage = node.querySelector('.motion-stage');
+      const copy = node.querySelector('.sequence-copy');
+      const title = node.querySelector('.sequence-title');
+      const portrait = node.querySelector('.sequence-portrait');
+      let photoFits = true;
+      if (portrait && innerWidth <= 800) {
+        const room = copy.offsetTop - portrait.offsetTop - 24;
+        node.style.setProperty('--portrait-room', `${Math.max(0, room)}px`);
+        photoFits = room >= 160;
+      }
+      if (!stage || !copy || !title || !photoFits || copy.offsetTop < title.offsetTop + title.offsetHeight + 12) node.setAttribute('data-motion-static', '');
+    }
+    items = nodes.filter(node => !node.hasAttribute('data-motion-static')).map(node => {
+      const stage = node.querySelector('.motion-stage');
+      const title = node.querySelector('.sequence-title');
+      const range = document.createRange();
+      range.selectNodeContents(title);
+      const ink = range.getBoundingClientRect();
+      const titleBox = title.getBoundingClientRect();
+      const width = stage.clientWidth, height = stage.clientHeight;
+      const peak = Math.min(1.8, width * .9 / Math.max(1, ink.width), height * .67 / Math.max(1, ink.height));
+      return {
+        node, stage, title, width, height, top: node.getBoundingClientRect().top + window.scrollY,
+        travel: Math.max(1, node.offsetHeight - height),
+        titleLeft: title.offsetLeft + ink.left - titleBox.left,
+        titleTop: title.offsetTop + ink.top - titleBox.top,
+        inkWidth: ink.width, inkHeight: ink.height, peak,
+        copy: node.querySelector('.sequence-copy'), portrait: node.querySelector('.sequence-portrait'),
+        feature: node.querySelector('.sequence-feature'), window: node.querySelector('.sequence-rail-window'),
+        rail: node.querySelector('.sequence-rail'), photos: [...node.querySelectorAll('.sequence-frame')], progress: 0
+      };
+    });
+    dirty = false;
   }
-
   function update() {
     frame = 0;
-    if (!active || destroyed || document.hidden) return;
+    if (!active || disposed || document.hidden) return;
     try {
-      if (needsMeasure) measure();
-      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
-      for (const item of bounds) {
-        const top = item.top - scrollTop;
-        const bottom = top + item.height;
-        write(item.node, '--story-progress', clamp((viewportHeight - top) / (viewportHeight + item.height)).toFixed(4));
-        write(item.node, '--story-enter', clamp((viewportHeight - top) / (viewportHeight * 0.8)).toFixed(4));
-        write(item.node, '--story-exit', clamp((viewportHeight - bottom) / (viewportHeight * 0.6)).toFixed(4));
+      if (dirty) measure();
+      for (const item of items) {
+        const p = clamp((window.scrollY + headerHeight - item.top) / item.travel);
+        item.progress = p;
+        item.node.dataset.motionProgress = p.toFixed(4);
+        const dock = ease(p, .12, .34);
+        const scale = mix(item.peak * mix(.82, 1, ease(p, 0, .12)), 1, dock);
+        const x = (item.width - item.inkWidth * scale) / 2 - item.titleLeft;
+        const y = (item.height - item.inkHeight * scale) / 2 - item.titleTop;
+        pose(item.title, x * (1 - dock), y * (1 - dock), scale);
+        const copyEnter = item.rail ? ease(p, .14, .42) : ease(p, .20, .46);
+        pose(item.copy, 0, item.height * (1 - copyEnter));
+        if (item.portrait) {
+          const enter = ease(p, .08, .34);
+          pose(item.portrait, item.width * (item.width > 700 ? -.28 : .16) * (1 - enter), item.height * .92 * (1 - enter), mix(.68, 1, enter));
+        }
+        if (item.feature) {
+          const enter = ease(p, .08, .34);
+          pose(item.feature, -item.width * .26 * (1 - enter), item.height * .94 * (1 - enter), mix(1.3, 1, enter));
+        }
+        if (item.rail) {
+          pose(item.window, 0, item.height * .92 * (1 - ease(p, .16, .38)));
+          const index = ease(p, .44, .58) + ease(p, .72, .86);
+          pose(item.rail, -index * item.window.clientWidth, 0);
+          item.photos.forEach((photo, number) => pose(photo, 0, 0, 1 - Math.min(1, Math.abs(index - number)) * .12));
+        }
       }
-      writeColours(scrollTop);
-      body.classList.add('scroll-story-ready');
-    } catch {
-      // A static page remains the complete, readable fallback.
-      destroy();
-    }
+    } catch { destroy(); }
   }
-
-  function writeColours(scrollTop) {
-    let palette = themedScenes[0]?.palette || palettes[body.dataset.scrollStory === 'home' ? 'forest' : 'cream'];
-    const focus = scrollTop + viewportHeight * 0.5;
-    for (let index = 1; index < themedScenes.length; index += 1) {
-      const next = themedScenes[index];
-      const amount = clamp((focus - (next.top - viewportHeight * 0.3)) / (viewportHeight * 0.6));
-      if (amount === 0) break;
-      palette = mixPalette(palette, next.palette, amount);
-    }
-    const background = palette.bg.map(Math.round);
-    const ink = readableColour(palette.ink.map(Math.round), background);
-    const desiredMuted = palette.muted.map(Math.round);
-    const muted = contrast(desiredMuted, background) >= 4.5 ? desiredMuted : ink;
-    write(body, '--story-bg', rgb(background));
-    write(body, '--story-ink', rgb(ink));
-    write(body, '--story-muted', rgb(muted));
-  }
-
-  function write(node, property, value) {
-    let values = lastValues.get(node);
-    if (!values) lastValues.set(node, values = new Map());
-    if (values.get(property) === value) return;
-    node.style.setProperty(property, value);
-    values.set(property, value);
-  }
-
-  function readableColour(preferred, background) {
-    if (contrast(preferred, background) >= 4.5) return preferred;
-    const candidates = [palettes.forest.bg, palettes.cream.bg, [0, 0, 0], [255, 255, 255]];
-    return candidates.reduce((best, candidate) => contrast(candidate, background) > contrast(best, background) ? candidate : best);
+  function pose(node, x = 0, y = 0, scale = 1) {
+    if (!node) return;
+    const value = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(4)})`;
+    if (cache.get(node) !== value) { node.style.transform = value; cache.set(node, value); }
   }
 }
-
-function clamp(value) {
-  return Math.max(0, Math.min(1, value));
+function clamp(value) { return Math.max(0, Math.min(1, value)); }
+function mix(a, b, t) { return a + (b - a) * t; }
+function ease(value, start, end) {
+  const t = clamp((value - start) / (end - start));
+  return t * t * (3 - 2 * t);
 }
-
-function layoutTop(node) {
-  let top = 0;
-  let current = node;
-  while (current) {
-    top += current.offsetTop;
-    current = current.offsetParent;
-    if (current) top += current.clientTop;
-  }
-  return top;
-}
-
-function mixPalette(from, to, amount) {
-  return Object.fromEntries(['bg', 'ink', 'muted'].map(key => [key,
-    from[key].map((channel, index) => channel + (to[key][index] - channel) * amount)
-  ]));
-}
-
-function rgb(channels) {
-  return `rgb(${channels.join(', ')})`;
-}
-
-function contrast(first, second) {
-  const luminance = colour => colour.map(channel => {
-    const value = channel / 255;
-    return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-  }).reduce((sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index], 0);
-  const a = luminance(first);
-  const b = luminance(second);
-  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
-}
-
-function saveProperties(node, properties) {
-  return properties.map(property => ({ property, value: node.style.getPropertyValue(property), priority: node.style.getPropertyPriority(property) }));
-}
-
-function restoreProperties(node, properties) {
-  for (const { property, value, priority } of properties) {
-    if (value) node.style.setProperty(property, value, priority);
-    else node.style.removeProperty(property);
-  }
-}
-
-function listenToMedia(query, listener) {
+function listen(query, listener) {
   if (query.addEventListener) {
     query.addEventListener('change', listener);
     return () => query.removeEventListener('change', listener);
