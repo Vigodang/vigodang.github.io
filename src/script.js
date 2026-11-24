@@ -34,7 +34,8 @@ let motionFrame = 0;
 let pointerX = 0;
 let pointerY = 0;
 const hero = document.querySelector('.hero');
-const portraitScene = document.querySelector('[data-portrait-scene]');
+// The interactive badge already owns its canvas and pointer motion.
+const portraitScene = hero?.classList.contains('hero-badge-experience') ? null : document.querySelector('[data-portrait-scene]');
 
 function revealAll() {
   revealObserver?.disconnect();
@@ -73,14 +74,16 @@ function queuePortraitMotion() {
     portraitScene.style.setProperty('--portrait-y', `${pointerY * 5 + scrollOffset}px`);
   });
 }
-hero?.addEventListener('pointermove', event => {
+if (portraitScene) hero?.addEventListener('pointermove', event => {
   const bounds = hero.getBoundingClientRect();
   pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
   pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
   queuePortraitMotion();
 });
-hero?.addEventListener('pointerleave', () => { pointerX = pointerY = 0; queuePortraitMotion(); });
-window.addEventListener('scroll', queuePortraitMotion, {passive:true});
+if (portraitScene) {
+  hero?.addEventListener('pointerleave', () => { pointerX = pointerY = 0; queuePortraitMotion(); });
+  window.addEventListener('scroll', queuePortraitMotion, {passive:true});
+}
 finePointer.addEventListener('change', () => {
   pointerX = pointerY = 0;
   portraitScene?.style.removeProperty('--portrait-x');

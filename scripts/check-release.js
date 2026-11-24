@@ -40,7 +40,8 @@ export function checkTheme(source) {
     css = css.slice(0, print.index) + css.slice(end);
   }
   // Retained foundation layers may declare superseded palettes. Check the
-  // winning forest/cream declarations, not every historical value.
+  // winning neutral editorial declarations, not every historical value.
+  // The graphite hero is scoped separately and may use its own light text tokens.
   const rootRules = [...css.matchAll(/(?:^|[{}])\s*:root\s*\{([^{}]*)\}/g)].map(rule => rule[1]);
   const bodyRules = [...css.matchAll(/(?:^|[{}])\s*(body(?:\.portfolio)?)\s*\{([^{}]*)\}/g)];
   function winning(declarations) {
@@ -51,17 +52,21 @@ export function checkTheme(source) {
         || (important === winner.important && candidate.specificity >= winner.specificity) ? candidate : winner;
     }, null);
   }
-  for (const [token, value] of [['bg', '#f3ebdd'], ['ink', '#013230'], ['green', '#013230'], ['orange', '#ff6a1f'], ['paper', 'var(--bg)']]) {
+  for (const [token, value] of [
+    ['bg', '#f5f5f7'], ['surface', '#ffffff'], ['surface-2', '#e8ebef'],
+    ['ink', '#1d1d1f'], ['green', '#013230'], ['orange', '#ff6a1f'],
+    ['brown', '#495b76'], ['muted', '#62656d'], ['line', '#d9dce1'], ['paper', 'var(--bg)'],
+  ]) {
     const declarations = rootRules.flatMap(rule => [...rule.matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:0})));
     const local = bodyRules.flatMap(rule => [...rule[2].matchAll(new RegExp(`--${token}\\s*:\\s*([^;}]+)`, 'g'))].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved forest/cream portfolio ${token} theme token must be ${value}`);
+    assert(winning(declarations)?.value === value && (!local.length || winning(local)?.value === value), `Approved neutral portfolio ${token} theme token must be ${value}`);
   }
   const schemes = rootRules.flatMap(rule => [...rule.matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:0})));
   const localSchemes = bodyRules.flatMap(rule => [...rule[2].matchAll(/\bcolor-scheme\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
   assert(winning(schemes)?.value === 'light' && (!localSchemes.length || winning(localSchemes)?.value === 'light'), 'Screen portfolio color scheme must remain light');
   const backgrounds = bodyRules
     .flatMap(rule => [...rule[2].matchAll(/\bbackground(?:-color)?\s*:\s*([^;}]+)/g)].map(match => ({value:match[1],specificity:rule[1] === 'body.portfolio' ? 1 : 0})));
-  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved cream token');
+  assert(/var\(\s*--bg\s*\)\s*$/.test(winning(backgrounds)?.value || ''), 'Screen portfolio background must use the approved background token');
 }
 
 export function checkExplorer(source) {
@@ -198,5 +203,5 @@ export async function checkRelease(repo = here) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, forest/cream portfolio, orbit explorer and retained legacy files, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
+  checkRelease().then(result => console.log(`Release checks OK: ${result.pages} pages, ${result.releaseAssets} protected assets, neutral portfolio with graphite hero, orbit explorer and retained legacy files, source/build hashes and Pages workflow`)).catch(error => { console.error(error.message); process.exitCode = 1; });
 }

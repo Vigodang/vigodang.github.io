@@ -216,7 +216,7 @@ for (const [name, markup, expected] of [
 test('A new story layer cannot override the shared screen palette after hashes are rebased', async t => {
   const directory = await fixture(t);
   await changeShippedAsset(directory, 'scroll-story.css', bytes => Buffer.from(bytes.toString() + '\nbody.portfolio { background: #fff !important; }\n'));
-  await assert.rejects(checkRelease(directory), /background must use the approved cream token/);
+  await assert.rejects(checkRelease(directory), /background must use the approved background token/);
 });
 
 for (const [name, transform] of [
@@ -250,11 +250,19 @@ test('Homepage badge runtime cannot leak into another editorial page', async t =
   await assert.rejects(checkRelease(directory), /about\.html: the badge hero must remain homepage-only/);
 });
 
-test('Retained foundation followed by approved forest/cream styling permits white print overrides', async t => {
+test('Retained foundation followed by approved neutral styling permits white print overrides', async t => {
   const directory = await fixture(t);
   const print = '\n@media print { :root { color-scheme: light; --bg: #fff; --paper: #fff; --ink: #000; --green: #31584b; } body.portfolio { background-color: #fff !important; } }\n';
   assert.doesNotThrow(() => checkTheme(approvedCSS + print));
   await changeShippedAsset(directory, 'portfolio-pages.css', bytes => Buffer.from(bytes.toString() + print));
+  await checkRelease(directory);
+});
+
+test('The homepage hero supports its scoped graphite and cool-white identity', async t => {
+  const directory = await fixture(t);
+  const hero = '\n.page-home .hero-badge-experience { --bg: #f2f5f4; --ink: #1c2728; --muted: #b9c7c4; }\n';
+  assert.doesNotThrow(() => checkTheme(approvedCSS + hero));
+  await changeShippedAsset(directory, 'portfolio-brand.css', bytes => Buffer.from(bytes.toString() + hero));
   await checkRelease(directory);
 });
 
@@ -396,19 +404,24 @@ for (const route of ['index.html', 'about.html']) {
 }
 
 for (const [name, property, previous, next] of [
-  ['warm-cream base', '--bg', '#f3ebdd', '#eff7f6'],
-  ['forest ink', '--ink', '#013230', '#14303e'],
+  ['neutral base', '--bg', '#f5f5f7', '#eff7f6'],
+  ['white surface', '--surface', '#ffffff', '#f3ebdd'],
+  ['secondary surface', '--surface-2', '#e8ebef', '#e6dccb'],
+  ['graphite ink', '--ink', '#1d1d1f', '#14303e'],
   ['forest green', '--green', '#013230', '#006e62'],
   ['orange accent', '--orange', '#ff6a1f', '#87f5c2'],
+  ['cool secondary ink', '--brown', '#495b76', '#80552f'],
+  ['muted ink', '--muted', '#62656d', '#536356'],
+  ['neutral divider', '--line', '#d9dce1', '#d4c8b7'],
   ['paper alias', '--paper', 'var(--bg)', '#f3ebdd'],
-  ['previous night ink', '--ink', '#013230', '#f1f7f5'],
+  ['previous night ink', '--ink', '#1d1d1f', '#f1f7f5'],
   ['previous night accent', '--green', '#013230', '#87f5c2'],
   ['light color scheme', 'color-scheme', 'light', 'dark'],
 ]) {
   test(`Approved ${name} cannot drift even with rebuilt matching assets and manifest`, async t => {
     const directory = await fixture(t);
     await changeShippedAsset(directory, 'portfolio-brand.css', bytes => Buffer.from(replaceCSSValue(bytes.toString(), property, previous, next)));
-    await assert.rejects(checkRelease(directory), /Approved forest\/cream portfolio|Screen portfolio color scheme/);
+    await assert.rejects(checkRelease(directory), /Approved neutral portfolio|Screen portfolio color scheme/);
   });
 }
 
@@ -418,7 +431,7 @@ for (const [name, override] of [
   ['previous dark root', ':root { --bg: #091521; }'],
   ['later portfolio background-color', 'body.portfolio { background-color: #fff; }'],
   ['important plain-body background', 'body { background-color: #fff !important; }'],
-  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #f3ebdd; }'],
+  ['important root retained over a later normal declaration', ':root { --bg: #fff !important; } :root { --bg: #f5f5f7; }'],
   ['portfolio-local palette override', 'body.portfolio { --bg: #fff; }'],
   ['portfolio-local orange override', 'body.portfolio { --orange: #7655a7; }'],
   ['portfolio-local dark color scheme', 'body.portfolio { color-scheme: dark; }'],
@@ -426,7 +439,7 @@ for (const [name, override] of [
   test(`Screen styling rejects ${name} while assets remain internally consistent`, async t => {
     const directory = await fixture(t);
     await changeShippedAsset(directory, 'portfolio-pages.css', bytes => Buffer.from(bytes.toString() + '\n' + override + '\n'));
-    await assert.rejects(checkRelease(directory), /Approved forest\/cream portfolio|Screen portfolio (?:background|color scheme)/);
+    await assert.rejects(checkRelease(directory), /Approved neutral portfolio|Screen portfolio (?:background|color scheme)/);
   });
 }
 

@@ -23,6 +23,11 @@ function faceUV(geometry,width,height){
 // The camera stays fixed. Both printed faces, the card body and clip rotate.
 export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMotion=false,layout='standalone'}){
   const heroLayout=layout==='hero';
+  // Hero materials share the cool editorial palette; the standalone badge keeps
+  // its original print colours. Geometry, interaction and physics are shared.
+  const palette=heroLayout
+    ?{paper:'#eef2f1',ink:'#243c39',muted:'#5c6e6b',photo:'#d3dfdb',back:'#314a46',line:'#76908b',accent:'#d78662',ribbon:'#8ea7a2',ribbonOther:'#435d59'}
+    :{paper:'#f3ebdd',ink:'#013230',muted:'#38574e',photo:'#c8d5c1',back:'#8d4e34',line:'#c2987f',accent:'#ff6a1f',ribbon:'#c4b49b',ribbonOther:'#bc704c'};
   let renderer;const resources=[];const keep=resource=>(resources.push(resource),resource);
   try{
     renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'low-power'});
@@ -30,48 +35,48 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
     const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,60);
     camera.position.set(0,0,12);camera.lookAt(0,0,0);
-    scene.add(new THREE.HemisphereLight(0xffffff,0xaeb7ad,2.3));
+    scene.add(new THREE.HemisphereLight(0xffffff,heroLayout?0xafbabc:0xaeb7ad,2.3));
     const key=new THREE.DirectionalLight(0xffffff,3.5);key.position.set(-3,6,7);scene.add(key);
-    const fill=new THREE.DirectionalLight(0xe9f1ed,2);fill.position.set(5,1,-3);scene.add(fill);
+    const fill=new THREE.DirectionalLight(heroLayout?0xecf1f2:0xe9f1ed,2);fill.position.set(5,1,-3);scene.add(fill);
     const envCanvas=document.createElement('canvas');envCanvas.width=512;envCanvas.height=256;
     const env=envCanvas.getContext('2d'),gradient=env.createLinearGradient(0,0,0,256);
-    gradient.addColorStop(0,'#f6f4ee');gradient.addColorStop(.48,'#b7c2bd');gradient.addColorStop(1,'#384640');
+    gradient.addColorStop(0,heroLayout?'#f4f6f6':'#f6f4ee');gradient.addColorStop(.48,heroLayout?'#bac5c5':'#b7c2bd');gradient.addColorStop(1,heroLayout?'#3a4849':'#384640');
     env.fillStyle=gradient;env.fillRect(0,0,512,256);env.fillStyle='#fff';env.fillRect(70,10,65,180);env.fillRect(320,15,110,100);
     const environment=keep(new THREE.CanvasTexture(envCanvas));environment.mapping=THREE.EquirectangularReflectionMapping;environment.colorSpace=THREE.SRGBColorSpace;scene.environment=environment;
-    const cream=keep(new THREE.MeshPhysicalMaterial({color:0xf3ebdd,metalness:.02,roughness:.55,clearcoat:.3}));
-    const edge=keep(new THREE.MeshPhysicalMaterial({color:0xff6a1f,metalness:0,roughness:.55,clearcoat:.2}));
+    const cream=keep(new THREE.MeshPhysicalMaterial({color:palette.paper,metalness:.02,roughness:.55,clearcoat:.3}));
+    const edge=keep(new THREE.MeshPhysicalMaterial({color:palette.accent,metalness:0,roughness:.55,clearcoat:.2}));
     const silver=keep(new THREE.MeshPhysicalMaterial({color:0xbfc8c8,metalness:.92,roughness:.33,envMapIntensity:.85}));
-    const graphite=keep(new THREE.MeshStandardMaterial({color:0x152c28,metalness:.03,roughness:.6}));
+    const graphite=keep(new THREE.MeshStandardMaterial({color:heroLayout?0x253936:0x152c28,metalness:.03,roughness:.6}));
     const mesh=(geometry,material,parent=scene)=>{const object=new THREE.Mesh(keep(geometry),material);parent.add(object);return object;};
     const textureFrom=element=>{const texture=keep(new THREE.CanvasTexture(element));texture.colorSpace=THREE.SRGBColorSpace;texture.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());return texture;};
     await document.fonts.ready;
     const photograph=await new Promise((resolve,reject)=>new THREE.TextureLoader().load(new URL('../assets/vigo-portrait-cutout.webp',import.meta.url).href,resolve,undefined,()=>reject(new Error('Portrait texture unavailable'))));keep(photograph);
     const font=(weight,size)=>`${weight} ${size}px InterVariable, Arial, sans-serif`;
     const frontCanvas=document.createElement('canvas');frontCanvas.width=1080;frontCanvas.height=1560;
-    const front=frontCanvas.getContext('2d');front.fillStyle='#f3ebdd';front.fillRect(0,0,1080,1560);
-    front.fillStyle='#013230';front.fillRect(0,0,1080,130);
-    front.fillStyle='#f3ebdd';front.font=font(650,28);front.fillText('PORTFOLIO ID',72,88);
+    const front=frontCanvas.getContext('2d');front.fillStyle=palette.paper;front.fillRect(0,0,1080,1560);
+    front.fillStyle=palette.ink;front.fillRect(0,0,1080,130);
+    front.fillStyle=palette.paper;front.font=font(650,28);front.fillText('PORTFOLIO ID',72,88);
     front.textAlign='right';front.font=font(450,22);front.fillText('BRISBANE, AU',1008,88);front.textAlign='left';
-    front.fillStyle='#013230';front.font=font(850,132);front.fillText('VIGO DANG.',65,290);
-    front.font=font(550,29);front.fillStyle='#38574e';front.fillText('A person to build with.',75,345);
-    front.fillStyle='#c8d5c1';front.fillRect(72,394,936,666);
+    front.fillStyle=palette.ink;front.font=font(850,132);front.fillText('VIGO DANG.',65,290);
+    front.font=font(550,29);front.fillStyle=palette.muted;front.fillText('A person to build with.',75,345);
+    front.fillStyle=palette.photo;front.fillRect(72,394,936,666);
     front.save();front.beginPath();front.rect(72,394,936,666);front.clip();front.drawImage(photograph.image,0,185,1122,1120,72,394,936,934);front.restore();
-    front.fillStyle='#013230';front.font=font(750,66);front.fillText('DATA / CLOUD',72,1180);front.font=font(650,53);front.fillText('ENGINEERING',72,1246);
-    front.fillStyle='#013230';front.fillRect(72,1300,14,14);front.font=font(650,27);front.fillText('OPEN TO INTERNSHIP / GRADUATE ROLES',105,1319);
-    front.font=font(450,27);front.fillStyle='#38574e';front.fillText('Brisbane · Data & Cloud',72,1385);
-    front.fillStyle='#013230';front.fillRect(72,1424,936,2);front.font=font(550,23);front.fillText('LISTEN. ASK. IMPROVE.',72,1480);
+    front.fillStyle=palette.ink;front.font=font(750,66);front.fillText('DATA / CLOUD',72,1180);front.font=font(650,53);front.fillText('ENGINEERING',72,1246);
+    front.fillStyle=palette.ink;front.fillRect(72,1300,14,14);front.font=font(650,27);front.fillText('OPEN TO INTERNSHIP / GRADUATE ROLES',105,1319);
+    front.font=font(450,27);front.fillStyle=palette.muted;front.fillText('Brisbane · Data & Cloud',72,1385);
+    front.fillStyle=palette.ink;front.fillRect(72,1424,936,2);front.font=font(550,23);front.fillText('LISTEN. ASK. IMPROVE.',72,1480);
     front.textAlign='right';front.fillText('TURN TO EXPLORE',1008,1480);front.textAlign='left';
     const backCanvas=document.createElement('canvas');backCanvas.width=1080;backCanvas.height=1560;
-    const back=backCanvas.getContext('2d');back.fillStyle='#8d4e34';back.fillRect(0,0,1080,1560);
-    back.fillStyle='#ff6a1f';back.fillRect(72,180,72,8);back.fillStyle='#f3ebdd';back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
+    const back=backCanvas.getContext('2d');back.fillStyle=palette.back;back.fillRect(0,0,1080,1560);
+    back.fillStyle=palette.accent;back.fillRect(72,180,72,8);back.fillStyle=palette.paper;back.font=font(800,108);back.fillText('MEET VIGO.',66,335);
     back.font=font(450,30);back.fillText('The work. The tools. The person.',72,402);
     const rowY=[.7,.15,-.4,-.95,-1.5],cardHeight=4.35,cardWidth=3;
     chapters.forEach((id,index)=>{
-      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle='#c2987f';back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
-      back.font=font(500,24);back.fillStyle='#f3ebdd';back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillText(labels[index],185,y+18);
-      back.fillStyle='#ff6a1f';back.fillRect(967,y-4,16,16);
+      const y=(.5-rowY[index]/cardHeight)*1560;back.strokeStyle=palette.line;back.lineWidth=1;back.beginPath();back.moveTo(72,y-72);back.lineTo(1008,y-72);back.stroke();
+      back.font=font(500,24);back.fillStyle=palette.paper;back.fillText(String(index+1).padStart(2,'0'),78,y+11);back.font=font(650,52);back.fillText(labels[index],185,y+18);
+      back.fillStyle=palette.accent;back.fillRect(967,y-4,16,16);
     });
-    back.font=font(450,24);back.fillStyle='#f3ebdd';back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
+    back.font=font(450,24);back.fillStyle=palette.paper;back.fillText('PERSONAL PORTFOLIO / ALL CHAPTERS OPEN',72,1475);
     const badge=new THREE.Group();badge.name='portfolio-badge';scene.add(badge);
     const shape=roundedShape(cardWidth,cardHeight,.14),slot=roundedShape(.64,.13,.06);
     slot.curves.forEach(curve=>{for(const property of ['v0','v1','v2','v3'])if(curve[property])curve[property].y+=1.965;});shape.holes.push(slot);
@@ -88,15 +93,15 @@ export async function createOrbitScene({canvas,stage,onSelect,onFrame,reducedMot
     const attachment=new THREE.Object3D();attachment.position.set(0,2.99,0);badge.add(attachment);
     const interactables=[body,frontFace,backFace],nodes=[];
     chapters.forEach((id,index)=>{
-      const material=keep(new THREE.MeshBasicMaterial({color:0xff6a1f,transparent:true,opacity:0,depthWrite:false,toneMapped:false}));
+      const material=keep(new THREE.MeshBasicMaterial({color:palette.accent,transparent:true,opacity:0,depthWrite:false,toneMapped:false}));
       const row=mesh(new THREE.PlaneGeometry(2.62,.44),material,badge);row.position.set(0,rowY[index],-.122);row.rotation.y=Math.PI;row.userData.chapter=id;row.name=`chapter-${id}`;
       interactables.push(row);nodes.push({id,row,material});
     });
     function ribbonTexture(primary){
       const textile=document.createElement('canvas');textile.width=2048;textile.height=128;
-      const ctx=textile.getContext('2d');ctx.fillStyle=primary?(heroLayout?'#c4b49b':'#013230'):'#bc704c';ctx.fillRect(0,0,2048,128);
-      ctx.fillStyle=primary?'#8d4e34':'#013230';ctx.fillRect(0,6,2048,3);ctx.fillRect(0,119,2048,3);
-      ctx.fillStyle=primary&&!heroLayout?'#f3ebdd':'#013230';ctx.font=font(650,42);ctx.textBaseline='middle';
+      const ctx=textile.getContext('2d');ctx.fillStyle=primary?(heroLayout?palette.ribbon:palette.ink):palette.ribbonOther;ctx.fillRect(0,0,2048,128);
+      ctx.fillStyle=primary?palette.back:palette.ink;ctx.fillRect(0,6,2048,3);ctx.fillRect(0,119,2048,3);
+      ctx.fillStyle=heroLayout?(primary?palette.ink:palette.paper):(primary?palette.paper:palette.ink);ctx.font=font(650,42);ctx.textBaseline='middle';
       for(let x=30;x<2048;x+=850)ctx.fillText('VIGO DANG / DATA + CLOUD',x,66);
       ctx.fillStyle='#fff';ctx.globalAlpha=.055;for(let y=0;y<128;y+=4)ctx.fillRect(0,y,2048,1);ctx.globalAlpha=1;
       const texture=textureFrom(textile);texture.wrapS=THREE.RepeatWrapping;return texture;

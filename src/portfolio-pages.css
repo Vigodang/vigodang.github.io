@@ -882,3 +882,192 @@
   .page-about .story-skill-lines { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
   .page-about .story-background-content .text-link { font-size: 9pt; }
 }
+
+/* About, in ordinary page flow: a spacious photo essay, not a pinned slideshow. */
+.page-about .about-editorial {
+  --about-ink: #1d1d1f;
+  --about-muted: #62656d;
+  color: var(--about-ink);
+  background: #f5f5f7;
+}
+.page-about .about-editorial :is(section, div, figure) { min-width: 0; }
+.page-about .about-editorial .label { margin: 0; color: var(--about-muted); font-size: 14px; font-weight: 600; letter-spacing: .1em; }
+.page-about .about-editorial :is(h1, h2, h3, p) { margin-top: 0; }
+.page-about .about-editorial :is(h1, h2, h3) { color: inherit; font-weight: 650; }
+.page-about .about-editorial p { line-height: 1.65; }
+.page-about .about-editorial .text-link { color: inherit; font-size: 14px; font-weight: 550; text-decoration-color: #86868b; }
+.page-about .about-editorial .text-link:hover { color: var(--green); text-decoration-color: currentColor; }
+.page-about .about-arrival { padding-top: clamp(64px, 8vw, 116px); padding-bottom: clamp(80px, 10vw, 152px); }
+.page-about .about-arrival h1 { margin: 24px 0 0; max-width: 1160px; font-size: clamp(48px, 7.65vw, 106px); line-height: 1.025; letter-spacing: -.065em; }
+.page-about .about-arrival h1 span { color: #878991; }
+.page-about .about-arrival-intro { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; max-width: 760px; margin: 42px 0 0 auto; }
+.page-about .about-arrival-intro > p { margin: 0; color: var(--about-muted); font-size: 17px; }
+.page-about .about-arrival-intro > p:first-child { color: var(--about-ink); font-size: 23px; font-weight: 500; line-height: 1.4; letter-spacing: -.035em; }
+.page-about .about-arrival-bottom { display: grid; grid-template-columns: .3fr .7fr; gap: 50px; align-items: end; margin-top: 64px; }
+.page-about .about-side-note { padding-bottom: 42px; }
+.page-about .about-note-line { display: block; width: 40px; height: 2px; margin-bottom: 22px; background: #989ba3; }
+.page-about .about-side-note p { margin-bottom: 0; color: var(--about-muted); font-size: 16px; }
+.page-about .about-frame { margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none; }
+.page-about .about-frame img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 14px; object-fit: contain; }
+.page-about .about-frame figcaption { margin: 0; padding: 15px 1px 0; color: var(--about-muted); font-size: 13px; line-height: 1.5; }
+.page-about .about-arrival-photos { display: grid; grid-template-columns: .9fr 1fr; gap: clamp(20px, 3vw, 42px); align-items: start; }
+.page-about .about-arrival-photos .about-frame:first-child { margin-top: 72px; }
+.page-about .about-everyday { padding: clamp(80px, 10vw, 140px) 0; background: linear-gradient(130deg, #e6ecf4 0%, #f0f2f8 65%, #ebedf4 100%); }
+.page-about .about-everyday-inner { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(48px, 8vw, 110px); align-items: center; }
+.page-about .about-food-photos { display: grid; grid-template-columns: .8fr 1fr; gap: clamp(18px, 2.5vw, 34px); align-items: start; }
+.page-about .about-food-photos .about-frame:first-child { margin-top: 100px; }
+.page-about .about-chapter-copy h2 { margin: 22px 0 28px; font-size: clamp(42px, 5.2vw, 72px); line-height: 1.035; letter-spacing: -.06em; }
+.page-about .about-chapter-copy > p:not(.label) { max-width: 40ch; margin-bottom: 20px; color: var(--about-muted); font-size: 17px; }
+.page-about .about-chapter-copy > p:last-child { margin-bottom: 0; }
+.page-about .about-places { padding-top: clamp(88px, 11vw, 156px); padding-bottom: clamp(88px, 11vw, 156px); }
+.page-about .about-places-heading { display: grid; grid-template-columns: 1fr .7fr; gap: 22px 12%; align-items: end; }
+.page-about .about-places-heading > .label { grid-column: 1 / -1; }
+.page-about .about-places-heading h2 { margin: 0; font-size: clamp(48px, 6.2vw, 86px); line-height: 1.035; letter-spacing: -.065em; }
+.page-about .about-places-heading > p:last-child { max-width: 39ch; margin: 0 0 3px; color: var(--about-muted); font-size: 17px; }
+.page-about .about-places-photos { display: grid; grid-template-columns: 1.12fr 1fr; gap: clamp(28px, 6vw, 84px); margin-top: 66px; align-items: start; }
+.page-about .about-places-photos .about-frame:last-child { margin-top: 128px; }
+.page-about .about-together { padding: clamp(88px, 10vw, 144px) 0; color: #f5f5f7; background: #263b3a; }
+.page-about .about-together-inner { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(48px, 7vw, 100px); align-items: center; }
+.page-about .about-together .label { color: #a4beb7; }
+.page-about .about-together .about-chapter-copy > p:not(.label) { color: #cedbd6; }
+.page-about .about-together-links { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 30px; }
+.page-about .about-together .text-link { color: #f5f5f7; text-decoration-color: #8eaaa3; }
+.page-about .about-together .text-link:hover { color: #cedbd6; }
+.page-about .about-together-photos { display: grid; grid-template-columns: 1fr .86fr; gap: clamp(18px, 2.4vw, 34px); align-items: start; }
+.page-about .about-together-photos .about-frame:last-child { margin-top: 106px; }
+.page-about .about-foundation { display: grid; grid-template-columns: 1fr 1fr; gap: 66px 9%; padding: clamp(88px, 11vw, 152px) 0 clamp(72px, 9vw, 128px); }
+.page-about .about-foundation h2 { margin: 22px 0 36px; max-width: 10ch; font-size: clamp(44px, 5.1vw, 70px); line-height: 1.035; letter-spacing: -.06em; }
+.page-about .about-signature { display: flex; align-items: center; gap: 20px; }
+.page-about .about-signature .story-signoff-photo { display: block; flex: 0 0 76px; width: 76px; border-radius: 14px; background: #e5e7e9; overflow: hidden; }
+.page-about .about-signature .story-signoff-photo img { display: block; width: 76px; height: 95px; object-fit: contain; object-position: bottom center; }
+.page-about .about-signature p { margin: 0; color: var(--about-muted); font-size: 13px; line-height: 1.65; }
+.page-about .about-signature :is(strong, span) { display: block; }
+.page-about .about-signature strong { margin-bottom: 5px; color: var(--about-ink); font-size: 14px; font-weight: 600; }
+.page-about .about-education { padding-top: 3px; }
+.page-about .about-education-date { margin: 0 0 24px; color: var(--about-muted); font-size: 13px; }
+.page-about .about-education h3 { margin-bottom: 20px; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.16; letter-spacing: -.04em; }
+.page-about .about-education > p:not(.about-education-date) { margin-bottom: 20px; color: var(--about-muted); font-size: 16px; }
+.page-about .about-education .about-award { max-width: 44ch; }
+.page-about .about-foundation-links { display: flex; flex-wrap: wrap; column-gap: 24px; }
+.page-about .about-technical { grid-column: 1 / -1; border-top: 1px solid #d2d2d7; border-bottom: 1px solid #d2d2d7; }
+.page-about .about-technical summary { display: grid; grid-template-columns: 1fr 1fr 24px; gap: 24px; align-items: center; min-height: 88px; padding: 20px 0; list-style: none; color: var(--about-ink); font-size: 20px; font-weight: 550; letter-spacing: -.025em; cursor: pointer; }
+.page-about .about-technical summary::-webkit-details-marker { display: none; }
+.page-about .about-technical summary:hover { color: var(--green); }
+.page-about .about-technical-hint { color: var(--about-muted); font-size: 14px; font-weight: 400; letter-spacing: 0; }
+.page-about .about-technical-toggle { justify-self: end; color: var(--about-muted); font-size: 25px; font-weight: 400; line-height: 1; transition: transform .25s ease; }
+.page-about .about-technical[open] .about-technical-toggle { transform: rotate(45deg); }
+.page-about .about-technical-content { padding: 10px 0 30px; }
+.page-about .about-technical-content > p { max-width: 76ch; color: var(--about-muted); font-size: 16px; }
+.page-about .about-technical-content dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 40px; margin: 36px 0; }
+.page-about .about-technical-content dt { margin-bottom: 10px; font-size: 14px; font-weight: 600; }
+.page-about .about-technical-content dd { margin: 0; color: var(--about-muted); font-size: 16px; line-height: 1.7; }
+@media (max-width: 1000px) {
+  .page-about .about-arrival-intro { max-width: 650px; }
+  .page-about .about-arrival-bottom { grid-template-columns: .25fr .75fr; gap: 30px; margin-top: 50px; }
+  .page-about .about-arrival-photos .about-frame:first-child { margin-top: 54px; }
+  .page-about .about-everyday-inner { grid-template-columns: 1.1fr .9fr; gap: 42px; }
+  .page-about .about-food-photos .about-frame:first-child { margin-top: 72px; }
+  .page-about .about-chapter-copy > p:not(.label), .page-about .about-places-heading > p:last-child { font-size: 16px; }
+  .page-about .about-places-heading { gap: 22px 8%; }
+  .page-about .about-places-photos .about-frame:last-child { margin-top: 88px; }
+  .page-about .about-together-inner { gap: 46px; }
+  .page-about .about-together-photos { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .page-about .about-together-photos .about-frame:last-child { margin-top: 76px; }
+  .page-about .about-foundation { column-gap: 7%; }
+}
+@media (max-width: 760px) {
+  .page-about .about-arrival h1 { font-size: clamp(42px, 7.8vw, 62px); }
+  .page-about .about-arrival-intro { max-width: none; grid-template-columns: .9fr 1.1fr; gap: 28px; margin-top: 32px; }
+  .page-about .about-arrival-intro > p { font-size: 16px; }
+  .page-about .about-arrival-intro > p:first-child { font-size: 20px; }
+  .page-about .about-arrival-bottom { grid-template-columns: 1fr; gap: 24px; }
+  .page-about .about-side-note { grid-row: 2; padding: 0; display: flex; gap: 18px; align-items: center; }
+  .page-about .about-note-line { flex: 0 0 30px; margin: 0; }
+  .page-about .about-side-note p br { display: none; }
+  .page-about .about-arrival-photos { max-width: 570px; width: 100%; justify-self: center; }
+  .page-about .about-everyday-inner { grid-template-columns: 1fr; gap: 44px; }
+  .page-about .about-everyday .about-chapter-copy { grid-row: 1; max-width: 530px; }
+  .page-about .about-chapter-copy h2 { margin-top: 18px; margin-bottom: 24px; font-size: clamp(42px, 7vw, 54px); }
+  .page-about .about-food-photos { max-width: 540px; width: 100%; justify-self: center; }
+  .page-about .about-food-photos .about-frame:first-child { margin-top: 64px; }
+  .page-about .about-places-heading { grid-template-columns: 1fr; gap: 20px; }
+  .page-about .about-places-heading h2 { font-size: clamp(44px, 7vw, 58px); }
+  .page-about .about-places-heading > p:last-child { max-width: 53ch; margin-top: 4px; }
+  .page-about .about-places-photos { gap: 26px; margin-top: 40px; }
+  .page-about .about-places-photos .about-frame:last-child { margin-top: 66px; }
+  .page-about .about-together-inner { grid-template-columns: 1fr; gap: 44px; }
+  .page-about .about-together .about-chapter-copy { max-width: 550px; }
+  .page-about .about-together .about-chapter-copy > p:not(.label) { max-width: 53ch; }
+  .page-about .about-together-photos { max-width: 530px; width: 100%; justify-self: center; }
+  .page-about .about-foundation { grid-template-columns: 1fr; gap: 44px; }
+  .page-about .about-foundation h2 { max-width: none; font-size: 48px; }
+  .page-about .about-education { max-width: 560px; }
+  .page-about .about-technical { grid-column: 1; }
+  .page-about .about-technical summary { grid-template-columns: 1fr 24px; gap: 3px 20px; font-size: 18px; }
+  .page-about .about-technical-hint { grid-column: 1; grid-row: 2; }
+  .page-about .about-technical-toggle { grid-column: 2; grid-row: 1 / span 2; }
+  .page-about .about-technical-content dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 480px) {
+  .page-about .about-arrival { padding-top: 46px; padding-bottom: 72px; }
+  .page-about .about-arrival h1 { margin-top: 20px; font-size: clamp(38px, 10.8vw, 51px); line-height: 1.06; letter-spacing: -.065em; }
+  .page-about .about-arrival-intro { grid-template-columns: 1fr; gap: 18px; margin-top: 28px; }
+  .page-about .about-arrival-intro > p:first-child { font-size: 21px; }
+  .page-about .about-arrival-intro > p:first-child br { display: none; }
+  .page-about .about-arrival-bottom { margin-top: 36px; }
+  .page-about .about-arrival-photos { gap: 14px; }
+  .page-about .about-arrival-photos .about-frame:first-child { margin-top: 38px; }
+  .page-about .about-frame img { border-radius: 9px; }
+  .page-about .about-everyday { padding-block: 68px; }
+  .page-about .about-everyday-inner { gap: 34px; }
+  .page-about .about-food-photos { gap: 16px; }
+  .page-about .about-food-photos .about-frame:first-child { margin-top: 48px; }
+  .page-about .about-chapter-copy h2 { font-size: clamp(39px, 10.5vw, 50px); }
+  .page-about .about-places { padding-block: 72px; }
+  .page-about .about-places-heading h2 { font-size: 44px; }
+  .page-about .about-places-photos { grid-template-columns: 1fr; gap: 30px; }
+  .page-about .about-places-photos .about-frame:first-child { width: 94%; }
+  .page-about .about-places-photos .about-frame:last-child { width: 94%; margin-top: 0; justify-self: end; }
+  .page-about .about-frame figcaption { padding-top: 11px; }
+  .page-about .about-together { padding-block: 70px; }
+  .page-about .about-together-inner { gap: 34px; }
+  .page-about .about-together-photos { gap: 16px; }
+  .page-about .about-together-photos .about-frame:last-child { margin-top: 52px; }
+  .page-about .about-together-links { margin-top: 22px; gap: 6px 22px; }
+  .page-about .about-foundation { gap: 36px; padding-block: 72px; }
+  .page-about .about-foundation h2 { font-size: 42px; margin: 20px 0 28px; }
+  .page-about .about-signature { gap: 16px; }
+  .page-about .about-signature .story-signoff-photo { flex-basis: 64px; width: 64px; }
+  .page-about .about-signature .story-signoff-photo img { width: 64px; height: 80px; }
+  .page-about .about-education h3 { font-size: 26px; }
+  .page-about .about-technical summary { min-height: 92px; }
+  .page-about .about-technical-content dl { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-about .about-editorial [data-parallax] { transform: none !important; }
+  .page-about .about-technical-toggle { transition: none; }
+}
+@media print {
+  .page-about .about-editorial { color: #1d1d1f; background: white; }
+  .page-about .about-editorial > section { padding-block: 8mm; break-inside: avoid; }
+  .page-about .about-arrival h1 { font-size: 36pt; }
+  .page-about .about-editorial h2 { font-size: 26pt; }
+  .page-about .about-editorial p { font-size: 10pt !important; }
+  .page-about .about-arrival-bottom { grid-template-columns: .3fr .7fr; margin-top: 8mm; }
+  .page-about .about-arrival-photos { max-width: 115mm; gap: 5mm; }
+  .page-about .about-arrival-intro { margin-top: 8mm; }
+  .page-about .about-editorial .about-frame { max-width: 80mm; }
+  .page-about .about-everyday-inner, .page-about .about-together-inner { grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .page-about .about-everyday .about-chapter-copy { grid-row: auto; }
+  .page-about .about-editorial :is(.about-everyday, .about-together) { background: white; color: #1d1d1f; }
+  .page-about .about-together :is(.label, .text-link, .about-chapter-copy > p:not(.label)) { color: #62656d; }
+  .page-about .about-editorial [data-parallax] { transform: none !important; }
+  .page-about .about-places-photos { grid-template-columns: 1fr 1fr; margin-top: 8mm; gap: 8mm; }
+  .page-about .about-places-photos .about-frame:last-child { margin-top: 10mm; }
+  .page-about .about-foundation { grid-template-columns: 1fr 1fr; gap: 10mm; }
+  .page-about .about-technical { grid-column: 1 / -1; }
+  .page-about .about-technical-content, .page-about .about-technical:not([open]) > .about-technical-content { display: block !important; }
+  .page-about .about-technical::details-content { content-visibility: visible !important; block-size: auto !important; }
+  .page-about .about-technical-content dl { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5mm; }
+  .page-about .about-technical-toggle { display: none; }
+}
