@@ -1,230 +1,118 @@
-/* Spatial scroll sequences. The default is a complete, normal-flow page.
-   JavaScript supplies transforms only after it can pin a usable viewport. */
-.motion-sequence {
-  position: relative;
-  padding: 64px 0 80px;
-  background: #f3ebdd;
-  color: #013230;
-}
-.motion-sequence .motion-stage {
-  position: relative;
+/* Large editorial photo worlds. The complete page reads in normal flow;
+   the measured desktop camera is an enhancement, never an image crop. */
+.world-sequence { position: relative; background: #f3ebdd; color: #013230; }
+.world-sequence :is(.world-stage, .world-track) { position: relative; width: 100%; max-width: none; min-width: 0; }
+.world-sequence .story-spread {
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 28fr) minmax(0, 72fr);
   align-items: center;
-  gap: 24px clamp(36px, 5vw, 72px);
+  width: 100%;
   min-width: 0;
+  padding: 40px 0;
 }
+.world-sequence .spread-copy { min-width: 0; padding: 24px clamp(24px, 3vw, 52px) 24px clamp(24px, 4vw, 72px); }
+.world-sequence .spread-copy > .label { margin: 0 0 18px; color: #536356; font-size: 14px; }
+.world-sequence .spread-title { margin: 0 0 26px; color: #013230; font-size: clamp(3rem, 4.4vw, 5rem); font-weight: 800; line-height: 1.02; letter-spacing: -.06em; }
+.world-sequence .spread-title > span { color: inherit; }
+.world-sequence .spread-body { max-width: 42ch; color: #536356; font-size: 17px; line-height: 1.75; }
+.world-sequence .spread-body p { margin: 0 0 18px; font-size: inherit; line-height: inherit; }
+.world-sequence .spread-body p:last-child { margin-bottom: 0; }
+.world-sequence .spread-body .text-link { color: #013230; font-size: 14px; }
+.world-sequence .spread-body .story-next { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 20px; }
+.world-sequence .spread-media { min-width: 0; min-height: 0; width: 100%; padding: 0; }
+.world-sequence .photo-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.world-sequence .photo-wide { display: flex; align-items: center; justify-content: center; }
+.world-sequence .spread-media > figure { min-width: 0; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.world-sequence .photo-wide > figure { width: 100%; }
+.world-sequence .story-photo-media { min-width: 0; background: none; }
+.world-sequence .story-photo-media img { display: block; width: 100%; height: auto; max-width: 100%; object-fit: contain; }
+
+/* Home keeps the real application preview in view as the composition moves. */
+.motion-sequence { position: relative; padding: 56px 0 72px; background: #f3ebdd; color: #013230; }
+.motion-sequence .motion-stage { position: relative; display: grid; grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); align-items: center; gap: 24px 36px; min-width: 0; }
 .selected .demo-motion > .motion-stage.wrap { width: 100%; max-width: none; }
-.motion-sequence .sequence-title {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: end;
-  margin: 0;
-  color: #013230;
-  font-size: clamp(3.5rem, 6vw, 6rem);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -.06em;
-  transform-origin: left top;
-}
-.motion-sequence .sequence-title > span { color: inherit; }
-.motion-sequence .sequence-copy {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
-  min-width: 0;
-  max-width: 48ch;
-  color: #536356;
-  font-size: 17px;
-  line-height: 1.7;
-}
+.motion-sequence .sequence-title { grid-column: 1; grid-row: 1; align-self: end; margin: 0; color: #013230; font-size: clamp(3.5rem, 5vw, 5.5rem); font-weight: 800; line-height: 1.02; letter-spacing: -.06em; transform-origin: left top; }
+.motion-sequence .sequence-title > span { display: block; color: inherit; }
+.motion-sequence .sequence-copy { grid-column: 1; grid-row: 2; align-self: start; min-width: 0; max-width: 48ch; color: #536356; font-size: 17px; line-height: 1.7; }
 .motion-sequence .sequence-copy p { margin: 0 0 16px; font-size: inherit; line-height: inherit; }
 .motion-sequence .sequence-copy p:last-child { margin-bottom: 0; }
 .motion-sequence .sequence-copy > .label { margin-bottom: 12px; font-size: 14px; line-height: 1.5; }
 .motion-sequence .sequence-copy .text-link { color: #013230; font-size: 14px; }
-.motion-sequence .sequence-copy .story-next { margin-top: 18px; }
-.motion-sequence .sequence-portrait {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  width: min(100%, 360px);
-  min-width: 0;
-  margin: 0;
-}
-.motion-sequence :is(.sequence-portrait, .sequence-frame) .story-photo-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-width: 0;
-  background: none;
-}
-.motion-sequence :is(.sequence-portrait, .sequence-frame) img {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 540px;
-  object-fit: contain;
-}
-.motion-sequence[data-motion-sequence="rail"] .sequence-title,
-.motion-sequence[data-motion-sequence="rail"] .sequence-copy,
-.motion-sequence .sequence-rail-window { grid-column: 1 / -1; }
-.motion-sequence[data-motion-sequence="rail"] .sequence-title { grid-row: 1; }
-.motion-sequence[data-motion-sequence="rail"] .sequence-copy { grid-row: 2; max-width: 75ch; }
-.motion-sequence .sequence-rail-window { grid-row: 3; min-width: 0; }
-.motion-sequence .sequence-rail {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: 20px;
-  width: 100%;
-  min-width: 0;
-}
-.motion-sequence .sequence-frame { display: flex; align-items: center; justify-content: center; min-width: 0; margin: 0; }
-.motion-sequence.about-motion-people { background: #c8d5c1; }
-.motion-sequence.about-motion-people .sequence-copy { color: #42574e; }
-.motion-sequence .sequence-feature {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  margin: 0;
-  padding: 14px;
-  border: 0;
-  border-radius: 2px;
-  background: #e6dccb;
-  color: #013230;
-  text-decoration: none;
-  box-shadow: none;
-  transform: none;
-  transform-origin: center center;
-}
+.motion-sequence .sequence-feature { grid-column: 2; grid-row: 1 / span 2; display: flex; flex-direction: column; min-width: 0; margin: 0; padding: 12px; border: 0; border-radius: 0; background: #e6dccb; color: #013230; text-decoration: none; box-shadow: none; transform-origin: center center; }
 .motion-sequence .sequence-feature .browser-top { flex: 0 0 28px; width: 100%; height: 28px; }
 .motion-sequence .sequence-feature img { display: block; width: 100%; height: auto; max-width: 100%; object-fit: contain; box-shadow: none; }
-.motion-sequence :is(.sequence-title, .sequence-copy, .sequence-portrait, .sequence-feature, .sequence-rail, .sequence-frame) {
-  animation: none;
-  transition: none;
-}
-.motion-sequence :is(a, button):focus-visible { outline: 3px solid #ff6a1f; outline-offset: 5px; }
-@media (max-width: 800px) {
+:is(.world-sequence, .motion-sequence) :is(a, button):focus-visible { outline: 3px solid #ff6a1f; outline-offset: 5px; }
+:is(.world-sequence, .motion-sequence) :is(.world-track, .spread-copy, .spread-title, .spread-media, .sequence-title, .sequence-copy, .sequence-feature) { animation: none; transition: none; }
+
+@media (max-width: 999px) {
+  .world-sequence .story-spread { display: block; padding: 0 0 56px; }
+  .world-sequence .spread-copy { max-width: 75ch; margin-inline: auto; padding: 40px 24px 30px; }
+  .world-sequence .spread-title { font-size: clamp(2.65rem, 6.5vw, 4rem); }
+  .world-sequence .spread-body { max-width: 62ch; font-size: 16px; }
+  .world-sequence .photo-pair { gap: 20px; }
   .motion-sequence { padding: 44px 0 56px; }
-  .motion-sequence .motion-stage { grid-template-columns: minmax(0, 1fr); gap: 26px; }
-  .motion-sequence .sequence-title { grid-column: 1; grid-row: 1; font-size: clamp(2.6rem, 8vw, 4rem); }
-  .motion-sequence .sequence-copy { grid-column: 1; grid-row: 2; max-width: 62ch; font-size: 16px; }
-  .motion-sequence .sequence-portrait,
+  .motion-sequence .motion-stage { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .motion-sequence .sequence-title { grid-column: 1; grid-row: 1; font-size: clamp(2.65rem, 7vw, 4rem); }
+  .motion-sequence .sequence-copy { grid-column: 1; grid-row: 2; max-width: 65ch; font-size: 16px; }
   .motion-sequence .sequence-feature { grid-column: 1; grid-row: 3; }
-  .motion-sequence .sequence-portrait { width: min(74%, 320px); }
-  .motion-sequence .sequence-rail { gap: 14px; }
 }
-@media (max-width: 600px) {
-  .motion-sequence { padding: 36px 0 48px; }
-  .motion-sequence .sequence-rail { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .motion-sequence .sequence-frame:last-child { grid-column: 1 / -1; width: calc(50% - 7px); justify-self: center; }
-  .motion-sequence .sequence-feature { padding: 10px; }
+@media (max-width: 599px) {
+  .world-sequence .story-spread { padding-bottom: 40px; }
+  .world-sequence .spread-copy { padding: 32px 24px 26px; }
+  .world-sequence .spread-title { margin-bottom: 22px; font-size: clamp(2.5rem, 10.5vw, 3.25rem); }
+  .world-sequence .photo-pair { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .motion-sequence .sequence-feature { padding: 8px; }
 }
 
-/* Pinning is a progressive enhancement. A scene marked static keeps all of the
-   normal-flow layout above; no ancestor receives overflow or a transform. */
-@media screen and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) {
-    height: 220vh;
-    height: 220svh;
-    padding: 0;
-  }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="rail"]:not([data-motion-static]) { height: 400vh; height: 400svh; }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) { height: 240vh; height: 240svh; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) > .motion-stage {
+/* Only the visible track gets a compositor hint. Its continuous translation is
+   supplied by the engine; neither image scaling nor individual layers reset. */
+@media screen and (min-width: 1000px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) { height: 240svh; }
+  body.scroll-story-ready .world-sequence.outside-world:not([data-motion-static]) { height: 300svh; }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .world-stage {
     position: sticky;
     top: var(--motion-header, 84px);
-    display: block;
-    height: calc(100vh - var(--motion-header, 84px));
-    height: calc(100svh - var(--motion-header, 84px));
-    min-height: 0;
-    padding-block: 0;
+    height: var(--world-height, calc(100svh - var(--motion-header, 84px)));
     overflow: clip;
   }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) :is(.sequence-title, .sequence-copy, .sequence-portrait, .sequence-feature, .sequence-rail, .sequence-frame) { will-change: transform; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-title {
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    top: 8%;
-    width: 45%;
-    max-width: none;
-    margin: 0;
-    font-size: clamp(3.5rem, 6vw, 6rem);
-  }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-copy {
-    position: absolute;
-    z-index: 3;
-    left: 0;
-    bottom: 10%;
-    width: 42%;
-    max-width: 48ch;
-    font-size: 17px;
-    line-height: 1.65;
-  }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-portrait {
-    position: absolute;
-    z-index: 1;
-    right: 2%;
-    top: 4%;
-    width: 45%;
-    height: 90%;
-    margin: 0;
-  }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) :is(.sequence-portrait, .sequence-frame) .story-photo-media { height: 100%; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) :is(.sequence-portrait, .sequence-frame) img { max-height: 100%; }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="rail"]:not([data-motion-static]) .sequence-title {
-    top: 2%;
-    width: 100%;
-    font-size: clamp(2rem, 5vw, 4.5rem);
-  }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="rail"]:not([data-motion-static]) .sequence-copy { bottom: 2%; width: 100%; max-width: 75ch; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-rail-window { position: absolute; top: 20%; bottom: 18%; left: 0; width: 100%; overflow: hidden; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-rail { display: flex; flex-flow: row nowrap; align-items: stretch; gap: 0; width: 100%; height: 100%; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-frame { flex: 0 0 100%; width: 100%; height: 100%; max-width: none; }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) .sequence-title { top: 8%; width: 42%; }
-  body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) .sequence-copy { bottom: 8%; width: 35%; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-feature { position: absolute; right: 0; top: 22%; width: 60%; height: 66%; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-feature img { flex: 1 1 auto; min-height: 0; height: 0; object-fit: contain; }
-  body.scroll-story-ready .motion-sequence:not([data-motion-static]) :is(.sequence-copy, .sequence-feature):focus-within { transform: none !important; }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .story-spread { height: var(--world-height, calc(100svh - var(--motion-header, 84px))); min-height: 0; padding-block: 0; }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .spread-media { height: min(calc(var(--world-height, calc(100svh - var(--motion-header, 84px))) - 64px), 48vw); }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .photo-pair { align-items: center; }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .spread-media > figure,
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .story-photo-media { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 0; }
+  body.scroll-story-ready .world-sequence:not([data-motion-static]) .story-photo-media img { width: auto; height: auto; max-width: 100%; max-height: 100%; }
+  body.scroll-story-ready .world-sequence[data-in-view]:not([data-motion-static]) .world-track { will-change: transform; }
 
-  @media (max-width: 800px) {
-    body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-title { top: 2%; width: 100%; font-size: 42px; }
-    body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-portrait { right: 0; top: 22%; width: 100%; height: min(43%, var(--portrait-room, 100%)); }
-    body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-copy { bottom: 2%; width: 100%; max-width: none; font-size: 16px; }
-    body.scroll-story-ready .motion-sequence.about-motion-people:not([data-motion-static]) .sequence-title { font-size: 40px; }
-    body.scroll-story-ready .motion-sequence.about-motion-people:not([data-motion-static]) .sequence-portrait { top: 20%; height: min(35%, var(--portrait-room, 100%)); }
-    body.scroll-story-ready .motion-sequence[data-motion-sequence="rail"]:not([data-motion-static]) .sequence-title { top: 2%; font-size: clamp(2rem, 5vw, 4.5rem); }
-    body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-rail-window { top: 20%; bottom: 24%; }
-    body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) .sequence-title { top: 2%; width: 100%; }
-    body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) .sequence-copy { bottom: 2%; width: 100%; }
-    body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-feature { top: 25%; right: 0; width: 100%; height: 42%; }
-  }
+  body.scroll-story-ready .motion-sequence[data-motion-sequence="demos"]:not([data-motion-static]) { height: 190svh; padding: 0; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) > .motion-stage { position: sticky; top: var(--motion-header, 84px); display: block; height: calc(100svh - var(--motion-header, 84px)); padding-block: 0; overflow: clip; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-title { position: absolute; z-index: 2; left: 0; top: 8%; width: 28%; max-width: none; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-copy { position: absolute; z-index: 2; left: 0; bottom: 10%; width: 28%; max-width: none; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-feature { position: absolute; right: 0; top: 10%; width: 68%; height: 80%; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) .sequence-feature img { flex: 1 1 auto; min-height: 0; height: 0; object-fit: contain; }
+  body.scroll-story-ready .motion-sequence[data-in-view]:not([data-motion-static]) :is(.sequence-title, .sequence-copy, .sequence-feature) { will-change: transform; }
+  body.scroll-story-ready .motion-sequence:not([data-motion-static]) :is(.sequence-copy, .sequence-feature):focus-within { transform: none !important; }
 }
 
-/* These states must remain readable even while a preference or print event is
-   being handled. The inline transforms are never allowed to pin static output. */
-@media (max-height: 699px), (prefers-reduced-motion: reduce), print {
-  .motion-sequence { height: auto !important; }
-  .motion-sequence > .motion-stage { position: relative !important; top: auto !important; height: auto !important; }
-  .motion-sequence :is(.sequence-title, .sequence-copy, .sequence-portrait, .sequence-feature, .sequence-rail, .sequence-frame) { transform: none !important; will-change: auto; }
+/* Short and narrow viewports use the actual document, rather than a shrunken
+   pinned stage. A light media-group parallax can still run without clipping. */
+@media (max-width: 999px), (max-height: 699px) {
+  .world-sequence .world-track { transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce), print {
+  :is(.world-sequence, .motion-sequence) { height: auto !important; }
+  :is(.world-stage, .motion-stage) { position: relative !important; top: auto !important; height: auto !important; overflow: visible !important; }
+  :is(.world-sequence, .motion-sequence) :is(.world-track, .spread-copy, .spread-title, .spread-media, .sequence-title, .sequence-copy, .sequence-feature) { transform: none !important; will-change: auto; }
 }
 @media print {
-  .motion-sequence { padding: 7mm 0; background: white; color: #013230; break-inside: auto; }
-  .motion-sequence .motion-stage { gap: 5mm; }
+  .world-sequence .story-spread { display: grid; grid-template-columns: minmax(0, 30fr) minmax(0, 70fr); gap: 6mm; height: auto; padding: 6mm 0; break-inside: avoid; }
+  .world-sequence .spread-copy { padding: 0; }
+  .world-sequence .spread-title { font-size: 23pt; margin-bottom: 4mm; }
+  .world-sequence .spread-body { color: #013230; font-size: 10pt; line-height: 1.5; }
+  .world-sequence .photo-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3mm; }
+  .world-sequence .story-photo-media { display: flex; justify-content: center; }
+  .world-sequence .story-photo-media img { width: auto; max-height: 85mm; }
+  .motion-sequence { padding: 7mm 0; background: white; }
   .motion-sequence .sequence-title { font-size: 25pt; }
-  .motion-sequence .sequence-copy { font-size: 10pt; line-height: 1.5; color: #013230; }
-  .motion-sequence .sequence-copy p { margin-bottom: 3mm; }
-  .motion-sequence .sequence-portrait { width: min(100%, 65mm); }
-  .motion-sequence :is(.sequence-portrait, .sequence-frame) img { max-height: 95mm; }
-  .motion-sequence .sequence-rail { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4mm; }
-  .motion-sequence .sequence-frame:last-child { grid-column: auto; width: 100%; }
+  .motion-sequence .sequence-copy { font-size: 10pt; line-height: 1.5; }
   .motion-sequence .sequence-feature { padding: 3mm; }
 }
